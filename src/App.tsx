@@ -6,7 +6,7 @@ import Contact from './components/pages/Contact';
 import About from './components/pages/About';
 import Products from './components/Products/ProductsList';
 import Login from './components/pages/Login';
-import SingleProductPage from './components/pages/SingleProductPage';
+// import SingleProductPage from './components/pages/SingleProductPage';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/shop/:category" element={<Products />} />
-			 <Route path='/shop/:category/:productId' element = {<SingleProductPage />} />
+          {/* <Route path="/shop/:category/:productId" element={<SingleProductPage />} /> */}
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

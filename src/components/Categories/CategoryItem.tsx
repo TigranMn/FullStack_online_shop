@@ -6,7 +6,7 @@ type TCategoryItemProps = {
 };
 
 const CategoryItem: FC<TCategoryItemProps> = ({ category }) => {
-  return <Link to={`/shop/${category}`}>{category}</Link>;
+  return <Link to={`/shop/${category.toLowerCase()}`}>{category}</Link>;
 };
 
 export default CategoryItem;
