@@ -4,10 +4,10 @@ import categoriesReducer from './redux/categoriesSlice';
 import productsReducer from './redux/productsSlice';
 
 const store = configureStore({
-  reducer: {
-    categories: categoriesReducer,
-    products: productsReducer
-  }
+   reducer: {
+      categories: categoriesReducer,
+      products: productsReducer
+   }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

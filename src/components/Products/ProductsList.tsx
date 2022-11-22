@@ -5,25 +5,25 @@ import { getProducts } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 
 export default function ProductsList() {
-  const { category } = useParams();
+   const { category } = useParams();
 
-  const state = useAppSelector((state) => state.products);
-  const dispatch = useAppDispatch();
+   const state = useAppSelector((state) => state.products);
+   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getProducts(category));
-  }, [dispatch]);
+   useEffect(() => {
+      dispatch(getProducts(category));
+   }, [dispatch]);
 
-  return (
-    <div className="products">
-      {state.isLoading && <span>...Loading</span>}
-      {state.isError ? (
-        <span>Something went wrong</span>
-      ) : (
-        state.products.map((product) => {
-          return <ProductItem key={product.id} product={product} />;
-        })
-      )}
-    </div>
-  );
+   return (
+      <div className="products">
+         {state.isLoading && <span>...Loading</span>}
+         {state.isError ? (
+            <span>Something went wrong</span>
+         ) : (
+            state.products.map((product) => {
+               return <ProductItem key={product.id} product={product} />;
+            })
+         )}
+      </div>
+   );
 }
