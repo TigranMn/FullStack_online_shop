@@ -5,7 +5,7 @@ import getData from '../api/api';
 const initialState: TProductState = {
   isLoading: false,
   isError: false,
-  products: [],
+  products: []
 };
 
 const getProducts = createAsyncThunk(
@@ -22,7 +22,7 @@ const getProducts = createAsyncThunk(
       throw new Error('Something went wrong');
     }
     return result;
-  },
+  }
 );
 
 const productsSlice = createSlice({
@@ -45,7 +45,7 @@ const productsSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
       });
-  },
+  }
 });
 
 export { getProducts };

@@ -6,8 +6,8 @@ import productsReducer from './redux/productsSlice';
 const store = configureStore({
   reducer: {
     categories: categoriesReducer,
-    products: productsReducer,
-  },
+    products: productsReducer
+  }
 });
 
 export type RootState = ReturnType<typeof store.getState>;

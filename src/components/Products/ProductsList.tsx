@@ -16,9 +16,9 @@ export default function ProductsList() {
 
   return (
     <div className="products">
-      {state.isError && <span>Something went wrong</span>}
-      {state.isLoading ? (
-        <span>...Loading</span>
+      {state.isLoading && <span>...Loading</span>}
+      {state.isError ? (
+        <span>Something went wrong</span>
       ) : (
         state.products.map((product) => {
           return <ProductItem key={product.id} product={product} />;

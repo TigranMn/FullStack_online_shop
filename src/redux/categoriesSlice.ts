@@ -11,21 +11,25 @@ type TCategoryState = {
 const initialState: TCategoryState = {
   isLoading: false,
   isError: false,
-  categories: [],
+  categories: []
 };
 
-const getCategories = createAsyncThunk('categories/fetchCategories', async () => {
-  let result: TCategory[] = [];
-  let resp = await getData('/categories');
-  resp.docs.forEach((doc) => {
-    const [id, { category }] = [doc.id, doc.data()];
-    result.push({ id, name: category });
-  });
-  if (!result.length) {
-    throw new Error('Something went wrong');
+const getCategories = createAsyncThunk(
+  'categories/fetchCategories',
+  async () => {
+    let result: TCategory[] = [];
+
+    let resp = await getData('/categories');
+    resp.docs.forEach((doc: any) => {
+      const [id, { category }] = [doc.id, doc.data()];
+      result.push({ id, name: category });
+    });
+    if (!result.length) {
+      throw new Error('Something went wrong');
+    }
+    return result;
   }
-  return result;
-});
+);
 
 const categoriesSlice = createSlice({
   name: 'categories',
@@ -47,7 +51,7 @@ const categoriesSlice = createSlice({
         state.isLoading = false;
         state.categories = action.payload;
       });
-  },
+  }
 });
 
 export { getCategories };

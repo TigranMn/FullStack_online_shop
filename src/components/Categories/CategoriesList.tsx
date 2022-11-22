@@ -13,10 +13,15 @@ export default function CategoriesList() {
   return (
     <div>
       {state.isLoading && <span>...Loading</span>}
-      {state.isError && <span>Something went wrong</span>}
-      {state.categories.map((el) => {
-        return <CategoryItem key={Math.random()} category={el.name}></CategoryItem>;
-      })}
+      {state.isError ? (
+        <span>Something went wrong</span>
+      ) : (
+        state.categories.map((el) => {
+          return (
+            <CategoryItem key={Math.random()} category={el.name}></CategoryItem>
+          );
+        })
+      )}
     </div>
   );
 }

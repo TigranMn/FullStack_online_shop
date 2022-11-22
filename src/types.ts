@@ -5,6 +5,7 @@ export type TProduct = {
   gender: string;
   imgUrl: string;
   count: number;
+  views: number;
 };
 
 export type TProductState = {
