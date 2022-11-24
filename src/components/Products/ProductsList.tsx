@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import ProductItem from './ProductItem';
 import { getProducts } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 export default function ProductsList() {
    const { category } = useParams();
@@ -16,7 +18,11 @@ export default function ProductsList() {
 
    return (
       <div className="products">
-         {state.isLoading && <span>...Loading</span>}
+         {state.isLoading && (
+            <Box sx={{ display: 'flex' }}>
+               <CircularProgress />
+            </Box>
+         )}
          {state.isError ? (
             <span>Something went wrong</span>
          ) : (

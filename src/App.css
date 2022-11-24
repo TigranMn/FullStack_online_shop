@@ -4,23 +4,22 @@
    box-sizing: border-box;
 }
 
-/* .wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-} */
-
-/* .products {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
+.wrapper {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+.products {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 20px;
 }
 
 .product {
-  text-align: center;
+   text-align: center;
 }
 
 img {
-  width: 300px;
-} */
+   width: 300px;
+}
