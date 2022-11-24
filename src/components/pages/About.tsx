@@ -1,5 +1,22 @@
 import React from 'react';
+import { Container } from '@mui/material';
 
 export default function About() {
-   return <div>About</div>;
+   return (
+      <Container>
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+         about about about about about about about about about about about about
+      </Container>
+   );
 }

@@ -1,0 +1,13 @@
+import React from 'react';
+import Header from '../header/Header';
+import { Outlet } from 'react-router-dom';
+
+export default function Layout() {
+   return (
+      <>
+         <Header />
+         <Outlet />
+         {/* <footer>FOOTER ___ 2022 ___ FOOTER</footer> */}
+      </>
+   );
+}
