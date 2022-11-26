@@ -1,17 +1,26 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import {  Outlet } from 'react-router-dom';
+import {  ThemeProvider } from '@mui/material/styles';
+import {Container} from "@mui/material"
+import theme from "../../styles/theme"
+import AppBar from '../appbar';
+import Slider from '../slider';
+import Footer from '../footer';
+
 
 export default function Home() {
+  
   return (
-    <div className="wrapper">
-      <NavLink to={'/'}>Home</NavLink>
-      <NavLink to={'/shop'}>Shop</NavLink>
-      <NavLink to={'/contact'}>Contact</NavLink>
-      <NavLink to={'/about'}>About</NavLink>
-      <NavLink to={'/login'}>Login</NavLink>
-      <div>
-        <Outlet />
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container
+      maxWidth="xl"
+      // sx={{background: "rgba(10,25,41,0.4)"}}
+    >
+      <AppBar />
+      <Slider />
+      <Footer />
+      <Outlet />
+      </Container>
+    </ThemeProvider>
   );
 }

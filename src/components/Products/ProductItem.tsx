@@ -1,9 +1,9 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Product } from "../../data/database";
+import { TProduct } from "../../data/database";
 
 type ProductItemProps = {
-	product: Product
+	product: TProduct
 }
 
 export default function ProductItem({ product }: ProductItemProps) {
