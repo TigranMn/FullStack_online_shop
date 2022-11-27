@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function CategoriesList() {
    const state = useAppSelector((state) => state.categories);
@@ -32,6 +33,7 @@ export default function CategoriesList() {
                );
             })
          )}
+         <Link to={'/user'}>User</Link>
       </Container>
    );
 }

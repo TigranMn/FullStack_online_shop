@@ -19,8 +19,8 @@ const getCategories = createAsyncThunk(
    async () => {
       let result: TCategory[] = [];
 
-      let resp = await getData('/categories');
-      resp.docs.forEach((doc: any) => {
+      let data = await getData('/categories');
+      data.forEach((doc) => {
          const [id, { category }] = [doc.id, doc.data()];
          result.push({ id, name: category });
       });

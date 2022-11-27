@@ -12,9 +12,9 @@ const getProducts = createAsyncThunk(
    'products/fetchProducts',
    async (category: string | undefined) => {
       let result: TProduct[] = [];
-      let resp = await getData('/' + category);
+      let data = await getData('/' + category);
 
-      resp.docs.forEach((doc) => {
+      data.forEach((doc) => {
          const [id, { name, count, gender, imgUrl, price }] = [
             doc.id,
             doc.data()

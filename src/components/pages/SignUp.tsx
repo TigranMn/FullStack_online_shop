@@ -5,6 +5,8 @@ import firebase from 'firebase/app';
 import { setUser } from '../../redux/userSlice';
 import { useAuth } from '../../hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase';
 
 export default function Signup() {
    const esim = useAppSelector((state) => state.user);
@@ -17,9 +19,7 @@ export default function Signup() {
 
    const handleAuth = (e: any) => {
       e.preventDefault();
-      firebase
-         .auth()
-         .createUserWithEmailAndPassword(email, password)
+      createUserWithEmailAndPassword(auth, email, password)
          .then(({ user }) => {
             dispatch(
                setUser({
@@ -32,7 +32,7 @@ export default function Signup() {
          })
          .finally(() => {
             setEmail('');
-            setPassword('');
+            setUser('');
          });
    };
 

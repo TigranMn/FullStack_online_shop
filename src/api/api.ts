@@ -1,7 +1,9 @@
-import { projectFireStore } from '../firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 
-const getData = (url: string) => {
-   return projectFireStore.collection(url).get();
+const getData = async (url: string) => {
+   const querySnapshot = await getDocs(collection(db, url));
+   return querySnapshot;
 };
 
 export default getData;

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store';
-import firebase from 'firebase/app';
 import { setUser } from '../../redux/userSlice';
-import { useAuth } from '../../hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function () {
    const navigate = useNavigate();
@@ -12,16 +12,9 @@ export default function () {
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
 
-   const esim = useAppSelector((state) => state.user);
-
-   // console.log(useAuth());
-   // console.log(esim);
-
    const handleSignIn = (e: any) => {
       e.preventDefault();
-      firebase
-         .auth()
-         .signInWithEmailAndPassword(email, password)
+      signInWithEmailAndPassword(auth, email, password)
          .then(({ user }) => {
             dispatch(
                setUser({
