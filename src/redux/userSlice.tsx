@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { TUser } from '../types';
 
 type TState = {
    email: string | null;
@@ -6,10 +7,14 @@ type TState = {
    id: string | null;
 };
 
+const currentUser: TUser = JSON.parse(
+   localStorage.getItem('currentUser') || 'false'
+);
+
 const initialState: TState = {
-   email: null,
-   token: null,
-   id: null
+   email: currentUser.email || null,
+   id: currentUser.id || null,
+   token: currentUser.token || null
 };
 
 const userSlice = createSlice({

@@ -5,7 +5,7 @@ export type TProduct = {
    gender: string;
    imgUrl: string;
    count: number;
-   // views: number;
+   views: number;
 };
 
 export type TProductState = {
@@ -17,4 +17,10 @@ export type TProductState = {
 export type TCategory = {
    id: string;
    name: string;
+};
+
+export type TUser = {
+   id: string;
+   email: string;
+   token: string;
 };

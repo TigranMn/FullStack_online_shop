@@ -10,8 +10,8 @@ const slideImages = [
 ];
 
 const Slider = () => {
-   const [slideImagesIndex, setSlideImagesIndex] = useState(0);
-   const [show, setShow] = useState(true);
+   const [slideImagesIndex, setSlideImagesIndex] = useState<number>(0);
+   const [show, setShow] = useState<boolean>(true);
 
    useEffect(() => {
       setTimeout(() => {

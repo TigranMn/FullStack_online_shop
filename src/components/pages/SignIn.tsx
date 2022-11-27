@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-export default function () {
+export default function SignIn() {
    const navigate = useNavigate();
    const dispatch = useAppDispatch();
-   const [email, setEmail] = useState('');
-   const [password, setPassword] = useState('');
+   const [email, setEmail] = useState<string>('');
+   const [password, setPassword] = useState<string>('');
 
-   const handleSignIn = (e: any) => {
+   const handleSignIn = (e: React.SyntheticEvent) => {
       e.preventDefault();
       signInWithEmailAndPassword(auth, email, password)
          .then(({ user }) => {
@@ -24,6 +24,17 @@ export default function () {
                })
             );
             navigate('/shop');
+            return user;
+         })
+         .then((user) => {
+            localStorage.setItem(
+               'currentUser',
+               JSON.stringify({
+                  email: user.email,
+                  token: user.refreshToken,
+                  id: user.uid
+               })
+            );
          })
          .catch(() => {
             console.log('email or password is invalid!');

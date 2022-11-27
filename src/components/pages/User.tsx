@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../hooks/use-auth';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { removeUser } from '../../redux/userSlice';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,7 @@ export default function User() {
             onClick={() => {
                navigate('/signin');
                dispatch(removeUser());
+               localStorage.removeItem('currentUser');
             }}
          >
             ВЫЙТИ
