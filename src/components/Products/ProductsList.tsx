@@ -5,6 +5,7 @@ import { getProducts } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import { Container } from '@mui/material';
 
 export default function ProductsList() {
    const { category } = useParams();
@@ -17,7 +18,14 @@ export default function ProductsList() {
    }, [dispatch]);
 
    return (
-      <div className="products">
+      <Container
+         sx={{
+            pt: '20px',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 4
+         }}
+      >
          {state.isLoading && (
             <Box sx={{ display: 'flex' }}>
                <CircularProgress />
@@ -30,6 +38,6 @@ export default function ProductsList() {
                return <ProductItem key={product.id} product={product} />;
             })
          )}
-      </div>
+      </Container>
    );
 }
