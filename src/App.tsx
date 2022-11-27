@@ -8,7 +8,8 @@ import Products from './components/Products/ProductsList';
 import Layout from './components/Layout/Layout';
 import Signup from './components/pages/SignUp';
 import Signin from './components/pages/SignIn';
-// import SingleProductPage from './components/pages/SingleProductPage';
+import User from './components/pages/User';
+import Product from './components/pages/Product';
 
 function App() {
    return (
@@ -20,9 +21,10 @@ function App() {
                <Route path="/signup" element={<Signup />} />
                <Route path="/signin" element={<Signin />} />
                <Route path="/shop" element={<Shop />} />
+               <Route path="/user" element={<User />} />
                <Route path="/contact" element={<Contact />} />
                <Route path="/shop/:category" element={<Products />} />
-               {/* <Route path="/shop/:category/:productId" element={<SingleProductPage />} /> */}
+               <Route path="/shop/:category/:productId" element={<Product />} />
             </Route>
          </Routes>
       </BrowserRouter>

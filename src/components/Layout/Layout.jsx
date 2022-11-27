@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../header/Header';
+import Footer from '../footer/Footers';
 import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
@@ -7,7 +8,7 @@ export default function Layout() {
       <>
          <Header />
          <Outlet />
-         {/* <footer>FOOTER ___ 2022 ___ FOOTER</footer> */}
+         <Footer />
       </>
    );
 }

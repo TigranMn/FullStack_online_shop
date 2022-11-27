@@ -1,59 +1,57 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppBar, Tabs, Tab, Toolbar, Container, Avatar } from '@mui/material';
+import React from 'react';
+import { useTheme } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
+import AppBarDesktop from './HeaderDesktop';
+import AppBarMobile from './HeaderMobile';
 
 export default function Header() {
-   const navigate = useNavigate();
-
-   const onClickHandle = (path: string) => {
-      navigate(path);
-      if (path === '/') {
-         setSelectedTabIndex(0);
-      } else if (path === '/shop') {
-         setSelectedTabIndex(1);
-      } else if (path === '/about') {
-         setSelectedTabIndex(2);
-      } else if (path === '/contact') {
-         setSelectedTabIndex(3);
-      } else if (path === '/signup') {
-         setSelectedTabIndex(4);
-      } else if (path === '/signin') {
-         setSelectedTabIndex(5);
-      }
-   };
-
-   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-
+   const theme = useTheme();
+   const matches = useMediaQuery(theme.breakpoints.down('md'));
    return (
-      <AppBar
-         position="sticky"
-         sx={{ background: 'linear-gradient(to right, #16222a, #3a6073) ' }}
-      >
-         <Toolbar>
-            <Container>
-               <Tabs value={selectedTabIndex} textColor="inherit">
-                  <Tab onClick={() => onClickHandle('/')} label={'Home'} />
-                  <Tab onClick={() => onClickHandle('/shop')} label={'Shop'} />
-                  <Tab
-                     onClick={() => onClickHandle('/about')}
-                     label={'About'}
-                  />
-                  <Tab
-                     onClick={() => onClickHandle('/contact')}
-                     label={'Contact'}
-                  />
-                  <Tab
-                     onClick={() => onClickHandle('/signup')}
-                     label={'Sign up'}
-                  />
-                  <Tab
-                     onClick={() => onClickHandle('/signin')}
-                     label={'Sign in'}
-                  />
-               </Tabs>
-            </Container>
-            <Avatar src="/broken-image.jpg" />
-         </Toolbar>
-      </AppBar>
+      <div>
+         <>
+            {matches ? (
+               <>
+                  <AppBarMobile matches={matches} />
+               </>
+            ) : (
+               <>
+                  <AppBarDesktop matches={matches} />
+               </>
+            )}
+         </>
+      </div>
    );
+   // <AppBar
+   //    position="sticky"
+   //    sx={{ background: 'linear-gradient(to right, #16222a, #3a6073) ' }}
+   // >
+   //    <Toolbar>
+   //       <Container>
+   //          <Tabs value={selectedTabIndex} textColor="inherit">
+   //             <Tab onClick={() => onClickHandle('/')} label={'Home'} />
+   //             <Tab onClick={() => onClickHandle('/shop')} label={'Shop'} />
+   //             <Tab
+   //                onClick={() => onClickHandle('/about')}
+   //                label={'About'}
+   //             />
+   //             <Tab
+   //                onClick={() => onClickHandle('/contact')}
+   //                label={'Contact'}
+   //             />
+   //             {useAuth().isAuth ? (
+   //                <Tab
+   //                   onClick={() => onClickHandle('/user')}
+   //                   label={<Avatar src="/broken-image.jpg" />}
+   //                />
+   //             ) : (
+   //                <Tab
+   //                   onClick={() => onClickHandle('/signin')}
+   //                   label={'Login'}
+   //                />
+   //             )}
+   //          </Tabs>
+   //       </Container>
+   //    </Toolbar>
+   // </AppBar>
 }
