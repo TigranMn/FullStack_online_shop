@@ -9,13 +9,10 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 
 export default function Signup() {
-   const esim = useAppSelector((state) => state.user);
    const dispatch = useAppDispatch();
-   const [email, setEmail] = useState('');
-   const [password, setPassword] = useState('');
+   const [email, setEmail] = useState<string>('');
+   const [password, setPassword] = useState<string>('');
    const navigate = useNavigate();
-   console.log(useAuth());
-   console.log(esim);
 
    const handleAuth = (e: any) => {
       e.preventDefault();
@@ -29,6 +26,17 @@ export default function Signup() {
                })
             );
             navigate('/user');
+            return user;
+         })
+         .then((user) => {
+            localStorage.setItem(
+               'currentUser',
+               JSON.stringify({
+                  email: user.email,
+                  token: user.refreshToken,
+                  id: user.uid
+               })
+            );
          })
          .finally(() => {
             setEmail('');
