@@ -23,7 +23,7 @@ const getData = async (url: string, currentPage: number = 1) => {
    }
 };
 
-export const getSize = async (url: string) => {
+export const fetchSize = async (url: string) => {
    const querySnapshot = await getDocs(collection(db, url));
    return querySnapshot.size;
 };

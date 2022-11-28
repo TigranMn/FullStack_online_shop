@@ -43,7 +43,6 @@ const categoriesSlice = createSlice({
             state.isLoading = true;
          })
          .addCase(getCategories.rejected, (state) => {
-            state.categories = [];
             state.isLoading = false;
             state.isError = true;
          })
