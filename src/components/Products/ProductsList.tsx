@@ -3,10 +3,14 @@ import { useParams } from 'react-router-dom';
 import ProductItem from './ProductItem';
 import { getProducts, getSize } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { Container } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import { Pagination } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Box } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import {useMediaQuery} from "@mui/material"
+
+
 
 export default function ProductsList() {
    const { category } = useParams();
@@ -18,40 +22,42 @@ export default function ProductsList() {
       dispatch(getSize(category));
    }, []);
 
+   const theme = useTheme()
+   const matches = useMediaQuery(theme.breakpoints.down("md"))
+ 
+
    useEffect(() => {
       dispatch(getProducts({ category, currentPage }));
    }, [dispatch, currentPage]);
 
    return (
-      <Container
-         sx={{
-            pt: '20px',
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 4
-         }}
-      >
+      
+      <Container>
+         <Grid container justifyContent="center" sx={{margin: "20px 4px 20px 4px"}}>
+            <Grid container display={"flex"} gap={"120px"} justifyContent="center" marginBottom={"2rem"}>
          {state.isLoading && (
-            <div className="productList">
                <Box sx={{ display: 'flex' }}>
                   <CircularProgress sx={{ width: '100%' }} />
                </Box>
-            </div>
          )}
-         {state.isError && <span>Something went wrong</span>}
+         {state.isError && <Typography>Something went wrong</Typography>}
          {!state.isLoading && (
-            <div className="productList">
-               {state.products.map((product) => {
+               state.products.map((product) => {
                   return <ProductItem key={product.id} product={product} />;
-               })}
-            </div>
+               })
          )}
+         </Grid>
          <Pagination
+          shape="rounded"
+          showFirstButton 
+          showLastButton
+          variant="outlined" 
             onChange={(_, page) => {
                setCurrentPage(page);
             }}
             count={state.pages}
          />
+         </Grid>
       </Container>
    );
 }
