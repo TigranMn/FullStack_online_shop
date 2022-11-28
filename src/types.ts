@@ -12,6 +12,7 @@ export type TProductState = {
    isLoading: boolean;
    isError: boolean;
    products: TProduct[];
+   pages: number;
 };
 
 export type TCategory = {
