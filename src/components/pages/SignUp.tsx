@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Container } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../store';
-import firebase from 'firebase/app';
+import { useAppDispatch } from '../../store';
 import { setUser } from '../../redux/userSlice';
-import { useAuth } from '../../hooks/use-auth';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
@@ -11,6 +9,8 @@ import { auth } from '../../firebase';
 export default function Signup() {
    const dispatch = useAppDispatch();
    const [email, setEmail] = useState<string>('');
+   const [firstName, setFirstName] = useState<string>('');
+   const [lastName, setLastName] = useState<string>('');
    const [password, setPassword] = useState<string>('');
    const navigate = useNavigate();
 
@@ -48,6 +48,25 @@ export default function Signup() {
       <Container sx={{ mt: '20px' }}>
          <form onSubmit={handleAuth}>
             <input
+               placeholder="Name"
+               type="text"
+               onChange={(e) => setFirstName(e.target.value)}
+               value={firstName}
+            />
+            <br />
+            <br />
+
+            <input
+               placeholder="Last name"
+               type="text"
+               onChange={(e) => setLastName(e.target.value)}
+               value={lastName}
+            />
+
+            <br />
+            <br />
+
+            <input
                placeholder="Email"
                type="email"
                onChange={(e) => setEmail(e.target.value)}
@@ -55,8 +74,9 @@ export default function Signup() {
             />
             <br />
             <br />
+
             <input
-               placeholder="password"
+               placeholder="Password"
                type="password"
                onChange={(e) => setPassword(e.target.value)}
                value={password}
@@ -64,6 +84,7 @@ export default function Signup() {
 
             <br />
             <br />
+
             <button type="submit">Sign Up</button>
 
             <br />

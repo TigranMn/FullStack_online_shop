@@ -39,3 +39,11 @@ a {
 .wrapper {
    background-color: rgb(243, 246, 249);
 }
+
+.productList {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   width: 100%;
+   min-height: 500px;
+}

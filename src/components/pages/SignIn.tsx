@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from '@mui/material';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import { setUser } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase';
