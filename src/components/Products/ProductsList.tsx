@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductItem from './ProductItem';
-import { getProducts } from '../../redux/productsSlice';
+import { getProducts, getSize } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { Container } from '@mui/material';
 import { Pagination } from '@mui/material';
@@ -12,7 +12,11 @@ export default function ProductsList() {
    const { category } = useParams();
    const state = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
-   const [currentPage, setCurrentPage] = useState(1);
+   const [currentPage, setCurrentPage] = useState<number>(1);
+
+   useEffect(() => {
+      dispatch(getSize(category));
+   }, []);
 
    useEffect(() => {
       dispatch(getProducts({ category, currentPage }));

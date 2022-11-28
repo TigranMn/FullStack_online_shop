@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TProduct, TProductState } from '../types';
-import getData, { getSize } from '../api/api';
+import getData, { fetchSize } from '../api/api';
 
 const initialState: TProductState = {
    isLoading: false,
@@ -8,6 +8,14 @@ const initialState: TProductState = {
    products: [],
    pages: 1
 };
+
+const getSize = createAsyncThunk(
+   'products/getSize',
+   async (category: string | undefined) => {
+      let pages: number = await fetchSize('/' + category);
+      return pages;
+   }
+);
 
 const getProducts = createAsyncThunk(
    'products/fetchProducts',
@@ -31,8 +39,7 @@ const getProducts = createAsyncThunk(
       if (!result.length) {
          throw new Error('Something went wrong');
       }
-      let pages = await getSize('/' + category);
-      return { result, pages };
+      return result;
    }
 );
 
@@ -44,8 +51,7 @@ const productsSlice = createSlice({
       builder
          .addCase(getProducts.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.products = action.payload.result;
-            state.pages = Math.ceil(action.payload.pages / 6);
+            state.products = action.payload;
          })
          .addCase(getProducts.pending, (state) => {
             state.isError = false;
@@ -55,9 +61,12 @@ const productsSlice = createSlice({
             state.products = [];
             state.isLoading = false;
             state.isError = true;
+         })
+         .addCase(getSize.fulfilled, (state, action) => {
+            state.pages = Math.ceil(action.payload / 6);
          });
    }
 });
 
-export { getProducts };
+export { getProducts, getSize };
 export default productsSlice.reducer;
