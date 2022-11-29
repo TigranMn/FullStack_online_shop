@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { getProduct } from '../../api/api';
 import { TProduct } from '../../types';
 
 function Product() {
-   const { productId } = useParams();
+   const { productId, category } = useParams();
+   const [product, setProduct] = useState<TProduct>();
 
-   return <h2>product</h2>;
+   useEffect(() => {
+      getProduct(category as string, productId as string).then((res) => {
+         setProduct(res);
+      });
+   }, []);
+
+   return <h2>{product?.name}</h2>;
 }
 
 export default Product;
