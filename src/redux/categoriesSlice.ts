@@ -21,8 +21,8 @@ const getCategories = createAsyncThunk(
 
       let data = await getData('/categories');
       data.forEach((doc) => {
-         const [id, { category }] = [doc.id, doc.data()];
-         result.push({ id, name: category });
+         const [id, { imgUrl, description, category }] = [doc.id, doc.data()];
+         result.push({ id, name: category, imgUrl, description });
       });
       if (!result.length) {
          throw new Error('Something went wrong');

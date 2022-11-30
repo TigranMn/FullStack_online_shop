@@ -4,7 +4,8 @@ import { useAppDispatch } from '../../store';
 import { setUser } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 export default function Signup() {
    const dispatch = useAppDispatch();
@@ -22,7 +23,9 @@ export default function Signup() {
                setUser({
                   email: user?.email,
                   token: user?.refreshToken,
-                  id: user?.uid
+                  id: user?.uid,
+                  name: firstName,
+                  lastName: lastName
                })
             );
             navigate('/user');
@@ -37,6 +40,16 @@ export default function Signup() {
                   id: user.uid
                })
             );
+            const users = collection(db, 'users');
+            addDoc(users, {
+               name: firstName,
+               lastName: lastName,
+               email: user.email,
+               id: user.uid,
+               likedProducts: [],
+               basket: [],
+               avatarUrl: null
+            });
          })
          .finally(() => {
             setEmail('');
