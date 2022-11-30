@@ -7,7 +7,7 @@ import {
    getDocs,
    limit,
    query,
-   startAfter,
+   QuerySnapshot,
    startAt
 } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -29,7 +29,9 @@ const getData = async (url: string, currentPage: number = 1) => {
 };
 
 export const fetchSize = async (url: string) => {
-   const querySnapshot = await getDocs(collection(db, url));
+   const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
+      collection(db, url)
+   );
    return querySnapshot.size;
 };
 
@@ -39,7 +41,7 @@ export const getProduct = async (
 ): Promise<TProduct> => {
    const snap: DocumentSnapshot<DocumentData> = await getDoc(doc(db, url, id));
    if (snap.exists()) {
-      return snap.data().toPromise() as TProduct;
+      return snap.data() as TProduct;
    } else {
       throw new Error('Product doesnt exist');
    }
