@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container } from '@mui/material';
 import { useAppDispatch } from '../../store';
-import { setUser } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../../firebase';
@@ -19,15 +18,6 @@ export default function Signup() {
       e.preventDefault();
       createUserWithEmailAndPassword(auth, email, password)
          .then(({ user }) => {
-            dispatch(
-               setUser({
-                  email: user?.email,
-                  token: user?.refreshToken,
-                  id: user?.uid,
-                  name: firstName,
-                  lastName: lastName
-               })
-            );
             navigate('/user');
             return user;
          })
@@ -52,7 +42,6 @@ export default function Signup() {
          })
          .finally(() => {
             setEmail('');
-            setUser('');
          });
    };
 

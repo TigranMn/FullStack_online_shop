@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductItem from './ProductItem';
-import { getProducts, getSize } from '../../redux/productsSlice';
+import { fetchPageProducts, getSize } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
-import {
-   Container,
-   Grid,
-   Typography,
-   Pagination,
-   Box,
-   useMediaQuery
-} from '@mui/material';
+import { Container, Grid, Typography, Pagination, Box } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useTheme } from '@mui/material/styles';
 
 export default function ProductsList() {
    const { category } = useParams();
+   const [itemCount, setItemCount] = useState<number>(6);
+   const [currentPage, setCurrentPage] = useState<number>(1);
    const state = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
-   const [currentPage, setCurrentPage] = useState<number>(1);
-
    useEffect(() => {
-      dispatch(getSize(category as string));
-   }, []);
+      dispatch(
+         getSize({ category, itemCount } as {
+            category: string;
+            itemCount: number;
+         })
+      );
+   }, [itemCount]);
 
    useEffect(() => {
       dispatch(
-         getProducts({ category, currentPage } as {
+         fetchPageProducts({ category, currentPage, itemCount } as {
             category: string;
             currentPage: number;
+            itemCount: number;
          })
       );
-   }, [dispatch, currentPage]);
+   }, [dispatch, currentPage, itemCount]);
 
    return (
       <Container>
+         {/* NEED TO ADD SELECT TO CHANGE ITEM COUNT */}
+         <button onClick={() => setItemCount(12)}>Sxmenq vren</button>
          <Grid
             container
             justifyContent="center"
