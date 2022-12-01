@@ -11,8 +11,8 @@ const initialState: TProductState = {
 
 const getSize = createAsyncThunk(
    'products/getSize',
-   async (category: string | undefined) => {
-      let pages: number = await fetchSize('/' + category);
+   async (category: string) => {
+      let pages: number = await fetchSize(category as string);
       return pages;
    }
 );
@@ -23,11 +23,11 @@ const getProducts = createAsyncThunk(
       category,
       currentPage
    }: {
-      category: string | undefined;
+      category: string;
       currentPage: number;
    }) => {
       let result: TProduct[] = [];
-      let data = await getData('/' + category, currentPage);
+      let data = await getData(category, currentPage);
 
       data.forEach((doc) => {
          const [id, { name, count, gender, imgUrl, price, views }] = [

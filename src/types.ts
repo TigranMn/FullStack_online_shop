@@ -1,11 +1,11 @@
 export type TProduct = {
-   id: string | null;
-   price: number | null;
-   name: string | null;
-   gender: string | null;
-   imgUrl: string | undefined;
-   count: number | null;
-   views: number | null;
+   id: string;
+   price: number;
+   name: string;
+   gender: string;
+   imgUrl: string;
+   count: number;
+   views: number;
 };
 
 export type TProductState = {
@@ -26,4 +26,6 @@ export type TUser = {
    id: string;
    email: string;
    token: string;
+   name: string;
+   lastName: string;
 };

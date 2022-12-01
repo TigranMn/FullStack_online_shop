@@ -34,8 +34,7 @@ export default function SignIn() {
                   token: user?.refreshToken,
                   id: user?.uid,
                   name: data?.name,
-                  lastName: data?.lastName,
-                  avatarUrl: data?.avatarUrl
+                  lastName: data?.lastName
                })
             );
             navigate('/shop');

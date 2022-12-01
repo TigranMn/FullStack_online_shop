@@ -5,15 +5,7 @@ import { TProduct } from '../../types';
 
 function Product() {
    const { productId, category } = useParams();
-   const [product, setProduct] = useState<TProduct>({
-      id: null,
-      price: null,
-      name: null,
-      gender: null,
-      imgUrl: undefined,
-      count: null,
-      views: null
-   });
+   const [product, setProduct] = useState<TProduct>();
 
    useEffect(() => {
       getProduct(category as string, productId as string).then((res) => {
@@ -23,7 +15,7 @@ function Product() {
 
    return (
       <div>
-         <img width={'200px'} src={product?.imgUrl} alt="ahahahahahaha" />
+         <img width={'200px'} src={product?.imgUrl} alt="productImg" />
          <h2>{product?.name}</h2>
          <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor
