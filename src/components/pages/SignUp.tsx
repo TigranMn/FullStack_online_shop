@@ -47,8 +47,7 @@ export default function Signup() {
                email: user.email,
                id: user.uid,
                likedProducts: [],
-               basket: [],
-               avatarUrl: null
+               basket: []
             });
          })
          .finally(() => {

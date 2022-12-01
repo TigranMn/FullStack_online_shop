@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TProduct } from '../../types';
-import { Button, Grid, TextField } from '@mui/material';
+import { Grid } from '@mui/material';
 import {
    Product,
    ProductBox,
@@ -31,7 +31,7 @@ export default function ProductItem({ product }: ProductItemProps) {
             </ProductBox>
             <ProductContent>
                <ProductName>{product.name}</ProductName>
-               <ProductPrice>{product.price} &#36;</ProductPrice>
+               <ProductPrice>{product.price}$</ProductPrice>
             </ProductContent>
          </Product>
       </Grid>

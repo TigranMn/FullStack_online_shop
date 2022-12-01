@@ -5,8 +5,6 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Container, Grid, Typography } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import { useMediaQuery } from '@mui/material';
 
 export default function CategoriesList() {
    const state = useAppSelector((state) => state.categories);
@@ -14,9 +12,6 @@ export default function CategoriesList() {
    useEffect(() => {
       dispatch(getCategories());
    }, [dispatch]);
-
-   const theme = useTheme();
-   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
    return (
       <Container>

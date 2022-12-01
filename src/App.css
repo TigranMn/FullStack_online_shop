@@ -4,30 +4,6 @@
    box-sizing: border-box;
 }
 
-/* .wrapper {
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
-} */
-/* .products {
-   display: flex;
-   justify-content: center;
-   flex-wrap: wrap;
-   gap: 20px;
-}
-
-.product {
-   cursor: pointer;
-   text-align: center;
-   border: 2px solid grey;
-   border-radius: 20px;
-   padding: 20px;
-}
-
-img {
-   width: 300px;
-} */
-
 a {
    text-decoration: none;
    flex-grow: 3;
@@ -35,15 +11,3 @@ a {
    align-self: center;
    color: rgb(40, 34, 66);
 }
-
-/* .wrapper {
-   background-color: rgb(243, 246, 249);
-}
-
-.productList {
-   display: flex;
-   flex-wrap: wrap;
-   gap: 10px;
-   width: 100%;
-   min-height: 500px;
-} */

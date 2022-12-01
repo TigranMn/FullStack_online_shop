@@ -30,9 +30,9 @@ const AppBarMobile = ({ matches }: any) => {
                value={language}
                onChange={(e) => setLanguage(e.target.value)}
             >
-               <MenuItem value="am">ARM </MenuItem>
-               <MenuItem value="rus">RUS</MenuItem>
-               <MenuItem value="en">ENG</MenuItem>
+               <MenuItem value="am">AM </MenuItem>
+               <MenuItem value="ru">RU</MenuItem>
+               <MenuItem value="en">EN</MenuItem>
             </TextField>
          </Box>
          <Actions matches={matches} />

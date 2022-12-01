@@ -7,7 +7,6 @@ type TState = {
    id: string | null;
    name: string | null;
    lastName: string | null;
-   avatarUrl: string | null;
 };
 
 const currentUser: TUser = JSON.parse(
@@ -18,9 +17,8 @@ const initialState: TState = {
    email: currentUser.email || null,
    id: currentUser.id || null,
    token: currentUser.token || null,
-   name: null,
-   lastName: null,
-   avatarUrl: null
+   name: currentUser.name || null,
+   lastName: currentUser.lastName || null
 };
 
 const userSlice = createSlice({
@@ -31,7 +29,6 @@ const userSlice = createSlice({
          state.email = action.payload.email;
          state.token = action.payload.token;
          state.id = action.payload.id;
-         state.avatarUrl = action.payload.avatarUrl;
          state.lastName = action.payload.lastName;
          state.name = action.payload.name;
       },
@@ -39,7 +36,6 @@ const userSlice = createSlice({
          state.email = null;
          state.token = null;
          state.id = null;
-         state.avatarUrl = null;
          state.lastName = null;
          state.name = null;
       }
