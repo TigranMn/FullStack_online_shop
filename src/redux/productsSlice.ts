@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TProduct, TProductState } from '../types';
-import getData, { fetchSize } from '../api/api';
+import { fetchSize, getPageProducts } from '../api/api';
 
 const initialState: TProductState = {
    isLoading: false,
@@ -11,23 +11,31 @@ const initialState: TProductState = {
 
 const getSize = createAsyncThunk(
    'products/getSize',
-   async (category: string) => {
+   async ({
+      category,
+      itemCount
+   }: {
+      category: string;
+      itemCount: number;
+   }): Promise<number> => {
       let pages: number = await fetchSize(category as string);
-      return pages;
+      return pages / itemCount;
    }
 );
 
-const getProducts = createAsyncThunk(
-   'products/fetchProducts',
+const fetchPageProducts = createAsyncThunk(
+   'products/fetchPageProducts',
    async ({
       category,
-      currentPage
+      currentPage,
+      itemCount
    }: {
       category: string;
       currentPage: number;
+      itemCount: number;
    }) => {
       let result: TProduct[] = [];
-      let data = await getData(category, currentPage);
+      let data = await getPageProducts(category, currentPage, itemCount);
 
       data.forEach((doc) => {
          const [id, { name, count, gender, imgUrl, price, views }] = [
@@ -49,24 +57,24 @@ const productsSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder
-         .addCase(getProducts.fulfilled, (state, action) => {
+         .addCase(fetchPageProducts.fulfilled, (state, action) => {
             state.isLoading = false;
             state.products = action.payload;
          })
-         .addCase(getProducts.pending, (state) => {
+         .addCase(fetchPageProducts.pending, (state) => {
             state.isError = false;
             state.isLoading = true;
          })
-         .addCase(getProducts.rejected, (state) => {
+         .addCase(fetchPageProducts.rejected, (state) => {
             state.products = [];
             state.isLoading = false;
             state.isError = true;
          })
          .addCase(getSize.fulfilled, (state, action) => {
-            state.pages = Math.ceil(action.payload / 6);
+            state.pages = Math.ceil(action.payload);
          });
    }
 });
 
-export { getProducts, getSize };
+export { fetchPageProducts, getSize };
 export default productsSlice.reducer;

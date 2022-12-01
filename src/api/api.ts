@@ -1,3 +1,4 @@
+import { User } from 'firebase/auth';
 import {
    collection,
    doc,
@@ -6,33 +7,49 @@ import {
    getDoc,
    getDocs,
    limit,
+   Query,
    query,
    QuerySnapshot,
-   startAt
+   startAt,
+   where
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { TProduct } from '../types';
+import { TProduct, TUser } from '../types';
 
-const getData = async (url: string, currentPage: number = 1) => {
+const getData = async (url: string): Promise<QuerySnapshot<DocumentData>> => {
    let querySnapshot = await getDocs(collection(db, url));
-   if (url === '/categories') return querySnapshot;
-   else {
-      querySnapshot = await getDocs(collection(db, url));
-      const q = query(
-         collection(db, url),
-         limit(6),
-         startAt(querySnapshot.docs[currentPage * 6 - 6])
-      );
-      querySnapshot = await getDocs(q);
-      return querySnapshot;
-   }
+   return querySnapshot;
 };
 
-export const fetchSize = async (url: string) => {
+export const getPageProducts = async (
+   url: string,
+   page: number,
+   itemCount: number
+): Promise<QuerySnapshot<DocumentData>> => {
+   let querySnapshot = await getDocs(collection(db, url));
+   const q: Query<DocumentData> = query(
+      collection(db, url),
+      limit(itemCount),
+      startAt(querySnapshot.docs[(page - 1) * itemCount])
+   );
+   querySnapshot = await getDocs(q);
+   return querySnapshot;
+};
+
+export const fetchSize = async (url: string): Promise<number> => {
    const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(
       collection(db, url)
    );
    return querySnapshot.size;
+};
+
+export const getUser = async (user: User) => {
+   const q: Query<DocumentData> = query(
+      collection(db, 'users'),
+      where('id', '==', user.uid)
+   );
+   const data: QuerySnapshot<DocumentData> = await getDocs(q);
+   return data.docs[0].data();
 };
 
 export const getProduct = async (

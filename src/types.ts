@@ -23,9 +23,9 @@ export type TCategory = {
 };
 
 export type TUser = {
-   id: string;
-   email: string;
-   token: string;
-   name: string;
-   lastName: string;
+   id: string | null;
+   email: string | null;
+   token: string | null;
+   name: string | null;
+   lastName: string | null;
 };

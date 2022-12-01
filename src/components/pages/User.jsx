@@ -18,7 +18,6 @@ export default function User() {
 
 	return (
 		<div>
-			<img src={useAuth().avatarUrl} alt="ahahahah" width={'120px'} />
 			<h1>Name: {useAuth().name}</h1>
 			<h1>Email: {useAuth().email}</h1>
 			<h2>ID: {useAuth().id}</h2>

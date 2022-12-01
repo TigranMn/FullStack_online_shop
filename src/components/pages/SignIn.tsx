@@ -1,62 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
-import { useAppDispatch } from '../../store';
-import { setUser } from '../../redux/userSlice';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { signIn } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
-import { auth, db } from '../../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { collection, getDocs } from 'firebase/firestore';
 
 export default function SignIn() {
    const navigate = useNavigate();
    const dispatch = useAppDispatch();
+   const userState = useAppSelector((state) => state.user);
    const [email, setEmail] = useState<string>('');
    const [password, setPassword] = useState<string>('');
 
-   const getUserData = async (id: string) => {
-      const users = await getDocs(collection(db, 'users'));
-      let result: any[] = [];
-      users.forEach((user) => {
-         result.push(user.data());
-      });
-      let esim = result.find((user) => user.id === id);
-      return esim;
-   };
+   useEffect(() => {
+      if (userState.isLogged) {
+         localStorage.setItem('currentUser', JSON.stringify(userState));
+         navigate('/shop');
+      }
+   }, [userState.isLogged]);
 
-   const handleSignIn = (e: React.SyntheticEvent) => {
+   const handleSignIn = async (e: React.SyntheticEvent): Promise<void> => {
       e.preventDefault();
-      signInWithEmailAndPassword(auth, email, password)
-         .then(async ({ user }) => {
-            const data = await getUserData(user.uid);
-            dispatch(
-               setUser({
-                  email: user?.email,
-                  token: user?.refreshToken,
-                  id: user?.uid,
-                  name: data?.name,
-                  lastName: data?.lastName
-               })
-            );
-            navigate('/shop');
-            return user;
-         })
-         .then((user) => {
-            localStorage.setItem(
-               'currentUser',
-               JSON.stringify({
-                  email: user.email,
-                  token: user.refreshToken,
-                  id: user.uid
-               })
-            );
-         })
-         .catch(() => {
-            console.log('email or password is invalid!');
-         })
-         .finally(() => {
-            setEmail('');
-            setPassword('');
-         });
+      const user = await dispatch(
+         signIn({ email, password } as { email: string; password: string })
+      );
    };
 
    return (
