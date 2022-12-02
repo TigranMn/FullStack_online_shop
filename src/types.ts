@@ -28,4 +28,6 @@ export type TUser = {
    token: string | null;
    name: string | null;
    lastName: string | null;
+   basket: string[];
+   likedProducts: string[];
 };

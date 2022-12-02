@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { signUp } from '../../redux/userSlice';
 
 export default function Signup() {
    const dispatch = useAppDispatch();
@@ -13,36 +11,25 @@ export default function Signup() {
    const [lastName, setLastName] = useState<string>('');
    const [password, setPassword] = useState<string>('');
    const navigate = useNavigate();
+   const userState = useAppSelector((state) => state.user);
+
+   useEffect(() => {
+      if (userState.isLogged) {
+         localStorage.setItem('currentUser', JSON.stringify(userState));
+         navigate('/user');
+      }
+   }, [userState.isLogged]);
 
    const handleAuth = (e: any) => {
       e.preventDefault();
-      createUserWithEmailAndPassword(auth, email, password)
-         .then(({ user }) => {
-            navigate('/user');
-            return user;
+      dispatch(
+         signUp({ email, password, firstName, lastName } as {
+            email: string;
+            password: string;
+            firstName: string;
+            lastName: string;
          })
-         .then((user) => {
-            localStorage.setItem(
-               'currentUser',
-               JSON.stringify({
-                  email: user.email,
-                  token: user.refreshToken,
-                  id: user.uid
-               })
-            );
-            const users = collection(db, 'users');
-            addDoc(users, {
-               name: firstName,
-               lastName: lastName,
-               email: user.email,
-               id: user.uid,
-               likedProducts: [],
-               basket: []
-            });
-         })
-         .finally(() => {
-            setEmail('');
-         });
+      );
    };
 
    return (
