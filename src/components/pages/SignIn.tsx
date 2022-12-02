@@ -20,7 +20,7 @@ export default function SignIn() {
 
    const handleSignIn = async (e: React.SyntheticEvent): Promise<void> => {
       e.preventDefault();
-      const user = await dispatch(
+      dispatch(
          signIn({ email, password } as { email: string; password: string })
       );
    };

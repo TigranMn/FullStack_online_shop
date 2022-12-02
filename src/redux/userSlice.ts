@@ -1,7 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
+import {
+   createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,
+   UserCredential
+} from 'firebase/auth';
+import { addDoc, collection } from 'firebase/firestore';
 import { getUser } from '../api/api';
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 
 type TState = {
    email: string | null;
@@ -14,19 +19,15 @@ type TState = {
    isLogged: boolean;
 };
 
-const currentUser: TState = JSON.parse(
-   localStorage.getItem('currentUser') || 'false'
-);
-
 const initialState: TState = {
-   email: currentUser.email || null,
-   id: currentUser.id || null,
-   token: currentUser.token || null,
-   name: currentUser.name || null,
-   lastName: currentUser.lastName || null,
-   isLoading: false,
+   email: null,
+   id: null,
+   token: null,
+   name: null,
+   lastName: null,
    isError: false,
-   isLogged: currentUser.isLogged || false
+   isLogged: false,
+   isLoading: false
 };
 
 export const signIn = createAsyncThunk(
@@ -39,6 +40,40 @@ export const signIn = createAsyncThunk(
       );
       const data = await getUser(user);
       return { data, user };
+   }
+);
+
+export const signUp = createAsyncThunk(
+   'user/signUp',
+   async ({
+      email,
+      password,
+      firstName,
+      lastName
+   }: {
+      email: string;
+      password: string;
+      firstName: string;
+      lastName: string;
+   }) => {
+      try {
+         const { user }: UserCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+         );
+         addDoc(collection(db, 'users'), {
+            name: firstName,
+            lastName,
+            email: user.email,
+            id: user.uid,
+            likedProducts: [],
+            basket: []
+         });
+         return { user, firstName, lastName };
+      } catch {
+         throw new Error('Something went wrong');
+      }
    }
 );
 
@@ -72,6 +107,25 @@ const userSlice = createSlice({
             console.log(2);
          })
          .addCase(signIn.pending, (state) => {
+            state.isError = false;
+            state.isLoading = true;
+            state.isLogged = false;
+         })
+         .addCase(signUp.fulfilled, (state, action) => {
+            state.isLogged = true;
+            state.isLoading = false;
+            state.email = action.payload.user.email;
+            state.token = action.payload.user.refreshToken;
+            state.id = action.payload.user.uid;
+            state.lastName = action.payload.lastName;
+            state.name = action.payload.firstName;
+         })
+         .addCase(signUp.rejected, (state) => {
+            state.isError = true;
+            state.isLoading = false;
+            console.log(2);
+         })
+         .addCase(signUp.pending, (state) => {
             state.isError = false;
             state.isLoading = true;
             state.isLogged = false;
