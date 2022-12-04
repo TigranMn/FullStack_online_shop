@@ -34,7 +34,7 @@ export default function ProductsList() {
    return (
       <Container>
          {/* NEED TO ADD SELECT TO CHANGE ITEM COUNT */}
-         <button onClick={() => setItemCount(12)}>Sxmenq vren</button>
+         {/* <button onClick={() => setItemCount(12)}>Sxmenq vren</button> */}
          <Grid
             container
             justifyContent="center"
@@ -43,7 +43,7 @@ export default function ProductsList() {
             <Grid
                container
                display={'flex'}
-               gap={'120px'}
+               spacing={{xs:2, md:16}}
                justifyContent="center"
                marginBottom={'2rem'}
             >

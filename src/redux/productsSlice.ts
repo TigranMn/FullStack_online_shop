@@ -38,11 +38,11 @@ const fetchPageProducts = createAsyncThunk(
       let data = await getPageProducts(category, currentPage, itemCount);
 
       data.forEach((doc) => {
-         const [id, { name, count, gender, imgUrl, price, views }] = [
+         const [id, { name, count, gender, imgUrl, price, views, brand, quantity }] = [
             doc.id,
             doc.data()
          ];
-         result.push({ id, name, count, gender, imgUrl, price, views });
+         result.push({ id, name, count, gender, imgUrl, price, views, brand, quantity });
       });
       if (!result.length) {
          throw new Error('Something went wrong');

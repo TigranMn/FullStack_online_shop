@@ -6,6 +6,8 @@ export type TProduct = {
    imgUrl: string;
    count: number;
    views: number;
+   brand : string; 
+   quantity : string
 };
 
 export type TProductState = {
