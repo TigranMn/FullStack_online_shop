@@ -35,7 +35,6 @@ export default function ProductItem({ product }: ProductItemProps) {
                <ProductPrice>{product.price}$</ProductPrice>
                <ProductActionButton> Add to cart</ProductActionButton>
             </ProductContent>
-            
          </Product>
       </Grid>
    );

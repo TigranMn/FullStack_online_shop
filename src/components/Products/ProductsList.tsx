@@ -43,20 +43,21 @@ export default function ProductsList() {
             <Grid
                container
                display={'flex'}
-               spacing={{xs:2, md:16}}
+               spacing={{ xs: 2, md: 16 }}
                justifyContent="center"
                marginBottom={'2rem'}
             >
-               {state.isLoading && (
+               {state.isLoading ? (
                   <Box sx={{ display: 'flex' }}>
                      <CircularProgress sx={{ width: '100%' }} />
                   </Box>
-               )}
-               {state.isError && <Typography>Something went wrong</Typography>}
-               {!state.isLoading &&
+               ) : state.isError ? (
+                  <Typography>Something went wrong</Typography>
+               ) : (
                   state.products.map((product) => {
                      return <ProductItem key={product.id} product={product} />;
-                  })}
+                  })
+               )}
             </Grid>
             <Pagination
                shape="rounded"

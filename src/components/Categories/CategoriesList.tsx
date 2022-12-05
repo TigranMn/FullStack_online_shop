@@ -20,12 +20,11 @@ export default function CategoriesList() {
             justifyContent="center"
             sx={{ margin: '20px 4px 10px 4px' }}
          >
-            {state.isLoading && (
+            {state.isLoading ? (
                <Box sx={{ display: 'flex' }}>
                   <CircularProgress />
                </Box>
-            )}
-            {state.isError ? (
+            ) : state.isError ? (
                <Typography variant="h3">Something went wrong</Typography>
             ) : (
                state.categories.map((el) => {
