@@ -69,8 +69,9 @@ function Product() {
                   size="small"
                   variant="text"
                   sx={{
-                     background: decrDisabled ? 'grey' : 'tomato',
-                     color: 'white'
+                     background: decrDisabled ? 'grey' : 'rgb(255,99,71)',
+                     color: 'white',
+                     '&:hover' : {background: "rgba(255,99,71,0.8)"}
                   }}
                >
                   -
@@ -79,13 +80,15 @@ function Product() {
                   {quantity}
                </Typography>
                <Button
+               
                   disabled={incrDisabled}
                   onClick={increaseQuantity}
                   size="small"
                   variant="text"
                   sx={{
                      background: incrDisabled ? 'grey' : 'rgb(103,173,75)',
-                     color: 'white'
+                     color: 'white',
+                    '&:hover' : {background: "rgba(103,173,75,0.8)"}
                   }}
                >
                   +
