@@ -4,6 +4,7 @@ import { TProduct } from '../../types';
 import { Grid } from '@mui/material';
 import {
    Product,
+   ProductActionButton,
    ProductBox,
    ProductContent,
    ProductImages,
@@ -32,6 +33,7 @@ export default function ProductItem({ product }: ProductItemProps) {
             <ProductContent>
                <ProductName>{product.name}</ProductName>
                <ProductPrice>{product.price}$</ProductPrice>
+               <ProductActionButton> Add to cart</ProductActionButton>
             </ProductContent>
          </Product>
       </Grid>

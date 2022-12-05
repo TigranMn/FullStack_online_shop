@@ -6,26 +6,21 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 export default function User() {
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+   const dispatch = useAppDispatch();
+   const navigate = useNavigate();
 
-	const handleLogOut = () => {
-		navigate('/signin');
-		dispatch(removeUser());
-		localStorage.removeItem('currentUser');
-	}
+   const handleLogOut = () => {
+      navigate('/signin');
+      dispatch(removeUser());
+      localStorage.removeItem('currentUser');
+   };
 
-
-	return (
-		<div>
-			<h1>Name: {useAuth().name}</h1>
-			<h1>Email: {useAuth().email}</h1>
-			<h2>ID: {useAuth().id}</h2>
-			<Button
-				onClick={handleLogOut}
-			>
-				Log out
-			</Button>
-		</div>
-	);
+   return (
+      <div>
+         <h1>Name: {useAuth().name}</h1>
+         <h1>Email: {useAuth().email}</h1>
+         <h2>ID: {useAuth().id}</h2>
+         <Button onClick={handleLogOut}>Log out</Button>
+      </div>
+   );
 }
