@@ -19,7 +19,7 @@ export default function ProductsList() {
             itemCount: number;
          })
       );
-   }, [itemCount]);
+   }, [itemCount, dispatch]);
 
    useEffect(() => {
       dispatch(

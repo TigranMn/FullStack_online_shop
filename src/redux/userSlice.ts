@@ -9,7 +9,6 @@ import {
    collection,
    doc,
    DocumentData,
-   getDoc,
    getDocs,
    query,
    QuerySnapshot,
@@ -18,7 +17,6 @@ import {
 } from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
-import { TBasketType } from '../types';
 
 type TState = {
    email: string | null;
@@ -94,26 +92,47 @@ export const addProduct = createAsyncThunk(
    async ({
       productId,
       userId,
-      category
+      category,
+      count = 1
    }: {
       productId: string;
       userId: string;
       category: string;
+      count?: number;
    }) => {
       let collRef = collection(db, 'users');
       let q = query(collRef, where('id', '==', userId));
       let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+      const userRef = doc(db, 'users', snaps.docs[0].id);
 
       let prod = [...snaps.docs[0].data().basket].find((el) => {
          return el.productId === productId;
       });
-
-      const userRef = doc(db, 'users', snaps.docs[0].id);
-      setDoc(
-         userRef,
-         { basket: [...snaps.docs[0].data().basket, { productId, category }] },
-         { merge: true }
-      );
+      if (prod) {
+         setDoc(
+            userRef,
+            {
+               basket: [
+                  ...[...snaps.docs[0].data().basket].filter(
+                     (el) => el.productId !== productId
+                  ),
+                  { ...prod, count: prod.count + count }
+               ]
+            },
+            { merge: true }
+         );
+      } else {
+         setDoc(
+            userRef,
+            {
+               basket: [
+                  ...snaps.docs[0].data().basket,
+                  { productId, category, count: count }
+               ]
+            },
+            { merge: true }
+         );
+      }
    }
 );
 
