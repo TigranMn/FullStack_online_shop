@@ -3,6 +3,7 @@ export type TProduct = {
    price: number;
    name: string;
    gender: string;
+   category: string;
    imgUrl: string;
    count: number;
    views: number;
@@ -32,4 +33,10 @@ export type TUser = {
    lastName: string | null;
    basket: string[];
    likedProducts: string[];
+};
+
+export type TBasketType = {
+   productId: string;
+   category: string;
+   count: number;
 };

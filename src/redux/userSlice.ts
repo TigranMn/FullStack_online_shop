@@ -4,9 +4,21 @@ import {
    signInWithEmailAndPassword,
    UserCredential
 } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import {
+   addDoc,
+   collection,
+   doc,
+   DocumentData,
+   getDoc,
+   getDocs,
+   query,
+   QuerySnapshot,
+   setDoc,
+   where
+} from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
+import { TBasketType } from '../types';
 
 type TState = {
    email: string | null;
@@ -74,6 +86,34 @@ export const signUp = createAsyncThunk(
       } catch {
          throw new Error('Something went wrong');
       }
+   }
+);
+
+export const addProduct = createAsyncThunk(
+   'basket/addProduct',
+   async ({
+      productId,
+      userId,
+      category
+   }: {
+      productId: string;
+      userId: string;
+      category: string;
+   }) => {
+      let collRef = collection(db, 'users');
+      let q = query(collRef, where('id', '==', userId));
+      let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+
+      let prod = [...snaps.docs[0].data().basket].find((el) => {
+         return el.productId === productId;
+      });
+
+      const userRef = doc(db, 'users', snaps.docs[0].id);
+      setDoc(
+         userRef,
+         { basket: [...snaps.docs[0].data().basket, { productId, category }] },
+         { merge: true }
+      );
    }
 );
 
