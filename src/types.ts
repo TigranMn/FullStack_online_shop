@@ -40,3 +40,16 @@ export type TBasketType = {
    category: string;
    count: number;
 };
+
+export enum notificationTypes {
+   WARNING = 'warning',
+   ERROR = 'error',
+   SUCCES = 'success'
+}
+
+export interface SerializedError {
+   name?: string;
+   message?: string;
+   stack?: string;
+   code?: string;
+}

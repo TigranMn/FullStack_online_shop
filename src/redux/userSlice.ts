@@ -42,14 +42,24 @@ const initialState: TState = {
 
 export const signIn = createAsyncThunk(
    'user/signIn',
-   async ({ email, password }: { email: string; password: string }) => {
-      const { user }: UserCredential = await signInWithEmailAndPassword(
-         auth,
-         email,
-         password
-      );
-      const data = await getUser(user);
-      return { data, user };
+   async (
+      { email, password }: { email: string; password: string },
+      { rejectWithValue }
+   ) => {
+      try {
+         const { user }: UserCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+         );
+         const data = await getUser(user);
+         return { data, user };
+      } catch (e) {
+         if (e instanceof Error) {
+            throw new Error(e.message);
+         }
+         throw new Error('Something went wrong');
+      }
    }
 );
 
