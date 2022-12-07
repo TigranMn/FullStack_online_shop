@@ -4,7 +4,17 @@ import {
    signInWithEmailAndPassword,
    UserCredential
 } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import {
+   addDoc,
+   collection,
+   doc,
+   DocumentData,
+   getDocs,
+   query,
+   QuerySnapshot,
+   setDoc,
+   where
+} from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
 
@@ -32,14 +42,24 @@ const initialState: TState = {
 
 export const signIn = createAsyncThunk(
    'user/signIn',
-   async ({ email, password }: { email: string; password: string }) => {
-      const { user }: UserCredential = await signInWithEmailAndPassword(
-         auth,
-         email,
-         password
-      );
-      const data = await getUser(user);
-      return { data, user };
+   async (
+      { email, password }: { email: string; password: string },
+      { rejectWithValue }
+   ) => {
+      try {
+         const { user }: UserCredential = await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+         );
+         const data = await getUser(user);
+         return { data, user };
+      } catch (e) {
+         if (e instanceof Error) {
+            throw new Error(e.message);
+         }
+         throw new Error('Something went wrong');
+      }
    }
 );
 
@@ -73,6 +93,55 @@ export const signUp = createAsyncThunk(
          return { user, firstName, lastName };
       } catch {
          throw new Error('Something went wrong');
+      }
+   }
+);
+
+export const addProduct = createAsyncThunk(
+   'basket/addProduct',
+   async ({
+      productId,
+      userId,
+      category,
+      count = 1
+   }: {
+      productId: string;
+      userId: string;
+      category: string;
+      count?: number;
+   }) => {
+      let collRef = collection(db, 'users');
+      let q = query(collRef, where('id', '==', userId));
+      let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+      const userRef = doc(db, 'users', snaps.docs[0].id);
+
+      let prod = [...snaps.docs[0].data().basket].find((el) => {
+         return el.productId === productId;
+      });
+      if (prod) {
+         setDoc(
+            userRef,
+            {
+               basket: [
+                  ...[...snaps.docs[0].data().basket].filter(
+                     (el) => el.productId !== productId
+                  ),
+                  { ...prod, count: prod.count + count }
+               ]
+            },
+            { merge: true }
+         );
+      } else {
+         setDoc(
+            userRef,
+            {
+               basket: [
+                  ...snaps.docs[0].data().basket,
+                  { productId, category, count: count }
+               ]
+            },
+            { merge: true }
+         );
       }
    }
 );

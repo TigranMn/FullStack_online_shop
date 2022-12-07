@@ -48,6 +48,7 @@ const fetchPageProducts = createAsyncThunk(
             count,
             gender,
             imgUrl,
+            category,
             price,
             views,
             brand,

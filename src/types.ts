@@ -3,6 +3,7 @@ export type TProduct = {
    price: number;
    name: string;
    gender: string;
+   category: string;
    imgUrl: string;
    count: number;
    views: number;
@@ -33,3 +34,22 @@ export type TUser = {
    basket: string[];
    likedProducts: string[];
 };
+
+export type TBasketType = {
+   productId: string;
+   category: string;
+   count: number;
+};
+
+export enum notificationTypes {
+   WARNING = 'warning',
+   ERROR = 'error',
+   SUCCES = 'success'
+}
+
+export interface SerializedError {
+   name?: string;
+   message?: string;
+   stack?: string;
+   code?: string;
+}

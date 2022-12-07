@@ -3,6 +3,8 @@ import { Container } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { signIn } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useNotify } from '../../hooks/useNotify';
+import { notificationTypes } from '../../types';
 
 export default function SignIn() {
    const navigate = useNavigate();
@@ -10,6 +12,7 @@ export default function SignIn() {
    const userState = useAppSelector((state) => state.user);
    const [email, setEmail] = useState<string>('');
    const [password, setPassword] = useState<string>('');
+   const notify = useNotify();
 
    useEffect(() => {
       if (userState.isLogged) {
@@ -20,9 +23,13 @@ export default function SignIn() {
 
    const handleSignIn = async (e: React.SyntheticEvent): Promise<void> => {
       e.preventDefault();
-      dispatch(
-         signIn({ email, password } as { email: string; password: string })
-      );
+      try {
+         const resp = await dispatch(
+            signIn({ email, password } as { email: string; password: string })
+         ).unwrap();
+      } catch (e) {
+         notify(notificationTypes.ERROR, e.message);
+      }
    };
 
    return (
