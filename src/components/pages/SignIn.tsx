@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { signIn } from '../../redux/userSlice';
+import { resetError, signIn } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { notificationTypes } from '../../types';
@@ -23,21 +23,18 @@ export default function SignIn() {
 
    const handleSignIn = async (e: React.SyntheticEvent): Promise<void> => {
       e.preventDefault();
-      try {
-         const resp = await dispatch(
-            signIn({ email, password } as { email: string; password: string })
-         ).unwrap();
-      } catch (e) {
-         notify(notificationTypes.ERROR, e.message);
-      }
+      await dispatch(
+         signIn({ email, password } as { email: string; password: string })
+      )
+         .unwrap()
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
-
    return (
       <Container sx={{ mt: '20px' }}>
          <form onSubmit={handleSignIn}>
             <input
                placeholder="Email"
-               type="email"
+               type="text"
                onChange={(e) => setEmail(e.target.value)}
                value={email}
             />

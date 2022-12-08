@@ -60,11 +60,7 @@ export default function ProductsList() {
                   ) : (
                      state.products.map((product) => {
                         return (
-                           <ProductItem
-                              toast={notify}
-                              key={product.id}
-                              product={product}
-                           />
+                           <ProductItem key={product.id} product={product} />
                         );
                      })
                   )}

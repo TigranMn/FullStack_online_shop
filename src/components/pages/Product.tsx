@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProduct } from '../../api/api';
-import { TProduct } from '../../types';
+import { notificationTypes, TProduct } from '../../types';
 import {
    ProductContainer,
    ProductContent,
@@ -9,19 +9,23 @@ import {
    ProductTitle
 } from './styles';
 import { Typography, Stack, Button, Box } from '@mui/material';
+import { useNotify } from '../../hooks/useNotify';
 
 function Product() {
    const { productId, category } = useParams();
    const [product, setProduct] = useState<TProduct>(undefined!);
    const [quantity, setQuantity] = useState<number>(0);
+   const notify = useNotify();
 
    const incrDisabled = quantity >= +product?.quantity;
    const decrDisabled = quantity <= 0;
 
    useEffect(() => {
-      getProduct(category as string, productId as string).then((res) => {
-         setProduct(res);
-      });
+      getProduct(category as string, productId as string)
+         .then((res) => {
+            setProduct(res);
+         })
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
    }, []);
 
    const decreaseQuantity = () => {
@@ -71,7 +75,7 @@ function Product() {
                   sx={{
                      background: decrDisabled ? 'grey' : 'rgb(255,99,71)',
                      color: 'white',
-                     '&:hover' : {background: "rgba(255,99,71,0.8)"}
+                     '&:hover': { background: 'rgba(255,99,71,0.8)' }
                   }}
                >
                   -
@@ -80,7 +84,6 @@ function Product() {
                   {quantity}
                </Typography>
                <Button
-               
                   disabled={incrDisabled}
                   onClick={increaseQuantity}
                   size="small"
@@ -88,7 +91,7 @@ function Product() {
                   sx={{
                      background: incrDisabled ? 'grey' : 'rgb(103,173,75)',
                      color: 'white',
-                    '&:hover' : {background: "rgba(103,173,75,0.8)"}
+                     '&:hover': { background: 'rgba(103,173,75,0.8)' }
                   }}
                >
                   +

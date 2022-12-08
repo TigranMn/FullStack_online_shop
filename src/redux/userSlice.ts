@@ -25,7 +25,7 @@ type TState = {
    name: string | null;
    lastName: string | null;
    isLoading: boolean;
-   isError: boolean;
+   error: string;
    isLogged: boolean;
 };
 
@@ -35,7 +35,7 @@ const initialState: TState = {
    token: null,
    name: null,
    lastName: null,
-   isError: false,
+   error: '',
    isLogged: false,
    isLoading: false
 };
@@ -46,20 +46,13 @@ export const signIn = createAsyncThunk(
       { email, password }: { email: string; password: string },
       { rejectWithValue }
    ) => {
-      try {
-         const { user }: UserCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-         );
-         const data = await getUser(user);
-         return { data, user };
-      } catch (e) {
-         if (e instanceof Error) {
-            throw new Error(e.message);
-         }
-         throw new Error('Something went wrong');
-      }
+      const { user }: UserCredential = await signInWithEmailAndPassword(
+         auth,
+         email,
+         password
+      );
+      const data = await getUser(user);
+      return { data, user };
    }
 );
 
@@ -76,24 +69,20 @@ export const signUp = createAsyncThunk(
       firstName: string;
       lastName: string;
    }) => {
-      try {
-         const { user }: UserCredential = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-         );
-         addDoc(collection(db, 'users'), {
-            name: firstName,
-            lastName,
-            email: user.email,
-            id: user.uid,
-            likedProducts: [],
-            basket: []
-         });
-         return { user, firstName, lastName };
-      } catch {
-         throw new Error('Something went wrong');
-      }
+      const { user }: UserCredential = await createUserWithEmailAndPassword(
+         auth,
+         email,
+         password
+      );
+      addDoc(collection(db, 'users'), {
+         name: firstName,
+         lastName,
+         email: user.email,
+         id: user.uid,
+         likedProducts: [],
+         basket: []
+      });
+      return { user, firstName, lastName };
    }
 );
 
@@ -150,6 +139,9 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
+      resetError(state) {
+         state.error = '';
+      },
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -170,13 +162,12 @@ const userSlice = createSlice({
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
          })
-         .addCase(signIn.rejected, (state) => {
-            state.isError = true;
+         .addCase(signIn.rejected, (state, action) => {
+            console.log(action.error.message!);
+            state.error = action.error.message!;
             state.isLoading = false;
-            console.log(2);
          })
          .addCase(signIn.pending, (state) => {
-            state.isError = false;
             state.isLoading = true;
             state.isLogged = false;
          })
@@ -189,18 +180,16 @@ const userSlice = createSlice({
             state.lastName = action.payload.lastName;
             state.name = action.payload.firstName;
          })
-         .addCase(signUp.rejected, (state) => {
-            state.isError = true;
+         .addCase(signUp.rejected, (state, action) => {
+            state.error = action.error.message!;
             state.isLoading = false;
-            console.log(2);
          })
          .addCase(signUp.pending, (state) => {
-            state.isError = false;
             state.isLoading = true;
             state.isLogged = false;
          });
    }
 });
 
-export const { removeUser } = userSlice.actions;
+export const { removeUser, resetError } = userSlice.actions;
 export default userSlice.reducer;

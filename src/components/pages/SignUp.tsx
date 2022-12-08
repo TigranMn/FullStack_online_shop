@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../../redux/userSlice';
+import { resetError, signUp } from '../../redux/userSlice';
+import { useNotify } from '../../hooks/useNotify';
+import { notificationTypes } from '../../types';
 
 export default function Signup() {
    const dispatch = useAppDispatch();
@@ -12,6 +14,7 @@ export default function Signup() {
    const [password, setPassword] = useState<string>('');
    const navigate = useNavigate();
    const userState = useAppSelector((state) => state.user);
+   const notify = useNotify();
 
    useEffect(() => {
       if (userState.isLogged) {
@@ -20,16 +23,18 @@ export default function Signup() {
       }
    }, [userState.isLogged]);
 
-   const handleAuth = (e: any) => {
+   const handleAuth = async (e: any) => {
       e.preventDefault();
-      dispatch(
+      await dispatch(
          signUp({ email, password, firstName, lastName } as {
             email: string;
             password: string;
             firstName: string;
             lastName: string;
          })
-      );
+      )
+         .unwrap()
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
 
    return (
@@ -56,7 +61,7 @@ export default function Signup() {
 
             <input
                placeholder="Email"
-               type="email"
+               type="text"
                onChange={(e) => setEmail(e.target.value)}
                value={email}
             />

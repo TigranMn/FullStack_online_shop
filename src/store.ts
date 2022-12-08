@@ -19,7 +19,7 @@ const store = configureStore({
          token: currentUser.token,
          name: currentUser.name,
          lastName: currentUser.lastName,
-         isError: false,
+         error: '',
          isLogged: currentUser.isLogged,
          isLoading: false
       }
