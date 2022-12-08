@@ -28,7 +28,7 @@ export default function SignIn() {
             signIn({ email, password } as { email: string; password: string })
          ).unwrap();
       } catch (e) {
-         notify(notificationTypes.ERROR, e.message);
+         // notify(notificationTypes.ERROR, e.message);
       }
    };
 

@@ -83,7 +83,7 @@ const Actions = ({ matches }) => {
                <ListItemButton
                   sx={{ justifyContent: 'center' }}
                   onClick={() => {
-                     navigate('/signin');
+                     navigate('/login');
                   }}
                >
                   <ListItemIcon

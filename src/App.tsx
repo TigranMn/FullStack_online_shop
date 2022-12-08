@@ -10,6 +10,7 @@ import Signup from './components/pages/SignUp';
 import Signin from './components/pages/SignIn';
 import User from './components/pages/User';
 import Product from './components/pages/Product';
+import Login from './components/pages/Login';
 
 function App() {
    return (
@@ -25,6 +26,7 @@ function App() {
                <Route path="/contact" element={<Contact />} />
                <Route path="/shop/:category" element={<Products />} />
                <Route path="/shop/:category/:productId" element={<Product />} />
+               <Route path="/login" element={<Login />} />
             </Route>
          </Routes>
       </BrowserRouter>
