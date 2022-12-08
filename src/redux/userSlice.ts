@@ -17,6 +17,7 @@ import {
 } from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
+import { TBasketType } from '../types';
 
 type TState = {
    email: string | null;
@@ -27,6 +28,7 @@ type TState = {
    isLoading: boolean;
    isError: boolean;
    isLogged: boolean;
+   basket: TBasketType[];
 };
 
 const initialState: TState = {
@@ -37,7 +39,8 @@ const initialState: TState = {
    lastName: null,
    isError: false,
    isLogged: false,
-   isLoading: false
+   isLoading: false,
+   basket: []
 };
 
 export const signIn = createAsyncThunk(
@@ -158,6 +161,7 @@ const userSlice = createSlice({
             state.id = action.payload.user.uid;
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
+            state.basket = action.payload.data.basket;
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -176,6 +180,7 @@ const userSlice = createSlice({
             state.id = action.payload.user.uid;
             state.lastName = action.payload.lastName;
             state.name = action.payload.firstName;
+            state.basket = [];
          })
          .addCase(signUp.rejected, (state) => {
             state.isError = true;

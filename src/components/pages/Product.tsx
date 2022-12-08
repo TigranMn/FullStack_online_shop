@@ -8,7 +8,7 @@ import {
    ProductImage,
    ProductTitle
 } from '../../styles/styles';
-import { Typography, Stack, Button, Box } from '@mui/material';
+import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
 
 function Product() {

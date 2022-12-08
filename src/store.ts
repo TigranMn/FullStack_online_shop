@@ -20,6 +20,7 @@ const store = configureStore({
          name: currentUser.name,
          lastName: currentUser.lastName,
          isError: false,
+         basket: currentUser.basket || [],
          isLogged: currentUser.isLogged,
          isLoading: false
       }
