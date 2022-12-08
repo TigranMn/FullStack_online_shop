@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { signIn, signUp } from '../../redux/userSlice';
 import { useNavigate } from 'react-router-dom';
@@ -24,27 +24,27 @@ const Login = () => {
       }
    }, [userState.isLogged]);
 
-   const handleSignIn = async (e: React.SyntheticEvent): Promise<void> => {
+   const handleSignIn = async (e: FormEvent): Promise<void> => {
       e.preventDefault();
-      try {
-         const resp = await dispatch(
-            signIn({ email, password } as { email: string; password: string })
-         ).unwrap();
-      } catch (e) {
-         // notify(notificationTypes.ERROR, e.message);
-      }
+      await dispatch(
+         signIn({ email, password } as { email: string; password: string })
+      )
+         .unwrap()
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
 
-   const handleAuth = (e: any) => {
+   const handleSignUp = async (e: FormEvent) => {
       e.preventDefault();
-      dispatch(
+      await dispatch(
          signUp({ email, password, firstName, lastName } as {
             email: string;
             password: string;
             firstName: string;
             lastName: string;
          })
-      );
+      )
+         .unwrap()
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
 
    return (
@@ -88,7 +88,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                      />
                   </div>
-                  <button onClick={handleAuth}>Sign Up</button>
+                  <button onClick={handleSignUp}>Sign Up</button>
                </form>
             </div>
             <div className="form-container sign-in-container">
