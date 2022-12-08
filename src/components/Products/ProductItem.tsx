@@ -14,17 +14,18 @@ import {
 } from './styles';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { addProduct } from '../../redux/userSlice';
+import { useNotify } from '../../hooks/useNotify';
 
 type ProductItemProps = {
    product: TProduct;
-   toast: (type: notificationTypes, message: string) => void;
 };
 
-export default function ProductItem({ product, toast }: ProductItemProps) {
+export default function ProductItem({ product }: ProductItemProps) {
    const navigate = useNavigate();
    const { pathname } = useLocation();
    const dispatch = useAppDispatch();
    const user = useAppSelector((state) => state.user);
+   const notify = useNotify();
 
    const changeLocation = () => {
       navigate(pathname + `/${product.id}`);
@@ -32,18 +33,18 @@ export default function ProductItem({ product, toast }: ProductItemProps) {
 
    const handleAdd = async () => {
       if (user.isLogged) {
-         const resp = await dispatch(
+         await dispatch(
             addProduct({
                productId: product.id,
                userId: user?.id,
                category: product.category
             } as { productId: string; userId: string; category: string })
-         );
-         console.log(resp);
-         //check response
-         toast(notificationTypes.SUCCES, 'Succesfully added');
+         )
+            .unwrap()
+            .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
+            .catch((e) => notify(notificationTypes.ERROR, e.message));
       } else {
-         toast(notificationTypes.WARNING, 'You must be logged in');
+         notify(notificationTypes.WARNING, 'You must be logged in!');
       }
    };
 

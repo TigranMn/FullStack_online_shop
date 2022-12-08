@@ -46,20 +46,13 @@ export const signIn = createAsyncThunk(
       { email, password }: { email: string; password: string },
       { rejectWithValue }
    ) => {
-      try {
-         const { user }: UserCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-         );
-         const data = await getUser(user);
-         return { data, user };
-      } catch (e) {
-         if (e instanceof Error) {
-            throw new Error(e.message);
-         }
-         throw new Error('Something went wrong');
-      }
+      const { user }: UserCredential = await signInWithEmailAndPassword(
+         auth,
+         email,
+         password
+      );
+      const data = await getUser(user);
+      return { data, user };
    }
 );
 
@@ -76,24 +69,20 @@ export const signUp = createAsyncThunk(
       firstName: string;
       lastName: string;
    }) => {
-      try {
-         const { user }: UserCredential = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-         );
-         addDoc(collection(db, 'users'), {
-            name: firstName,
-            lastName,
-            email: user.email,
-            id: user.uid,
-            likedProducts: [],
-            basket: []
-         });
-         return { user, firstName, lastName };
-      } catch {
-         throw new Error('Something went wrong');
-      }
+      const { user }: UserCredential = await createUserWithEmailAndPassword(
+         auth,
+         email,
+         password
+      );
+      addDoc(collection(db, 'users'), {
+         name: firstName,
+         lastName,
+         email: user.email,
+         id: user.uid,
+         likedProducts: [],
+         basket: []
+      });
+      return { user, firstName, lastName };
    }
 );
 
@@ -173,7 +162,6 @@ const userSlice = createSlice({
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
             state.isLoading = false;
-            console.log(2);
          })
          .addCase(signIn.pending, (state) => {
             state.isError = false;
