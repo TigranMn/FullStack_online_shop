@@ -5,7 +5,7 @@ export const Product = styled(Box)(() => ({
    position: 'relative',
    width: '200px',
    height: '300px',
-   background: 'grey',
+   background: '#122936',
    borderRadius: '15px',
    overflow: 'hidden',
    '&:before': {
@@ -14,7 +14,7 @@ export const Product = styled(Box)(() => ({
       top: '-50%',
       height: '100%',
       width: '100%',
-      background: 'grey',
+      background: '#2196F3',
       transform: 'skewY(345deg)',
       transition: '0.5s'
    },

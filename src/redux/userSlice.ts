@@ -192,7 +192,6 @@ const userSlice = createSlice({
          .addCase(signUp.rejected, (state) => {
             state.isError = true;
             state.isLoading = false;
-            console.log(2);
          })
          .addCase(signUp.pending, (state) => {
             state.isError = false;

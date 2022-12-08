@@ -10,7 +10,7 @@ export default function User() {
    const navigate = useNavigate();
 
    const handleLogOut = () => {
-      navigate('/signin');
+      navigate('/login');
       dispatch(removeUser());
       localStorage.removeItem('currentUser');
    };
