@@ -1,3 +1,4 @@
+import { ListItem } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getProduct } from '../../api/api';
 import { useAppSelector } from '../../store';
@@ -9,20 +10,23 @@ export default function Basket() {
    const [products, setProducts] = useState<TProduct[]>([]);
 
    useEffect(() => {
-      console.log(1);
       const prods: TProduct[] = [];
       basketItems.forEach(async (el) => {
          const product = await getProduct(el.category, el.productId);
          prods.push(product);
       });
       setProducts(prods);
-   }, []);
+   }, [basketItems]);
 
    return (
       <>
          {true ? (
             products.map((el) => {
-               return <p key={el.id}>dada</p>;
+               return (
+                  <ListItem>
+                     <p key={el.id}>dada</p>
+                  </ListItem>
+               );
             })
          ) : (
             <p>Nothing in basket</p>

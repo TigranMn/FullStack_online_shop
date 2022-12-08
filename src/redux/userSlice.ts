@@ -142,6 +142,9 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
+      addToBasket(state, action) {
+         state.basket.push(action.payload);
+      },
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -194,5 +197,5 @@ const userSlice = createSlice({
    }
 });
 
-export const { removeUser } = userSlice.actions;
+export const { removeUser, addToBasket } = userSlice.actions;
 export default userSlice.reducer;

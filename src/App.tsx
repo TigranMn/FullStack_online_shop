@@ -11,8 +11,15 @@ import Signin from './components/pages/SignIn';
 import User from './components/pages/User';
 import Product from './components/pages/Product';
 import Login from './components/pages/Login';
+import { useEffect } from 'react';
+import { useAppSelector } from './store';
 
 function App() {
+   const user = useAppSelector((state) => state.user);
+   useEffect(() => {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+   }, [user]);
+
    return (
       <BrowserRouter>
          <Routes>

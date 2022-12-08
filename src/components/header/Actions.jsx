@@ -33,7 +33,9 @@ const Actions = ({ matches }) => {
 					onClose={() => setIsActive(false)}
 				>
 					<Box sx={{ width: '400px' }}>
-						<Basket />
+						<List>Products
+							<Basket />
+						</List>
 					</Box>
 				</Drawer>
 			</div>
