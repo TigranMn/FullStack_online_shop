@@ -13,6 +13,7 @@ const Login = () => {
    const userState = useAppSelector((state) => state.user);
    const [email, setEmail] = useState<string>('');
    const [password, setPassword] = useState<string>('');
+   const [confirmPassword, setConfirmPassword] = useState<string>('');
    const [firstName, setFirstName] = useState<string>('');
    const [lastName, setLastName] = useState<string>('');
    const notify = useNotify();
@@ -88,7 +89,26 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                      />
                   </div>
-                  <button onClick={handleSignUp}>Sign Up</button>
+                  <div className="infield">
+                     <input
+                        type="password"
+                        placeholder="Confirm password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                     />
+                  </div>
+                  <button
+                     onClick={
+                        password === confirmPassword
+                           ? handleSignUp
+                           : (e) => {
+                                alert('Passwords are different');
+                                e.preventDefault();
+                             }
+                     }
+                  >
+                     Sign Up
+                  </button>
                </form>
             </div>
             <div className="form-container sign-in-container">
