@@ -17,6 +17,7 @@ import {
 } from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
+import { TBasketType } from '../types';
 
 type TState = {
    email: string | null;
@@ -27,6 +28,7 @@ type TState = {
    isLoading: boolean;
    isError: boolean;
    isLogged: boolean;
+   basket: TBasketType[];
 };
 
 const initialState: TState = {
@@ -37,15 +39,13 @@ const initialState: TState = {
    lastName: null,
    isError: false,
    isLogged: false,
-   isLoading: false
+   isLoading: false,
+   basket: []
 };
 
 export const signIn = createAsyncThunk(
    'user/signIn',
-   async (
-      { email, password }: { email: string; password: string },
-      { rejectWithValue }
-   ) => {
+   async ({ email, password }: { email: string; password: string }) => {
       const { user }: UserCredential = await signInWithEmailAndPassword(
          auth,
          email,
@@ -86,18 +86,42 @@ export const signUp = createAsyncThunk(
    }
 );
 
+export const removeProduct = createAsyncThunk(
+   'basket/removeProduct',
+   async ({ productId, userId }: { productId: string; userId: string }) => {
+      let collRef = collection(db, 'users');
+      let q = query(collRef, where('id', '==', userId));
+      let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+      const userRef = doc(db, 'users', snaps.docs[0].id);
+      console.log(productId, userId);
+
+      setDoc(
+         userRef,
+         {
+            basket: [
+               ...[...snaps.docs[0].data().basket].filter(
+                  (el) => el.productId !== productId
+               )
+            ]
+         },
+         { merge: true }
+      );
+      return productId;
+   }
+);
+
 export const addProduct = createAsyncThunk(
    'basket/addProduct',
    async ({
       productId,
       userId,
       category,
-      count = 1
+      count
    }: {
       productId: string;
       userId: string;
       category: string;
-      count?: number;
+      count: number;
    }) => {
       let collRef = collection(db, 'users');
       let q = query(collRef, where('id', '==', userId));
@@ -139,6 +163,19 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
+      addToBasket(state, action) {
+         const prod = state.basket.find(
+            (el) => el.productId === action.payload.productId
+         );
+         if (prod) prod.count = prod.count + action.payload.count;
+         else {
+            state.basket.push({
+               productId: action.payload.productId,
+               category: action.payload.category,
+               count: action.payload.count
+            });
+         }
+      },
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -158,6 +195,7 @@ const userSlice = createSlice({
             state.id = action.payload.user.uid;
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
+            state.basket = action.payload.data.basket;
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -176,6 +214,7 @@ const userSlice = createSlice({
             state.id = action.payload.user.uid;
             state.lastName = action.payload.lastName;
             state.name = action.payload.firstName;
+            state.basket = [];
          })
          .addCase(signUp.rejected, (state) => {
             state.isError = true;
@@ -185,9 +224,14 @@ const userSlice = createSlice({
             state.isError = false;
             state.isLoading = true;
             state.isLogged = false;
+         })
+         .addCase(removeProduct.fulfilled, (state, action) => {
+            state.basket = state.basket.filter(
+               (item) => item.productId !== action.payload
+            );
          });
    }
 });
 
-export const { removeUser } = userSlice.actions;
+export const { removeUser, addToBasket } = userSlice.actions;
 export default userSlice.reducer;

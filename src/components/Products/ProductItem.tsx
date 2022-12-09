@@ -13,7 +13,7 @@ import {
    ProductPrice
 } from './styles';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { addProduct } from '../../redux/userSlice';
+import { addProduct, addToBasket } from '../../redux/userSlice';
 import { useNotify } from '../../hooks/useNotify';
 
 type ProductItemProps = {
@@ -33,15 +33,15 @@ export default function ProductItem({ product }: ProductItemProps) {
 
    const handleAdd = async () => {
       if (user.isLogged) {
-         await dispatch(
-            addProduct({
-               productId: product.id,
-               userId: user?.id,
-               category: product.category
-            } as { productId: string; userId: string; category: string })
-         )
+         const newProduct = {
+            productId: product.id,
+            userId: user?.id,
+            category: product.category
+         } as { productId: string; userId: string; category: string };
+         await dispatch(addProduct({ ...newProduct, count: 1 }))
             .unwrap()
             .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
+            .then(() => dispatch(addToBasket({ ...newProduct, count: 1 })))
             .catch((e) => notify(notificationTypes.ERROR, e.message));
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
@@ -62,10 +62,22 @@ export default function ProductItem({ product }: ProductItemProps) {
                <ProductContent>
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>{product.price}$</ProductPrice>
-                  <ProductActionButton onClick={handleAdd}>
-                     {' '}
-                     Add to cart
-                  </ProductActionButton>
+                  {product.quantity ? (
+                     <ProductActionButton onClick={handleAdd}>
+                        Add to cart
+                     </ProductActionButton>
+                  ) : (
+                     <ProductActionButton
+                        disableRipple
+                        style={{
+                           backgroundColor: 'grey',
+                           color: 'white',
+                           cursor: 'default'
+                        }}
+                     >
+                        Expired
+                     </ProductActionButton>
+                  )}
                </ProductContent>
             </Product>
          </Grid>

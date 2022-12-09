@@ -15,6 +15,7 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import { useAuth } from '../../hooks/use-auth';
 import PersonIcon from '@mui/icons-material/Person';
+import Basket from '../Basket/Basket';
 
 const Actions = ({ matches }) => {
    const navigate = useNavigate();
@@ -31,8 +32,9 @@ const Actions = ({ matches }) => {
                open={isActive}
                onClose={() => setIsActive(false)}
             >
-               <Box sx={{ width: '400px' }}>
-                  <List>Products</List>
+               <Box sx={{ width: '450px' }}>
+                  <Box>Products</Box>
+                  <Basket />
                </Box>
             </Drawer>
          </div>
