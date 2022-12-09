@@ -6,14 +6,14 @@ import Contact from './components/pages/Contact';
 import About from './components/pages/About';
 import Products from './components/Products/ProductsList';
 import Layout from './components/Layout/Layout';
-import Signup from './components/pages/SignUp';
-import Signin from './components/pages/SignIn';
 import User from './components/pages/User';
 import Product from './components/pages/Product';
 import Login from './components/pages/Login';
 import { useEffect } from 'react';
 import { useAppSelector } from './store';
 import Buy from './components/pages/Buy';
+import Likes from './components/pages/Likes';
+import './styles/toast.css';
 
 function App() {
    const user = useAppSelector((state) => state.user);
@@ -27,8 +27,6 @@ function App() {
             <Route path="/" element={<Layout />}>
                <Route path="/" element={<Home />} />
                <Route path="/about" element={<About />} />
-               <Route path="/signup" element={<Signup />} />
-               <Route path="/signin" element={<Signin />} />
                <Route path="/shop" element={<Shop />} />
                <Route path="/user" element={<User />} />
                <Route path="/contact" element={<Contact />} />
@@ -36,6 +34,7 @@ function App() {
                <Route path="/shop/:category/:productId" element={<Product />} />
                <Route path="/buy" element={<Buy />} />
                <Route path="/login" element={<Login />} />
+               <Route path="/likes" element={<Likes />} />
             </Route>
          </Routes>
       </BrowserRouter>

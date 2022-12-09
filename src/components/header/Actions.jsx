@@ -1,9 +1,10 @@
 import {
    MyList,
    ActionIconsContainerMobile,
-   ActionIconsContainerDesktop
+   ActionIconsContainerDesktop,
+   StyledBadge
 } from './styles';
-import { ListItemButton, ListItemIcon } from '@mui/material';
+import { IconButton, ListItemButton, ListItemIcon } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoginIcon from '@mui/icons-material/Login';
@@ -12,14 +13,15 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
 import { useAuth } from '../../hooks/use-auth';
 import PersonIcon from '@mui/icons-material/Person';
 import Basket from '../Basket/Basket';
+import { useAppSelector } from '../../store';
 
 const Actions = ({ matches }) => {
    const navigate = useNavigate();
    const [isActive, setIsActive] = useState(false);
+   const productsLength = useAppSelector((state) => state.user.basket.length);
    const Component = matches
       ? ActionIconsContainerMobile
       : ActionIconsContainerDesktop;
@@ -32,7 +34,7 @@ const Actions = ({ matches }) => {
                open={isActive}
                onClose={() => setIsActive(false)}
             >
-               <Box sx={{ width: '450px' }}>
+               <Box sx={{ width: '500px', padding: '15px' }}>
                   <Box>Products</Box>
                   <Basket />
                </Box>
@@ -50,10 +52,22 @@ const Actions = ({ matches }) => {
                      color: matches && Colors.info
                   }}
                >
-                  <ShoppingCartIcon />
+                  <IconButton aria-label="cart">
+                     <StyledBadge
+                        badgeContent={productsLength}
+                        color="secondary"
+                     >
+                        <ShoppingCartIcon />
+                     </StyledBadge>
+                  </IconButton>
                </ListItemIcon>
             </ListItemButton>
-            <ListItemButton sx={{ justifyContent: 'center' }}>
+            <ListItemButton
+               onClick={() => {
+                  navigate('/likes');
+               }}
+               sx={{ justifyContent: 'center' }}
+            >
                <ListItemIcon
                   sx={{
                      display: 'flex',
