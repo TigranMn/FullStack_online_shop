@@ -24,7 +24,7 @@ export default function Basket() {
             products.map((el) => {
                return (
                   <ListItem>
-                     <p key={el.id}>dada</p>
+                     <p key={el.id}>{el.brand}</p>
                   </ListItem>
                );
             })

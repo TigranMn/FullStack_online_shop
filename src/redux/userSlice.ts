@@ -143,7 +143,17 @@ const userSlice = createSlice({
    initialState,
    reducers: {
       addToBasket(state, action) {
-         state.basket.push(action.payload);
+         const prod = state.basket.find(
+            (el) => el.productId === action.payload.productId
+         );
+         if (prod) prod.count = prod.count + 1;
+         else {
+            state.basket.push({
+               productId: action.payload.productId,
+               category: action.payload.category,
+               count: 1
+            });
+         }
       },
       removeUser(state) {
          state.email = null;
