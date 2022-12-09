@@ -1,6 +1,5 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { getProduct } from '../../api/api';
 import { useNotify } from '../../hooks/useNotify';
 import { removeProduct } from '../../redux/userSlice';
@@ -29,7 +28,7 @@ export default function Basket() {
          .then((res) => {
             setProducts(res);
             setIsLoading(false);
-            let result: number = 0;
+            let result = 0;
             res.forEach((item) => (result += item.price * item.count));
             setTotalPrice(result);
          })
@@ -41,9 +40,7 @@ export default function Basket() {
    }, []);
 
    useEffect(() => {
-      setTotalPrice(
-         products.reduce((accm, curr) => accm + curr.price * curr.count, 0)
-      );
+      setTotalPrice(products.reduce((accm, curr) => accm + curr.price * curr.count, 0));
    }, [products]);
 
    async function handleRemove(id: string) {
@@ -71,13 +68,7 @@ export default function Basket() {
             <span>Something went wrong</span>
          ) : products.length ? (
             products.map((el) => {
-               return (
-                  <BasketItem
-                     handleRemove={handleRemove}
-                     key={el.id}
-                     product={el}
-                  />
-               );
+               return <BasketItem handleRemove={handleRemove} key={el.id} product={el} />;
             })
          ) : (
             <p>Nothing in basket</p>

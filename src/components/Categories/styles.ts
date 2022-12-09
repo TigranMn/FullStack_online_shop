@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 
-export const Category = styled(Box)(({ theme }) => ({
+export const Category = styled(Box)(() => ({
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
@@ -13,7 +13,7 @@ export const Category = styled(Box)(({ theme }) => ({
 }));
 
 export const CategoryName = styled(Typography)(({ theme }) => ({
-   fontFamily: " 'Montez' , 'Cursive'",
+   fontFamily: '"Montez" , "Cursive"',
    [theme.breakpoints.down('sm')]: {
       fontSize: '20px',
       fontWeight: 'bold'

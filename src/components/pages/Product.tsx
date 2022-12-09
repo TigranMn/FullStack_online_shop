@@ -2,12 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct } from '../../api/api';
 import { notificationTypes, TProduct } from '../../types';
-import {
-   ProductContainer,
-   ProductContent,
-   ProductImage,
-   ProductTitle
-} from '../../styles/styles';
+import { ProductContainer, ProductContent, ProductImage, ProductTitle } from '../../styles/styles';
 import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -51,9 +46,7 @@ function Product() {
          await dispatch(addProduct({ ...newProduct, count: quantity }))
             .unwrap()
             .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
-            .then(() =>
-               dispatch(addToBasket({ ...newProduct, count: quantity }))
-            )
+            .then(() => dispatch(addToBasket({ ...newProduct, count: quantity })))
             .catch((e) => notify(notificationTypes.ERROR, e.message));
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
@@ -104,9 +97,7 @@ function Product() {
                >
                   -
                </Button>
-               <Typography sx={{ display: 'inline-block', padding: '5px' }}>
-                  {quantity}
-               </Typography>
+               <Typography sx={{ display: 'inline-block', padding: '5px' }}>{quantity}</Typography>
                <Button
                   disabled={incrDisabled}
                   onClick={increaseQuantity}
@@ -122,11 +113,7 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button
-                  onClick={handleAdd}
-                  disabled={!product?.quantity}
-                  variant="outlined"
-               >
+               <Button onClick={handleAdd} disabled={!product?.quantity} variant="outlined">
                   Add to cart
                </Button>
                <Button

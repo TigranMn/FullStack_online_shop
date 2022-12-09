@@ -33,7 +33,7 @@ export const ProductImage = styled('img')(({ src, theme }) => ({
    }
 }));
 
-export const ProductTitle = styled(Typography)(({ theme }) => ({
+export const ProductTitle = styled(Typography)(() => ({
    lineHeight: 1.5,
    fontSize: '25px',
    marginBottom: '20px'

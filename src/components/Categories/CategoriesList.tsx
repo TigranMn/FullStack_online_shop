@@ -15,11 +15,7 @@ export default function CategoriesList() {
 
    return (
       <Container>
-         <Grid
-            container
-            justifyContent="center"
-            sx={{ margin: '20px 4px 10px 4px' }}
-         >
+         <Grid container justifyContent="center" sx={{ margin: '20px 4px 10px 4px' }}>
             {state.isLoading ? (
                <Box sx={{ display: 'flex' }}>
                   <CircularProgress />
@@ -28,12 +24,7 @@ export default function CategoriesList() {
                <Typography variant="h3">Something went wrong</Typography>
             ) : (
                state.categories.map((el) => {
-                  return (
-                     <CategoryItem
-                        key={Math.random()}
-                        category={el}
-                     ></CategoryItem>
-                  );
+                  return <CategoryItem key={Math.random()} category={el}></CategoryItem>;
                })
             )}
          </Grid>

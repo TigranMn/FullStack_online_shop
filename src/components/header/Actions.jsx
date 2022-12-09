@@ -1,8 +1,4 @@
-import {
-   MyList,
-   ActionIconsContainerMobile,
-   ActionIconsContainerDesktop
-} from './styles';
+import { MyList, ActionIconsContainerMobile, ActionIconsContainerDesktop } from './styles';
 import { ListItemButton, ListItemIcon } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,26 +8,20 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
 import { useAuth } from '../../hooks/use-auth';
 import PersonIcon from '@mui/icons-material/Person';
 import Basket from '../Basket/Basket';
+import React from 'react';
 
 const Actions = ({ matches }) => {
    const navigate = useNavigate();
    const [isActive, setIsActive] = useState(false);
-   const Component = matches
-      ? ActionIconsContainerMobile
-      : ActionIconsContainerDesktop;
+   const Component = matches ? ActionIconsContainerMobile : ActionIconsContainerDesktop;
 
    return (
       <Component>
          <div>
-            <Drawer
-               anchor={'right'}
-               open={isActive}
-               onClose={() => setIsActive(false)}
-            >
+            <Drawer anchor={'right'} open={isActive} onClose={() => setIsActive(false)}>
                <Box sx={{ width: '450px' }}>
                   <Box>Products</Box>
                   <Basket />
@@ -39,10 +29,7 @@ const Actions = ({ matches }) => {
             </Drawer>
          </div>
          <MyList type="row">
-            <ListItemButton
-               onClick={() => setIsActive(true)}
-               sx={{ justifyContent: 'center' }}
-            >
+            <ListItemButton onClick={() => setIsActive(true)} sx={{ justifyContent: 'center' }}>
                <ListItemIcon
                   sx={{
                      display: 'flex',

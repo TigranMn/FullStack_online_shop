@@ -15,7 +15,6 @@ import {
    MenuItem
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import { useNotify } from '../../hooks/useNotify';
 
 export default function ProductsList() {
    const { category } = useParams();
@@ -23,7 +22,6 @@ export default function ProductsList() {
    const [currentPage, setCurrentPage] = useState<number>(1);
    const state = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
-   const notify = useNotify();
 
    useEffect(() => {
       dispatch(
@@ -70,11 +68,7 @@ export default function ProductsList() {
                   <MenuItem value={12}>12</MenuItem>
                </Select>
             </FormControl>
-            <Grid
-               container
-               justifyContent="center"
-               sx={{ margin: '20px 4px 20px 4px' }}
-            >
+            <Grid container justifyContent="center" sx={{ margin: '20px 4px 20px 4px' }}>
                <Grid
                   container
                   display={'flex'}
@@ -90,9 +84,7 @@ export default function ProductsList() {
                      <Typography>Something went wrong</Typography>
                   ) : (
                      state.products.map((product) => {
-                        return (
-                           <ProductItem key={product.id} product={product} />
-                        );
+                        return <ProductItem key={product.id} product={product} />;
                      })
                   )}
                </Grid>

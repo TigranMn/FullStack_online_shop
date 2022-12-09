@@ -4,6 +4,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Colors } from '../../styles/Theme';
+import React from 'react';
 
 const Footer = () => {
    return (
@@ -22,10 +23,9 @@ const Footer = () => {
             <Grid item md={6} lg={4}>
                <FooterTitle variant="body1">About</FooterTitle>
                <Typography variant="caption">
-                  elite shop is an online shopping company established in 2022
-                  which is a form of electronic commerce which allows consumers
-                  to directly buy goods or services from a seller over the
-                  Internet using a web browser or a mobile app.
+                  elite shop is an online shopping company established in 2022 which is a form of
+                  electronic commerce which allows consumers to directly buy goods or services from
+                  a seller over the Internet using a web browser or a mobile app.
                </Typography>
                <Box sx={{ mt: 4 }}>
                   <FacebookIcon sx={{ mr: 1 }} />
