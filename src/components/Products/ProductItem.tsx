@@ -38,10 +38,10 @@ export default function ProductItem({ product }: ProductItemProps) {
             userId: user?.id,
             category: product.category
          } as { productId: string; userId: string; category: string };
-         await dispatch(addProduct(newProduct))
+         await dispatch(addProduct({ ...newProduct, count: 1 }))
             .unwrap()
             .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
-            .then(() => dispatch(addToBasket(newProduct)))
+            .then(() => dispatch(addToBasket({ ...newProduct, count: 1 })))
             .catch((e) => notify(notificationTypes.ERROR, e.message));
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
@@ -62,10 +62,22 @@ export default function ProductItem({ product }: ProductItemProps) {
                <ProductContent>
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>{product.price}$</ProductPrice>
-                  <ProductActionButton onClick={handleAdd}>
-                     {' '}
-                     Add to cart
-                  </ProductActionButton>
+                  {product.quantity ? (
+                     <ProductActionButton onClick={handleAdd}>
+                        Add to cart
+                     </ProductActionButton>
+                  ) : (
+                     <ProductActionButton
+                        disableRipple
+                        style={{
+                           backgroundColor: 'grey',
+                           color: 'white',
+                           cursor: 'default'
+                        }}
+                     >
+                        Expired
+                     </ProductActionButton>
+                  )}
                </ProductContent>
             </Product>
          </Grid>

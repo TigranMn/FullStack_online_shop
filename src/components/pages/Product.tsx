@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct } from '../../api/api';
 import { notificationTypes, TProduct } from '../../types';
 import {
@@ -10,15 +10,19 @@ import {
 } from '../../styles/styles';
 import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { addProduct, addToBasket } from '../../redux/userSlice';
 
 function Product() {
    const { productId, category } = useParams();
    const [product, setProduct] = useState<TProduct>(undefined!);
-   const [quantity, setQuantity] = useState<number>(0);
+   const [quantity, setQuantity] = useState<number>(1);
+   const navigate = useNavigate();
    const notify = useNotify();
-
+   const user = useAppSelector((state) => state.user);
    const incrDisabled = quantity >= +product?.quantity;
-   const decrDisabled = quantity <= 0;
+   const decrDisabled = quantity <= 1;
+   const dispatch = useAppDispatch();
 
    useEffect(() => {
       getProduct(category as string, productId as string)
@@ -34,6 +38,26 @@ function Product() {
 
    const increaseQuantity = () => {
       setQuantity(quantity + 1);
+   };
+
+   const handleAdd = async () => {
+      if (user.isLogged) {
+         const newProduct = {
+            productId: productId,
+            userId: user?.id,
+            category: category,
+            count: quantity
+         } as { productId: string; userId: string; category: string };
+         await dispatch(addProduct({ ...newProduct, count: quantity }))
+            .unwrap()
+            .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
+            .then(() =>
+               dispatch(addToBasket({ ...newProduct, count: quantity }))
+            )
+            .catch((e) => notify(notificationTypes.ERROR, e.message));
+      } else {
+         notify(notificationTypes.WARNING, 'You must be logged in!');
+      }
    };
 
    return (
@@ -98,7 +122,20 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button variant="outlined">Add to cart</Button>
+               <Button
+                  onClick={handleAdd}
+                  disabled={!product?.quantity}
+                  variant="outlined"
+               >
+                  Add to cart
+               </Button>
+               <Button
+                  disabled={!product?.quantity}
+                  onClick={() => navigate('/buy')}
+                  variant="contained"
+               >
+                  Buy
+               </Button>
             </Box>
          </ProductContent>
       </ProductContainer>

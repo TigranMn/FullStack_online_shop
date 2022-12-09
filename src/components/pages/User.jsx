@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../../hooks/use-auth';
 import { useAppDispatch } from '../../store';
 import { removeUser } from '../../redux/userSlice';
@@ -8,6 +8,12 @@ import { useNavigate } from 'react-router-dom';
 export default function User() {
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
+
+   const logged = useAuth().isAuth;
+
+   useEffect(() => {
+      if (!logged) navigate('/login');
+   }, []);
 
    const handleLogOut = () => {
       navigate('/login');

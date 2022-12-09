@@ -45,10 +45,7 @@ const initialState: TState = {
 
 export const signIn = createAsyncThunk(
    'user/signIn',
-   async (
-      { email, password }: { email: string; password: string },
-      { rejectWithValue }
-   ) => {
+   async ({ email, password }: { email: string; password: string }) => {
       const { user }: UserCredential = await signInWithEmailAndPassword(
          auth,
          email,
@@ -95,12 +92,12 @@ export const addProduct = createAsyncThunk(
       productId,
       userId,
       category,
-      count = 1
+      count
    }: {
       productId: string;
       userId: string;
       category: string;
-      count?: number;
+      count: number;
    }) => {
       let collRef = collection(db, 'users');
       let q = query(collRef, where('id', '==', userId));
@@ -146,12 +143,12 @@ const userSlice = createSlice({
          const prod = state.basket.find(
             (el) => el.productId === action.payload.productId
          );
-         if (prod) prod.count = prod.count + 1;
+         if (prod) prod.count = prod.count + action.payload.count;
          else {
             state.basket.push({
                productId: action.payload.productId,
                category: action.payload.category,
-               count: 1
+               count: action.payload.count
             });
          }
       },
