@@ -86,6 +86,30 @@ export const signUp = createAsyncThunk(
    }
 );
 
+export const removeProduct = createAsyncThunk(
+   'basket/removeProduct',
+   async ({ productId, userId }: { productId: string; userId: string }) => {
+      let collRef = collection(db, 'users');
+      let q = query(collRef, where('id', '==', userId));
+      let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+      const userRef = doc(db, 'users', snaps.docs[0].id);
+      console.log(productId, userId);
+
+      setDoc(
+         userRef,
+         {
+            basket: [
+               ...[...snaps.docs[0].data().basket].filter(
+                  (el) => el.productId !== productId
+               )
+            ]
+         },
+         { merge: true }
+      );
+      return productId;
+   }
+);
+
 export const addProduct = createAsyncThunk(
    'basket/addProduct',
    async ({
@@ -200,6 +224,11 @@ const userSlice = createSlice({
             state.isError = false;
             state.isLoading = true;
             state.isLogged = false;
+         })
+         .addCase(removeProduct.fulfilled, (state, action) => {
+            state.basket = state.basket.filter(
+               (item) => item.productId !== action.payload
+            );
          });
    }
 });

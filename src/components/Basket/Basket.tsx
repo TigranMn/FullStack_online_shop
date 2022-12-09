@@ -1,8 +1,10 @@
 import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { getProduct } from '../../api/api';
 import { useNotify } from '../../hooks/useNotify';
-import { useAppSelector } from '../../store';
+import { removeProduct } from '../../redux/userSlice';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { notificationTypes, TProduct } from '../../types';
 import BasketFooter from './BasketFooter';
 import BasketItem from './BasketItem';
@@ -14,6 +16,8 @@ export default function Basket() {
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<boolean>(false);
    const notify = useNotify();
+   const dispatch = useAppDispatch();
+   const userId = useAppSelector((state) => state.user.id);
 
    useEffect(() => {
       setIsLoading(true);
@@ -36,6 +40,29 @@ export default function Basket() {
          });
    }, []);
 
+   useEffect(() => {
+      setTotalPrice(
+         products.reduce((accm, curr) => accm + curr.price * curr.count, 0)
+      );
+   }, [products]);
+
+   async function handleRemove(id: string) {
+      await dispatch(
+         removeProduct({ productId: id, userId: userId } as {
+            productId: string;
+            userId: string;
+         })
+      )
+         .unwrap()
+         .then(() => {
+            notify(notificationTypes.SUCCES, 'Removed');
+         })
+         .then(() => {
+            setProducts(products.filter((el) => el.id !== id));
+         })
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
+   }
+
    return (
       <>
          {isLoading ? (
@@ -44,7 +71,13 @@ export default function Basket() {
             <span>Something went wrong</span>
          ) : products.length ? (
             products.map((el) => {
-               return <BasketItem key={el.id} product={el} />;
+               return (
+                  <BasketItem
+                     handleRemove={handleRemove}
+                     key={el.id}
+                     product={el}
+                  />
+               );
             })
          ) : (
             <p>Nothing in basket</p>
