@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { SliderContainer, SliderImages } from './styles';
 import { Box, Slide } from '@mui/material';
@@ -34,11 +34,7 @@ const Slider = () => {
 
    return (
       <SliderContainer>
-         <Slide
-            direction={show ? 'left' : 'right'}
-            in={show}
-            timeout={{ enter: 500, exit: 500 }}
-         >
+         <Slide direction={show ? 'left' : 'right'} in={show} timeout={{ enter: 500, exit: 500 }}>
             <Box display="flex" justifyContent="center" alignItems={'center'}>
                <SliderImages src={slideImages[slideImagesIndex].src} />
             </Box>

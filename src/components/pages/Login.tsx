@@ -27,9 +27,7 @@ const Login = () => {
 
    const handleSignIn = async (e: FormEvent): Promise<void> => {
       e.preventDefault();
-      await dispatch(
-         signIn({ email, password } as { email: string; password: string })
-      )
+      await dispatch(signIn({ email, password } as { email: string; password: string }))
          .unwrap()
          .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
@@ -137,24 +135,16 @@ const Login = () => {
                <div className="overlay">
                   <div className="overlay-panel overlay-left">
                      <h1>Welcome Back!</h1>
-                     <p>
-                        To keep connected with us please login with your
-                        personal info
-                     </p>
+                     <p>To keep connected with us please login with your personal info</p>
                      <button>Sign In</button>
                   </div>
                   <div className="overlay-panel overlay-right">
                      <h1>Hello, Friend!</h1>
-                     <p>
-                        Enter your personal details and start shopping with us
-                     </p>
+                     <p>Enter your personal details and start shopping with us</p>
                      <button>Sign Up</button>
                   </div>
                </div>
-               <button
-                  id="overlayBtn"
-                  onClick={() => setShowSignIn(!showSignIn)}
-               ></button>
+               <button id="overlayBtn" onClick={() => setShowSignIn(!showSignIn)}></button>
             </div>
          </div>
       </div>

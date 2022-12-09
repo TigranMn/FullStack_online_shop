@@ -46,11 +46,7 @@ const initialState: TState = {
 export const signIn = createAsyncThunk(
    'user/signIn',
    async ({ email, password }: { email: string; password: string }) => {
-      const { user }: UserCredential = await signInWithEmailAndPassword(
-         auth,
-         email,
-         password
-      );
+      const { user }: UserCredential = await signInWithEmailAndPassword(auth, email, password);
       const data = await getUser(user);
       return { data, user };
    }
@@ -69,11 +65,7 @@ export const signUp = createAsyncThunk(
       firstName: string;
       lastName: string;
    }) => {
-      const { user }: UserCredential = await createUserWithEmailAndPassword(
-         auth,
-         email,
-         password
-      );
+      const { user }: UserCredential = await createUserWithEmailAndPassword(auth, email, password);
       addDoc(collection(db, 'users'), {
          name: firstName,
          lastName,
@@ -89,20 +81,16 @@ export const signUp = createAsyncThunk(
 export const removeProduct = createAsyncThunk(
    'basket/removeProduct',
    async ({ productId, userId }: { productId: string; userId: string }) => {
-      let collRef = collection(db, 'users');
-      let q = query(collRef, where('id', '==', userId));
-      let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+      const collRef = collection(db, 'users');
+      const q = query(collRef, where('id', '==', userId));
+      const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
       const userRef = doc(db, 'users', snaps.docs[0].id);
       console.log(productId, userId);
 
       setDoc(
          userRef,
          {
-            basket: [
-               ...[...snaps.docs[0].data().basket].filter(
-                  (el) => el.productId !== productId
-               )
-            ]
+            basket: [...[...snaps.docs[0].data().basket].filter((el) => el.productId !== productId)]
          },
          { merge: true }
       );
@@ -123,12 +111,12 @@ export const addProduct = createAsyncThunk(
       category: string;
       count: number;
    }) => {
-      let collRef = collection(db, 'users');
-      let q = query(collRef, where('id', '==', userId));
-      let snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+      const collRef = collection(db, 'users');
+      const q = query(collRef, where('id', '==', userId));
+      const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
       const userRef = doc(db, 'users', snaps.docs[0].id);
 
-      let prod = [...snaps.docs[0].data().basket].find((el) => {
+      const prod = [...snaps.docs[0].data().basket].find((el) => {
          return el.productId === productId;
       });
       if (prod) {
@@ -136,9 +124,7 @@ export const addProduct = createAsyncThunk(
             userRef,
             {
                basket: [
-                  ...[...snaps.docs[0].data().basket].filter(
-                     (el) => el.productId !== productId
-                  ),
+                  ...[...snaps.docs[0].data().basket].filter((el) => el.productId !== productId),
                   { ...prod, count: prod.count + count }
                ]
             },
@@ -148,10 +134,7 @@ export const addProduct = createAsyncThunk(
          setDoc(
             userRef,
             {
-               basket: [
-                  ...snaps.docs[0].data().basket,
-                  { productId, category, count: count }
-               ]
+               basket: [...snaps.docs[0].data().basket, { productId, category, count: count }]
             },
             { merge: true }
          );
@@ -164,9 +147,7 @@ const userSlice = createSlice({
    initialState,
    reducers: {
       addToBasket(state, action) {
-         const prod = state.basket.find(
-            (el) => el.productId === action.payload.productId
-         );
+         const prod = state.basket.find((el) => el.productId === action.payload.productId);
          if (prod) prod.count = prod.count + action.payload.count;
          else {
             state.basket.push({
@@ -226,9 +207,7 @@ const userSlice = createSlice({
             state.isLogged = false;
          })
          .addCase(removeProduct.fulfilled, (state, action) => {
-            state.basket = state.basket.filter(
-               (item) => item.productId !== action.payload
-            );
+            state.basket = state.basket.filter((item) => item.productId !== action.payload);
          });
    }
 });

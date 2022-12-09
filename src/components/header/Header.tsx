@@ -6,7 +6,7 @@ import AppBarMobile from './HeaderMobile';
 
 export default function Header() {
    const theme = useTheme();
-   const matches = useMediaQuery(theme.breakpoints.down('md'));
+   const matches: boolean = useMediaQuery(theme.breakpoints.down('md'));
    return (
       <div>
          <>

@@ -53,19 +53,13 @@ export default function ProductItem({ product }: ProductItemProps) {
          <Grid item key={product?.id}>
             <Product>
                <ProductBox>
-                  <ProductImages
-                     onClick={changeLocation}
-                     src={product.imgUrl}
-                     alt="productImg"
-                  />
+                  <ProductImages onClick={changeLocation} src={product.imgUrl} alt="productImg" />
                </ProductBox>
                <ProductContent>
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>{product.price}$</ProductPrice>
                   {product.quantity ? (
-                     <ProductActionButton onClick={handleAdd}>
-                        Add to cart
-                     </ProductActionButton>
+                     <ProductActionButton onClick={handleAdd}>Add to cart</ProductActionButton>
                   ) : (
                      <ProductActionButton
                         disableRipple

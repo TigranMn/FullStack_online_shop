@@ -14,22 +14,19 @@ const initialState: TCategoryState = {
    categories: []
 };
 
-const getCategories = createAsyncThunk(
-   'categories/fetchCategories',
-   async () => {
-      let result: TCategory[] = [];
+const getCategories = createAsyncThunk('categories/fetchCategories', async () => {
+   const result: TCategory[] = [];
 
-      let data = await getData('categories');
-      data.forEach((doc) => {
-         const [id, { imgUrl, description, category }] = [doc.id, doc.data()];
-         result.push({ id, name: category, imgUrl, description });
-      });
-      if (!result.length) {
-         throw new Error('Something went wrong');
-      }
-      return result;
+   const data = await getData('categories');
+   data.forEach((doc) => {
+      const [id, { imgUrl, description, category }] = [doc.id, doc.data()];
+      result.push({ id, name: category, imgUrl, description });
+   });
+   if (!result.length) {
+      throw new Error('Something went wrong');
    }
-);
+   return result;
+});
 
 const categoriesSlice = createSlice({
    name: 'categories',

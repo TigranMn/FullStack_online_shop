@@ -18,8 +18,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import CallIcon from '@mui/icons-material/Call';
 import InfoIcon from '@mui/icons-material/Info';
+import React from 'react';
 
-const AppBarMobile = ({ matches }: any) => {
+const AppBarMobile = ({ matches }: { matches: boolean }) => {
    const [language, setLanguage] = useState('am');
    const [openMenu, setOpenMenu] = useState(false);
    const navigate = useNavigate();
@@ -68,7 +69,7 @@ const AppBarMobile = ({ matches }: any) => {
                   <Button
                      sx={{
                         color: 'rgba(117,117,117,0.9)',
-                        fontFamily: "'Montez', 'Cursive'",
+                        fontFamily: '"Montez", "Cursive"',
                         fontSize: '20px'
                      }}
                      endIcon={<HomeIcon />}
@@ -86,7 +87,7 @@ const AppBarMobile = ({ matches }: any) => {
                   <Button
                      sx={{
                         color: 'rgba(117,117,117,0.9)',
-                        fontFamily: "'Montez', 'Cursive'",
+                        fontFamily: '"Montez", "Cursive"',
                         fontSize: '20px'
                      }}
                      endIcon={<LocalGroceryStoreIcon />}
@@ -104,7 +105,7 @@ const AppBarMobile = ({ matches }: any) => {
                   <Button
                      sx={{
                         color: 'rgba(117,117,117,0.9)',
-                        fontFamily: "'Montez', 'Cursive'",
+                        fontFamily: '"Montez", "Cursive"',
                         fontSize: '20px'
                      }}
                      endIcon={<CallIcon />}
@@ -122,7 +123,7 @@ const AppBarMobile = ({ matches }: any) => {
                   <Button
                      sx={{
                         color: 'rgba(117,117,117,0.9)',
-                        fontFamily: "'Montez', 'Cursive'",
+                        fontFamily: '"Montez", "Cursive"',
                         fontSize: '20px'
                      }}
                      endIcon={<InfoIcon />}

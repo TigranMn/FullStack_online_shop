@@ -14,12 +14,12 @@ export const AppBarHeader = styled(Typography)(() => ({
    padding: '4px',
    flexGrow: 1,
    fontSize: '4em',
-   fontFamily: "'Montez', 'Cursive'",
+   fontFamily: '"Montez", "Cursive"',
    color: Colors.secondary,
    cursor: 'pointer'
 }));
 
-export const MyList = styled(List)(({ type }: any) => ({
+export const MyList = styled(List)(({ type } : {type: string}) => ({
    display: type === 'row' ? 'flex' : 'block',
    flexGrow: 3,
    justifyContent: 'center',
