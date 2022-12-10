@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { notificationTypes, TProduct } from '../../types';
 import { Grid } from '@mui/material';
@@ -30,6 +30,10 @@ export default function ProductItem({ product }: ProductItemProps) {
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
    const notify = useNotify();
    const liked = useLiked(likedProducts, product.id);
+
+   useEffect(() => {
+      localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
+   }, [likedProducts]);
 
    const changeLocation = () => {
       navigate(pathname + `/${product.id}`);

@@ -180,6 +180,7 @@ export const addProduct = createAsyncThunk(
             { merge: true }
          );
       }
+      return { productId, category, count, prod };
    }
 );
 
@@ -220,7 +221,6 @@ const userSlice = createSlice({
             state.name = action.payload.data.name;
             state.basket = action.payload.data.basket;
             state.likedProducts = action.payload.data.likedProducts;
- 
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -250,6 +250,19 @@ const userSlice = createSlice({
             state.isError = false;
             state.isLoading = true;
             state.isLogged = false;
+         })
+         .addCase(addProduct.fulfilled, (state, action) => {
+            const { count, category, productId, prod } = action.payload;
+            if (prod) {
+               state.basket.map((el) => {
+                  if (el.productId === productId) {
+                     el.count += count;
+                  }
+                  return el;
+               });
+            } else {
+               state.basket.push({ productId, category, count });
+            }
          })
          .addCase(removeProduct.fulfilled, (state, action) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
