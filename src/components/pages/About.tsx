@@ -1,61 +1,310 @@
+import {Typography, List, ListItem , ListItemIcon} from '@mui/material';
+import {useEffect} from 'react'
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TelegramIcon from '@mui/icons-material/Telegram';
 import React from 'react';
-import { Box, Tooltip, IconButton, Container, Typography } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
+
+
+import { 
+   AboutImages, 
+   AboutContainer,
+   AboutSlider,
+   AboutImagesContainer,
+   TeamMemberContainer,
+   TeamMember,TeamMemberImageBox,
+   TeamMemberInfo,
+   TeamMemberImage,
+   TeamMemberDetails,
+   AboutMySelf,
+   AboutMySelfHeading,
+   TeamMemberCollector
+} from './styles';
 
 export default function About() {
+  
+  
    return (
-      <Container
-         sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-         }}
-      >
-         <Box sx={{ maxWidth: '450px', textAlign: 'justify' }}>
-            <Typography
-               component="p"
-               sx={{
-                  position: 'relative',
-                  margin: '20px',
-                  '&:before': {
-                     content: '"\u201c"',
-                     position: 'absolute',
-                     fontSize: '6rem',
-                     top: '-70px',
-                     left: '-45px'
-                  }
-               }}
-            >
-               eliteMode is an online shopping company established in 2022 which is a form of
-               electronic commerce which allows consumers to directly buy goods or services from a
-               seller over the Internet using a web browser or a mobile app. eliteMode enables the
-               customer to browse the firm's range of products and services, view photos or images
-               of the products, along with information about the product specifications, features
-               and prices. Online stores usually enable shoppers to use "search" features to find
-               specific models, brands or items. Online customers must have access to the Internet
-               and a valid method of payment in order to complete a transaction, such as a credit
-               card, an Interac-enabled debit card, or a service such as PayPal.
+      <>
+       <AboutContainer>
+         <AboutSlider>
+                  <AboutImagesContainer sx={{'--i': '1;'}}>
+                    <AboutImages src="/images/teamMember/suren.PNG" alt='member'/>
+                  </AboutImagesContainer>
+                  <AboutImagesContainer sx={{'--i': '2;'}}>
+                     <AboutImages src="/images/teamMember/shahen.PNG" alt='member'/>
+                  </AboutImagesContainer>
+                  <AboutImagesContainer sx={{'--i': '3;'}}>
+                     <AboutImages src="/images/teamMember/narek.PNG" alt='member'/>
+                  </AboutImagesContainer>
+                  <AboutImagesContainer sx={{'--i': '4;'}}>
+                     <AboutImages src="/images/teamMember/erik.PNG" alt='member'/>
+                  </AboutImagesContainer>
+                  <AboutImagesContainer sx={{'--i': '5;'}}>
+                     <AboutImages src="/images/teamMember/tigranM.PNG" alt='member'/>
+                  </AboutImagesContainer>
+                  <AboutImagesContainer sx={{'--i': '6;'}}>
+                     <AboutImages src="/images/teamMember/razmik.PNG" alt='member'/>
+                  </AboutImagesContainer>
+                  <AboutImagesContainer sx={{'--i': '7;'}}>
+                     <AboutImages src="/images/teamMember/tigran.PNG" alt='member'/>
+                  </AboutImagesContainer>   
+                  <AboutImagesContainer sx={{'--i': '8;'}}>
+                     <AboutImages src="/images/teamMember/cover.jpg" alt='member'/>
+                  </AboutImagesContainer>    
+         </AboutSlider>
+       </AboutContainer>
+       <TeamMemberContainer>
+         <TeamMemberCollector>
+         <TeamMember data-aos="fade-right">
+            <TeamMemberImageBox className='TeamMemberImageBox' >
+               <TeamMemberImage src='/images/teamMember/suren.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Suren Zaqaryan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember>
+         <AboutMySelf  data-aos="fade-up-left" data-aos-duration="1500">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+            </AboutMySelfHeading >
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
             </Typography>
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-               <Tooltip title="Facebook">
-                  <IconButton>
-                     <FacebookIcon />
-                  </IconButton>
-               </Tooltip>
-               <Tooltip title="Instagram">
-                  <IconButton>
-                     <InstagramIcon />
-                  </IconButton>
-               </Tooltip>
-               <Tooltip title="Twitter">
-                  <IconButton>
-                     <TwitterIcon />
-                  </IconButton>
-               </Tooltip>
-            </Box>
-         </Box>
-      </Container>
+         </AboutMySelf>
+         </TeamMemberCollector>
+         <TeamMemberCollector>
+             <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+            </AboutMySelfHeading>
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+            </Typography>
+         </AboutMySelf>
+         <TeamMember data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
+            <TeamMemberImageBox className='TeamMemberImageBox'>
+               <TeamMemberImage src='/images/teamMember/tigranM.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Tigran Mnatsakanyan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember>
+         </TeamMemberCollector>
+         <TeamMemberCollector>
+         <TeamMember data-aos="fade-up" data-aos-anchor-placement="center-center">
+            <TeamMemberImageBox className='TeamMemberImageBox'>
+               <TeamMemberImage src='/images/teamMember/narek.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Narek Hovakimyan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember>
+         <AboutMySelf data-aos="fade-up" data-aos-anchor-placement="top-center" data-aos-duration="1000">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+            </AboutMySelfHeading>
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+            </Typography>
+         </AboutMySelf>
+         </TeamMemberCollector>
+         <TeamMemberCollector>
+             <AboutMySelf data-aos="fade-right">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+   
+            </AboutMySelfHeading>
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+            </Typography>
+         </AboutMySelf>
+         <TeamMember data-aos="fade-down-left"  data-aos-duration="2000">
+            <TeamMemberImageBox className='TeamMemberImageBox'>
+               <TeamMemberImage src='/images/teamMember/shahen.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Shahen Sinanyan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember >
+         </TeamMemberCollector>
+         <TeamMemberCollector>
+         <TeamMember data-aos="flip-up">
+            <TeamMemberImageBox className='TeamMemberImageBox'>
+               <TeamMemberImage src='/images/teamMember/razmik.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Razmik Kocharyan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember>
+         <AboutMySelf data-aos="zoom-out">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+              
+            </AboutMySelfHeading>
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+            </Typography>
+         </AboutMySelf>
+         </TeamMemberCollector>
+         <TeamMemberCollector>
+             <AboutMySelf data-aos="fade-up">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+               
+            </AboutMySelfHeading>
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+            </Typography>
+         </AboutMySelf>
+         <TeamMember data-aos="zoom-in-up" data-aos-duration="3000">
+            <TeamMemberImageBox className='TeamMemberImageBox'>
+               <TeamMemberImage src='/images/teamMember/erik.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Erik Harutyunyan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember>
+        
+         </TeamMemberCollector>
+         <TeamMemberCollector>
+         <TeamMember data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+            <TeamMemberImageBox className='TeamMemberImageBox'>
+               <TeamMemberImage src='/images/teamMember/tigran.PNG' alt='teamMember'/>
+            </TeamMemberImageBox>
+            <TeamMemberInfo className='TeamMemberInfo'>
+               <TeamMemberDetails>
+                  <Typography variant='h6' sx={{color: '#fff', fontSize: '1.5em', fontWeight: 500}}>Tigran Petrosyan</Typography>
+                  <Typography sx={{color: '#2196f3', fontSize: '0.8em', fontWeight: 400}} component='span'>Junior software engineer</Typography>
+                  <List sx={{position: 'relative', display:'flex', marginTop: '5px'}}>
+                     <ListItem>
+                         <ListItemIcon><LinkedInIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon><GitHubIcon /></ListItemIcon>
+                     </ListItem>
+                     <ListItem>
+                         <ListItemIcon>< TelegramIcon/></ListItemIcon>
+                     </ListItem>
+                  </List>
+               </TeamMemberDetails>
+            </TeamMemberInfo>
+         </TeamMember>
+         <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
+            <AboutMySelfHeading>
+               <Typography variant='h1' sx={{fontSize: '10rem'}}>About</Typography>
+            </AboutMySelfHeading>
+            <Typography component={'p'}>
+               It is a long established fact that a reader will be distracted
+               by the readable content of a page when looking at its layout.
+               The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
+               as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing
+            </Typography>
+         </AboutMySelf>
+         </TeamMemberCollector>
+       </TeamMemberContainer>
+       </>
    );
-}
+};
