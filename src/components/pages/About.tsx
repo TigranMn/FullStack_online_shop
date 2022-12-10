@@ -19,7 +19,7 @@ import {
    AboutMySelf,
    AboutMySelfHeading,
    TeamMemberCollector
-} from './styles';
+} from '../../styles/About';
 
 export default function About() {
   
