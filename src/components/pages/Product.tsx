@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct } from '../../api/api';
 import { notificationTypes, TProduct } from '../../types';
-import { ProductContainer, ProductContent, ProductImage, ProductTitle } from '../../styles/styles';
+import { ProductContainer, ProductContent, ProductImage, ProductTitle } from '../../styles/ProductItem';
 import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
