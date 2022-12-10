@@ -220,6 +220,7 @@ const userSlice = createSlice({
             state.name = action.payload.data.name;
             state.basket = action.payload.data.basket;
             state.likedProducts = action.payload.data.likedProducts;
+ 
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;

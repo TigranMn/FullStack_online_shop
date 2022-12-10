@@ -20,7 +20,6 @@ const Login = () => {
 
    useEffect(() => {
       if (userState.isLogged) {
-         localStorage.setItem('currentUser', JSON.stringify(userState));
          navigate('/shop');
       }
    }, [userState.isLogged]);

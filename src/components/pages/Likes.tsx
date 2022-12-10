@@ -23,6 +23,7 @@ export default function Likes() {
          .then((res) => {
             setProducts(res);
             setIsLoading(false);
+            setError(false);
          })
          .catch((e) => {
             setError(true);

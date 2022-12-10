@@ -15,7 +15,7 @@ const CategoryItem: FC<TCategoryItemProps> = ({ category }) => {
    return (
       <Link to={`/shop/${category.name.toLowerCase()}`}>
          <Category>
-            <img width={'150px'} src={category.imgUrl} alt="hahhahahha" />
+            <img width={'150px'} src={category.imgUrl} alt={category.name } />
             <CategoryName variant="h4">{category.name}</CategoryName>
          </Category>
       </Link>
