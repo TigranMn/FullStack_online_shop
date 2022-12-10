@@ -17,7 +17,7 @@ import {
 } from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
-import { TBasketType } from '../types';
+import { TBasketType, TLikedType } from '../types';
 
 type TState = {
    email: string | null;
@@ -29,7 +29,7 @@ type TState = {
    isError: boolean;
    isLogged: boolean;
    basket: TBasketType[];
-   likedProducts: string[];
+   likedProducts: TLikedType[];
 };
 
 const initialState: TState = {
@@ -84,14 +84,22 @@ export const signUp = createAsyncThunk(
 
 export const likeProduct = createAsyncThunk(
    'basket/likeProduct',
-   async ({ productId, userId }: { productId: string; userId: string }) => {
+   async ({
+      productId,
+      userId,
+      category
+   }: {
+      productId: string;
+      userId: string;
+      category: string;
+   }) => {
       const { userRef, snaps } = await getUser(userId);
       setDoc(
          userRef,
-         { likedProducts: [...[...snaps.docs[0].data().likedProducts, productId]] },
+         { likedProducts: [...[...snaps.docs[0].data().likedProducts, { productId, category }]] },
          { merge: true }
       );
-      return productId;
+      return { productId, category };
    }
 );
 
@@ -103,7 +111,13 @@ export const dislikeProduct = createAsyncThunk(
          userRef,
          {
             likedProducts: [
-               ...[...snaps.docs[0].data().likedProducts.filter((el: string) => el !== productId)]
+               ...[
+                  ...snaps.docs[0]
+                     .data()
+                     .likedProducts.filter(
+                        (el: { category: string; productId: string }) => el.productId !== productId
+                     )
+               ]
             ]
          },
          { merge: true }
@@ -191,6 +205,7 @@ const userSlice = createSlice({
          state.lastName = null;
          state.name = null;
          state.isLogged = false;
+         state.likedProducts = [];
       }
    },
    extraReducers: (builder) => {
@@ -239,10 +254,13 @@ const userSlice = createSlice({
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
          })
          .addCase(likeProduct.fulfilled, (state, action) => {
-            state.likedProducts.push(action.payload);
+            const { productId, category } = action.payload;
+            state.likedProducts.push({ productId, category });
          })
          .addCase(dislikeProduct.fulfilled, (state, action) => {
-            state.likedProducts = state.likedProducts.filter((el) => el !== action.payload);
+            state.likedProducts = state.likedProducts.filter(
+               (el) => el.productId !== action.payload
+            );
          });
    }
 });

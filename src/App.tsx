@@ -13,6 +13,7 @@ import Login from './components/pages/Login';
 import { useEffect } from 'react';
 import { useAppSelector } from './store';
 import Buy from './components/pages/Buy';
+import Likes from './components/pages/Likes';
 
 function App() {
    const user = useAppSelector((state) => state.user);
@@ -33,6 +34,7 @@ function App() {
                <Route path="/shop/:category/:productId" element={<Product />} />
                <Route path="/buy" element={<Buy />} />
                <Route path="/login" element={<Login />} />
+               <Route path="/liked" element={<Likes />} />
             </Route>
          </Routes>
       </BrowserRouter>

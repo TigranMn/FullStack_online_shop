@@ -1,3 +1,5 @@
-export const useLiked = (likedProducts: string[], productId: string): boolean => {
-   return likedProducts.includes(productId);
+import { TLikedType } from '../types';
+
+export const useLiked = (likedProducts: TLikedType[], productId: string): boolean => {
+   return likedProducts.some((el) => el.productId === productId);
 };

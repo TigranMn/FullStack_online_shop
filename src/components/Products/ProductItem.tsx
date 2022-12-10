@@ -37,9 +37,10 @@ export default function ProductItem({ product }: ProductItemProps) {
 
    const handleLike = () => {
       dispatch(
-         likeProduct({ productId: product.id, userId } as {
+         likeProduct({ productId: product.id, userId, category: product.category } as {
             productId: string;
             userId: string;
+            category: string;
          })
       )
          .unwrap()
