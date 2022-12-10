@@ -30,7 +30,8 @@
       "build": "react-scripts build",
       "test": "react-scripts test",
       "eject": "react-scripts eject",
-      "prettier-format": "prettier --config .prettierrc src/**/*.{ts,tsx,js,jsx} --write"
+      "format": "prettier --config .prettierrc src/**/*.{ts,tsx,js,jsx} --write",
+		"check": "npx eslint ."
    },
    "eslintConfig": {
       "extends": [

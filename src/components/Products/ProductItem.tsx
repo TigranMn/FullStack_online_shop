@@ -13,8 +13,9 @@ import {
    ProductPrice
 } from './styles';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { addProduct, addToBasket } from '../../redux/userSlice';
+import { addProduct, addToBasket, dislikeProduct, likeProduct } from '../../redux/userSlice';
 import { useNotify } from '../../hooks/useNotify';
+import { useLiked } from '../../hooks/useLiked';
 
 type ProductItemProps = {
    product: TProduct;
@@ -24,18 +25,45 @@ export default function ProductItem({ product }: ProductItemProps) {
    const navigate = useNavigate();
    const { pathname } = useLocation();
    const dispatch = useAppDispatch();
-   const user = useAppSelector((state) => state.user);
+   const userId = useAppSelector((state) => state.user.id);
+   const isLogged = useAppSelector((state) => state.user.isLogged);
+   const likedProducts = useAppSelector((state) => state.user.likedProducts);
    const notify = useNotify();
+   const liked = useLiked(likedProducts, product.id);
 
    const changeLocation = () => {
       navigate(pathname + `/${product.id}`);
    };
 
+   const handleLike = () => {
+      dispatch(
+         likeProduct({ productId: product.id, userId } as {
+            productId: string;
+            userId: string;
+         })
+      )
+         .unwrap()
+         .then(() => notify(notificationTypes.SUCCES, 'Added'))
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
+   };
+
+   const handleDislike = () => {
+      dispatch(
+         dislikeProduct({ productId: product.id, userId } as {
+            productId: string;
+            userId: string;
+         })
+      )
+         .unwrap()
+         .then(() => notify(notificationTypes.SUCCES, 'Deleted'))
+         .catch((e) => notify(notificationTypes.ERROR, e.message));
+   };
+
    const handleAdd = async () => {
-      if (user.isLogged) {
+      if (isLogged) {
          const newProduct = {
             productId: product.id,
-            userId: user?.id,
+            userId,
             category: product.category
          } as { productId: string; userId: string; category: string };
          await dispatch(addProduct({ ...newProduct, count: 1 }))
@@ -73,6 +101,11 @@ export default function ProductItem({ product }: ProductItemProps) {
                      </ProductActionButton>
                   )}
                </ProductContent>
+               {liked ? (
+                  <button onClick={handleDislike}>Dislike</button>
+               ) : (
+                  <button onClick={handleLike}>Like</button>
+               )}
             </Product>
          </Grid>
       </>

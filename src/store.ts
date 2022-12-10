@@ -21,6 +21,7 @@ const store = configureStore({
          lastName: currentUser.lastName,
          isError: false,
          basket: currentUser.basket || [],
+			likedProducts: currentUser.likedProducts || [],
          isLogged: currentUser.isLogged,
          isLoading: false
       }

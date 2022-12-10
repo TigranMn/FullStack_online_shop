@@ -7,9 +7,9 @@ import {
 import {
    addDoc,
    collection,
-   doc,
    DocumentData,
    getDocs,
+   Query,
    query,
    QuerySnapshot,
    setDoc,
@@ -29,6 +29,7 @@ type TState = {
    isError: boolean;
    isLogged: boolean;
    basket: TBasketType[];
+   likedProducts: string[];
 };
 
 const initialState: TState = {
@@ -40,14 +41,17 @@ const initialState: TState = {
    isError: false,
    isLogged: false,
    isLoading: false,
-   basket: []
+   basket: [],
+   likedProducts: []
 };
 
 export const signIn = createAsyncThunk(
    'user/signIn',
    async ({ email, password }: { email: string; password: string }) => {
       const { user }: UserCredential = await signInWithEmailAndPassword(auth, email, password);
-      const data = await getUser(user);
+      const q: Query<DocumentData> = query(collection(db, 'users'), where('id', '==', user.uid));
+      const resp: QuerySnapshot<DocumentData> = await getDocs(q);
+      const data = resp.docs[0].data();
       return { data, user };
    }
 );
@@ -78,14 +82,40 @@ export const signUp = createAsyncThunk(
    }
 );
 
+export const likeProduct = createAsyncThunk(
+   'basket/likeProduct',
+   async ({ productId, userId }: { productId: string; userId: string }) => {
+      const { userRef, snaps } = await getUser(userId);
+      setDoc(
+         userRef,
+         { likedProducts: [...[...snaps.docs[0].data().likedProducts, productId]] },
+         { merge: true }
+      );
+      return productId;
+   }
+);
+
+export const dislikeProduct = createAsyncThunk(
+   'basket/dislikeProduct',
+   async ({ productId, userId }: { productId: string; userId: string }) => {
+      const { userRef, snaps } = await getUser(userId);
+      setDoc(
+         userRef,
+         {
+            likedProducts: [
+               ...[...snaps.docs[0].data().likedProducts.filter((el: string) => el !== productId)]
+            ]
+         },
+         { merge: true }
+      );
+      return productId;
+   }
+);
+
 export const removeProduct = createAsyncThunk(
    'basket/removeProduct',
    async ({ productId, userId }: { productId: string; userId: string }) => {
-      const collRef = collection(db, 'users');
-      const q = query(collRef, where('id', '==', userId));
-      const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
-      const userRef = doc(db, 'users', snaps.docs[0].id);
-      console.log(productId, userId);
+      const { userRef, snaps } = await getUser(userId);
 
       setDoc(
          userRef,
@@ -111,10 +141,7 @@ export const addProduct = createAsyncThunk(
       category: string;
       count: number;
    }) => {
-      const collRef = collection(db, 'users');
-      const q = query(collRef, where('id', '==', userId));
-      const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
-      const userRef = doc(db, 'users', snaps.docs[0].id);
+      const { userRef, snaps } = await getUser(userId);
 
       const prod = [...snaps.docs[0].data().basket].find((el) => {
          return el.productId === productId;
@@ -177,6 +204,7 @@ const userSlice = createSlice({
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
             state.basket = action.payload.data.basket;
+            state.likedProducts = action.payload.data.likedProducts;
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -196,6 +224,7 @@ const userSlice = createSlice({
             state.lastName = action.payload.lastName;
             state.name = action.payload.firstName;
             state.basket = [];
+            state.likedProducts = [];
          })
          .addCase(signUp.rejected, (state) => {
             state.isError = true;
@@ -208,6 +237,12 @@ const userSlice = createSlice({
          })
          .addCase(removeProduct.fulfilled, (state, action) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
+         })
+         .addCase(likeProduct.fulfilled, (state, action) => {
+            state.likedProducts.push(action.payload);
+         })
+         .addCase(dislikeProduct.fulfilled, (state, action) => {
+            state.likedProducts = state.likedProducts.filter((el) => el !== action.payload);
          });
    }
 });

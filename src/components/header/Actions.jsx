@@ -1,13 +1,11 @@
 import { MyList, ActionIconsContainerMobile, ActionIconsContainerDesktop } from './styles';
-import { ListItemButton, ListItemIcon } from '@mui/material';
+import { ListItemButton, ListItemIcon, Drawer, Box } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoginIcon from '@mui/icons-material/Login';
 import { Colors } from '../../styles/Theme';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import Drawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
 import { useAuth } from '../../hooks/use-auth';
 import PersonIcon from '@mui/icons-material/Person';
 import Basket from '../Basket/Basket';
