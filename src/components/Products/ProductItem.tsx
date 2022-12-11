@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { notificationTypes, TProduct } from '../../types';
 import { Grid } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,20 +23,20 @@ type ProductItemProps = {
 
 export default function ProductItem({ product }: ProductItemProps) {
    const navigate = useNavigate();
-   const { pathname } = useLocation();
    const dispatch = useAppDispatch();
    const userId = useAppSelector((state) => state.user.id);
    const isLogged = useAppSelector((state) => state.user.isLogged);
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
    const notify = useNotify();
    const liked = useLiked(likedProducts, product.id);
+   const [isLiked, setIsLiked] = useState<boolean>(liked);
 
    useEffect(() => {
       localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
    }, [likedProducts]);
 
    const changeLocation = () => {
-      navigate(pathname + `/${product.id}`);
+      navigate('/shop/' + product.category + `/${product.id}`);
    };
 
    const handleLike = () => {
@@ -48,7 +48,7 @@ export default function ProductItem({ product }: ProductItemProps) {
          })
       )
          .unwrap()
-         .then(() => notify(notificationTypes.SUCCES, 'Added'))
+         .then(() => setIsLiked(!isLiked))
          .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
 
@@ -60,7 +60,7 @@ export default function ProductItem({ product }: ProductItemProps) {
          })
       )
          .unwrap()
-         .then(() => notify(notificationTypes.SUCCES, 'Deleted'))
+         .then(() => setIsLiked(!isLiked))
          .catch((e) => notify(notificationTypes.ERROR, e.message));
    };
 
@@ -106,7 +106,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                      </ProductActionButton>
                   )}
                </ProductContent>
-               {liked ? (
+               {isLiked ? (
                   <button onClick={handleDislike}>Dislike</button>
                ) : (
                   <button onClick={handleLike}>Like</button>

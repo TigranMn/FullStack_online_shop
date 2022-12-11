@@ -1,12 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 import categoriesReducer from './redux/categoriesSlice';
-import {
-   addProductMiddleware,
-   removeProductMiddleware,
-   signInMiddleware,
-   signUpMiddleware
-} from './redux/localStorageMiddleware';
+import { signInMiddleware, signUpMiddleware } from './redux/localStorageMiddleware';
 import productsReducer from './redux/productsSlice';
 import userSliceReducer from './redux/userSlice';
 
@@ -27,18 +22,14 @@ const store = configureStore({
          name: currentUser.name,
          lastName: currentUser.lastName,
          isError: false,
-         basket: currentUser.basket || [],
-         likedProducts: currentUser.likedProducts || likedProducts || [],
+         basket: [],
+         likedProducts: likedProducts || [],
          isLogged: currentUser.isLogged,
          isLoading: false
       }
    },
    middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware()
-         .concat(signInMiddleware)
-         .concat(signUpMiddleware)
-         .concat(addProductMiddleware)
-         .concat(removeProductMiddleware);
+      return getDefaultMiddleware().concat(signInMiddleware).concat(signUpMiddleware);
    }
 });
 

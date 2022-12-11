@@ -82,6 +82,16 @@ export const signUp = createAsyncThunk(
    }
 );
 
+export const loadLikes = createAsyncThunk('likes/loadLikes', async (userId: string) => {
+   const user = await getUser(userId);
+   return user.snaps.docs[0].data().likedProducts;
+});
+
+export const loadBasket = createAsyncThunk('basket/loadBasket', async (userId: string) => {
+   const user = await getUser(userId);
+   return user.snaps.docs[0].data().basket;
+});
+
 export const likeProduct = createAsyncThunk(
    'basket/likeProduct',
    async ({
@@ -267,14 +277,17 @@ const userSlice = createSlice({
          .addCase(removeProduct.fulfilled, (state, action) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
          })
+         .addCase(loadLikes.fulfilled, (state, action) => {
+            state.likedProducts = action.payload;
+         })
+         .addCase(loadBasket.fulfilled, (state, action) => {
+            state.basket = action.payload;
+         })
          .addCase(likeProduct.fulfilled, (state, action) => {
-            const { productId, category } = action.payload;
-            state.likedProducts.push({ productId, category });
+            state.likedProducts.push(action.payload);
          })
          .addCase(dislikeProduct.fulfilled, (state, action) => {
-            state.likedProducts = state.likedProducts.filter(
-               (el) => el.productId !== action.payload
-            );
+            state.basket.filter((el) => el.productId !== action.payload);
          });
    }
 });
