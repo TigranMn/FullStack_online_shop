@@ -9,17 +9,15 @@ export default function Header() {
    const matches: boolean = useMediaQuery(theme.breakpoints.down('md'));
    return (
       <div>
-         <>
-            {matches ? (
-               <>
-                  <AppBarMobile matches={matches} />
-               </>
-            ) : (
-               <>
-                  <AppBarDesktop matches={matches} />
-               </>
-            )}
-         </>
+         {matches ? (
+            <>
+               <AppBarMobile matches={matches} />
+            </>
+         ) : (
+            <>
+               <AppBarDesktop matches={matches} />
+            </>
+         )}
       </div>
    );
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
+import './styles/toast.css';
 import Contact from './components/pages/Contact';
 import About from './components/pages/About';
 import Products from './components/Products/ProductsList';
@@ -12,6 +13,7 @@ import Product from './components/pages/Product';
 import Login from './components/pages/Login';
 import Buy from './components/pages/Buy';
 import Likes from './components/pages/Likes';
+
 
 function App() {
 

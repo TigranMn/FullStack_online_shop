@@ -2,12 +2,22 @@ import { styled } from '@mui/material/styles';
 import { Typography, List, Box } from '@mui/material';
 import { Colors } from '../../styles/Theme';
 import '@fontsource/montez';
+import Badge, { BadgeProps } from '@mui/material/Badge';
 
 export const AppBarContainer = styled(Box)(() => ({
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
    padding: '2px 8px'
+}));
+
+export const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+   '& .MuiBadge-badge': {
+      right: -4,
+      top: 0,
+      border: `2px solid ${theme.palette.background.paper}`,
+      padding: '2 5px'
+   }
 }));
 
 export const AppBarHeader = styled(Typography)(() => ({

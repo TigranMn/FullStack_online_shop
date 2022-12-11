@@ -1,6 +1,7 @@
-import { Box, Button } from '@mui/material';
+import { Box, IconButton, Tooltip } from '@mui/material';
 import React from 'react';
 import { TProduct } from '../../types';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 type TBasketItemProps = {
    product: TProduct;
@@ -24,9 +25,11 @@ export default function BasketItem(props: TBasketItemProps) {
             <p>{product.price} $</p>
             <p>{product.count}</p>
          </Box>
-         <Button onClick={() => handleRemove(product.id)} variant="outlined">
-            Remove
-         </Button>
+         <Tooltip onClick={() => handleRemove(product.id)} title="Delete">
+            <IconButton>
+               <DeleteIcon />
+            </IconButton>
+         </Tooltip>
       </div>
    );
 }

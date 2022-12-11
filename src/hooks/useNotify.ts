@@ -4,9 +4,12 @@ import { notificationTypes } from '../types';
 export const useNotify = () => {
    return function (type: notificationTypes, message: string) {
       const config = {
-         autoClose: 3000,
+         autoClose: 500,
          closeOnClick: true,
-         pauseOnHover: false
+         pauseOnHover: true,
+         className: 'toast-message',
+         pauseOnFocusLoss: false,
+         hideProgressBar: true
       };
       switch (type) {
          case notificationTypes.WARNING:
