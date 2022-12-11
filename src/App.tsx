@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
+import './styles/toast.css';
 import Contact from './components/pages/Contact';
 import About from './components/pages/About';
 import Products from './components/Products/ProductsList';
@@ -12,8 +13,7 @@ import Login from './components/pages/Login';
 import { useEffect } from 'react';
 import { useAppSelector } from './store';
 import Buy from './components/pages/Buy';
-import Likes from './components/pages/Likes';
-import './styles/toast.css';
+
 
 function App() {
    const user = useAppSelector((state) => state.user);
@@ -34,7 +34,6 @@ function App() {
                <Route path="/shop/:category/:productId" element={<Product />} />
                <Route path="/buy" element={<Buy />} />
                <Route path="/login" element={<Login />} />
-               <Route path="/likes" element={<Likes />} />
             </Route>
          </Routes>
       </BrowserRouter>
