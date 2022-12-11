@@ -3,14 +3,10 @@ import { TCategory } from '../types';
 import getData from '../api/api';
 
 type TCategoryState = {
-   isLoading: boolean;
-   isError: boolean;
    categories: TCategory[];
 };
 
 const initialState: TCategoryState = {
-   isLoading: false,
-   isError: false,
    categories: []
 };
 
@@ -36,15 +32,8 @@ const categoriesSlice = createSlice({
       builder
          .addCase(getCategories.pending, (state) => {
             state.categories = [];
-            state.isError = false;
-            state.isLoading = true;
-         })
-         .addCase(getCategories.rejected, (state) => {
-            state.isLoading = false;
-            state.isError = true;
          })
          .addCase(getCategories.fulfilled, (state, action) => {
-            state.isLoading = false;
             state.categories = action.payload;
          });
    }

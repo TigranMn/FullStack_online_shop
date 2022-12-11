@@ -1,4 +1,3 @@
-import { User } from 'firebase/auth';
 import {
    collection,
    doc,
@@ -41,10 +40,12 @@ export const fetchSize = async (url: string): Promise<number> => {
    return querySnapshot.size;
 };
 
-export const getUser = async (user: User) => {
-   const q: Query<DocumentData> = query(collection(db, 'users'), where('id', '==', user.uid));
-   const data: QuerySnapshot<DocumentData> = await getDocs(q);
-   return data.docs[0].data();
+export const getUser = async (userId: string) => {
+   const collRef = collection(db, 'users');
+   const q = query(collRef, where('id', '==', userId));
+   const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
+   const userRef = doc(db, 'users', snaps.docs[0].id);
+   return {userRef, snaps};
 };
 
 export const getProduct = async (url: string, id: string): Promise<TProduct> => {

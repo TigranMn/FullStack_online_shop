@@ -1,29 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CategoryItem from './CategoryItem';
 import { getCategories } from '../../redux/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography, CircularProgress, Box } from '@mui/material';
 
 export default function CategoriesList() {
-   const state = useAppSelector((state) => state.categories);
+   const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [error, setError] = useState<boolean>(false);
+   const categoriesList = useAppSelector((state) => state.categories);
    const dispatch = useAppDispatch();
+
+   const { categories } = categoriesList;
    useEffect(() => {
-      dispatch(getCategories());
+      setIsLoading(true);
+      dispatch(getCategories())
+         .unwrap()
+         .then(() => {
+            setError(false);
+            setIsLoading(false);
+         })
+         .catch((e) => {
+            setIsLoading(false);
+            setError(true);
+         });
    }, [dispatch]);
 
    return (
       <Container>
          <Grid container justifyContent="center" sx={{ margin: '20px 4px 10px 4px' }}>
-            {state.isLoading ? (
+            {isLoading ? (
                <Box sx={{ display: 'flex' }}>
                   <CircularProgress />
                </Box>
-            ) : state.isError ? (
+            ) : error ? (
                <Typography variant="h3">Something went wrong</Typography>
             ) : (
-               state.categories.map((el) => {
+               categories.map((el) => {
                   return <CategoryItem key={Math.random()} category={el}></CategoryItem>;
                })
             )}

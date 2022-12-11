@@ -14,7 +14,7 @@ import {
    Select,
    MenuItem
 } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+import CircularProgress from '@mui/material/CircularProgress';	
 
 export default function ProductsList() {
    const { category } = useParams();

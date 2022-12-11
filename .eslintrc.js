@@ -1,7 +1,9 @@
 module.exports = {
    env: {
       browser: true,
-      es2021: true
+      es2021: true,
+		amd: true,
+		node: true
    },
    extends: [
       'eslint:recommended',
@@ -16,13 +18,12 @@ module.exports = {
    },
    plugins: ['react', '@typescript-eslint'],
    rules: {
-		'react/no-unescaped-entities': 0,
+      'react/no-unescaped-entities': 0,
       'no-unneeded-ternary': 'error',
       'no-unused-expressions': 2,
       'react/prop-types': 0,
       '@typescript-eslint/no-non-null-assertion': 'off',
       useTabs: 0,
-      'linebreak-style': ['error', 'unix'],
       quotes: ['error', 'single'],
       semi: ['error', 'always']
    }

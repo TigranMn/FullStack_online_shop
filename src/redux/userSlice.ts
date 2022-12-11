@@ -7,9 +7,9 @@ import {
 import {
    addDoc,
    collection,
-   doc,
    DocumentData,
    getDocs,
+   Query,
    query,
    QuerySnapshot,
    setDoc,
@@ -17,7 +17,7 @@ import {
 } from 'firebase/firestore';
 import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
-import { TBasketType } from '../types';
+import { TBasketType, TLikedType } from '../types';
 
 type TState = {
    email: string | null;
@@ -29,6 +29,7 @@ type TState = {
    isError: boolean;
    isLogged: boolean;
    basket: TBasketType[];
+   likedProducts: TLikedType[];
 };
 
 const initialState: TState = {
@@ -40,14 +41,17 @@ const initialState: TState = {
    isError: false,
    isLogged: false,
    isLoading: false,
-   basket: []
+   basket: [],
+   likedProducts: []
 };
 
 export const signIn = createAsyncThunk(
    'user/signIn',
    async ({ email, password }: { email: string; password: string }) => {
       const { user }: UserCredential = await signInWithEmailAndPassword(auth, email, password);
-      const data = await getUser(user);
+      const q: Query<DocumentData> = query(collection(db, 'users'), where('id', '==', user.uid));
+      const resp: QuerySnapshot<DocumentData> = await getDocs(q);
+      const data = resp.docs[0].data();
       return { data, user };
    }
 );
@@ -78,14 +82,64 @@ export const signUp = createAsyncThunk(
    }
 );
 
+export const loadLikes = createAsyncThunk('likes/loadLikes', async (userId: string) => {
+   const user = await getUser(userId);
+   return user.snaps.docs[0].data().likedProducts;
+});
+
+export const loadBasket = createAsyncThunk('basket/loadBasket', async (userId: string) => {
+   const user = await getUser(userId);
+   return user.snaps.docs[0].data().basket;
+});
+
+export const likeProduct = createAsyncThunk(
+   'basket/likeProduct',
+   async ({
+      productId,
+      userId,
+      category
+   }: {
+      productId: string;
+      userId: string;
+      category: string;
+   }) => {
+      const { userRef, snaps } = await getUser(userId);
+      setDoc(
+         userRef,
+         { likedProducts: [...[...snaps.docs[0].data().likedProducts, { productId, category }]] },
+         { merge: true }
+      );
+      return { productId, category };
+   }
+);
+
+export const dislikeProduct = createAsyncThunk(
+   'basket/dislikeProduct',
+   async ({ productId, userId }: { productId: string; userId: string }) => {
+      const { userRef, snaps } = await getUser(userId);
+      setDoc(
+         userRef,
+         {
+            likedProducts: [
+               ...[
+                  ...snaps.docs[0]
+                     .data()
+                     .likedProducts.filter(
+                        (el: { category: string; productId: string }) => el.productId !== productId
+                     )
+               ]
+            ]
+         },
+         { merge: true }
+      );
+      return productId;
+   }
+);
+
 export const removeProduct = createAsyncThunk(
    'basket/removeProduct',
    async ({ productId, userId }: { productId: string; userId: string }) => {
-      const collRef = collection(db, 'users');
-      const q = query(collRef, where('id', '==', userId));
-      const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
-      const userRef = doc(db, 'users', snaps.docs[0].id);
-      console.log(productId, userId);
+      const { userRef, snaps } = await getUser(userId);
 
       setDoc(
          userRef,
@@ -111,10 +165,7 @@ export const addProduct = createAsyncThunk(
       category: string;
       count: number;
    }) => {
-      const collRef = collection(db, 'users');
-      const q = query(collRef, where('id', '==', userId));
-      const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
-      const userRef = doc(db, 'users', snaps.docs[0].id);
+      const { userRef, snaps } = await getUser(userId);
 
       const prod = [...snaps.docs[0].data().basket].find((el) => {
          return el.productId === productId;
@@ -139,6 +190,7 @@ export const addProduct = createAsyncThunk(
             { merge: true }
          );
       }
+      return { productId, category, count, prod };
    }
 );
 
@@ -164,6 +216,7 @@ const userSlice = createSlice({
          state.lastName = null;
          state.name = null;
          state.isLogged = false;
+         state.likedProducts = [];
       }
    },
    extraReducers: (builder) => {
@@ -177,6 +230,7 @@ const userSlice = createSlice({
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
             state.basket = action.payload.data.basket;
+            state.likedProducts = action.payload.data.likedProducts;
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -196,6 +250,7 @@ const userSlice = createSlice({
             state.lastName = action.payload.lastName;
             state.name = action.payload.firstName;
             state.basket = [];
+            state.likedProducts = [];
          })
          .addCase(signUp.rejected, (state) => {
             state.isError = true;
@@ -206,8 +261,33 @@ const userSlice = createSlice({
             state.isLoading = true;
             state.isLogged = false;
          })
+         .addCase(addProduct.fulfilled, (state, action) => {
+            const { count, category, productId, prod } = action.payload;
+            if (prod) {
+               state.basket.map((el) => {
+                  if (el.productId === productId) {
+                     el.count += count;
+                  }
+                  return el;
+               });
+            } else {
+               state.basket.push({ productId, category, count });
+            }
+         })
          .addCase(removeProduct.fulfilled, (state, action) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
+         })
+         .addCase(loadLikes.fulfilled, (state, action) => {
+            state.likedProducts = action.payload;
+         })
+         .addCase(loadBasket.fulfilled, (state, action) => {
+            state.basket = action.payload;
+         })
+         .addCase(likeProduct.fulfilled, (state, action) => {
+            state.likedProducts.push(action.payload);
+         })
+         .addCase(dislikeProduct.fulfilled, (state, action) => {
+            state.basket.filter((el) => el.productId !== action.payload);
          });
    }
 });

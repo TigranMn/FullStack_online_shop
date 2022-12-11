@@ -10,15 +10,10 @@ import Layout from './components/Layout/Layout';
 import User from './components/pages/User';
 import Product from './components/pages/Product';
 import Login from './components/pages/Login';
-import { useEffect } from 'react';
-import { useAppSelector } from './store';
 import Buy from './components/pages/Buy';
+import Likes from './components/pages/Likes';
 
 function App() {
-   const user = useAppSelector((state) => state.user);
-   useEffect(() => {
-      localStorage.setItem('currentUser', JSON.stringify(user));
-   }, [user]);
 
    return (
       <BrowserRouter>
@@ -33,6 +28,7 @@ function App() {
                <Route path="/shop/:category/:productId" element={<Product />} />
                <Route path="/buy" element={<Buy />} />
                <Route path="/login" element={<Login />} />
+               <Route path="/liked" element={<Likes />} />
             </Route>
          </Routes>
       </BrowserRouter>

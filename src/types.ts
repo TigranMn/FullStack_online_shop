@@ -34,6 +34,10 @@ export type TUser = {
    basket: string[];
    likedProducts: string[];
 };
+export type TLikedType = {
+	category: string
+	productId:string
+}
 
 export type TBasketType = {
    productId: string;
