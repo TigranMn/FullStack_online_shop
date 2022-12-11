@@ -1,33 +1,51 @@
-import { MyList, ActionIconsContainerMobile, ActionIconsContainerDesktop } from './styles';
-import { ListItemButton, ListItemIcon, Drawer, Box } from '@mui/material';
+import {
+	MyList,
+	ActionIconsContainerMobile,
+	ActionIconsContainerDesktop,
+	StyledBadge
+} from './styles';
+import { IconButton, ListItemButton, ListItemIcon } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoginIcon from '@mui/icons-material/Login';
 import { Colors } from '../../styles/Theme';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import Drawer from '@mui/material/Drawer';
+import Box from '@mui/material/Box';
 import { useAuth } from '../../hooks/use-auth';
 import PersonIcon from '@mui/icons-material/Person';
 import Basket from '../Basket/Basket';
+import { useAppSelector } from '../../store';
 import React from 'react';
 
 const Actions = ({ matches }) => {
 	const navigate = useNavigate();
 	const [isActive, setIsActive] = useState(false);
-	const Component = matches ? ActionIconsContainerMobile : ActionIconsContainerDesktop;
+	const productsLength = useAppSelector((state) => state.user.basket.length);
+	const Component = matches
+		? ActionIconsContainerMobile
+		: ActionIconsContainerDesktop;
 
 	return (
 		<Component>
 			<div>
-				<Drawer anchor={'right'} open={isActive} onClose={() => setIsActive(false)}>
-					<Box sx={{ width: '450px' }}>
+				<Drawer
+					anchor={'right'}
+					open={isActive}
+					onClose={() => setIsActive(false)}
+				>
+					<Box sx={{ width: '500px', padding: '15px' }}>
 						<Box>Products</Box>
 						<Basket />
 					</Box>
 				</Drawer>
 			</div>
 			<MyList type="row">
-				<ListItemButton onClick={() => setIsActive(true)} sx={{ justifyContent: 'center' }}>
+				<ListItemButton
+					onClick={() => setIsActive(true)}
+					sx={{ justifyContent: 'center' }}
+				>
 					<ListItemIcon
 						sx={{
 							display: 'flex',
@@ -35,10 +53,22 @@ const Actions = ({ matches }) => {
 							color: matches && Colors.info
 						}}
 					>
-						<ShoppingCartIcon />
+						<IconButton aria-label="cart">
+							<StyledBadge
+								badgeContent={productsLength}
+								color="secondary"
+							>
+								<ShoppingCartIcon />
+							</StyledBadge>
+						</IconButton>
 					</ListItemIcon>
 				</ListItemButton>
-				<ListItemButton sx={{ justifyContent: 'center' }}>
+				<ListItemButton
+					onClick={() => {
+						navigate('/liked');
+					}}
+					sx={{ justifyContent: 'center' }}
+				>
 					<ListItemIcon
 						sx={{
 							display: 'flex',
@@ -46,7 +76,7 @@ const Actions = ({ matches }) => {
 							color: matches && Colors.info
 						}}
 					>
-						<FavoriteIcon onClick={() => navigate('/liked')} />
+						<FavoriteIcon />
 					</ListItemIcon>
 				</ListItemButton>
 				{useAuth().isAuth ? (
