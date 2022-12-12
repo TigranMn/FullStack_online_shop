@@ -5,6 +5,7 @@ import '@fontsource/montez';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 
 export const AppBarContainer = styled(Box)(() => ({
+   background: 'linear-gradient(to bottom, #16222a, #3a6073)',
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
@@ -25,15 +26,17 @@ export const AppBarHeader = styled(Typography)(() => ({
    flexGrow: 1,
    fontSize: '4em',
    fontFamily: '"Montez", "Cursive"',
-   color: Colors.secondary,
+   color: 'white',
    cursor: 'pointer'
 }));
 
-export const MyList = styled(List)(({ type } : {type: string}) => ({
+export const MyList = styled(List)(({ type }: { type: string }) => ({
+   color: 'white',
    display: type === 'row' ? 'flex' : 'block',
    flexGrow: 3,
    justifyContent: 'center',
-   alignItems: 'center'
+   alignItems: 'center',
+   textAlign: 'center'
 }));
 
 export const ActionIconsContainerDesktop = styled(Box)(() => ({

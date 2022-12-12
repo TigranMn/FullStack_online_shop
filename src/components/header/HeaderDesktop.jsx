@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
 import { NavLink } from 'react-router-dom';
-import { ListItemText, MenuItem, TextField, Box } from '@mui/material';
+import { MenuItem, TextField, Box } from '@mui/material';
 import { useState } from 'react';
 import { AppBarContainer, AppBarHeader, MyList } from './styles';
 import { useNavigate } from 'react-router-dom';
@@ -18,30 +17,34 @@ const AppBarDesktop = ({ matches }) => {
                navigate('/');
             }}
          >
-            elite Shop
+            Elite Shop
          </AppBarHeader>
          <MyList type="row">
             <NavLink to={'/'}>
-               <ListItemText primary="Home" />
+               <h3 style={{ color: 'white' }}>Home</h3>
             </NavLink>
-            <NavLink to={'/shop'}>
-               <ListItemText primary="Shop" />
-            </NavLink>
+            <NavLink to={'/shop'}>{<h3 style={{ color: 'white' }}>Shop</h3>}</NavLink>
             <NavLink to={'/contact'}>
-               <ListItemText primary="Contact" />
+               <h3 style={{ color: 'white' }}>Contact</h3>
             </NavLink>
             <NavLink to={'/about'}>
-               <ListItemText primary="About" />
+               <h3 style={{ color: 'white' }}>About</h3>
             </NavLink>
          </MyList>
-         <Box width={'90px'}>
+         <Box width={'90px'} sx={{ outline: 'none' }}>
             <TextField
                size="small"
+               sx={{
+                  border: '1px solid white',
+                  borderRadius: '5px'
+               }}
                select
                value={language}
                onChange={(e) => setLanguage(e.target.value)}
             >
-               <MenuItem value="am">AM</MenuItem>
+               <MenuItem style={{ color: 'white' }} value="am">
+                  AM
+               </MenuItem>
                <MenuItem value="ru">RU</MenuItem>
                <MenuItem value="en">EN</MenuItem>
             </TextField>
