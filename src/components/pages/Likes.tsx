@@ -5,6 +5,7 @@ import { notificationTypes, TProduct } from '../../types';
 import { useNotify } from '../../hooks/useNotify';
 import ProductItem from '../Products/ProductItem';
 import CircularProgress from '@mui/material/CircularProgress';
+import { Container, Box } from '@mui/material';
 
 export default function Likes() {
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
@@ -29,21 +30,25 @@ export default function Likes() {
             setIsLoading(false);
             notify(notificationTypes.ERROR, e.message);
          });
-   }, [likedProducts]);
+   }, []);
+
 
    return (
-      <>
-         {isLoading ? (
-            <CircularProgress />
-         ) : error ? (
-            <span>Something went wrong</span>
-         ) : products.length ? (
-            products.map((el) => {
-               return <ProductItem key={el.id} product={el} />;
-            })
-         ) : (
-            <p>Nothing in liked</p>
-         )}
-      </>
+      <Container >
+         <Box sx={{display: 'flex', flexWrap : 'wrap', gap: '30px', justifyContent : 'stretch', alignItems : 'center', }}  >
+            {isLoading ? (
+               <CircularProgress />
+            ) : error ? (
+               <span>Something went wrong</span>
+            ) : products.length ? (
+               products.map((el) => {
+                  return <ProductItem key={el.id} product={el} />;
+               })
+            ) : (
+               <p style={{width : '100%', textAlign : 'center'}} >Nothing in liked</p>
+            )}
+         </Box>
+
+      </Container>
    );
 }

@@ -1,4 +1,4 @@
-import { Typography, List, ListItem, ListItemIcon } from '@mui/material';
+import { Typography, List, ListItem, ListItemIcon, Container } from '@mui/material';
 import { useEffect } from 'react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -20,6 +20,9 @@ import {
    AboutMySelfHeading,
    TeamMemberCollector
 } from '../../styles/About';
+import AccordionPage from '../About/accordion/Accordion';
+import SocialNetwork from '../About/socialNetwork/SocialNetwork';
+
 
 export default function About() {
    return (
@@ -440,6 +443,9 @@ export default function About() {
                </AboutMySelf>
             </TeamMemberCollector>
          </TeamMemberContainer>
+         <Container sx={{ maxWidth: '1440px', margin: '0 , auto' }}>
+            <AccordionPage />
+         </Container>
       </>
    );
 }
