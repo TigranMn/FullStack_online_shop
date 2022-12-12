@@ -5,11 +5,8 @@ import {
    DocumentSnapshot,
    getDoc,
    getDocs,
-   limit,
-   Query,
    query,
    QuerySnapshot,
-   startAt,
    where
 } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -20,24 +17,11 @@ const getData = async (url: string): Promise<QuerySnapshot<DocumentData>> => {
    return querySnapshot;
 };
 
-export const getPageProducts = async (
-   url: string,
-   page: number,
-   itemCount: number
-): Promise<QuerySnapshot<DocumentData>> => {
+export const getProducts = async (url: string): Promise<QuerySnapshot<DocumentData>> => {
    let querySnapshot = await getDocs(collection(db, url));
-   const q: Query<DocumentData> = query(
-      collection(db, url),
-      limit(itemCount),
-      startAt(querySnapshot.docs[(page - 1) * itemCount])
-   );
-   querySnapshot = await getDocs(q);
-   return querySnapshot;
-};
 
-export const fetchSize = async (url: string): Promise<number> => {
-   const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(collection(db, url));
-   return querySnapshot.size;
+   querySnapshot = await getDocs(collection(db, url));
+   return querySnapshot;
 };
 
 export const getUser = async (userId: string) => {
@@ -45,7 +29,7 @@ export const getUser = async (userId: string) => {
    const q = query(collRef, where('id', '==', userId));
    const snaps: QuerySnapshot<DocumentData> = await getDocs(q);
    const userRef = doc(db, 'users', snaps.docs[0].id);
-   return {userRef, snaps};
+   return { userRef, snaps };
 };
 
 export const getProduct = async (url: string, id: string): Promise<TProduct> => {
