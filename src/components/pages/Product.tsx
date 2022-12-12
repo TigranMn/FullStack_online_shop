@@ -11,7 +11,7 @@ import {
 import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { addProduct, addToBasket } from '../../redux/userSlice';
+import { addProduct } from '../../redux/userSlice';
 
 function Product() {
    const { productId, category } = useParams();
@@ -26,9 +26,10 @@ function Product() {
 
    const dispatch = useAppDispatch();
 
+   const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
+
    useEffect(() => {
-      const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
-      setIncrDisabled(quantity >= +product?.quantity - inBasket!);
+      setIncrDisabled(quantity >= product?.quantity - inBasket);
       setDecrDisabled(quantity <= 1);
    }, [basket, quantity, product]);
 
@@ -59,7 +60,6 @@ function Product() {
          await dispatch(addProduct({ ...newProduct, count: quantity }))
             .unwrap()
             .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
-            .then(() => dispatch(addToBasket({ ...newProduct, count: quantity })))
             .catch((e) => notify(notificationTypes.ERROR, e.message));
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
@@ -126,7 +126,7 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button onClick={handleAdd} disabled={!product?.quantity} variant="outlined">
+               <Button onClick={handleAdd} disabled={product?.quantity - inBasket <= 0 } variant="outlined">
                   Add to cart
                </Button>
                <Button

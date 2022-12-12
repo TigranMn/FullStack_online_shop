@@ -5,11 +5,14 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Colors } from '../../styles/Theme';
 import React from 'react';
+import SocialNetwork from '../About/socialNetwork/SocialNetwork';
 
 const Footer = () => {
    return (
       <Box
          sx={{
+
+            marginTop: 'auto',
             background: Colors.info,
             color: 'white',
             p: { xs: 4, md: 10 },
@@ -19,7 +22,7 @@ const Footer = () => {
             borderRadius: '8px'
          }}
       >
-         <Grid container spacing={2} justifyContent="center">
+         <Grid container spacing={2} justifyContent={'center'}>
             <Grid item md={6} lg={4}>
                <FooterTitle variant="body1">About</FooterTitle>
                <Typography variant="caption">
@@ -28,9 +31,7 @@ const Footer = () => {
                   a seller over the Internet using a web browser or a mobile app.
                </Typography>
                <Box sx={{ mt: 4 }}>
-                  <FacebookIcon sx={{ mr: 1 }} />
-                  <InstagramIcon sx={{ mr: 1 }} />
-                  <TwitterIcon />
+                  <SocialNetwork />
                </Box>
             </Grid>
             <Grid item md={6} lg={2}>

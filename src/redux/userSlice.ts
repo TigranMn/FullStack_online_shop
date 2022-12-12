@@ -188,17 +188,7 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
-      addToBasket(state, action) {
-         const prod = state.basket.find((el) => el.productId === action.payload.productId);
-         if (prod) prod.count = prod.count + action.payload.count;
-         else {
-            state.basket.push({
-               productId: action.payload.productId,
-               category: action.payload.category,
-               count: action.payload.count
-            });
-         }
-      },
+
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -274,6 +264,8 @@ const userSlice = createSlice({
                   return el;
                });
             } else {
+               console.log(count);
+               
                state.basket.push({ productId, category, count });
             }
          })
@@ -291,5 +283,5 @@ const userSlice = createSlice({
    }
 });
 
-export const { removeUser, addToBasket, setUser } = userSlice.actions;
+export const { removeUser, setUser } = userSlice.actions;
 export default userSlice.reducer;

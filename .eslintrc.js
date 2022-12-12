@@ -18,6 +18,7 @@ module.exports = {
    },
    plugins: ['react', '@typescript-eslint'],
    rules: {
+      '@typescript-eslint/no-extra-non-null-assertion': 0,
       'react/no-unescaped-entities': 0,
       'no-unneeded-ternary': 'error',
       'no-unused-expressions': 2,

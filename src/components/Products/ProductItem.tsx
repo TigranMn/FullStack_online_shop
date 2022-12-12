@@ -13,7 +13,7 @@ import {
    ProductPrice
 } from './styles';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { addProduct, addToBasket, dislikeProduct, likeProduct } from '../../redux/userSlice';
+import { addProduct, dislikeProduct, likeProduct } from '../../redux/userSlice';
 import { useNotify } from '../../hooks/useNotify';
 import { useLiked } from '../../hooks/useLiked';
 
@@ -27,9 +27,12 @@ export default function ProductItem({ product }: ProductItemProps) {
    const userId = useAppSelector((state) => state.user.id);
    const isLogged = useAppSelector((state) => state.user.isLogged);
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
+   const basket = useAppSelector(state => state.user.basket);
    const notify = useNotify();
    const liked = useLiked(likedProducts, product.id);
    const [isLiked, setIsLiked] = useState<boolean>(liked);
+
+   const inBasket = basket.find((el) => el.productId === product.id)?.count || 0;
 
    useEffect(() => {
       localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
@@ -74,7 +77,6 @@ export default function ProductItem({ product }: ProductItemProps) {
          await dispatch(addProduct({ ...newProduct, count: 1 }))
             .unwrap()
             .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
-            .then(() => dispatch(addToBasket({ ...newProduct, count: 1 })))
             .catch((e) => notify(notificationTypes.ERROR, e.message));
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
@@ -92,7 +94,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>{product.price}$</ProductPrice>
                   {product.quantity ? (
-                     <ProductActionButton onClick={handleAdd}>Add to cart</ProductActionButton>
+                     <ProductActionButton disabled= {product.quantity - inBasket <= 0} onClick={handleAdd}>Add to cart</ProductActionButton>
                   ) : (
                      <ProductActionButton
                         disableRipple

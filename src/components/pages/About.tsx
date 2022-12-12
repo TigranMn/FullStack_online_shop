@@ -2,6 +2,7 @@ import { Typography, List, ListItem, ListItemIcon } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
+import { Container } from '@mui/material';
 import React from 'react';
 
 import {
@@ -19,6 +20,8 @@ import {
    AboutMySelfHeading,
    TeamMemberCollector
 } from '../../styles/About';
+import AccordionPage from '../About/accordion/Accordion';
+
 
 export default function About() {
    return (
@@ -439,6 +442,9 @@ export default function About() {
                </AboutMySelf>
             </TeamMemberCollector>
          </TeamMemberContainer>
+         <Container sx={{ maxWidth: '1440px', margin: '0 , auto' }}>
+            <AccordionPage />
+         </Container>
       </>
    );
 }

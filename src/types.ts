@@ -8,7 +8,7 @@ export type TProduct = {
    count: number;
    views: number;
    brand: string;
-   quantity: string;
+   quantity: number;
 };
 
 export type TProductState = {
