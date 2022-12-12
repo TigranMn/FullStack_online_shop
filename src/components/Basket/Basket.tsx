@@ -52,9 +52,6 @@ export default function Basket() {
       )
          .unwrap()
          .then(() => {
-            notify(notificationTypes.SUCCES, 'Removed');
-         })
-         .then(() => {
             setProducts(products.filter((el) => el.id !== id));
          })
          .catch((e) => notify(notificationTypes.ERROR, e.message));

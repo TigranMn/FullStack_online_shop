@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductItem from './ProductItem';
-import { fetchPageProducts, getSize } from '../../redux/productsSlice';
+import { fetchProducts } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
+import Search from '../Search/Search';
 import {
    Container,
    Grid,
@@ -14,48 +15,52 @@ import {
    Select,
    MenuItem
 } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';	
+import CircularProgress from '@mui/material/CircularProgress';
+import { TProduct } from '../../types';
 
 export default function ProductsList() {
    const { category } = useParams();
    const [itemCount, setItemCount] = useState<number>(6);
    const [currentPage, setCurrentPage] = useState<number>(1);
-   const state = useAppSelector((state) => state.products);
+   const [pages, setPages] = useState<number>(1);
+   const [pageProducts, setPageProducts] = useState<TProduct[]>([]);
+   const products = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
+   const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
 
    useEffect(() => {
-      dispatch(
-         getSize({ category, itemCount } as {
-            category: string;
-            itemCount: number;
-         })
+      setPages(Math.ceil(filteredProducts.length / itemCount));
+      const pageProducts = filteredProducts.slice(
+         (currentPage - 1) * itemCount,
+         currentPage * itemCount
       );
-   }, [itemCount, dispatch]);
+      setPageProducts(pageProducts);
+   }, [itemCount, pages, filteredProducts, currentPage]);
 
    useEffect(() => {
-      dispatch(
-         fetchPageProducts({ category, currentPage, itemCount } as {
-            category: string;
-            currentPage: number;
-            itemCount: number;
-         })
+      setFilteredProducts(products.products);
+   }, [products]);
+
+   useEffect(() => {
+      dispatch(fetchProducts(category as string));
+   }, [dispatch]);
+
+   const handleSearch = (text: string) => {
+      setCurrentPage(1);
+      const searched = products.products.filter((el) =>
+         el.name.toLowerCase().startsWith(text.toLowerCase())
       );
-   }, [dispatch, currentPage, itemCount]);
+
+      setFilteredProducts(searched);
+   };
 
    return (
       <>
          <Container>
-            {/* NEED TO ADD SELECT TO CHANGE ITEM COUNT 
-             <button onClick={() => setItemCount(12)}>Sxmenq vren</button> 
-            <select
-               value={itemCount}
-               onChange={(e) => setItemCount(e.target.value)}
-            >
-               <option value={6}>6</option>
-               <option value={9}>9</option>
-               <option value={12}>12</option>
-            </select> */}
-
+            <Search handleSearch={handleSearch} />
+            <br />
+            <br />
+            <br />
             <FormControl style={{ width: '100px' }}>
                <InputLabel>Pages</InputLabel>
                <Select
@@ -76,14 +81,16 @@ export default function ProductsList() {
                   justifyContent="center"
                   marginBottom={'2rem'}
                >
-                  {state.isLoading ? (
+                  {products.isLoading ? (
                      <Box sx={{ display: 'flex' }}>
                         <CircularProgress sx={{ width: '100%' }} />
                      </Box>
-                  ) : state.isError ? (
+                  ) : products.isError ? (
                      <Typography>Something went wrong</Typography>
+                  ) : !pageProducts.length ? (
+                     <span>Nothing found</span>
                   ) : (
-                     state.products.map((product) => {
+                     pageProducts.map((product) => {
                         return <ProductItem key={product.id} product={product} />;
                      })
                   )}
@@ -93,10 +100,11 @@ export default function ProductsList() {
                   showFirstButton
                   showLastButton
                   variant="outlined"
+                  page={currentPage}
                   onChange={(_, page) => {
                      setCurrentPage(page);
                   }}
-                  count={state.pages}
+                  count={pages}
                />
             </Grid>
          </Container>

@@ -15,7 +15,6 @@ export type TProductState = {
    isLoading: boolean;
    isError: boolean;
    products: TProduct[];
-   pages: number;
 };
 
 export type TCategory = {
@@ -35,9 +34,9 @@ export type TUser = {
    likedProducts: string[];
 };
 export type TLikedType = {
-	category: string
-	productId:string
-}
+   category: string;
+   productId: string;
+};
 
 export type TBasketType = {
    productId: string;

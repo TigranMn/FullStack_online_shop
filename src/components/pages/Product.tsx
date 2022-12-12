@@ -30,7 +30,7 @@ function Product() {
       const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
       setIncrDisabled(quantity >= +product?.quantity - inBasket!);
       setDecrDisabled(quantity <= 1);
-   }, [basket, quantity,product]);
+   }, [basket, quantity, product]);
 
    useEffect(() => {
       getProduct(category as string, productId as string)
