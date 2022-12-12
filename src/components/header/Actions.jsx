@@ -22,7 +22,7 @@ import React from 'react';
 const Actions = ({ matches }) => {
 	const navigate = useNavigate();
 	const [isActive, setIsActive] = useState(false);
-	const productsLength = useAppSelector((state) => state.user.basket.length);
+	const productsLength = useAppSelector((state) => state.user?.basket?.length);
 	const Component = matches
 		? ActionIconsContainerMobile
 		: ActionIconsContainerDesktop;

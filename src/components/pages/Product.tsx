@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProduct } from '../../api/api';
 import { notificationTypes, TProduct } from '../../types';
-import { ProductContainer, ProductContent, ProductImage, ProductTitle } from '../../styles/ProductItem';
+import {
+   ProductContainer,
+   ProductContent,
+   ProductImage,
+   ProductTitle
+} from '../../styles/ProductItem';
 import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -12,12 +17,20 @@ function Product() {
    const { productId, category } = useParams();
    const [product, setProduct] = useState<TProduct>(undefined!);
    const [quantity, setQuantity] = useState<number>(1);
+   const [incrDisabled, setIncrDisabled] = useState(false);
+   const [decrDisabled, setDecrDisabled] = useState(true);
+   const basket = useAppSelector((state) => state.user.basket);
    const navigate = useNavigate();
    const notify = useNotify();
    const user = useAppSelector((state) => state.user);
-   const incrDisabled = quantity >= +product?.quantity;
-   const decrDisabled = quantity <= 1;
+
    const dispatch = useAppDispatch();
+
+   useEffect(() => {
+      const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
+      setIncrDisabled(quantity >= +product?.quantity - inBasket!);
+      setDecrDisabled(quantity <= 1);
+   }, [basket, quantity,product]);
 
    useEffect(() => {
       getProduct(category as string, productId as string)

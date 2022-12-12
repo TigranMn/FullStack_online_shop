@@ -2,7 +2,7 @@ import { CircularProgress } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { getProduct } from '../../api/api';
 import { useNotify } from '../../hooks/useNotify';
-import { loadBasket, removeProduct } from '../../redux/userSlice';
+import { removeProduct } from '../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { notificationTypes, TProduct } from '../../types';
 import BasketFooter from './BasketFooter';
@@ -17,10 +17,6 @@ export default function Basket() {
    const notify = useNotify();
    const dispatch = useAppDispatch();
    const userId = useAppSelector((state) => state.user.id);
-
-   useEffect(() => {
-      dispatch(loadBasket(userId as string));
-   }, []);
 
    useEffect(() => {
       setIsLoading(true);

@@ -82,16 +82,6 @@ export const signUp = createAsyncThunk(
    }
 );
 
-export const loadLikes = createAsyncThunk('likes/loadLikes', async (userId: string) => {
-   const user = await getUser(userId);
-   return user.snaps.docs[0].data().likedProducts;
-});
-
-export const loadBasket = createAsyncThunk('basket/loadBasket', async (userId: string) => {
-   const user = await getUser(userId);
-   return user.snaps.docs[0].data().basket;
-});
-
 export const likeProduct = createAsyncThunk(
    'basket/likeProduct',
    async ({
@@ -217,6 +207,18 @@ const userSlice = createSlice({
          state.name = null;
          state.isLogged = false;
          state.likedProducts = [];
+         state.basket = [];
+      },
+      setUser(state, action) {
+         const { email, token, id, lastName, name, likedProducts, basket } = action.payload;
+         state.email = email;
+         state.token = token;
+         state.id = id;
+         state.lastName = lastName;
+         state.name = name;
+         state.isLogged = true;
+         state.likedProducts = likedProducts;
+         state.basket = basket;
       }
    },
    extraReducers: (builder) => {
@@ -229,6 +231,7 @@ const userSlice = createSlice({
             state.id = action.payload.user.uid;
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
+            console.log(action.payload);
             state.basket = action.payload.data.basket;
             state.likedProducts = action.payload.data.likedProducts;
          })
@@ -277,20 +280,16 @@ const userSlice = createSlice({
          .addCase(removeProduct.fulfilled, (state, action) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
          })
-         .addCase(loadLikes.fulfilled, (state, action) => {
-            state.likedProducts = action.payload;
-         })
-         .addCase(loadBasket.fulfilled, (state, action) => {
-            state.basket = action.payload;
-         })
          .addCase(likeProduct.fulfilled, (state, action) => {
             state.likedProducts.push(action.payload);
          })
          .addCase(dislikeProduct.fulfilled, (state, action) => {
-            state.basket.filter((el) => el.productId !== action.payload);
+            state.likedProducts = state.likedProducts.filter(
+               (el) => el.productId !== action.payload
+            );
          });
    }
 });
 
-export const { removeUser, addToBasket } = userSlice.actions;
+export const { removeUser, addToBasket, setUser } = userSlice.actions;
 export default userSlice.reducer;

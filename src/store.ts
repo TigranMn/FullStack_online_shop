@@ -16,15 +16,15 @@ const store = configureStore({
    },
    preloadedState: {
       user: {
-         email: currentUser.email,
-         id: currentUser.id,
-         token: currentUser.token,
-         name: currentUser.name,
-         lastName: currentUser.lastName,
+         email: currentUser?.email,
+         id: currentUser?.id,
+         token: currentUser?.token,
+         name: currentUser?.name,
+         lastName: currentUser?.lastName,
          isError: false,
          basket: [],
          likedProducts: likedProducts || [],
-         isLogged: currentUser.isLogged,
+         isLogged: currentUser?.isLogged,
          isLoading: false
       }
    },
