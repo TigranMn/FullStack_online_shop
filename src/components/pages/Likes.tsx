@@ -1,25 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { getProduct } from '../../api/api';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppSelector } from '../../store';
 import { notificationTypes, TProduct } from '../../types';
 import { useNotify } from '../../hooks/useNotify';
 import ProductItem from '../Products/ProductItem';
 import CircularProgress from '@mui/material/CircularProgress';
-import { loadLikes } from '../../redux/userSlice';
 
 export default function Likes() {
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
-   const userId = useAppSelector((state) => state.user.id);
-   const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [isLoading, setIsLoading] = useState<boolean>(true);
    const [products, setProducts] = useState<TProduct[]>([]);
    const [error, setError] = useState<boolean>(false);
    const notify = useNotify();
-   const dispatch = useAppDispatch();
-
-   useEffect(() => {
-      setIsLoading(true);
-      dispatch(loadLikes(userId as string));
-   }, []);
 
    useEffect(() => {
       const promises = likedProducts.map(async (el) => {

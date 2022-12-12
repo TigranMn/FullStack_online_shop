@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import Shop from './components/pages/Shop';
@@ -13,9 +13,22 @@ import Product from './components/pages/Product';
 import Login from './components/pages/Login';
 import Buy from './components/pages/Buy';
 import Likes from './components/pages/Likes';
-
+import { useAppDispatch, useAppSelector } from './store';
+import { setUser } from './redux/userSlice';
+import { getUser } from './api/api';
 
 function App() {
+   const isLogged = useAppSelector((state) => state.user.isLogged);
+   const id = useAppSelector((state) => state.user.id) as string;
+   const dispatch = useAppDispatch();
+
+   useEffect(() => {
+      if (isLogged) {
+         getUser(id).then((res) => {
+            dispatch(setUser(res.snaps.docs[0].data()));
+         });
+      }
+   }, []);
 
    return (
       <BrowserRouter>
