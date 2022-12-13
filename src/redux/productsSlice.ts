@@ -3,7 +3,7 @@ import { TProduct, TProductState } from '../types';
 import { getProducts } from '../api/api';
 
 const initialState: TProductState = {
-   isLoading: false,
+   isLoading: true,
    isError: false,
    products: []
 };

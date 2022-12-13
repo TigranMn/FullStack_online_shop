@@ -11,7 +11,7 @@ function Search({ handleSearch }: TSearchProps) {
    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
       const text = e.target.value;
       setText(text);
-      handleSearch(text);
+      if (!text.length || text.trim().length) handleSearch(text);
    };
 
    return (

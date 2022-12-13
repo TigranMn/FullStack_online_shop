@@ -87,7 +87,7 @@ export default function ProductsList() {
                      </Box>
                   ) : products.isError ? (
                      <Typography>Something went wrong</Typography>
-                  ) : !pageProducts.length ? (
+                  ) : !products.products.length ? (
                      <span>Nothing found</span>
                   ) : (
                      pageProducts.map((product) => {
