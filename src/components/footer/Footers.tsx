@@ -13,13 +13,12 @@ const Footer = () => {
          sx={{
 
             marginTop: 'auto',
-            background: Colors.info,
+            background: '#212834',
             color: 'white',
             p: { xs: 4, md: 10 },
             pt: 12,
             pb: 12,
             fontSize: { xs: '12px', md: '14px' },
-            borderRadius: '8px'
          }}
       >
          <Grid container spacing={2} justifyContent={'center'}>

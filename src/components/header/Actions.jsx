@@ -31,7 +31,7 @@ const Actions = ({ matches }) => {
             <Drawer anchor={'right'} open={isActive} onClose={() => setIsActive(false)}>
                <Box sx={{ width: '500px', padding: '15px' }}>
                   <Box>Products</Box>
-                  <Basket sx={{ color: 'white' }} />
+                  <Basket />
                </Box>
             </Drawer>
          </div>
@@ -46,7 +46,7 @@ const Actions = ({ matches }) => {
                >
                   <IconButton aria-label="cart">
                      <StyledBadge badgeContent={productsLength} color="secondary">
-                        <ShoppingCartIcon sx={{ color: 'white' }} />
+                        <ShoppingCartIcon sx={{ color: '#5082FC' }} />
                      </StyledBadge>
                   </IconButton>
                </ListItemIcon>
@@ -64,7 +64,7 @@ const Actions = ({ matches }) => {
                      color: matches && Colors.info
                   }}
                >
-                  <FavoriteIcon sx={{ color: 'white' }} />
+                  <FavoriteIcon sx={{ color: '#5082FC' }} />
                </ListItemIcon>
             </ListItemButton>
             {useAuth().isAuth ? (
@@ -81,7 +81,7 @@ const Actions = ({ matches }) => {
                         color: matches && Colors.info
                      }}
                   >
-                     <PersonIcon sx={{ color: 'white' }} />
+                     <PersonIcon sx={{ color: '#5082FC' }} />
                   </ListItemIcon>
                </ListItemButton>
             ) : (
@@ -98,7 +98,7 @@ const Actions = ({ matches }) => {
                         color: matches && Colors.info
                      }}
                   >
-                     <LoginIcon sx={{ color: 'white' }} />
+                     <LoginIcon sx={{ color: '#5082FC' }} />
                   </ListItemIcon>
                </ListItemButton>
             )}
@@ -108,3 +108,5 @@ const Actions = ({ matches }) => {
 };
 
 export default Actions;
+
+// #805AD5

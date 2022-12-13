@@ -26,6 +26,7 @@ export default function CategoriesList() {
    }, [dispatch]);
 
    return (
+      <div style={{background:'#1A202C'}}>
       <Container sx={{minHeight: '100vh', display: 'flex', justifyContent:'center'}}>
          <Grid container  justifyContent="center"  sx={{ margin: '20px 4px 10px 4px' }}>
             {isLoading ? (
@@ -41,5 +42,6 @@ export default function CategoriesList() {
             )}
          </Grid>
       </Container>
+      </div>
    );
 }

@@ -7,7 +7,8 @@ export const AboutContainer = styled(Box)(() => ({
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'center',
-   overflow: 'hidden'
+   overflow: 'hidden',
+   background: '#1A202C'
 }));
 
 export const AboutSlider = styled(Box)(({ theme }) => ({
@@ -56,13 +57,17 @@ export const TeamMemberContainer = styled(Box)(() => ({
    width: '90%',
    maxWidth: '120rem',
    margin: '0 auto',
-   position: 'relative'
+   position: 'relative',
+   borderRadius: '8px',
+   background: '#DCCDFF',
+   marginBottom: '20px'
 }));
 
 export const TeamMemberCollector = styled(Box)(() => ({
    display: 'flex',
    alignItems: 'center',
-   justifyContent: 'space-evenly'
+   justifyContent: 'space-evenly',
+   padding: '10px',
 }));
 
 export const TeamMember = styled(Box)(() => ({

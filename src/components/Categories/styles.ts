@@ -31,8 +31,8 @@ export const CategoryContent = styled(Box)(()=>({
    '&:after': {
       content: '""',
       position: 'absolute',
-      inset: '3px',
-      background: '#1A2238'
+      inset: '2px',
+      background: '#212834'
    }
 }));
 
@@ -60,8 +60,8 @@ export const CategoryImageBox = styled(Box)(()=>({
    '&:after': {
       content: '""',
       position: 'absolute',
-      inset: '3px',
-      background: '#292929'
+      inset: '2px',
+      background: '#212834'
    }
 }));
 
@@ -89,9 +89,8 @@ export const CategoryInfo = styled(Box)(()=>({
 export const CategoryDetail = styled(Typography)(({ theme })=>({
    padding: '40px',
    textAlign: 'center',
-   fontFamily: 'Ubuntu',
-   fontWeight: 600,
-   color: '#9DAAF2',
+  fontFamily: 'Aboreto',
+   color: '#5082FC',
    textTransform: 'uppercase',
     [theme.breakpoints.down('sm')]: {
       fontSize: '20px',
