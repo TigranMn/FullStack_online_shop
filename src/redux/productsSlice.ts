@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TProduct, TProductState } from '../types';
 import { getProducts } from '../api/api';
+import { doc, increment, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const initialState: TProductState = {
    isLoading: true,
@@ -36,6 +38,17 @@ const fetchProducts = createAsyncThunk('products/fetchPageProducts', async (cate
    return result;
 });
 
+const addViews = createAsyncThunk(
+   'products/addViews',
+   async ({ productId, category }: { productId: string; category: string }) => {
+      const productRef = doc(db, category, productId);
+      await updateDoc(productRef, {
+         views: increment(1)
+      });
+      return productId;
+   }
+);
+
 const productsSlice = createSlice({
    name: 'products',
    initialState,
@@ -54,9 +67,15 @@ const productsSlice = createSlice({
             state.products = [];
             state.isLoading = false;
             state.isError = true;
+         })
+         .addCase(addViews.fulfilled, (state, action) => {
+            state.products = state.products.map((el) => {
+               if (el.id === action.payload) el.views = el.views + 1;
+               return el;
+            });
          });
    }
 });
 
-export { fetchProducts };
+export { fetchProducts, addViews };
 export default productsSlice.reducer;
