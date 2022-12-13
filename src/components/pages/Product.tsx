@@ -12,19 +12,26 @@ import { Typography, Button, Box } from '@mui/material';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { addProduct } from '../../redux/userSlice';
+import { addViews } from '../../redux/productsSlice';
+type TParams = {
+   productId: string;
+   category: string;
+};
 
 function Product() {
-   const { productId, category } = useParams();
+   const { productId, category } = useParams<TParams>() as TParams;
    const [product, setProduct] = useState<TProduct>(undefined!);
    const [quantity, setQuantity] = useState<number>(1);
    const basket = useAppSelector((state) => state.user.basket);
-   const navigate = useNavigate();
-   const notify = useNotify();
-   const user = useAppSelector((state) => state.user);
+   const userId = useAppSelector((state) => state.user.id);
+   const isLogged = useAppSelector((state) => state.user.isLogged);
    const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+   const notify = useNotify();
 
    const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
    const incrDisabled = quantity >= product?.quantity - inBasket;
+   const addBtnDisabled = quantity > product?.quantity - inBasket;
    const decrDisabled = quantity <= 1;
 
    useEffect(() => {
@@ -32,7 +39,7 @@ function Product() {
          .then((res) => {
             setProduct(res);
          })
-         .catch((e) => notify(notificationTypes.ERROR, e.message));
+         .then(() => dispatch(addViews({ productId, category })));
    }, []);
 
    const decreaseQuantity = () => {
@@ -44,10 +51,10 @@ function Product() {
    };
 
    const handleAdd = async () => {
-      if (user.isLogged) {
+      if (isLogged) {
          const newProduct = {
             productId: productId,
-            userId: user?.id,
+            userId: userId,
             category: category,
             count: quantity
          } as { productId: string; userId: string; category: string };
@@ -82,6 +89,13 @@ function Product() {
                Price :{' '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.price} $
+               </Box>
+            </Typography>
+            <Typography variant="h6">
+               Views :{' '}
+               <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
+                  {' '}
+                  {product?.views}
                </Box>
             </Typography>
             <Typography variant="h6">
@@ -120,11 +134,7 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button
-                  onClick={handleAdd}
-                  disabled={product?.quantity - inBasket - quantity <= 0}
-                  variant="outlined"
-               >
+               <Button onClick={handleAdd} disabled={addBtnDisabled} variant="outlined">
                   Add to cart
                </Button>
                <Button

@@ -27,7 +27,7 @@ export default function ProductItem({ product }: ProductItemProps) {
    const userId = useAppSelector((state) => state.user.id);
    const isLogged = useAppSelector((state) => state.user.isLogged);
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
-   const basket = useAppSelector(state => state.user.basket);
+   const basket = useAppSelector((state) => state.user.basket);
    const notify = useNotify();
    const liked = useLiked(likedProducts, product.id);
    const [isLiked, setIsLiked] = useState<boolean>(liked);
@@ -39,6 +39,7 @@ export default function ProductItem({ product }: ProductItemProps) {
    }, [likedProducts]);
 
    const changeLocation = () => {
+
       navigate('/shop/' + product.category + `/${product.id}`);
    };
 
@@ -94,7 +95,12 @@ export default function ProductItem({ product }: ProductItemProps) {
                   <ProductName>{product.name}</ProductName>
                   <ProductPrice>{product.price}$</ProductPrice>
                   {product.quantity ? (
-                     <ProductActionButton disabled= {product.quantity - inBasket <= 0} onClick={handleAdd}>Add to cart</ProductActionButton>
+                     <ProductActionButton
+                        disabled={product.quantity - inBasket <= 0}
+                        onClick={handleAdd}
+                     >
+                        Add to cart
+                     </ProductActionButton>
                   ) : (
                      <ProductActionButton
                         disableRipple
