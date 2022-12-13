@@ -17,21 +17,15 @@ function Product() {
    const { productId, category } = useParams();
    const [product, setProduct] = useState<TProduct>(undefined!);
    const [quantity, setQuantity] = useState<number>(1);
-   const [incrDisabled, setIncrDisabled] = useState(false);
-   const [decrDisabled, setDecrDisabled] = useState(true);
    const basket = useAppSelector((state) => state.user.basket);
    const navigate = useNavigate();
    const notify = useNotify();
    const user = useAppSelector((state) => state.user);
-
    const dispatch = useAppDispatch();
 
    const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
-
-   useEffect(() => {
-      setIncrDisabled(quantity >= product?.quantity - inBasket);
-      setDecrDisabled(quantity <= 1);
-   }, [basket, quantity, product]);
+   const incrDisabled = quantity >= product?.quantity - inBasket;
+   const decrDisabled = quantity <= 1;
 
    useEffect(() => {
       getProduct(category as string, productId as string)
@@ -126,7 +120,11 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button onClick={handleAdd} disabled={product?.quantity - inBasket <= 0 } variant="outlined">
+               <Button
+                  onClick={handleAdd}
+                  disabled={product?.quantity - inBasket - quantity <= 0}
+                  variant="outlined"
+               >
                   Add to cart
                </Button>
                <Button

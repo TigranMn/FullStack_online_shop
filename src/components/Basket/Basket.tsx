@@ -11,7 +11,6 @@ import BasketItem from './BasketItem';
 export default function Basket() {
    const basketItems = useAppSelector((state) => state.user.basket);
    const [products, setProducts] = useState<TProduct[]>([]);
-   const [totalPrice, setTotalPrice] = useState<number>(0);
    const [isLoading, setIsLoading] = useState<boolean>(false);
    const [error, setError] = useState<boolean>(false);
    const notify = useNotify();
@@ -28,9 +27,6 @@ export default function Basket() {
          .then((res) => {
             setProducts(res);
             setIsLoading(false);
-            let result = 0;
-            res.forEach((item) => (result += item.price * item.count));
-            setTotalPrice(result);
          })
          .catch((e) => {
             setError(true);
@@ -39,9 +35,7 @@ export default function Basket() {
          });
    }, [basketItems]);
 
-   useEffect(() => {
-      setTotalPrice(products.reduce((accm, curr) => accm + curr.price * curr.count, 0));
-   }, [products]);
+   const totalPrice = products.reduce((accm, curr) => accm + curr.price, 0);
 
    async function handleRemove(id: string) {
       await dispatch(
