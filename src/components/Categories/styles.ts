@@ -1,21 +1,102 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
+import {animate,secondAnimate} from '../../animation';
 
 export const Category = styled(Box)(() => ({
-   display: 'flex',
-   justifyContent: 'center',
-   alignItems: 'center',
-   flexDirection: 'column',
-   padding: '2rem',
-   margin: '2rem 1rem',
-   border: '2px solid rgb(40, 34, 66)',
-   borderRadius: '8px'
-}));
-
-export const CategoryName = styled(Typography)(({ theme }) => ({
-   fontFamily: '"Montez" , "Cursive"',
-   [theme.breakpoints.down('sm')]: {
-      fontSize: '20px',
-      fontWeight: 'bold'
+   position : 'relative',
+   width: '350px',
+   height: '380px',
+   background: '#fff',
+   '&:hover .category-name': {
+      color: '#3778C2'
    }
 }));
+
+
+export const CategoryContent = styled(Box)(()=>({
+   position: 'absolute',
+   inset: 0,
+   background: '#000',
+   overflow: 'hidden',
+   '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: '600px',
+      height: '120px',
+      background: 'linear-gradient(transparent,#2196f3,#2196f3,#2196f3,transparent)',
+      animation: `${animate} 6s linear infinite`,
+   },
+   '&:after': {
+      content: '""',
+      position: 'absolute',
+      inset: '3px',
+      background: '#1A2238'
+   }
+}));
+
+
+export const CategoryImageBox = styled(Box)(()=>({
+   position: 'absolute',
+   top: '-50px',
+   left: '50%',
+   transform: 'translateX(-50%)',
+   width: '250px',
+   height: '250px',
+   background: '#000',
+   overflow: 'hidden',
+   '&:before': {
+      content: '""',
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: '500px',
+      height: '150px',
+      transform: 'translate(-50%,-50%)',
+      background: 'linear-gradient(transparent,#ff3c7b,#ff3c7b,#ff3c7b,transparent)',
+      animation: `${secondAnimate} 4s linear infinite`,
+   },
+   '&:after': {
+      content: '""',
+      position: 'absolute',
+      inset: '3px',
+      background: '#292929'
+   }
+}));
+
+
+export const CategoryImage = styled('img')(()=>({
+      position: 'absolute',
+      top: '10px',
+      left: '10px',
+      width: 'calc(100% - 20px)',
+      height: 'calc(100% - 20px)',
+      zIndex:1
+}));
+
+
+export const CategoryInfo = styled(Box)(()=>({
+   position: 'absolute',
+   width: '100%',
+   height: '100%',
+   display: 'flex',
+   justifyContent: 'center',
+   alignItems: 'flex-end'
+}));
+
+
+export const CategoryDetail = styled(Typography)(({ theme })=>({
+   padding: '40px',
+   textAlign: 'center',
+   fontFamily: 'Ubuntu',
+   fontWeight: 600,
+   color: '#9DAAF2',
+   textTransform: 'uppercase',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '20px',
+      fontWeight: 'bold',
+   }
+}));
+
+

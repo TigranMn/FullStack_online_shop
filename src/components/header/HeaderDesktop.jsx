@@ -36,15 +36,14 @@ const AppBarDesktop = ({ matches }) => {
                size="small"
                sx={{
                   border: '1px solid white',
-                  borderRadius: '5px'
+                  borderRadius: '5px',
+                  background: 'white'
                }}
                select
                value={language}
                onChange={(e) => setLanguage(e.target.value)}
             >
-               <MenuItem style={{ color: 'white' }} value="am">
-                  AM
-               </MenuItem>
+               <MenuItem value="am">AM</MenuItem>
                <MenuItem value="ru">RU</MenuItem>
                <MenuItem value="en">EN</MenuItem>
             </TextField>

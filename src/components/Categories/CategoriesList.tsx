@@ -26,8 +26,8 @@ export default function CategoriesList() {
    }, [dispatch]);
 
    return (
-      <Container>
-         <Grid container justifyContent="center" sx={{ margin: '20px 4px 10px 4px' }}>
+      <Container sx={{minHeight: '100vh', display: 'flex', justifyContent:'center'}}>
+         <Grid container  justifyContent="center"  sx={{ margin: '20px 4px 10px 4px' }}>
             {isLoading ? (
                <Box sx={{ display: 'flex' }}>
                   <CircularProgress />

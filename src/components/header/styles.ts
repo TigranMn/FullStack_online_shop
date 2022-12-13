@@ -5,7 +5,7 @@ import '@fontsource/montez';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 
 export const AppBarContainer = styled(Box)(() => ({
-   background: 'linear-gradient(to bottom, #16222a, #3a6073)',
+   background: '#1A2238',
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',

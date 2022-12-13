@@ -96,8 +96,8 @@ export default function About() {
                </TeamMember>
                <AboutMySelf data-aos="fade-up-left" data-aos-duration="1500">
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        Data Lead Architect
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>
@@ -112,8 +112,8 @@ export default function About() {
             <TeamMemberCollector>
                <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        Software Lead Architect
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>
@@ -212,8 +212,8 @@ export default function About() {
                   data-aos-duration="1000"
                >
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        SOFTWARE TESTER
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>
@@ -228,8 +228,8 @@ export default function About() {
             <TeamMemberCollector>
                <AboutMySelf data-aos="fade-right">
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        WEB ANALYTICS DEVELOPER
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>
@@ -320,8 +320,8 @@ export default function About() {
                </TeamMember>
                <AboutMySelf data-aos="zoom-out">
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        USER ACCEPTANCE TESTER
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>
@@ -336,8 +336,8 @@ export default function About() {
             <TeamMemberCollector>
                <AboutMySelf data-aos="fade-up">
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                       QA Engineer
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>
@@ -428,8 +428,8 @@ export default function About() {
                </TeamMember>
                <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
                   <AboutMySelfHeading>
-                     <Typography variant="h1" sx={{ fontSize: '10rem' }}>
-                        About
+                     <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                         Design Engineer
                      </Typography>
                   </AboutMySelfHeading>
                   <Typography component={'p'}>

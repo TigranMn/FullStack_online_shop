@@ -98,7 +98,7 @@ const Actions = ({ matches }) => {
                         color: matches && Colors.info
                      }}
                   >
-                     <LoginIcon />
+                     <LoginIcon sx={{ color: 'white' }} />
                   </ListItemIcon>
                </ListItemButton>
             )}

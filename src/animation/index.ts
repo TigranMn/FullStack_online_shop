@@ -11,3 +11,28 @@ export const aboutMemberSlider = keyframes`
 }
 
 `;
+
+
+
+export const animate = keyframes`
+0%{
+   transform: translate(-50%,-50%) rotate(0deg)
+}
+
+100%{
+   transform: translate(-50%,-50%) rotate(360deg)
+}    
+
+`;
+
+
+export const secondAnimate = keyframes`
+0%{
+   transform: translate(-50%,-50%) rotate(360deg)
+}
+
+100%{
+   transform: translate(-50%,-50%) rotate(0deg)
+}    
+
+`;
