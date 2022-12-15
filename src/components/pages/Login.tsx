@@ -1,9 +1,13 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { FormEvent, useEffect, useState } from 'react';
+//Actions
 import { signIn, signUp } from '../../redux/userSlice';
+//Hooks
 import { useNavigate } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
+import { useAppDispatch, useAppSelector } from '../../store';
+//Types
 import { notificationTypes } from '../../types';
+//Styles
 import '../../styles/loginStyle.css';
 
 const Login = () => {

@@ -1,5 +1,7 @@
+//MUI
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
+
 import {animate,secondAnimate} from '../../animation';
 
 export const Category = styled(Box)(() => ({

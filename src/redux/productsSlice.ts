@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import { TProduct, TProductState } from '../types';
+
 import { getProducts } from '../api/api';
 import { doc, increment, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';

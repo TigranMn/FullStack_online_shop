@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+//Hooks
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import ProductItem from './ProductItem';
-import { fetchProducts } from '../../redux/productsSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
+//Components
+import ProductItem from './ProductItem';
 import Search from '../Search/Search';
+//Actions
+import { fetchProducts } from '../../redux/productsSlice';
+//MUI
 import {
    Container,
    Grid,
    Typography,
-   Pagination,
    Box,
    InputLabel,
    FormControl,
@@ -16,7 +19,9 @@ import {
    MenuItem
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+//Types
 import { TProduct } from '../../types';
+import MyPagination from '../Pagination/Pagination';
 
 export default function ProductsList() {
    const { category } = useParams();
@@ -95,17 +100,13 @@ export default function ProductsList() {
                      })
                   )}
                </Grid>
-               <Pagination
-                  shape="rounded"
-                  showFirstButton
-                  showLastButton
-                  variant="outlined"
-                  page={currentPage}
-                  onChange={(_, page) => {
-                     setCurrentPage(page);
-                  }}
-                  count={pages}
-               />
+					{products.products.length ? (
+                     <MyPagination
+                        onChange={setCurrentPage}
+                        pages={pages}
+                        currentPage={currentPage}
+                     />
+                  ) : null}
             </Grid>
          </Container>
       </>

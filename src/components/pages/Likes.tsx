@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { getProduct } from '../../api/api';
+//Hooks
+import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../store';
-import { notificationTypes, TProduct } from '../../types';
 import { useNotify } from '../../hooks/useNotify';
-import ProductItem from '../Products/ProductItem';
+//MUI
 import CircularProgress from '@mui/material/CircularProgress';
 import { Container, Box } from '@mui/material';
+//Utils
+import { getProduct } from '../../api/api';
+//Types
+import { notificationTypes, TProduct } from '../../types';
+//Components
+import ProductItem from '../Products/ProductItem';
 
 export default function Likes() {
    const likedProducts = useAppSelector((state) => state.user.likedProducts);

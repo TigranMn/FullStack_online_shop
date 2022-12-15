@@ -1,6 +1,13 @@
-import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Category, CategoryDetail,CategoryContent,CategoryImageBox,CategoryImage,CategoryInfo } from './styles';
+//Styles
+import {
+   Category,
+   CategoryDetail,
+   CategoryContent,
+   CategoryImageBox,
+   CategoryImage,
+   CategoryInfo
+} from './styles';
 
 type TCategoryItemProps = {
    category: {
@@ -11,19 +18,21 @@ type TCategoryItemProps = {
    };
 };
 
-const CategoryItem: FC<TCategoryItemProps> = ({ category }) => {
+const CategoryItem = ({ category }: TCategoryItemProps) => {
    return (
       <Link to={`/shop/${category.name.toLowerCase()}`}>
          <Category>
             <CategoryContent></CategoryContent>
             <CategoryImageBox>
                <CategoryImage
-               src='https://m.media-amazon.com/images/S/aplus-media/vc/09b95e40-642d-4bc0-926e-5d3243ba4a63.__CR0,0,300,300_PT0_SX300_V1___.jpg'
-               alt={category.name } 
+                  src="https://m.media-amazon.com/images/S/aplus-media/vc/09b95e40-642d-4bc0-926e-5d3243ba4a63.__CR0,0,300,300_PT0_SX300_V1___.jpg"
+                  alt={category.name}
                />
             </CategoryImageBox>
             <CategoryInfo>
-               <CategoryDetail variant="h5" className='category-name'>{category.name}</CategoryDetail>
+               <CategoryDetail variant="h5" className="category-name">
+                  {category.name}
+               </CategoryDetail>
             </CategoryInfo>
          </Category>
       </Link>

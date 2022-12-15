@@ -1,5 +1,5 @@
 import { TextField } from '@mui/material';
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 type TSearchProps = {
    handleSearch: (text: string) => void;

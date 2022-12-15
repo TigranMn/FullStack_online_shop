@@ -1,4 +1,4 @@
-import { AppBarContainer, AppBarHeader } from './styles';
+//MUI
 import {
    IconButton,
    Box,
@@ -11,14 +11,16 @@ import {
    Divider
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useState } from 'react';
-import Actions from './Actions';
-import { useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-import CallIcon from '@mui/icons-material/Call';
 import InfoIcon from '@mui/icons-material/Info';
-import React from 'react';
+import CallIcon from '@mui/icons-material/Call';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+//Components
+import { AppBarContainer, AppBarHeader } from './styles';
+import Actions from './Actions';
+//Hooks
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AppBarMobile = ({ matches }: { matches: boolean }) => {
    const [language, setLanguage] = useState('am');
