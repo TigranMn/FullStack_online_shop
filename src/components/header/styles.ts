@@ -1,8 +1,10 @@
+//MUI
 import { styled } from '@mui/material/styles';
 import { Typography, List, Box } from '@mui/material';
-import { Colors } from '../../styles/Theme';
-import '@fontsource/montez';
 import Badge, { BadgeProps } from '@mui/material/Badge';
+import { Colors } from '../../styles/Theme';
+//Fonts
+import '@fontsource/montez';
 
 export const AppBarContainer = styled(Box)(() => ({
    background: '#212834',

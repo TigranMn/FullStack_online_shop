@@ -1,7 +1,8 @@
+//MUI
 import { Box, IconButton, Tooltip } from '@mui/material';
-import React from 'react';
-import { TProduct } from '../../types';
 import DeleteIcon from '@mui/icons-material/Delete';
+
+import { TProduct } from '../../types';
 
 type TBasketItemProps = {
    product: TProduct;

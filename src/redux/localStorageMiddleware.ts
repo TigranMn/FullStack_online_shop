@@ -4,8 +4,10 @@ import {
    isAnyOf,
    createListenerMiddleware
 } from '@reduxjs/toolkit';
-import { TUser } from '../types';
+//Actions
 import { signIn, signUp } from './userSlice';
+
+import { TUser } from '../types';
 
 const signInListenerMiddleware = createListenerMiddleware();
 

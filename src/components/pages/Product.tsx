@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
+//Hooks
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useNotify } from '../../hooks/useNotify';
+import { useAppDispatch, useAppSelector } from '../../store';
+//Utils
 import { getProduct } from '../../api/api';
+//Types
 import { notificationTypes, TProduct } from '../../types';
+//MUI
 import {
    ProductContainer,
    ProductContent,
@@ -9,8 +15,7 @@ import {
    ProductTitle
 } from '../../styles/ProductItem';
 import { Typography, Button, Box } from '@mui/material';
-import { useNotify } from '../../hooks/useNotify';
-import { useAppDispatch, useAppSelector } from '../../store';
+//Actions
 import { addProduct } from '../../redux/userSlice';
 
 function Product() {

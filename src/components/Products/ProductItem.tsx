@@ -1,6 +1,12 @@
-import React, { useEffect, useState } from 'react';
+//Hooks
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLiked } from '../../hooks/useLiked';
+import { useNotify } from '../../hooks/useNotify';
+import { useAppDispatch, useAppSelector } from '../../store';
+//Types
 import { notificationTypes, TProduct } from '../../types';
+//Mui
 import { Grid } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -12,10 +18,8 @@ import {
    ProductName,
    ProductPrice
 } from './styles';
-import { useAppDispatch, useAppSelector } from '../../store';
+//Actions
 import { addProduct, dislikeProduct, likeProduct } from '../../redux/userSlice';
-import { useNotify } from '../../hooks/useNotify';
-import { useLiked } from '../../hooks/useLiked';
 
 type ProductItemProps = {
    product: TProduct;

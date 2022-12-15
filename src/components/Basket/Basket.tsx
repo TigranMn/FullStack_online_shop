@@ -1,10 +1,16 @@
-import { CircularProgress } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { getProduct } from '../../api/api';
+//Hooks
+import { useEffect, useState } from 'react';
 import { useNotify } from '../../hooks/useNotify';
+//MUI
+import { CircularProgress } from '@mui/material';
+//Utils
+import { getProduct } from '../../api/api';
+//Redux
 import { removeProduct } from '../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
+//Types
 import { notificationTypes, TProduct } from '../../types';
+//Components
 import BasketFooter from './BasketFooter';
 import BasketItem from './BasketItem';
 

@@ -1,6 +1,7 @@
-import React from 'react';
+//Hooks
 import { useTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
+//Components
 import AppBarDesktop from './HeaderDesktop';
 import AppBarMobile from './HeaderMobile';
 

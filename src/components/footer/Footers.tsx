@@ -1,10 +1,8 @@
+//MUI
 import { Box, Grid, List, ListItemText, Typography } from '@mui/material';
+//Styles
 import { FooterTitle } from './styles';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import { Colors } from '../../styles/Theme';
-import React from 'react';
+//Components
 import SocialNetwork from '../About/socialNetwork/SocialNetwork';
 
 const Footer = () => {

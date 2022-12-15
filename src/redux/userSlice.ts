@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+//Firebase
 import {
    createUserWithEmailAndPassword,
    signInWithEmailAndPassword,
@@ -15,8 +16,10 @@ import {
    setDoc,
    where
 } from 'firebase/firestore';
-import { getUser } from '../api/api';
 import { auth, db } from '../firebase';
+//Utils
+import { getUser } from '../api/api';
+//Types
 import { TBasketType, TLikedType } from '../types';
 
 type TState = {

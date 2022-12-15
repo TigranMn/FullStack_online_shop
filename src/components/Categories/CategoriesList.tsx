@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import CategoryItem from './CategoryItem';
+//Hooks
+import { useEffect, useState } from 'react';
+//Redux
 import { getCategories } from '../../redux/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
+//MUI
 import { Container, Grid, Typography, CircularProgress, Box } from '@mui/material';
+//Components
+import CategoryItem from './CategoryItem';
+
+
 
 export default function CategoriesList() {
    const [isLoading, setIsLoading] = useState<boolean>(false);
