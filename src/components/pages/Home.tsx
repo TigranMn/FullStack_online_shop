@@ -7,7 +7,7 @@ import Slider from '../Slider/Slider';
 export default function Home() {
    return (
       <ThemeProvider theme={theme}>
-         <Container maxWidth="xl">
+         <Container maxWidth="xl" sx={{minHeight: '100vh', background:'#F7F4FF'}}>
             <Slider />
          </Container>
       </ThemeProvider>

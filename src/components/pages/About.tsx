@@ -2,7 +2,7 @@ import { Typography, List, ListItem, ListItemIcon } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { Container } from '@mui/material';
+import { Container, Box } from '@mui/material';
 import React from 'react';
 
 import {
@@ -54,6 +54,7 @@ export default function About() {
                </AboutImagesContainer>
             </AboutSlider>
          </AboutContainer>
+         <Box style={{background: '#1A202C'}}>
          <TeamMemberContainer>
             <TeamMemberCollector>
                <TeamMember data-aos="fade-right">
@@ -109,7 +110,7 @@ export default function About() {
                   </Typography>
                </AboutMySelf>
             </TeamMemberCollector>
-            <TeamMemberCollector>
+            <TeamMemberCollector sx={{background: '#2B3548', color: '#DCCDFF'}}>
                <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
                   <AboutMySelfHeading>
                      <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
@@ -225,7 +226,7 @@ export default function About() {
                   </Typography>
                </AboutMySelf>
             </TeamMemberCollector>
-            <TeamMemberCollector>
+            <TeamMemberCollector sx={{background: '#2B3548',color: '#DCCDFF'}}>
                <AboutMySelf data-aos="fade-right">
                   <AboutMySelfHeading>
                      <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
@@ -333,7 +334,7 @@ export default function About() {
                   </Typography>
                </AboutMySelf>
             </TeamMemberCollector>
-            <TeamMemberCollector>
+            <TeamMemberCollector sx={{background: '#2B3548',color: '#DCCDFF'}}>
                <AboutMySelf data-aos="fade-up">
                   <AboutMySelfHeading>
                      <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
@@ -442,6 +443,7 @@ export default function About() {
                </AboutMySelf>
             </TeamMemberCollector>
          </TeamMemberContainer>
+         </Box>
          <Container sx={{ maxWidth: '1440px', margin: '0 , auto' }}>
             <AccordionPage />
          </Container>

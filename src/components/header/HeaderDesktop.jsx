@@ -13,6 +13,14 @@ const AppBarDesktop = ({ matches }) => {
    return (
       <AppBarContainer>
          <AppBarHeader
+            sx={{
+               color: '#5082FC',
+               height: '50px',
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center',
+               fontSize: '38px'
+            }}
             onClick={() => {
                navigate('/');
             }}
@@ -21,14 +29,14 @@ const AppBarDesktop = ({ matches }) => {
          </AppBarHeader>
          <MyList type="row">
             <NavLink to={'/'}>
-               <h3 style={{ color: 'white' }}>Home</h3>
+               <h4 style={{ color: 'white' }}>Home</h4>
             </NavLink>
             <NavLink to={'/shop'}>{<h3 style={{ color: 'white' }}>Shop</h3>}</NavLink>
             <NavLink to={'/contact'}>
-               <h3 style={{ color: 'white' }}>Contact</h3>
+               <h4 style={{ color: 'white' }}>Contact</h4>
             </NavLink>
             <NavLink to={'/about'}>
-               <h3 style={{ color: 'white' }}>About</h3>
+               <h4 style={{ color: 'white' }}>About</h4>
             </NavLink>
          </MyList>
          <Box width={'90px'} sx={{ outline: 'none' }}>
