@@ -40,6 +40,9 @@ const AppBarDesktop = ({ matches }) => {
             <NavLink to={'/about'}>
                <h4 style={{ color: 'white' }}>About</h4>
             </NavLink>
+            <NavLink to={'/faq'}>
+               <h4 style={{ color: 'white' }}>FAQ</h4>
+            </NavLink>
          </MyList>
          <Box width={'90px'} sx={{ outline: 'none' }}>
             <TextField

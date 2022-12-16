@@ -4,19 +4,25 @@ import { Box, Grid, List, ListItemText, Typography } from '@mui/material';
 import { FooterTitle } from './styles';
 //Components
 import SocialNetwork from '../About/socialNetwork/SocialNetwork';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+   const navigate = useNavigate();
+
+   const handleNavigate = () => {
+      navigate('/faq');
+   };
+
    return (
       <Box
          sx={{
-
             marginTop: 'auto',
             background: '#212834',
             color: 'white',
             p: { xs: 4, md: 10 },
             pt: 12,
             pb: 12,
-            fontSize: { xs: '12px', md: '14px' },
+            fontSize: { xs: '12px', md: '14px' }
          }}
       >
          <Grid container spacing={2} justifyContent={'center'}>
@@ -27,9 +33,6 @@ const Footer = () => {
                   electronic commerce which allows consumers to directly buy goods or services from
                   a seller over the Internet using a web browser or a mobile app.
                </Typography>
-               <Box sx={{ mt: 4 }}>
-                  <SocialNetwork />
-               </Box>
             </Grid>
             <Grid item md={6} lg={2}>
                <FooterTitle variant="body1">Category</FooterTitle>
@@ -70,6 +73,14 @@ const Footer = () => {
                      </Typography>
                   </ListItemText>
                </List>
+            </Grid>
+            <Grid item md={6} lg={2}>
+               <h1 style={{ cursor: 'pointer' }} onClick={handleNavigate}>
+                  FAQ
+               </h1>
+               <Box sx={{ mt: 4 }}>
+                  <SocialNetwork />
+               </Box>
             </Grid>
          </Grid>
       </Box>
