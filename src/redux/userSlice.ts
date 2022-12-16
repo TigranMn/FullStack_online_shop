@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 //Firebase
 import {
    createUserWithEmailAndPassword,
@@ -20,7 +20,7 @@ import { auth, db } from '../firebase';
 //Utils
 import { getUser } from '../api/api';
 //Types
-import { TBasketType, TLikedType } from '../types';
+import { TBasketType, TLikedType, TUser } from '../types';
 
 type TState = {
    email: string | null;
@@ -191,7 +191,6 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
-
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -202,7 +201,7 @@ const userSlice = createSlice({
          state.likedProducts = [];
          state.basket = [];
       },
-      setUser(state, action) {
+      setUser(state, action: PayloadAction<TUser>) {
          const { email, token, id, lastName, name, likedProducts, basket } = action.payload;
          state.email = email;
          state.token = token;
@@ -268,17 +267,17 @@ const userSlice = createSlice({
                });
             } else {
                console.log(count);
-               
+
                state.basket.push({ productId, category, count });
             }
          })
-         .addCase(removeProduct.fulfilled, (state, action) => {
+         .addCase(removeProduct.fulfilled, (state, action: PayloadAction<string>) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
          })
-         .addCase(likeProduct.fulfilled, (state, action) => {
+         .addCase(likeProduct.fulfilled, (state, action: PayloadAction<TLikedType>) => {
             state.likedProducts.push(action.payload);
          })
-         .addCase(dislikeProduct.fulfilled, (state, action) => {
+         .addCase(dislikeProduct.fulfilled, (state, action: PayloadAction<string>) => {
             state.likedProducts = state.likedProducts.filter(
                (el) => el.productId !== action.payload
             );

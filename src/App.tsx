@@ -19,6 +19,7 @@ import Faq from './components/pages/Faq';
 import './styles/toast.css';
 import { setUser } from './redux/userSlice';
 import { getUser } from './api/api';
+import { TUser } from './types';
 
 function App() {
    const isLogged = useAppSelector((state) => state.user.isLogged);
@@ -28,7 +29,7 @@ function App() {
    useEffect(() => {
       if (isLogged) {
          getUser(id).then((res) => {
-            dispatch(setUser(res.snaps.docs[0].data()));
+            dispatch(setUser(res.snaps.docs[0].data() as TUser));
          });
       }
    }, []);
