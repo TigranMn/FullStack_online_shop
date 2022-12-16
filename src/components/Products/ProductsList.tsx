@@ -81,7 +81,7 @@ export default function ProductsList() {
                <InputLabel>Pages</InputLabel>
                <Select
                   value={itemCount}
-                  label="Pages"
+                  label='Pages'
                   onChange={(e) => setItemCount(+e.target.value)}
                >
                   <MenuItem value={6}>6</MenuItem>
@@ -91,16 +91,16 @@ export default function ProductsList() {
             </FormControl>
             <br />
             <br />
-            <div className="productsWrapper">
-               <div className="filter">
+            <div className='productsWrapper'>
+               <div className='filter'>
                   <Box sx={{ minWidth: 120 }}>
                      <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Brand</InputLabel>
+                        <InputLabel id='demo-simple-select-label'>Brand</InputLabel>
                         <Select
-                           labelId="demo-simple-select-label"
-                           id="demo-simple-select"
+                           labelId='demo-simple-select-label'
+                           id='demo-simple-select'
                            value={brand}
-                           label="Brand"
+                           label='Brand'
                            onChange={handleChangeBrand}
                         >
                            <MenuItem value={'brand1'}>Brand_1</MenuItem>
@@ -112,12 +112,12 @@ export default function ProductsList() {
                   <br />
                   <Box sx={{ minWidth: 120 }}>
                      <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Gender</InputLabel>
+                        <InputLabel id='demo-simple-select-label'>Gender</InputLabel>
                         <Select
-                           labelId="demo-simple-select-label"
-                           id="demo-simple-select"
+                           labelId='demo-simple-select-label'
+                           id='demo-simple-select'
                            value={gender}
-                           label="Gender"
+                           label='Gender'
                            onChange={handleChangeGender}
                         >
                            <MenuItem value={'male'}>Male</MenuItem>
@@ -133,17 +133,17 @@ export default function ProductsList() {
                         marginLeft: '-15px'
                      }}
                   >
-                     <InputLabel id="demo-simple-select-label">Price</InputLabel>
-                     <TextField id="standard-basic" label="Min" variant="standard" />
-                     <TextField id="standard-basic" label="Max" variant="standard" />
+                     <InputLabel id='demo-simple-select-label'>Price</InputLabel>
+                     <TextField id='standard-basic' label='Min' variant='standard' />
+                     <TextField id='standard-basic' label='Max' variant='standard' />
                   </Box>
                </div>
-               <Grid container justifyContent="center" sx={{ margin: '20px 4px 20px 4px' }}>
+               <Grid container justifyContent='center' sx={{ margin: '20px 4px 20px 4px' }}>
                   <Grid
                      container
                      display={'flex'}
                      spacing={{ xs: 2, md: 16 }}
-                     justifyContent="center"
+                     justifyContent='center'
                      marginBottom={'2rem'}
                   >
                      {products.isLoading ? (

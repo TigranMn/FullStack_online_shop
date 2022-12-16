@@ -37,10 +37,17 @@ export default function Likes() {
          });
    }, []);
 
-
    return (
-      <Container >
-         <Box sx={{display: 'flex', flexWrap : 'wrap', gap: '30px', justifyContent : 'stretch', alignItems : 'center', }}  >
+      <Container>
+         <Box
+            sx={{
+               display: 'flex',
+               flexWrap: 'wrap',
+               gap: '30px',
+               justifyContent: 'stretch',
+               alignItems: 'center'
+            }}
+         >
             {isLoading ? (
                <CircularProgress />
             ) : error ? (
@@ -50,10 +57,9 @@ export default function Likes() {
                   return <ProductItem key={el.id} product={el} />;
                })
             ) : (
-               <p style={{width : '100%', textAlign : 'center'}} >Nothing in liked</p>
+               <p style={{ width: '100%', textAlign: 'center' }}>Nothing in liked</p>
             )}
          </Box>
-
       </Container>
    );
 }

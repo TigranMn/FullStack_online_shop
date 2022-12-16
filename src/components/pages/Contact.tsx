@@ -9,49 +9,49 @@ export default function Contact() {
                <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item>
                      <TextField
-                        color="success"
-                        label="First Name"
-                        placeholder="Enter your name"
+                        color='success'
+                        label='First Name'
+                        placeholder='Enter your name'
                         fullWidth
                         required
                      />
                   </Grid>
                   <Grid xs={12} sm={6} item>
                      <TextField
-                        color="success"
-                        label="Last Name"
-                        placeholder="Enter your last name"
+                        color='success'
+                        label='Last Name'
+                        placeholder='Enter your last name'
                         fullWidth
                         required
                      />
                   </Grid>
                   <Grid xs={12} item>
                      <TextField
-                        color="success"
-                        type="email"
-                        label="Email"
-                        placeholder="Enter email"
+                        color='success'
+                        type='email'
+                        label='Email'
+                        placeholder='Enter email'
                         fullWidth
                         required
                      />
                   </Grid>
                   <Grid xs={12} item>
                      <TextField
-                        color="success"
-                        type="tel"
-                        label="Phone"
-                        placeholder="Enter phone number"
+                        color='success'
+                        type='tel'
+                        label='Phone'
+                        placeholder='Enter phone number'
                         fullWidth
                         required
                      />
                   </Grid>
                   <Grid xs={12} item>
                      <TextField
-                        color="success"
-                        label="Message"
+                        color='success'
+                        label='Message'
                         multiline
                         rows={4}
-                        placeholder="Type your message here"
+                        placeholder='Type your message here'
                         fullWidth
                         required
                      />
@@ -62,8 +62,8 @@ export default function Contact() {
                            background: 'rgb(103,173,75)',
                            '&:hover': { background: 'rgba(103,173,75,0.8)' }
                         }}
-                        type="submit"
-                        variant="contained"
+                        type='submit'
+                        variant='contained'
                         fullWidth
                      >
                         Submit

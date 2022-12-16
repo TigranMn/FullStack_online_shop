@@ -1,9 +1,8 @@
 //MUI
-import { Typography, List, ListItem, ListItemIcon } from '@mui/material';
+import { Typography, List, ListItem, ListItemIcon, Box } from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { Container, Box } from '@mui/material';
 //Components
 import {
    TeamMemberContainer,
@@ -23,21 +22,21 @@ export default function About() {
          <Box style={{ background: '#1A202C' }}>
             <TeamMemberContainer>
                <TeamMemberCollector>
-                  <TeamMember data-aos="fade-right">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/suren.PNG" alt="teamMember" />
+                  <TeamMember data-aos='fade-right'>
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/suren.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Suren Zaqaryan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -61,9 +60,9 @@ export default function About() {
                         </TeamMemberDetails>
                      </TeamMemberInfo>
                   </TeamMember>
-                  <AboutMySelf data-aos="fade-up-left" data-aos-duration="1500">
+                  <AboutMySelf data-aos='fade-up-left' data-aos-duration='1500'>
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            Data Lead Architect
                         </Typography>
                      </AboutMySelfHeading>
@@ -77,9 +76,9 @@ export default function About() {
                   </AboutMySelf>
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
+                  <AboutMySelf data-aos='fade-up' data-aos-duration='3000'>
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            Software Lead Architect
                         </Typography>
                      </AboutMySelfHeading>
@@ -92,24 +91,24 @@ export default function About() {
                      </Typography>
                   </AboutMySelf>
                   <TeamMember
-                     data-aos="flip-left"
-                     data-aos-easing="ease-out-cubic"
-                     data-aos-duration="2000"
+                     data-aos='flip-left'
+                     data-aos-easing='ease-out-cubic'
+                     data-aos-duration='2000'
                   >
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/tigranM.PNG" alt="teamMember" />
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/tigranM.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Tigran Mnatsakanyan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -135,21 +134,21 @@ export default function About() {
                   </TeamMember>
                </TeamMemberCollector>
                <TeamMemberCollector>
-                  <TeamMember data-aos="fade-up" data-aos-anchor-placement="center-center">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/narek.PNG" alt="teamMember" />
+                  <TeamMember data-aos='fade-up' data-aos-anchor-placement='center-center'>
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/narek.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Narek Hovakimyan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -174,12 +173,12 @@ export default function About() {
                      </TeamMemberInfo>
                   </TeamMember>
                   <AboutMySelf
-                     data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
+                     data-aos='fade-up'
+                     data-aos-anchor-placement='top-center'
+                     data-aos-duration='1000'
                   >
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            SOFTWARE TESTER
                         </Typography>
                      </AboutMySelfHeading>
@@ -193,9 +192,9 @@ export default function About() {
                   </AboutMySelf>
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos="fade-right">
+                  <AboutMySelf data-aos='fade-right'>
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            WEB ANALYTICS DEVELOPER
                         </Typography>
                      </AboutMySelfHeading>
@@ -207,21 +206,21 @@ export default function About() {
                         English. Many desktop publishing
                      </Typography>
                   </AboutMySelf>
-                  <TeamMember data-aos="fade-down-left" data-aos-duration="2000">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/shahen.PNG" alt="teamMember" />
+                  <TeamMember data-aos='fade-down-left' data-aos-duration='2000'>
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/shahen.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Shahen Sinanyan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -247,21 +246,21 @@ export default function About() {
                   </TeamMember>
                </TeamMemberCollector>
                <TeamMemberCollector>
-                  <TeamMember data-aos="flip-up">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/razmik.PNG" alt="teamMember" />
+                  <TeamMember data-aos='flip-up'>
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/razmik.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Razmik Kocharyan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -285,9 +284,9 @@ export default function About() {
                         </TeamMemberDetails>
                      </TeamMemberInfo>
                   </TeamMember>
-                  <AboutMySelf data-aos="zoom-out">
+                  <AboutMySelf data-aos='zoom-out'>
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            USER ACCEPTANCE TESTER
                         </Typography>
                      </AboutMySelfHeading>
@@ -301,9 +300,9 @@ export default function About() {
                   </AboutMySelf>
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos="fade-up">
+                  <AboutMySelf data-aos='fade-up'>
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            QA Engineer
                         </Typography>
                      </AboutMySelfHeading>
@@ -315,21 +314,21 @@ export default function About() {
                         English. Many desktop publishing
                      </Typography>
                   </AboutMySelf>
-                  <TeamMember data-aos="zoom-in-up" data-aos-duration="3000">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/erik.PNG" alt="teamMember" />
+                  <TeamMember data-aos='zoom-in-up' data-aos-duration='3000'>
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/erik.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Erik Harutyunyan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -356,24 +355,24 @@ export default function About() {
                </TeamMemberCollector>
                <TeamMemberCollector>
                   <TeamMember
-                     data-aos="fade-down"
-                     data-aos-easing="linear"
-                     data-aos-duration="1500"
+                     data-aos='fade-down'
+                     data-aos-easing='linear'
+                     data-aos-duration='1500'
                   >
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/tigran.PNG" alt="teamMember" />
+                     <TeamMemberImageBox className='TeamMemberImageBox'>
+                        <TeamMemberImage src='/images/teamMember/tigran.PNG' alt='teamMember' />
                      </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
+                     <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
                            <Typography
-                              variant="h6"
+                              variant='h6'
                               sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
                            >
                               Tigran Petrosyan
                            </Typography>
                            <Typography
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
+                              component='span'
                            >
                               Junior software engineer
                            </Typography>
@@ -397,9 +396,9 @@ export default function About() {
                         </TeamMemberDetails>
                      </TeamMemberInfo>
                   </TeamMember>
-                  <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
+                  <AboutMySelf data-aos='fade-up' data-aos-duration='3000'>
                      <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
+                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
                            Design Engineer
                         </Typography>
                      </AboutMySelfHeading>

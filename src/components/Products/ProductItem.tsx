@@ -43,7 +43,6 @@ export default function ProductItem({ product }: ProductItemProps) {
    }, [likedProducts]);
 
    const changeLocation = () => {
-
       navigate('/shop/' + product.category + `/${product.id}`);
    };
 
@@ -93,7 +92,7 @@ export default function ProductItem({ product }: ProductItemProps) {
          <Grid item key={product?.id}>
             <Product>
                <ProductBox>
-                  <ProductImages onClick={changeLocation} src={product.imgUrl} alt="productImg" />
+                  <ProductImages onClick={changeLocation} src={product.imgUrl} alt='productImg' />
                </ProductBox>
                <ProductContent>
                   <ProductName>{product.name}</ProductName>

@@ -16,9 +16,9 @@ function Search({ handleSearch }: TSearchProps) {
 
    return (
       <TextField
-         id="standard-basic"
-         label="Search"
-         variant="standard"
+         id='standard-basic'
+         label='Search'
+         variant='standard'
          value={text}
          onChange={(e) => {
             handleOnChange(e as ChangeEvent<HTMLInputElement>);

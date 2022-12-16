@@ -14,57 +14,57 @@ export default function Home() {
             <AboutSlider>
                <AboutImagesContainer sx={{ '--i': '1;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '2;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '3;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '4;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '5;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '6;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '7;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
                <AboutImagesContainer sx={{ '--i': '8;' }}>
                   <AboutImages
-                     src="https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991"
-                     alt="member"
+                     src='https://cdn.shopify.com/s/files/1/0074/5432/6835/products/CCCP-CP-7077-66-R_1800x1800.jpg?v=1638468991'
+                     alt='member'
                   />
                </AboutImagesContainer>
             </AboutSlider>
          </AboutContainer>
          <ThemeProvider theme={theme}>
             <Container
-               maxWidth="xl"
+               maxWidth='xl'
                sx={{
                   minHeight: '100vh',
                   background: 'linear-gradient(to right, #bdc3c7, #2c3e50)'

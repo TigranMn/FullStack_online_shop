@@ -191,7 +191,6 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
-
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -268,7 +267,7 @@ const userSlice = createSlice({
                });
             } else {
                console.log(count);
-               
+
                state.basket.push({ productId, category, count });
             }
          })
