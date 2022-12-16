@@ -24,15 +24,7 @@ export type TCategory = {
    description: string;
 };
 
-export type TUser = {
-   id: string | null;
-   email: string | null;
-   token: string | null;
-   name: string | null;
-   lastName: string | null;
-   basket: string[];
-   likedProducts: string[];
-};
+
 export type TLikedType = {
    category: string;
    productId: string;
@@ -42,6 +34,16 @@ export type TBasketType = {
    productId: string;
    category: string;
    count: number;
+};
+
+export type TUser = {
+   id: string | null;
+   email: string | null;
+   token: string | null;
+   name: string | null;
+   lastName: string | null;
+   basket: TBasketType[];
+   likedProducts: TLikedType[];
 };
 
 export enum notificationTypes {

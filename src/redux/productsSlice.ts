@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TProduct, TProductState } from '../types';
 
@@ -57,7 +57,7 @@ const productsSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder
-         .addCase(fetchProducts.fulfilled, (state, action) => {
+         .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<TProduct[]>) => {
             state.isLoading = false;
             state.products = action.payload;
          })
@@ -70,7 +70,7 @@ const productsSlice = createSlice({
             state.isLoading = false;
             state.isError = true;
          })
-         .addCase(addViews.fulfilled, (state, action) => {
+         .addCase(addViews.fulfilled, (state, action: PayloadAction<string>) => {
             state.products = state.products.map((el) => {
                if (el.id === action.payload) el.views = el.views + 1;
                return el;
