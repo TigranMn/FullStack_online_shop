@@ -1,11 +1,8 @@
 import { Box, Grid, List, ListItemText, Typography } from '@mui/material';
 import { FooterTitle } from './styles';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import { Colors } from '../../styles/Theme';
 import React from 'react';
 import SocialNetwork from '../About/socialNetwork/SocialNetwork';
+import Maps from '../Maps/Maps';
 
 const Footer = () => {
    return (
@@ -21,6 +18,9 @@ const Footer = () => {
             fontSize: { xs: '12px', md: '14px' },
          }}
       >
+         <Box>
+            <Maps/>
+         </Box>
          <Grid container spacing={2} justifyContent={'center'}>
             <Grid item md={6} lg={4}>
                <FooterTitle variant="body1">About</FooterTitle>
@@ -32,6 +32,8 @@ const Footer = () => {
                <Box sx={{ mt: 4 }}>
                   <SocialNetwork />
                </Box>
+               
+             
             </Grid>
             <Grid item md={6} lg={2}>
                <FooterTitle variant="body1">Category</FooterTitle>
