@@ -7,19 +7,19 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 const SocialNetwork = () => {
    return (
       <Box sx={{ display: 'flex' }}>
-         <Tooltip title="Facebook">
-            <IconButton color="info">
-               <FacebookIcon fontSize="large" />
+         <Tooltip title='Facebook'>
+            <IconButton color='info'>
+               <FacebookIcon fontSize='large' />
             </IconButton>
          </Tooltip>
-         <Tooltip title="Instagram">
-            <IconButton color="error">
-               <InstagramIcon fontSize="large" />
+         <Tooltip title='Instagram'>
+            <IconButton color='error'>
+               <InstagramIcon fontSize='large' />
             </IconButton>
          </Tooltip>
-         <Tooltip title="Twitter">
-            <IconButton color="info">
-               <TwitterIcon fontSize="large" />
+         <Tooltip title='Twitter'>
+            <IconButton color='info'>
+               <TwitterIcon fontSize='large' />
             </IconButton>
          </Tooltip>
       </Box>

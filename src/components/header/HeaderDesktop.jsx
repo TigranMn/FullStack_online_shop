@@ -29,7 +29,7 @@ const AppBarDesktop = ({ matches }) => {
          >
             Elite Shop
          </AppBarHeader>
-         <MyList type="row">
+         <MyList type='row'>
             <NavLink to={'/'}>
                <h4 style={{ color: 'white' }}>Home</h4>
             </NavLink>
@@ -46,7 +46,7 @@ const AppBarDesktop = ({ matches }) => {
          </MyList>
          <Box width={'90px'} sx={{ outline: 'none' }}>
             <TextField
-               size="small"
+               size='small'
                sx={{
                   border: '1px solid white',
                   borderRadius: '5px',
@@ -56,9 +56,9 @@ const AppBarDesktop = ({ matches }) => {
                value={language}
                onChange={(e) => setLanguage(e.target.value)}
             >
-               <MenuItem value="am">AM</MenuItem>
-               <MenuItem value="ru">RU</MenuItem>
-               <MenuItem value="en">EN</MenuItem>
+               <MenuItem value='am'>AM</MenuItem>
+               <MenuItem value='ru'>RU</MenuItem>
+               <MenuItem value='en'>EN</MenuItem>
             </TextField>
          </Box>
          <Actions matches={matches} />

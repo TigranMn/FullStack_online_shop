@@ -9,10 +9,10 @@ type TPagination = {
 export default function MyPagination({ currentPage, onChange, pages }: TPagination) {
    return (
       <Pagination
-         shape="rounded"
+         shape='rounded'
          showFirstButton
          showLastButton
-         variant="outlined"
+         variant='outlined'
          page={currentPage}
          onChange={(_: unknown, page: number) => {
             onChange(page);

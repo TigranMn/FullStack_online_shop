@@ -31,7 +31,7 @@ function Product() {
    const userId = useAppSelector((state) => state.user.id);
    const isLogged = useAppSelector((state) => state.user.isLogged);
    const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+   const navigate = useNavigate();
    const notify = useNotify();
 
    const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
@@ -77,33 +77,33 @@ function Product() {
          <ProductImage src={product?.imgUrl} />
          <ProductContent>
             <ProductTitle>{product?.name}</ProductTitle>
-            <Typography variant="h6">
+            <Typography variant='h6'>
                Brand :{' '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {' '}
                   {product?.brand}
                </Box>
             </Typography>
-            <Typography variant="h6">
+            <Typography variant='h6'>
                Gender :{' '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.gender}
                </Box>{' '}
             </Typography>
-            <Typography variant="h6">
+            <Typography variant='h6'>
                Price :{' '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.price} $
                </Box>
             </Typography>
-            <Typography variant="h6">
+            <Typography variant='h6'>
                Views :{' '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {' '}
                   {product?.views}
                </Box>
             </Typography>
-            <Typography variant="h6">
+            <Typography variant='h6'>
                Available :{' '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.quantity}
@@ -113,8 +113,8 @@ function Product() {
                <Button
                   disabled={decrDisabled}
                   onClick={decreaseQuantity}
-                  size="small"
-                  variant="text"
+                  size='small'
+                  variant='text'
                   sx={{
                      background: decrDisabled ? 'grey' : 'rgb(255,99,71)',
                      color: 'white',
@@ -127,8 +127,8 @@ function Product() {
                <Button
                   disabled={incrDisabled}
                   onClick={increaseQuantity}
-                  size="small"
-                  variant="text"
+                  size='small'
+                  variant='text'
                   sx={{
                      background: incrDisabled ? 'grey' : 'rgb(103,173,75)',
                      color: 'white',
@@ -139,13 +139,13 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button onClick={handleAdd} disabled={addBtnDisabled} variant="outlined">
+               <Button onClick={handleAdd} disabled={addBtnDisabled} variant='outlined'>
                   Add to cart
                </Button>
                <Button
                   disabled={!product?.quantity}
                   onClick={() => navigate('/buy')}
-                  variant="contained"
+                  variant='contained'
                >
                   Buy
                </Button>

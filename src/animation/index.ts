@@ -1,5 +1,4 @@
-import {keyframes} from '@mui/system';
-
+import { keyframes } from '@mui/system';
 
 export const aboutMemberSlider = keyframes`
 0%{
@@ -12,8 +11,6 @@ export const aboutMemberSlider = keyframes`
 
 `;
 
-
-
 export const animate = keyframes`
 0%{
    transform: translate(-50%,-50%) rotate(0deg)
@@ -24,7 +21,6 @@ export const animate = keyframes`
 }    
 
 `;
-
 
 export const secondAnimate = keyframes`
 0%{

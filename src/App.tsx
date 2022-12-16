@@ -37,18 +37,18 @@ function App() {
    return (
       <BrowserRouter>
          <Routes>
-            <Route path="/" element={<Layout />}>
-               <Route path="/" element={<Home />} />
-               <Route path="/about" element={<About />} />
-               <Route path="/shop" element={<Shop />} />
-               <Route path="/user" element={<User />} />
-               <Route path="/contact" element={<Contact />} />
-               <Route path="/shop/:category" element={<Products />} />
-               <Route path="/shop/:category/:productId" element={<Product />} />
-               <Route path="/buy" element={<Buy />} />
-               <Route path="/login" element={<Login />} />
-               <Route path="/liked" element={<Likes />} />
-               <Route path="/faq" element={<Faq />} />
+            <Route path='/' element={<Layout />}>
+               <Route path='/' element={<Home />} />
+               <Route path='/about' element={<About />} />
+               <Route path='/shop' element={<Shop />} />
+               <Route path='/user' element={<User />} />
+               <Route path='/contact' element={<Contact />} />
+               <Route path='/shop/:category' element={<Products />} />
+               <Route path='/shop/:category/:productId' element={<Product />} />
+               <Route path='/buy' element={<Buy />} />
+               <Route path='/login' element={<Login />} />
+               <Route path='/liked' element={<Likes />} />
+               <Route path='/faq' element={<Faq />} />
             </Route>
          </Routes>
       </BrowserRouter>
