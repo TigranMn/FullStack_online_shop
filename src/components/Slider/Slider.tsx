@@ -37,6 +37,10 @@ const Slider = () => {
          <Slide direction={show ? 'left' : 'right'} in={show} timeout={{ enter: 500, exit: 500 }}>
             <Box display="flex" justifyContent="center" alignItems={'center'}>
                <SliderImages src={slideImages[slideImagesIndex].src} />
+               <h1 style={{ marginLeft: '40px', color: 'white' }}>
+                  Elite Shop Lorem <br /> ipsum dolor, sit <br /> amet consectetur adipisicing{' '}
+                  <br /> elit. Saepe, corrupti.
+               </h1>
             </Box>
          </Slide>
       </SliderContainer>

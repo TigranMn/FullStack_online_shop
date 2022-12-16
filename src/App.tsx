@@ -14,6 +14,7 @@ import Product from './components/pages/Product';
 import Login from './components/pages/Login';
 import Buy from './components/pages/Buy';
 import Likes from './components/pages/Likes';
+import Faq from './components/pages/Faq';
 
 import './styles/toast.css';
 import { setUser } from './redux/userSlice';
@@ -46,6 +47,7 @@ function App() {
                <Route path="/buy" element={<Buy />} />
                <Route path="/login" element={<Login />} />
                <Route path="/liked" element={<Likes />} />
+               <Route path="/faq" element={<Faq />} />
             </Route>
          </Routes>
       </BrowserRouter>

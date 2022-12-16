@@ -8,6 +8,7 @@
       "@fontsource/montez": "^4.5.10",
       "@mui/icons-material": "^5.10.15",
       "@mui/material": "^5.10.15",
+      "@react-google-maps/api": "^2.17.1",
       "@reduxjs/toolkit": "^1.9.0",
       "@testing-library/jest-dom": "^5.16.5",
       "@testing-library/react": "^13.4.0",
@@ -32,7 +33,7 @@
       "test": "react-scripts test",
       "eject": "react-scripts eject",
       "format": "prettier --config .prettierrc src/**/*.{ts,tsx,js,jsx} --write",
-		"check": "npx eslint ."
+      "check": "npx eslint ."
    },
    "eslintConfig": {
       "extends": [
