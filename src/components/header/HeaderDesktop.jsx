@@ -2,10 +2,9 @@
 import { MenuItem, TextField, Box } from '@mui/material';
 //Hooks
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 //Components
 import { AppBarContainer, AppBarHeader, MyList } from './styles';
-import { NavLink } from 'react-router-dom';
 import Actions from './Actions';
 
 const AppBarDesktop = ({ matches }) => {
