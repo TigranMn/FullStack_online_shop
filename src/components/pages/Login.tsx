@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Types
-import { notificationTypes } from '../../types';
+import { AccStatus, notificationTypes } from '../../types';
 //Styles
 import '../../styles/loginStyle.css';
 
@@ -24,7 +24,8 @@ const Login = () => {
 
    useEffect(() => {
       if (userState.isLogged) {
-         navigate('/shop');
+         if (userState.status === AccStatus.ADMIN) navigate('/admin');
+         else navigate('/shop');
       }
    }, [userState.isLogged]);
 

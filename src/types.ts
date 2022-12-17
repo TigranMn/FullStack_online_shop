@@ -36,6 +36,12 @@ export type TBasketType = {
    count: number;
 };
 
+export enum AccStatus  {
+	ADMIN = 'admin',
+	USER = 'user',
+	GUEST = 'guest'
+}
+
 export type TUser = {
    id: string | null;
    email: string | null;
@@ -44,6 +50,7 @@ export type TUser = {
    lastName: string | null;
    basket: TBasketType[];
    likedProducts: TLikedType[];
+	status: AccStatus;
 };
 
 export enum notificationTypes {
