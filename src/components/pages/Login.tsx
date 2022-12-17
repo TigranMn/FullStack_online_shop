@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Types
-import { notificationTypes } from '../../types';
+import { AccStatus, notificationTypes } from '../../types';
 //Styles
 import '../../styles/loginStyle.css';
 
@@ -24,7 +24,8 @@ const Login = () => {
 
    useEffect(() => {
       if (userState.isLogged) {
-         navigate('/shop');
+         if (userState.status === AccStatus.ADMIN) navigate('/admin');
+         else navigate('/shop');
       }
    }, [userState.isLogged]);
 
@@ -50,50 +51,50 @@ const Login = () => {
    };
 
    return (
-      <div className="main-container">
+      <div className='main-container'>
          <div
             className={showSignIn ? 'register-container' : 'right-panel-active'}
-            id="register-container"
+            id='register-container'
          >
-            <div className="form-container sign-up-container">
+            <div className='form-container sign-up-container'>
                <form>
                   <h1>Create Account</h1>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="text"
-                        placeholder="Name"
+                        type='text'
+                        placeholder='Name'
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                      />
                   </div>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="text"
-                        placeholder="LastName"
+                        type='text'
+                        placeholder='LastName'
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                      />
                   </div>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="text"
-                        placeholder="Email"
+                        type='text'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                      />
                   </div>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="password"
-                        placeholder="Password"
+                        type='password'
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                      />
                   </div>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="password"
-                        placeholder="Confirm password"
+                        type='password'
+                        placeholder='Confirm password'
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                      />
@@ -112,21 +113,21 @@ const Login = () => {
                   </button>
                </form>
             </div>
-            <div className="form-container sign-in-container">
+            <div className='form-container sign-in-container'>
                <form>
                   <h1>Sign in</h1>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="text"
-                        placeholder="Email"
+                        type='text'
+                        placeholder='Email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                      />
                   </div>
-                  <div className="infield">
+                  <div className='infield'>
                      <input
-                        type="password"
-                        placeholder="Password"
+                        type='password'
+                        placeholder='Password'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                      />
@@ -134,20 +135,20 @@ const Login = () => {
                   <button onClick={handleSignIn}>Sign In</button>
                </form>
             </div>
-            <div className="overlay-container" id="overlayCon">
-               <div className="overlay">
-                  <div className="overlay-panel overlay-left">
+            <div className='overlay-container' id='overlayCon'>
+               <div className='overlay'>
+                  <div className='overlay-panel overlay-left'>
                      <h1>Welcome Back!</h1>
                      <p>To keep connected with us please login with your personal info</p>
                      <button>Sign In</button>
                   </div>
-                  <div className="overlay-panel overlay-right">
+                  <div className='overlay-panel overlay-right'>
                      <h1>Hello, Friend!</h1>
                      <p>Enter your personal details and start shopping with us</p>
                      <button>Sign Up</button>
                   </div>
                </div>
-               <button id="overlayBtn" onClick={() => setShowSignIn(!showSignIn)}></button>
+               <button id='overlayBtn' onClick={() => setShowSignIn(!showSignIn)}></button>
             </div>
          </div>
       </div>

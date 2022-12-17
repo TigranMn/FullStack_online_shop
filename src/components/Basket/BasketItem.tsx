@@ -26,7 +26,7 @@ export default function BasketItem(props: TBasketItemProps) {
             <p>{product.price} $</p>
             <p>{product.count}</p>
          </Box>
-         <Tooltip onClick={() => handleRemove(product.id)} title="Delete">
+         <Tooltip onClick={() => handleRemove(product.id)} title='Delete'>
             <IconButton>
                <DeleteIcon />
             </IconButton>

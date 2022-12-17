@@ -2,10 +2,9 @@
 import { MenuItem, TextField, Box } from '@mui/material';
 //Hooks
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 //Components
 import { AppBarContainer, AppBarHeader, MyList } from './styles';
-import { NavLink } from 'react-router-dom';
 import Actions from './Actions';
 
 const AppBarDesktop = ({ matches }) => {
@@ -29,7 +28,7 @@ const AppBarDesktop = ({ matches }) => {
          >
             Elite Shop
          </AppBarHeader>
-         <MyList type="row">
+         <MyList type='row'>
             <NavLink to={'/'}>
                <h4 style={{ color: 'white' }}>Home</h4>
             </NavLink>
@@ -40,10 +39,13 @@ const AppBarDesktop = ({ matches }) => {
             <NavLink to={'/about'}>
                <h4 style={{ color: 'white' }}>About</h4>
             </NavLink>
+            <NavLink to={'/faq'}>
+               <h4 style={{ color: 'white' }}>FAQ</h4>
+            </NavLink>
          </MyList>
          <Box width={'90px'} sx={{ outline: 'none' }}>
             <TextField
-               size="small"
+               size='small'
                sx={{
                   border: '1px solid white',
                   borderRadius: '5px',
@@ -53,9 +55,9 @@ const AppBarDesktop = ({ matches }) => {
                value={language}
                onChange={(e) => setLanguage(e.target.value)}
             >
-               <MenuItem value="am">AM</MenuItem>
-               <MenuItem value="ru">RU</MenuItem>
-               <MenuItem value="en">EN</MenuItem>
+               <MenuItem value='am'>AM</MenuItem>
+               <MenuItem value='ru'>RU</MenuItem>
+               <MenuItem value='en'>EN</MenuItem>
             </TextField>
          </Box>
          <Actions matches={matches} />

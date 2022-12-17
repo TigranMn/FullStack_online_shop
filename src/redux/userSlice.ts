@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 //Firebase
 import {
    createUserWithEmailAndPassword,
@@ -20,7 +20,7 @@ import { auth, db } from '../firebase';
 //Utils
 import { getUser } from '../api/api';
 //Types
-import { TBasketType, TLikedType } from '../types';
+import { AccStatus, TBasketType, TLikedType, TUser } from '../types';
 
 type TState = {
    email: string | null;
@@ -33,6 +33,7 @@ type TState = {
    isLogged: boolean;
    basket: TBasketType[];
    likedProducts: TLikedType[];
+   status: string;
 };
 
 const initialState: TState = {
@@ -45,7 +46,8 @@ const initialState: TState = {
    isLogged: false,
    isLoading: false,
    basket: [],
-   likedProducts: []
+   likedProducts: [],
+   status: AccStatus.GUEST
 };
 
 export const signIn = createAsyncThunk(
@@ -79,7 +81,8 @@ export const signUp = createAsyncThunk(
          email: user.email,
          id: user.uid,
          likedProducts: [],
-         basket: []
+         basket: [],
+         status: AccStatus.USER
       });
       return { user, firstName, lastName };
    }
@@ -191,7 +194,6 @@ const userSlice = createSlice({
    name: 'user',
    initialState,
    reducers: {
-
       removeUser(state) {
          state.email = null;
          state.token = null;
@@ -201,9 +203,10 @@ const userSlice = createSlice({
          state.isLogged = false;
          state.likedProducts = [];
          state.basket = [];
+         state.status = AccStatus.GUEST;
       },
-      setUser(state, action) {
-         const { email, token, id, lastName, name, likedProducts, basket } = action.payload;
+      setUser(state, action: PayloadAction<TUser>) {
+         const { email, token, id, lastName, name, likedProducts, basket, status } = action.payload;
          state.email = email;
          state.token = token;
          state.id = id;
@@ -212,6 +215,7 @@ const userSlice = createSlice({
          state.isLogged = true;
          state.likedProducts = likedProducts;
          state.basket = basket;
+         state.status = status;
       }
    },
    extraReducers: (builder) => {
@@ -224,9 +228,9 @@ const userSlice = createSlice({
             state.id = action.payload.user.uid;
             state.lastName = action.payload.data.lastName;
             state.name = action.payload.data.name;
-            console.log(action.payload);
             state.basket = action.payload.data.basket;
             state.likedProducts = action.payload.data.likedProducts;
+				state.status = action.payload.data.status;
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -247,6 +251,7 @@ const userSlice = createSlice({
             state.name = action.payload.firstName;
             state.basket = [];
             state.likedProducts = [];
+				state.status = AccStatus.USER;
          })
          .addCase(signUp.rejected, (state) => {
             state.isError = true;
@@ -268,17 +273,17 @@ const userSlice = createSlice({
                });
             } else {
                console.log(count);
-               
+
                state.basket.push({ productId, category, count });
             }
          })
-         .addCase(removeProduct.fulfilled, (state, action) => {
+         .addCase(removeProduct.fulfilled, (state, action: PayloadAction<string>) => {
             state.basket = state.basket.filter((item) => item.productId !== action.payload);
          })
-         .addCase(likeProduct.fulfilled, (state, action) => {
+         .addCase(likeProduct.fulfilled, (state, action: PayloadAction<TLikedType>) => {
             state.likedProducts.push(action.payload);
          })
-         .addCase(dislikeProduct.fulfilled, (state, action) => {
+         .addCase(dislikeProduct.fulfilled, (state, action: PayloadAction<string>) => {
             state.likedProducts = state.likedProducts.filter(
                (el) => el.productId !== action.payload
             );

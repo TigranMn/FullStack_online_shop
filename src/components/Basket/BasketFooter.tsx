@@ -9,7 +9,7 @@ function BasketFooter({ totalPrice }: TBasketFooter) {
    return (
       <div>
          <span>{totalPrice} $</span>
-         <Button variant="contained">Buy</Button>
+         <Button variant='contained'>Buy</Button>
       </div>
    );
 }

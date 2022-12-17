@@ -67,7 +67,7 @@ export const TeamMemberCollector = styled(Box)(() => ({
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'space-evenly',
-   padding: '10px',
+   padding: '10px'
 }));
 
 export const TeamMember = styled(Box)(() => ({

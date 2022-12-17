@@ -2,10 +2,10 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 
-import {animate,secondAnimate} from '../../animation';
+import { animate, secondAnimate } from '../../animation';
 
 export const Category = styled(Box)(() => ({
-   position : 'relative',
+   position: 'relative',
    width: '350px',
    height: '380px',
    background: '#fff',
@@ -14,8 +14,7 @@ export const Category = styled(Box)(() => ({
    }
 }));
 
-
-export const CategoryContent = styled(Box)(()=>({
+export const CategoryContent = styled(Box)(() => ({
    position: 'absolute',
    inset: 0,
    background: '#000',
@@ -28,7 +27,7 @@ export const CategoryContent = styled(Box)(()=>({
       width: '600px',
       height: '120px',
       background: 'linear-gradient(transparent,#2196f3,#2196f3,#2196f3,transparent)',
-      animation: `${animate} 6s linear infinite`,
+      animation: `${animate} 6s linear infinite`
    },
    '&:after': {
       content: '""',
@@ -38,8 +37,7 @@ export const CategoryContent = styled(Box)(()=>({
    }
 }));
 
-
-export const CategoryImageBox = styled(Box)(()=>({
+export const CategoryImageBox = styled(Box)(() => ({
    position: 'absolute',
    top: '-50px',
    left: '50%',
@@ -57,7 +55,7 @@ export const CategoryImageBox = styled(Box)(()=>({
       height: '150px',
       transform: 'translate(-50%,-50%)',
       background: 'linear-gradient(transparent,#ff3c7b,#ff3c7b,#ff3c7b,transparent)',
-      animation: `${secondAnimate} 4s linear infinite`,
+      animation: `${secondAnimate} 4s linear infinite`
    },
    '&:after': {
       content: '""',
@@ -67,18 +65,16 @@ export const CategoryImageBox = styled(Box)(()=>({
    }
 }));
 
-
-export const CategoryImage = styled('img')(()=>({
-      position: 'absolute',
-      top: '10px',
-      left: '10px',
-      width: 'calc(100% - 20px)',
-      height: 'calc(100% - 20px)',
-      zIndex:1
+export const CategoryImage = styled('img')(() => ({
+   position: 'absolute',
+   top: '10px',
+   left: '10px',
+   width: 'calc(100% - 20px)',
+   height: 'calc(100% - 20px)',
+   zIndex: 1
 }));
 
-
-export const CategoryInfo = styled(Box)(()=>({
+export const CategoryInfo = styled(Box)(() => ({
    position: 'absolute',
    width: '100%',
    height: '100%',
@@ -87,17 +83,14 @@ export const CategoryInfo = styled(Box)(()=>({
    alignItems: 'flex-end'
 }));
 
-
-export const CategoryDetail = styled(Typography)(({ theme })=>({
+export const CategoryDetail = styled(Typography)(({ theme }) => ({
    padding: '40px',
    textAlign: 'center',
-  fontFamily: 'Aboreto',
+   fontFamily: 'Aboreto',
    color: '#5082FC',
    textTransform: 'uppercase',
-    [theme.breakpoints.down('sm')]: {
+   [theme.breakpoints.down('sm')]: {
       fontSize: '20px',
-      fontWeight: 'bold',
+      fontWeight: 'bold'
    }
 }));
-
-

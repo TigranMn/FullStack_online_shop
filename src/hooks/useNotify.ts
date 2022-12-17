@@ -21,6 +21,8 @@ export const useNotify = () => {
          case notificationTypes.ERROR:
             toast.error(message, config);
             break;
+         default:
+            return false;
       }
    };
 };

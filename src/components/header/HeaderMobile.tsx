@@ -32,8 +32,8 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
             <MenuIcon />
          </IconButton>
          <AppBarHeader
-            textAlign="center"
-            variant="h4"
+            textAlign='center'
+            variant='h4'
             onClick={() => {
                navigate('/');
             }}
@@ -42,14 +42,14 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
          </AppBarHeader>
          <Box width={'90px'}>
             <TextField
-               size="small"
+               size='small'
                select
                value={language}
                onChange={(e) => setLanguage(e.target.value)}
             >
-               <MenuItem value="am">AM </MenuItem>
-               <MenuItem value="ru">RU</MenuItem>
-               <MenuItem value="en">EN</MenuItem>
+               <MenuItem value='am'>AM </MenuItem>
+               <MenuItem value='ru'>RU</MenuItem>
+               <MenuItem value='en'>EN</MenuItem>
             </TextField>
          </Box>
          <Actions matches={matches} />
@@ -79,7 +79,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                      home
                   </Button>
                </ListItemButton>
-               <Divider variant="middle" />
+               <Divider variant='middle' />
                <ListItemButton
                   onClick={() => {
                      setOpenMenu(false);
@@ -97,7 +97,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                      Shop
                   </Button>
                </ListItemButton>
-               <Divider variant="middle" />
+               <Divider variant='middle' />
                <ListItemButton
                   onClick={() => {
                      setOpenMenu(false);
@@ -115,7 +115,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                      Contact
                   </Button>
                </ListItemButton>
-               <Divider variant="middle" />
+               <Divider variant='middle' />
                <ListItemButton
                   onClick={() => {
                      setOpenMenu(false);
@@ -133,7 +133,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                      About
                   </Button>
                </ListItemButton>
-               <Divider variant="middle" />
+               <Divider variant='middle' />
             </List>
          </Drawer>
       </AppBarContainer>

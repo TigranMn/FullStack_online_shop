@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { TProduct, TProductState } from '../types';
 
@@ -17,11 +17,12 @@ const fetchProducts = createAsyncThunk('products/fetchPageProducts', async (cate
    const data = await getProducts(category);
 
    data.forEach((doc) => {
-      const [id, { name, count, gender, imgUrl, price, views, brand, quantity }] = [
+      const [id, { color,name, count, gender, imgUrl, price, views, brand, quantity }] = [
          doc.id,
          doc.data()
       ];
       result.push({
+         color,
          id,
          name,
          count,
@@ -57,7 +58,7 @@ const productsSlice = createSlice({
    reducers: {},
    extraReducers: (builder) => {
       builder
-         .addCase(fetchProducts.fulfilled, (state, action) => {
+         .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<TProduct[]>) => {
             state.isLoading = false;
             state.products = action.payload;
          })
@@ -70,7 +71,7 @@ const productsSlice = createSlice({
             state.isLoading = false;
             state.isError = true;
          })
-         .addCase(addViews.fulfilled, (state, action) => {
+         .addCase(addViews.fulfilled, (state, action: PayloadAction<string>) => {
             state.products = state.products.map((el) => {
                if (el.id === action.payload) el.views = el.views + 1;
                return el;

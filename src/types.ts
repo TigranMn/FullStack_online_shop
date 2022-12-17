@@ -9,6 +9,7 @@ export type TProduct = {
    views: number;
    brand: string;
    quantity: number;
+   color: string;
 };
 
 export type TProductState = {
@@ -24,15 +25,6 @@ export type TCategory = {
    description: string;
 };
 
-export type TUser = {
-   id: string | null;
-   email: string | null;
-   token: string | null;
-   name: string | null;
-   lastName: string | null;
-   basket: string[];
-   likedProducts: string[];
-};
 export type TLikedType = {
    category: string;
    productId: string;
@@ -42,6 +34,23 @@ export type TBasketType = {
    productId: string;
    category: string;
    count: number;
+};
+
+export enum AccStatus  {
+	ADMIN = 'admin',
+	USER = 'user',
+	GUEST = 'guest'
+}
+
+export type TUser = {
+   id: string | null;
+   email: string | null;
+   token: string | null;
+   name: string | null;
+   lastName: string | null;
+   basket: TBasketType[];
+   likedProducts: TLikedType[];
+	status: AccStatus;
 };
 
 export enum notificationTypes {

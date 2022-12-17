@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TCategory } from '../types';
 import getData from '../api/api';
 
@@ -33,7 +33,7 @@ const categoriesSlice = createSlice({
          .addCase(getCategories.pending, (state) => {
             state.categories = [];
          })
-         .addCase(getCategories.fulfilled, (state, action) => {
+         .addCase(getCategories.fulfilled, (state, action: PayloadAction<TCategory[]>) => {
             state.categories = action.payload;
          });
    }

@@ -8,6 +8,7 @@
       "@fontsource/montez": "^4.5.10",
       "@mui/icons-material": "^5.10.15",
       "@mui/material": "^5.10.15",
+      "@react-google-maps/api": "^2.17.1",
       "@reduxjs/toolkit": "^1.9.0",
       "@testing-library/jest-dom": "^5.16.5",
       "@testing-library/react": "^13.4.0",
@@ -20,7 +21,7 @@
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
       "react-redux": "^8.0.5",
-      "react-router-dom": "^6.4.3",
+      "react-router-dom": "^6.5.0",
       "react-scripts": "5.0.1",
       "react-toastify": "^9.1.1",
       "typescript": "^4.9.3",
@@ -32,7 +33,7 @@
       "test": "react-scripts test",
       "eject": "react-scripts eject",
       "format": "prettier --config .prettierrc src/**/*.{ts,tsx,js,jsx} --write",
-		"check": "npx eslint ."
+      "check": "npx eslint ."
    },
    "eslintConfig": {
       "extends": [

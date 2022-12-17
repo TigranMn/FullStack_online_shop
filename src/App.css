@@ -21,3 +21,14 @@ a {
    display: flex;
    flex-direction: column;
 }
+
+.productsWrapper {
+   display: flex;
+   justify-content: space-between;
+}
+
+.searchWrapper {
+   margin: 40px 20px;
+   display: flex;
+   justify-content: space-evenly;
+}
