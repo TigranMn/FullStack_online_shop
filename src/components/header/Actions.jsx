@@ -1,5 +1,5 @@
 //MUI
-import { IconButton, ListItemButton, ListItemIcon } from '@mui/material';
+import { IconButton, ListItemButton, ListItemIcon, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoginIcon from '@mui/icons-material/Login';
@@ -36,8 +36,19 @@ const Actions = ({ matches }) => {
       <Component>
          <div>
             <Drawer anchor={'right'} open={isActive} onClose={() => setIsActive(false)}>
-               <Box sx={{ width: '500px', padding: '15px' }}>
-                  <Box>Products</Box>
+               <Box sx={{ position: 'absolute', right: '10px', top: '25px' }}>
+                  <label className='dark-light-mode'>
+                     <input type='checkbox' />
+                     <span className='check'></span>
+                  </label>
+               </Box>
+               <Box sx={{ width: '500px', height: '100vh', padding: '15px', textAlign: 'center' }}>
+                  <Typography
+                     variant='h4'
+                     sx={{ color: '#5082FC', fontFamily: '"Montez", "Cursive"' }}
+                  >
+                     Products
+                  </Typography>
                   <Basket />
                </Box>
             </Drawer>
