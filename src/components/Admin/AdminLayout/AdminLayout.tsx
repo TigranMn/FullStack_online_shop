@@ -2,15 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router';
 
 //styles
-import "./style.css";
-import "../adminProducts/style.css";
+import './style.css';
+import '../adminProducts/style.css';
 import '../adminProducts/productsList/style.css';
 import '../adminProducts/productsSearching/style.css';
 import '../adminProducts/addProducts/style.css';
 import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
-import '../adminWhatIsNew/LessQuantityProd/style.css'
-
+import '../adminWhatIsNew/LessQuantityProd/style.css';
 
 function AdminLayout() {
    const navigate = useNavigate();

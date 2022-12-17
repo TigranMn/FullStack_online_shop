@@ -16,7 +16,7 @@ import {
 } from '../../../../redux/adminSlice';
 import { db } from '../../../../firebase';
 
-import ChangeProduct from '../../adminProducts/adminProducts';
+import ChangeProduct from '../../adminProducts/changeProduct/changeProduct';
 
 function LessQuantityProd() {
    const navigate = useNavigate();
