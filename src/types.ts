@@ -9,6 +9,7 @@ export type TProduct = {
    views: number;
    brand: string;
    quantity: number;
+   color: string;
 };
 
 export type TProductState = {
@@ -23,7 +24,6 @@ export type TCategory = {
    imgUrl: string;
    description: string;
 };
-
 
 export type TLikedType = {
    category: string;
