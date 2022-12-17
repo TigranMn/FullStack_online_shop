@@ -16,6 +16,8 @@ import {
    AboutMySelfHeading,
    TeamMemberCollector
 } from '../../styles/About';
+import AboutItem from '../About/AboutItem/AboutItem';
+import AboutSelf from '../About/AboutSelf/AboutSelf';
 
 export default function About() {
    return (
@@ -23,190 +25,21 @@ export default function About() {
          <Box style={{ background: '#1A202C' }}>
             <TeamMemberContainer>
                <TeamMemberCollector>
-                  <TeamMember data-aos="fade-right">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/suren.PNG" alt="teamMember" />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
-                        <TeamMemberDetails>
-                           <Typography
-                              variant="h6"
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Suren Zaqaryan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
-                  <AboutMySelf data-aos="fade-up-left" data-aos-duration="1500">
-                     <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
-                           Data Lead Architect
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+                  <AboutItem fullName={'Suren Zaqaryan'} name={'suren'} />
+                  <AboutSelf lead={'Data Lead Architect'} />
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos="fade-up" data-aos-duration="3000">
-                     <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
-                           Software Lead Architect
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
-                  <TeamMember
-                     data-aos="flip-left"
-                     data-aos-easing="ease-out-cubic"
-                     data-aos-duration="2000"
-                  >
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/tigranM.PNG" alt="teamMember" />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
-                        <TeamMemberDetails>
-                           <Typography
-                              variant="h6"
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Tigran Mnatsakanyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
+                  <AboutSelf lead={'Software Lead Architect'} />
+                  <AboutItem fullName={'Tigran Mnatsakanyan'} name={'tigranM'} />
                </TeamMemberCollector>
                <TeamMemberCollector>
-                  <TeamMember data-aos="fade-up" data-aos-anchor-placement="center-center">
-                     <TeamMemberImageBox className="TeamMemberImageBox">
-                        <TeamMemberImage src="/images/teamMember/narek.PNG" alt="teamMember" />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className="TeamMemberInfo">
-                        <TeamMemberDetails>
-                           <Typography
-                              variant="h6"
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Narek Hovakimyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component="span"
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
-                  <AboutMySelf
-                     data-aos="fade-up"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-duration="1000"
-                  >
-                     <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
-                           SOFTWARE TESTER
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+                  <AboutItem fullName={'Narek Hovakimyan'} name={'narek'} />
+                  <AboutSelf lead={'SOFTWARE TESTER'} />
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos="fade-right">
-                     <AboutMySelfHeading>
-                        <Typography variant="h1" sx={{ fontSize: '2.5rem' }}>
-                           WEB ANALYTICS DEVELOPER
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+
+
+                  <AboutSelf dataAos={'fade-right'} lead={' WEB ANALYTICS DEVELOPER'} />
                   <TeamMember data-aos="fade-down-left" data-aos-duration="2000">
                      <TeamMemberImageBox className="TeamMemberImageBox">
                         <TeamMemberImage src="/images/teamMember/shahen.PNG" alt="teamMember" />
@@ -223,7 +56,7 @@ export default function About() {
                               sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
                               component="span"
                            >
-                              Junior software engineer
+
                            </Typography>
                            <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
                               <ListItem>

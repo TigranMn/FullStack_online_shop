@@ -5,10 +5,10 @@ import { FooterTitle } from './styles';
 //Components
 import SocialNetwork from '../About/socialNetwork/SocialNetwork';
 import { useNavigate } from 'react-router-dom';
+import MapBox from './map/MapBox';
 
 const Footer = () => {
    const navigate = useNavigate();
-
    const handleNavigate = () => {
       navigate('/faq');
    };
@@ -25,6 +25,7 @@ const Footer = () => {
             fontSize: { xs: '12px', md: '14px' }
          }}
       >
+         <MapBox/>
          <Grid container spacing={2} justifyContent={'center'}>
             <Grid item md={6} lg={4}>
                <FooterTitle variant="body1">About</FooterTitle>
