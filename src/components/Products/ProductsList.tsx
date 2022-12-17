@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Components
 import ProductItem from './ProductItem';
-import Search from '../Search/Search';
 //Actions
 import { fetchProducts } from '../../redux/productsSlice';
 //MUI
@@ -18,7 +17,8 @@ import {
    Select,
    MenuItem,
    SelectChangeEvent,
-   TextField
+   TextField,
+   Button
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 //Types
@@ -31,17 +31,34 @@ export default function ProductsList() {
    const [currentPage, setCurrentPage] = useState<number>(1);
    const [pages, setPages] = useState<number>(1);
    const [pageProducts, setPageProducts] = useState<TProduct[]>([]);
+   const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
+   const [gender, setGender] = useState('all');
+   const [brand, setBrand] = useState('all');
+   const [minPrice, setMinPrice] = useState('0');
+   const [maxPrice, setMaxPrice] = useState('10000000');
+   const [filterName, setFilterName] = useState('');
    const products = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
-   const [filteredProducts, setFilteredProducts] = useState<TProduct[]>([]);
+
+   const [brands, setBrands] = useState<string[]>([]);
 
    useEffect(() => {
       setPages(Math.ceil(filteredProducts.length / itemCount));
+
       const pageProducts = filteredProducts.slice(
          (currentPage - 1) * itemCount,
          currentPage * itemCount
       );
       setPageProducts(pageProducts);
+
+      const filteredBrands = products.products.reduce((current: string[], item: TProduct) => {
+         if (!current.includes(item.brand)) {
+            current.push(item.brand);
+         }
+         return current;
+      }, []);
+
+      setBrands(filteredBrands);
    }, [itemCount, pages, filteredProducts, currentPage]);
 
    useEffect(() => {
@@ -52,16 +69,21 @@ export default function ProductsList() {
       dispatch(fetchProducts(category as string));
    }, [dispatch]);
 
-   const handleSearch = (text: string) => {
+   const handleSearch = () => {
       setCurrentPage(1);
-      const searched = products.products.filter((el) =>
-         el.name.toLowerCase().startsWith(text.toLowerCase())
-      );
+      const searched = products.products.filter((el) => {
+         if (
+            el.name.toLowerCase().startsWith(filterName.toLowerCase()) &&
+            el.price > +minPrice &&
+            el.price < +maxPrice &&
+            (el.gender === gender || gender === 'all') &&
+            (el.brand === brand || brand === 'all')
+         ) {
+            return el;
+         }
+      });
       setFilteredProducts(searched);
    };
-
-   const [gender, setGender] = useState('all');
-   const [brand, setBrand] = useState('brand1');
 
    const handleChangeGender = (event: SelectChangeEvent) => {
       setGender(event.target.value as string);
@@ -74,25 +96,43 @@ export default function ProductsList() {
    return (
       <>
          <Container>
-            <Search handleSearch={handleSearch} />
-            <br />
-            <br />
-            <FormControl style={{ width: '100px' }}>
-               <InputLabel>Pages</InputLabel>
-               <Select
-                  value={itemCount}
-                  label='Pages'
-                  onChange={(e) => setItemCount(+e.target.value)}
-               >
-                  <MenuItem value={6}>6</MenuItem>
-                  <MenuItem value={9}>9</MenuItem>
-                  <MenuItem value={12}>12</MenuItem>
-               </Select>
-            </FormControl>
+            <div className='searchWrapper'>
+               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                  <TextField
+                     id='standard-basic'
+                     label='Search'
+                     variant='standard'
+                     value={filterName}
+                     style={{ minWidth: '250px' }}
+                     onChange={(e) => {
+                        setFilterName(e.target.value);
+                        console.log(e.target.value);
+                     }}
+                  />
+                  <Button onClick={handleSearch} style={{ marginLeft: '10px' }} variant='outlined'>
+                     Search
+                  </Button>
+               </div>
+               <FormControl style={{ width: '100px' }}>
+                  <InputLabel>Pages</InputLabel>
+                  <Select
+                     value={itemCount}
+                     label='Pages'
+                     onChange={(e) => setItemCount(+e.target.value)}
+                  >
+                     <MenuItem value={6}>6</MenuItem>
+                     <MenuItem value={9}>9</MenuItem>
+                     <MenuItem value={12}>12</MenuItem>
+                  </Select>
+               </FormControl>
+            </div>
             <br />
             <br />
             <div className='productsWrapper'>
                <div className='filter'>
+                  <br />
+                  <InputLabel style={{ textAlign: 'center' }}>Filter By</InputLabel>
+                  <br />
                   <Box sx={{ minWidth: 120 }}>
                      <FormControl fullWidth>
                         <InputLabel id='demo-simple-select-label'>Brand</InputLabel>
@@ -103,9 +143,14 @@ export default function ProductsList() {
                            label='Brand'
                            onChange={handleChangeBrand}
                         >
-                           <MenuItem value={'brand1'}>Brand_1</MenuItem>
-                           <MenuItem value={'brand2'}>Brand_2</MenuItem>
-                           <MenuItem value={'brand3'}>Brand_3</MenuItem>
+                           {brands.map((brand) => {
+                              return (
+                                 <MenuItem key={brand} value={brand}>
+                                    {brand}
+                                 </MenuItem>
+                              );
+                           })}
+                           <MenuItem value={'all'}>All</MenuItem>
                         </Select>
                      </FormControl>
                   </Box>
@@ -120,8 +165,8 @@ export default function ProductsList() {
                            label='Gender'
                            onChange={handleChangeGender}
                         >
-                           <MenuItem value={'male'}>Male</MenuItem>
-                           <MenuItem value={'female'}>Female</MenuItem>
+                           <MenuItem value={'Male'}>Male</MenuItem>
+                           <MenuItem value={'Female'}>Female</MenuItem>
                            <MenuItem value={'all'}>All</MenuItem>
                         </Select>
                      </FormControl>
@@ -134,8 +179,23 @@ export default function ProductsList() {
                      }}
                   >
                      <InputLabel id='demo-simple-select-label'>Price</InputLabel>
-                     <TextField id='standard-basic' label='Min' variant='standard' />
-                     <TextField id='standard-basic' label='Max' variant='standard' />
+                     <TextField
+                        id='standard-basic'
+                        placeholder='0'
+                        value={minPrice}
+                        variant='standard'
+                        onChange={(e) => {
+                           setMinPrice(e.target.value);
+                           console.log(+e.target.value);
+                        }}
+                     />
+                     <TextField
+                        id='standard-basic'
+                        placeholder='10000000'
+                        value={maxPrice}
+                        onChange={(e) => setMaxPrice(e.target.value)}
+                        variant='standard'
+                     />
                   </Box>
                </div>
                <Grid container justifyContent='center' sx={{ margin: '20px 4px 20px 4px' }}>
