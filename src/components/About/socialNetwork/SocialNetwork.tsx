@@ -8,17 +8,17 @@ const SocialNetwork = () => {
     return (<Box sx={{ display: 'flex', }}>
         <Tooltip title="Facebook">
             <IconButton color='default' >
-                <FacebookIcon />
+                <FacebookIcon sx={{color: '#5082FC'}} />
             </IconButton>
         </Tooltip>
         <Tooltip title="Instagram">
             <IconButton color='default'>
-                <InstagramIcon />
+                <InstagramIcon sx={{color: '#5082FC'}} />
             </IconButton>
         </Tooltip>
         <Tooltip title="Twitter">
             <IconButton color='default' >
-                <TwitterIcon />
+                <TwitterIcon sx={{color: '#5082FC'}} />
             </IconButton>
         </Tooltip>
 

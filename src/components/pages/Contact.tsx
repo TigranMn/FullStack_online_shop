@@ -1,77 +1,48 @@
-//MUI
-import { Button, Card, CardContent, Grid, TextField } from '@mui/material';
+import { Button, Typography } from '@mui/material';
+import { BackCover, Book, BookCover, ContactContainer, LastPage, Page } from '../../styles/Contact';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import MapIcon from '@mui/icons-material/Map';
+import ContactItemMail from '../../components//ContactItems/contactItemMail/ContactItemMail';
+import ContactItemPhone from '../ContactItems/contactItemPhone/ContactItemPhone';
+import ContactItemMap from '../ContactItems/contactItemMap/ContactItemMap';
+import { useState } from 'react';
+
 
 export default function Contact() {
+   const [showItem,setShowItem] = useState('');
+
+   let Component;
+
+   if(showItem === 'ContactItemMap') {
+      Component = <ContactItemMap />;
+   } else if(showItem === 'ContactItemPhone') {
+      Component = <ContactItemPhone />;
+   } else {
+      Component = <ContactItemMail/>;
+   }
+   
    return (
-      <Card sx={{ maxWidth: 500, margin: '20px auto', padding: '20px 5px' }}>
-         <CardContent>
-            <form>
-               <Grid container spacing={1}>
-                  <Grid xs={12} sm={6} item>
-                     <TextField
-                        color="success"
-                        label="First Name"
-                        placeholder="Enter your name"
-                        fullWidth
-                        required
-                     />
-                  </Grid>
-                  <Grid xs={12} sm={6} item>
-                     <TextField
-                        color="success"
-                        label="Last Name"
-                        placeholder="Enter your last name"
-                        fullWidth
-                        required
-                     />
-                  </Grid>
-                  <Grid xs={12} item>
-                     <TextField
-                        color="success"
-                        type="email"
-                        label="Email"
-                        placeholder="Enter email"
-                        fullWidth
-                        required
-                     />
-                  </Grid>
-                  <Grid xs={12} item>
-                     <TextField
-                        color="success"
-                        type="tel"
-                        label="Phone"
-                        placeholder="Enter phone number"
-                        fullWidth
-                        required
-                     />
-                  </Grid>
-                  <Grid xs={12} item>
-                     <TextField
-                        color="success"
-                        label="Message"
-                        multiline
-                        rows={4}
-                        placeholder="Type your message here"
-                        fullWidth
-                        required
-                     />
-                  </Grid>
-                  <Grid xs={12} item>
-                     <Button
-                        sx={{
-                           background: 'rgb(103,173,75)',
-                           '&:hover': { background: 'rgba(103,173,75,0.8)' }
-                        }}
-                        type="submit"
-                        variant="contained"
-                        fullWidth
-                     >
-                        Submit
-                     </Button>
-                  </Grid>
-               </Grid>
-            </form>
-         </CardContent>
-      </Card>
+         <ContactContainer>
+            <Book>
+         <BookCover className='bookCover'>
+            <Typography variant='h4' sx={{color: '#5082fc', fontFamily: '"Montez", "Cursive"', marginTop: '30px'}}>
+               The guide to contact
+            </Typography>
+         </BookCover>
+         <Page className='page'/>
+         <Page className='page'/>
+         <Page className='page'/>
+         <Page className='page'/>
+         <Page className='page'/>
+         <LastPage>
+            <Button onClick={()=>setShowItem('') } size='small' sx={{color:'#212834'}}  endIcon={<EmailIcon />}>Gmail</Button>
+            <Button onClick={()=>setShowItem('ContactItemPhone') } size='small' sx={{color:'#212834'}}  endIcon={<PhoneIcon/>}>Phone</Button>
+            <Button onClick={()=>setShowItem('ContactItemMap') } size='small' sx={{color:'#212834'}}  endIcon={<MapIcon />}>Map</Button>
+         </LastPage>
+         <BackCover></BackCover>
+        </Book>
+        {Component}
+        </ContactContainer>
    );
 }
