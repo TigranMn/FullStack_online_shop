@@ -4,6 +4,7 @@ import { signInMiddleware, signUpMiddleware } from './redux/localStorageMiddlewa
 import categoriesReducer from './redux/categoriesSlice';
 import productsReducer from './redux/productsSlice';
 import userSliceReducer from './redux/userSlice';
+import adminSlice from './redux/adminSlice';
 
 const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
 const likedProducts = JSON.parse(localStorage.getItem('likedProducts')!);
@@ -12,7 +13,8 @@ const store = configureStore({
    reducer: {
       categories: categoriesReducer,
       products: productsReducer,
-      user: userSliceReducer
+      user: userSliceReducer,
+      admin: adminSlice
    },
    preloadedState: {
       user: {
