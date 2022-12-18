@@ -7,19 +7,22 @@ import { useAppDispatch, useAppSelector } from '../../store';
 //Types
 import { notificationTypes, TProduct } from '../../types';
 //Mui
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import {
    Product,
    ProductActionButton,
    ProductBox,
+   ProductCard,
    ProductContent,
    ProductImages,
+   ProductLikedIcon,
    ProductName,
    ProductPrice
 } from './styles';
 //Actions
 import { addProduct, dislikeProduct, likeProduct } from '../../redux/userSlice';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 type ProductItemProps = {
    product: TProduct;
@@ -91,6 +94,7 @@ export default function ProductItem({ product }: ProductItemProps) {
       <>
          <Grid item key={product?.id}>
             <Product>
+               <ProductCard>
                <ProductBox>
                   <ProductImages onClick={changeLocation} src={product.imgUrl} alt='productImg' />
                </ProductBox>
@@ -117,11 +121,14 @@ export default function ProductItem({ product }: ProductItemProps) {
                      </ProductActionButton>
                   )}
                </ProductContent>
+               <ProductLikedIcon>
                {isLiked ? (
-                  <button onClick={handleDislike}>Dislike</button>
+                  <Button disableRipple  size='large' onClick={handleDislike} sx={{position: 'absolute', bottom: '10px',zIndex: 9999999999, color: 'white'}} startIcon={<FavoriteIcon />} ></Button>
                ) : (
-                  <button onClick={handleLike}>Like</button>
+                  <Button disableRipple  size='large' onClick={handleLike} sx={{position: 'absolute', bottom: '10px', zIndex: 9999999999, color: 'red'}} startIcon={<FavoriteIcon />} ></Button>
                )}
+               </ProductLikedIcon>
+               </ProductCard>
             </Product>
          </Grid>
       </>

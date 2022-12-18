@@ -33,15 +33,16 @@ export default function BasketItem(props: TBasketItemProps) {
             <img width='190px' height='120px' style={{objectFit: 'cover'}}  src={product.imgUrl} alt='itemImage' />
          </Box>
          <Box sx={{padding: '20px', position: 'relative', width:'100%'}}>
-            <h3 style={{marginBottom: '5px'}}>{product.name}</h3>
-            <h4 style={{marginBottom: '10px'}}> Price : $ {product.price} </h4>
-            <p className='unit'> Quantity : <input  value={product.count} style={{width:'35px', padding:'3px', textAlign:'center'}}/> </p>
+            <h3 style={{marginBottom: '5px', color :'#383535'}}>{product.name}</h3>
+            <h4 style={{marginBottom: '10px', color :'#383535'}}> Price : <span style={{color: '#238636'}}> $ {product.price}</span> </h4>
+            <h4 style={{ color :'#383535'}} className='unit'> Quantity : <span style={{color: '#238636'}}>{product.count}</span>  </h4>
          </Box>
          <Tooltip onClick={() => handleRemove(product.id)} title='Delete'>
-            <IconButton sx={{position:'absolute', bottom: '3px', right:'10px'}}>
-               <DeleteIcon  />
+            <IconButton sx={{position:'absolute', bottom: '8px', right:'10px'}}>
+               <DeleteIcon sx={{color:'#F14B46'}} />
             </IconButton>
          </Tooltip>
       </div>
    );
 }
+

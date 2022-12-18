@@ -68,9 +68,9 @@ export default function Basket() {
                return <BasketItem handleRemove={handleRemove} key={el.id} product={el} />;
             })
          ) : (
-            <p>Nothing in basket</p>
+            <h3>Nothing in basket</h3>
          )}
-         <BasketFooter totalPrice={totalPrice} />
+        {products.length ? <BasketFooter totalPrice={totalPrice} /> : null } 
       </>
    );
 }

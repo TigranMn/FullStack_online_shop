@@ -32,7 +32,7 @@ const AppBarDesktop = ({ matches }) => {
             <NavLink to={'/'}>
                <h4 style={{ color: 'white' }}>Home</h4>
             </NavLink>
-            <NavLink to={'/shop'}>{<h3 style={{ color: 'white' }}>Shop</h3>}</NavLink>
+            <NavLink to={'/shop'}>{<h4 style={{ color: 'white' }}>Shop</h4>}</NavLink>
             <NavLink to={'/contact'}>
                <h4 style={{ color: 'white' }}>Contact</h4>
             </NavLink>

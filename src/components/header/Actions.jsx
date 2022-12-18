@@ -36,12 +36,6 @@ const Actions = ({ matches }) => {
       <Component>
          <div>
             <Drawer anchor={'right'} open={isActive} onClose={() => setIsActive(false)}>
-               <Box sx={{ position: 'absolute', right: '10px', top: '25px' }}>
-                  <label className='dark-light-mode'>
-                     <input type='checkbox' />
-                     <span className='check'></span>
-                  </label>
-               </Box>
                <Box sx={{ width: '500px', height: '100vh', padding: '15px', textAlign: 'center' }}>
                   <Typography
                      variant='h4'
@@ -54,7 +48,11 @@ const Actions = ({ matches }) => {
             </Drawer>
          </div>
          <MyList type='row'>
-            <ListItemButton onClick={setBasketActive} sx={{ justifyContent: 'center' }}>
+            <ListItemButton
+               onClick={setBasketActive}
+               sx={{ justifyContent: 'center' }}
+               disableRipple
+            >
                <ListItemIcon
                   sx={{
                      display: 'flex',
@@ -64,7 +62,7 @@ const Actions = ({ matches }) => {
                >
                   <IconButton aria-label='cart'>
                      <StyledBadge badgeContent={productsLength} color='secondary'>
-                        <ShoppingCartIcon sx={{ color: '#5082FC' }} />
+                        <ShoppingCartIcon sx={{ color: '#5082FC' }} disableRipple />
                      </StyledBadge>
                   </IconButton>
                </ListItemIcon>
@@ -74,6 +72,7 @@ const Actions = ({ matches }) => {
                   navigate('/liked');
                }}
                sx={{ justifyContent: 'center' }}
+               disableRipple
             >
                <ListItemIcon
                   sx={{
@@ -91,6 +90,7 @@ const Actions = ({ matches }) => {
                   onClick={() => {
                      navigate('/user');
                   }}
+                  disableRipple
                >
                   <ListItemIcon
                      sx={{
@@ -126,5 +126,3 @@ const Actions = ({ matches }) => {
 };
 
 export default Actions;
-
-// #805AD5
