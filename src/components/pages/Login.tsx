@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Types
-import { AccStatus, notificationTypes } from '../../types';
+import { AccStatus, FirebaseErrors, notificationTypes } from '../../types';
 //Styles
 import '../../styles/loginStyle.css';
+import { firebaseErrorCatch } from '../../utils/firebaseErrorCatch';
 
 const Login = () => {
    const [showSignIn, setShowSignIn] = useState(true);
@@ -22,6 +23,8 @@ const Login = () => {
    const [lastName, setLastName] = useState<string>('');
    const notify = useNotify();
 
+   const signUpActive = !!email && !!password && !!confirmPassword && !!firstName && !!lastName;
+
    useEffect(() => {
       if (userState.isLogged) {
          if (userState.status === AccStatus.ADMIN) navigate('/admin');
@@ -33,11 +36,19 @@ const Login = () => {
       e.preventDefault();
       await dispatch(signIn({ email, password } as { email: string; password: string }))
          .unwrap()
-         .catch((e) => notify(notificationTypes.ERROR, e.message));
+         .catch((e) => firebaseErrorCatch(e.code));
    };
 
    const handleSignUp = async (e: FormEvent) => {
       e.preventDefault();
+      if (!signUpActive) {
+         notify(notificationTypes.ERROR, 'Fill all fields');
+         return;
+      }
+      if (password !== confirmPassword) {
+         firebaseErrorCatch('auth/different-passwords');
+         return;
+      }
       await dispatch(
          signUp({ email, password, firstName, lastName } as {
             email: string;
@@ -47,7 +58,7 @@ const Login = () => {
          })
       )
          .unwrap()
-         .catch((e) => notify(notificationTypes.ERROR, e.message));
+         .catch((e) => firebaseErrorCatch(e.code));
    };
 
    return (
@@ -99,18 +110,7 @@ const Login = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                      />
                   </div>
-                  <button
-                     onClick={
-                        password === confirmPassword
-                           ? handleSignUp
-                           : (e) => {
-                                alert('Passwords are different');
-                                e.preventDefault();
-                             }
-                     }
-                  >
-                     Sign Up
-                  </button>
+                  <button onClick={handleSignUp}>Sign Up</button>
                </form>
             </div>
             <div className='form-container sign-in-container'>

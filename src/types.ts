@@ -36,11 +36,21 @@ export type TBasketType = {
    count: number;
 };
 
-export enum AccStatus  {
-	ADMIN = 'admin',
-	USER = 'user',
-	GUEST = 'guest'
+export enum AccStatus {
+   ADMIN = 'admin',
+   USER = 'user',
+   GUEST = 'guest'
 }
+
+export const FirebaseErrors = {
+   'auth/user-not-found': 'User not found',
+   'auth/email-already-exists': 'Email already exists',
+   'auth/invalid-email': 'Invalid email',
+   'auth/invalid-password': 'Invalid password',
+   'auth/email-already-in-use': 'Email already in use',
+   'auth/different-passwords': 'Passwords are not matching',
+   'auth/weak-password': 'Password should be at least 6 characters'
+};
 
 export type TUser = {
    id: string | null;
@@ -50,7 +60,7 @@ export type TUser = {
    lastName: string | null;
    basket: TBasketType[];
    likedProducts: TLikedType[];
-	status: AccStatus;
+   status: AccStatus;
 };
 
 export enum notificationTypes {
