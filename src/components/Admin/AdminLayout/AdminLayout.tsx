@@ -16,12 +16,11 @@ import { AccStatus } from '../../../types';
 function AdminLayout() {
    const status = useAppSelector((state) => state.user.status);
    const navigate = useNavigate();
+   console.log(AccStatus.ADMIN, status);
 
-
-   return (
-		status !== AccStatus.ADMIN ? (
-			<Navigate to={'/shop'} />
-		) :
+   return status !== AccStatus.ADMIN ? (
+      <Navigate to={'/shop'} />
+   ) : (
       <>
          <div>
             <div className='nav_bar'>

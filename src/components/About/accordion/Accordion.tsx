@@ -4,7 +4,7 @@ import { CircularProgress, Typography } from '@mui/material';
 import getData from '../../../api/api';
 import AccordionItem from './AccordionItem';
 
-type TFaqItem = {
+export type TFaqItem = {
    answer: string;
    question: string;
    id: string;

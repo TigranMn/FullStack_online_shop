@@ -29,7 +29,7 @@ const store = configureStore({
          likedProducts: likedProducts || [],
          isLogged: currentUser?.isLogged,
          isLoading: false,
-			status: AccStatus.GUEST
+			status: currentUser?.status || AccStatus.GUEST
       }
    },
    middleware: (getDefaultMiddleware) => {

@@ -17,9 +17,10 @@ signInListenerMiddleware.startListening({
       const shouldSave = isFulfilled(signIn);
       const state: { user: TUser } = listenerApi.getState() as { user: TUser };
       if (shouldSave(action)) {
+         const { id, email, name, status } = state.user;
          localStorage.setItem(
             'currentUser',
-            JSON.stringify({ isLogged: true, id: state.user.id, email: state.user.email })
+            JSON.stringify({ isLogged: true, id, email, name, status })
          );
       }
    }
@@ -33,8 +34,11 @@ signUpListenerMiddleware.startListening({
       const shouldSave = isFulfilled(signUp);
       const state: { user: TUser } = listenerApi.getState() as { user: TUser };
       if (shouldSave(action)) {
-         const { id, email, name } = state.user;
-         localStorage.setItem('currentUser', JSON.stringify({ isLogged: true, id, email, name }));
+         const { id, email, name, status } = state.user;
+         localStorage.setItem(
+            'currentUser',
+            JSON.stringify({ isLogged: true, id, email, name, status })
+         );
       }
    }
 });
