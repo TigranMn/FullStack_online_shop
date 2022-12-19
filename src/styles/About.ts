@@ -2,13 +2,17 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { aboutMemberSlider } from '../animation';
 
-export const AboutContainer = styled(Box)(() => ({
+export const AboutContainer = styled(Box)(({theme}) => ({
    height: '100vh',
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'center',
    overflow: 'hidden',
-   background: '#1A202C'
+   background: '#1A202C',
+   marginTop: '-3rem',
+   [theme.breakpoints.down('md')] : {
+      display: 'none'
+   }
 }));
 
 export const AboutSlider = styled(Box)(({ theme }) => ({
@@ -56,18 +60,24 @@ export const AboutImages = styled('img')(() => ({
 export const TeamMemberContainer = styled(Box)(() => ({
    width: '90%',
    maxWidth: '120rem',
-   margin: '0 auto',
+   margin: '8rem auto',
    position: 'relative',
    borderRadius: '8px',
    background: '#DCCDFF',
-   marginBottom: '20px'
+   marginBottom: '20px',
 }));
 
-export const TeamMemberCollector = styled(Box)(() => ({
+export const TeamMemberCollector = styled(Box)(({theme}) => ({
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'space-evenly',
-   padding: '10px'
+   padding: '10px',
+   [theme.breakpoints.down('sm')] : {
+      flexDirection : 'column'
+   },
+    [theme.breakpoints.down('md')] : {
+      flexDirection : 'column'
+   }
 }));
 
 export const TeamMember = styled(Box)(() => ({

@@ -75,9 +75,9 @@ const Footer = () => {
                </List>
             </Grid>
             <Grid item md={6} lg={2}>
-               <h1 style={{ cursor: 'pointer' }} onClick={handleNavigate}>
+               <h3 style={{ cursor: 'pointer' }} onClick={handleNavigate}>
                   FAQ
-               </h1>
+               </h3>
                <Box sx={{ mt: 4 }}>
                   <SocialNetwork />
                </Box>

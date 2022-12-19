@@ -94,8 +94,8 @@ export default function ProductsList() {
    };
 
    return (
-      <>
-         <Container>
+      <Box sx={{minHeight: '100vh', background: '#f2f2f2'}}>
+         <Container sx={{background: '#f2f2f2'}}>
             <div className='searchWrapper'>
                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <TextField
@@ -120,7 +120,7 @@ export default function ProductsList() {
                      label='Pages'
                      onChange={(e) => setItemCount(+e.target.value)}
                   >
-                     <MenuItem value={6}>6</MenuItem>
+                     <MenuItem  value={6}>6</MenuItem>
                      <MenuItem value={9}>9</MenuItem>
                      <MenuItem value={12}>12</MenuItem>
                   </Select>
@@ -230,6 +230,6 @@ export default function ProductsList() {
                </Grid>
             </div>
          </Container>
-      </>
+      </Box>
    );
 }
