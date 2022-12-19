@@ -1,5 +1,4 @@
 //Hooks
-import { useEffect } from 'react';
 import { useAuth } from '../../hooks/use-auth';
 import { useAppDispatch } from '../../store';
 import { useNavigate, Navigate } from 'react-router-dom';

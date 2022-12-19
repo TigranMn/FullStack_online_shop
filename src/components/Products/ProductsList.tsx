@@ -94,8 +94,8 @@ export default function ProductsList() {
    };
 
    return (
-      <Box sx={{minHeight: '100vh', background: '#f2f2f2'}}>
-         <Container sx={{background: '#f2f2f2'}}>
+      <>
+         <Container>
             <div className='searchWrapper'>
                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <TextField
@@ -106,7 +106,6 @@ export default function ProductsList() {
                      style={{ minWidth: '250px' }}
                      onChange={(e) => {
                         setFilterName(e.target.value);
-                        console.log(e.target.value);
                      }}
                   />
                   <Button onClick={handleSearch} style={{ marginLeft: '10px' }} variant='outlined'>
@@ -120,7 +119,7 @@ export default function ProductsList() {
                      label='Pages'
                      onChange={(e) => setItemCount(+e.target.value)}
                   >
-                     <MenuItem  value={6}>6</MenuItem>
+                     <MenuItem value={6}>6</MenuItem>
                      <MenuItem value={9}>9</MenuItem>
                      <MenuItem value={12}>12</MenuItem>
                   </Select>
@@ -220,7 +219,7 @@ export default function ProductsList() {
                         })
                      )}
                   </Grid>
-                  {products.products.length ? (
+                  {!products.isLoading ? (
                      <MyPagination
                         onChange={setCurrentPage}
                         pages={pages}
@@ -230,6 +229,6 @@ export default function ProductsList() {
                </Grid>
             </div>
          </Container>
-      </Box>
+      </>
    );
 }

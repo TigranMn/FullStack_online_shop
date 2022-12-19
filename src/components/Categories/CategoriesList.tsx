@@ -9,7 +9,7 @@ import { Container, Grid, Typography, CircularProgress, Box } from '@mui/materia
 import CategoryItem from './CategoryItem';
 
 export default function CategoriesList() {
-   const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [isLoading, setIsLoading] = useState<boolean>(true);
    const [error, setError] = useState<boolean>(false);
    const categoriesList = useAppSelector((state) => state.categories);
    const dispatch = useAppDispatch();

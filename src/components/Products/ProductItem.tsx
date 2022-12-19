@@ -95,39 +95,65 @@ export default function ProductItem({ product }: ProductItemProps) {
          <Grid item key={product?.id}>
             <Product>
                <ProductCard>
-               <ProductBox>
-                  <ProductImages onClick={changeLocation} src={product.imgUrl} alt='productImg' />
-               </ProductBox>
-               <ProductContent>
-                  <ProductName>{product.name}</ProductName>
-                  <ProductPrice>{product.price}$</ProductPrice>
-                  {product.quantity ? (
-                     <ProductActionButton
-                        disabled={product.quantity - inBasket <= 0}
-                        onClick={handleAdd}
-                     >
-                        Add to cart
-                     </ProductActionButton>
-                  ) : (
-                     <ProductActionButton
-                        disableRipple
-                        style={{
-                           backgroundColor: 'grey',
-                           color: 'white',
-                           cursor: 'default'
-                        }}
-                     >
-                        Expired
-                     </ProductActionButton>
-                  )}
-               </ProductContent>
-               <ProductLikedIcon>
-               {isLiked ? (
-                  <Button disableRipple  size='large' onClick={handleDislike} sx={{position: 'absolute', bottom: '10px',zIndex: 9999999999, color: 'white'}} startIcon={<FavoriteIcon />} ></Button>
-               ) : (
-                  <Button disableRipple  size='large' onClick={handleLike} sx={{position: 'absolute', bottom: '10px', zIndex: 9999999999, color: 'red'}} startIcon={<FavoriteIcon />} ></Button>
-               )}
-               </ProductLikedIcon>
+                  <ProductBox>
+                     <ProductImages
+                        onClick={changeLocation}
+                        src={product.imgUrl}
+                        alt='productImg'
+                     />
+                  </ProductBox>
+                  <ProductContent>
+                     <ProductName>{product.name}</ProductName>
+                     <ProductPrice>{product.price}$</ProductPrice>
+                     {product.quantity ? (
+                        <ProductActionButton
+                           disabled={product.quantity - inBasket <= 0}
+                           onClick={handleAdd}
+                        >
+                           Add to cart
+                        </ProductActionButton>
+                     ) : (
+                        <ProductActionButton
+                           disableRipple
+                           style={{
+                              backgroundColor: 'grey',
+                              color: 'white',
+                              cursor: 'default'
+                           }}
+                        >
+                           Expired
+                        </ProductActionButton>
+                     )}
+                  </ProductContent>
+                  <ProductLikedIcon>
+                     {!isLiked ? (
+                        <Button
+                           size='large'
+                           onClick={handleLike}
+                           sx={{
+                              '&:hover': { backgroundColor: 'transparent' },
+                              position: 'absolute',
+                              bottom: '10px',
+                              zIndex: 9999999999,
+                              color: 'white'
+                           }}
+                           startIcon={<FavoriteIcon />}
+                        ></Button>
+                     ) : (
+                        <Button
+                           disableRipple
+                           size='large'
+                           onClick={handleDislike}
+                           sx={{
+                              position: 'absolute',
+                              bottom: '10px',
+                              zIndex: 9999999999,
+                              color: 'red'
+                           }}
+                           startIcon={<FavoriteIcon />}
+                        ></Button>
+                     )}
+                  </ProductLikedIcon>
                </ProductCard>
             </Product>
          </Grid>

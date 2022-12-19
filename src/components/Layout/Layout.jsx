@@ -4,14 +4,18 @@ import Footer from '../footer/Footers';
 import { Outlet } from 'react-router-dom';
 //Toast
 import { ToastContainer } from 'react-toastify';
+import { useAppSelector } from '../../store';
 
 export default function Layout() {
-   return (
-      <>
-         <ToastContainer newestOnTop={false} />
-         <Header />
-         <Outlet />
-         <Footer />
-      </>
-   );
+	const isAdmin = useAppSelector(state => state.user.status === 'admin');
+
+	return (
+		isAdmin ? <Outlet /> :
+			<>
+				<ToastContainer newestOnTop={false} />
+				<Header />
+				<Outlet />
+				<Footer />
+			</>
+	);
 }

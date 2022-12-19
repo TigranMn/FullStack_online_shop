@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Types
-import { AccStatus, FirebaseErrors, notificationTypes } from '../../types';
+import { AccStatus, notificationTypes } from '../../types';
 //Styles
 import '../../styles/loginStyle.css';
 import { firebaseErrorCatch } from '../../utils/firebaseErrorCatch';

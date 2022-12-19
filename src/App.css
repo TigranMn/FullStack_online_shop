@@ -14,7 +14,11 @@ a {
    flex-grow: 3;
    justify-content: center;
    align-self: center;
-   color: rgb(40, 34, 66);
+	color: white;
+}
+
+.active {
+	color:#5082FC
 }
 
 #root {
