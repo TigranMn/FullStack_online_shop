@@ -12,6 +12,7 @@ import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
 import { useAppSelector } from '../../../store';
 import { AccStatus } from '../../../types';
+import '../adminUsers/style.css';
 
 function AdminLayout() {
    const status = useAppSelector((state) => state.user.status);

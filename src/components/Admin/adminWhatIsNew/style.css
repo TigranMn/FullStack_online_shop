@@ -54,14 +54,33 @@
 }
 .lessProd_notify_num{
     position: absolute;
-    color: rgb(207, 0, 190);
+    color: rgb(6, 109, 28);
     font-weight: bold;
     top: 30%;
     right: 35%;
 }
-.what_is_New_borad > div> div:hover  .lessProd_notify{
+.what_is_New_borad > div> div:hover  .lessProd_notify, .newUsers_notify{
     transform: scale(1)
 }
-.what_is_New_borad > div> div:hover .lessProd_notify_num {
+.what_is_New_borad > div> div:hover .lessProd_notify_num , .newUsers_notify_num{
     transform: scale(1)
+}
+
+.newUsers {
+    position: relative;
+}
+
+.newUsers_notify{
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+
+.newUsers_notify_num{
+    position: absolute;
+    color: rgb(6, 109, 28);
+    font-weight: bold;
+    font-size: 14px;
+    top: 20%;
+    right: 25%;
 }

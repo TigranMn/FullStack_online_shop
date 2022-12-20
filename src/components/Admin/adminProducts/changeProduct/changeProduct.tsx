@@ -38,14 +38,13 @@ function ChangeProduct() {
          price: price,
          quantity: quantity,
          category: currentProduct.category,
-         count: currentProduct.count,
+         count: currentProduct.count || 0,
          views: currentProduct.views,
          id: currentProduct.id
       };
       setDoc(doc(db, `/${currentProduct.category}`, `${currentProduct.id}`), updatedProduct, {
          merge: true
       }).then(() => dispatch(updateProduct(updatedProduct)));
-
       dispatch(changeModalWindow());
       dispatch(forceRerender(true));
    };
