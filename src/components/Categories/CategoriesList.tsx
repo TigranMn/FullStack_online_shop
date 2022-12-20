@@ -7,12 +7,14 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { Container, Grid, Typography, CircularProgress, Box } from '@mui/material';
 //Components
 import CategoryItem from './CategoryItem';
+import { useTranslation } from 'react-i18next';
 
 export default function CategoriesList() {
    const [isLoading, setIsLoading] = useState<boolean>(true);
    const [error, setError] = useState<boolean>(false);
    const categoriesList = useAppSelector((state) => state.categories);
    const dispatch = useAppDispatch();
+   const { t } = useTranslation();
 
    const { categories } = categoriesList;
    useEffect(() => {

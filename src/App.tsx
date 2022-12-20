@@ -14,7 +14,6 @@ import Product from './components/pages/Product';
 import Login from './components/pages/Login';
 import Buy from './components/pages/Buy';
 import Likes from './components/pages/Likes';
-import Faq from './components/pages/Faq';
 import AdminLayout from './components/Admin/AdminLayout/AdminLayout';
 import WhatIsNew from './components/Admin/adminWhatIsNew/adminWhatIsNew';
 import LessQuantityProd from './components/Admin/adminWhatIsNew/LessQuantityProd/LessQuantityProd';
@@ -58,7 +57,6 @@ function App() {
                <Route path='/buy' element={<Buy />} />
                <Route path='/login' element={<Login />} />
                <Route path='/liked' element={<Likes />} />
-               <Route path='/faq' element={<Faq />} />
                <Route path='/admin' element={<AdminLayout />}>
                   <Route index element={<WhatIsNew />}></Route>
                   <Route path='/admin/less-products' element={<LessQuantityProd />}></Route>

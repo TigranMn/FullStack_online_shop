@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 //MUI
-import { CircularProgress, Typography } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 import getData from '../../../api/api';
 import AccordionItem from './AccordionItem';
 
@@ -36,11 +36,7 @@ const AccordionPage = () => {
    }, []);
 
    return (
-      <div>
-         <Typography sx={{ textAlign: 'center' }} variant='h4'>
-            FAQ
-            <hr />
-         </Typography>
+      <div style={{ margin: '100px' }}>
          {isLoading ? (
             <CircularProgress />
          ) : (

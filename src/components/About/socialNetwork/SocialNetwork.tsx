@@ -13,8 +13,8 @@ const SocialNetwork = () => {
             </IconButton>
          </Tooltip>
          <Tooltip title='Instagram'>
-            <IconButton color='default'>
-               <InstagramIcon sx={{ color: '#5082FC' }} />
+            <IconButton color='error'>
+               <InstagramIcon sx={{ color: 'error' }} />
             </IconButton>
          </Tooltip>
          <Tooltip title='Twitter'>

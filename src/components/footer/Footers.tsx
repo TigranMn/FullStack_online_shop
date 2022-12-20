@@ -5,13 +5,12 @@ import { FooterTitle } from './styles';
 //Components
 import SocialNetwork from '../About/socialNetwork/SocialNetwork';
 import { useNavigate } from 'react-router-dom';
-import ContactItemMap from '../ContactItems/contactItemMap/ContactItemMap';
 
 const Footer = () => {
    const navigate = useNavigate();
 
    const handleNavigate = () => {
-      navigate('/faq');
+      navigate('/about');
    };
 
    return (
@@ -35,11 +34,17 @@ const Footer = () => {
                      electronic commerce which allows consumers to directly buy goods or services
                      from a seller over the Internet using a web browser or a mobile app.
                   </Typography>
-                  <Box sx={{ mt: 4 }}>
-                     <h3 style={{ cursor: 'pointer' }} onClick={handleNavigate}>
-                        FAQ
-                     </h3>
+                  <Box>
+                     <br />
+                     <h2>Social Networks</h2>
+                     <br />
                      <SocialNetwork />
+                     <br />
+                  </Box>
+                  <Box>
+                     <h1 style={{ cursor: 'pointer' }} onClick={handleNavigate}>
+                        FAQ
+                     </h1>
                   </Box>
                </Grid>
                <Grid item md={6} lg={2}>
