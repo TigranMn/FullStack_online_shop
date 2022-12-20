@@ -1,20 +1,12 @@
 //MUI
-import { Typography, List, ListItem, ListItemIcon, Box } from '@mui/material';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import TelegramIcon from '@mui/icons-material/Telegram';
+import { Box } from '@mui/material';
 //Components
 import {
    TeamMemberContainer,
-   TeamMember,
-   TeamMemberImageBox,
-   TeamMemberInfo,
-   TeamMemberImage,
-   TeamMemberDetails,
-   AboutMySelf,
-   AboutMySelfHeading,
    TeamMemberCollector
 } from '../../styles/About';
+import AboutItem from '../About/AboutItem/AboutItem';
+import AboutSelf from '../About/AboutSelf/AboutSelf';
 
 export default function About() {
    return (
@@ -34,415 +26,32 @@ export default function About() {
             </div>
             <TeamMemberContainer>
                <TeamMemberCollector>
-                  <TeamMember data-aos='fade-right'>
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://img.championat.com/s/735x490/news/big/o/h/bloger-hasbik-ufc-280_16659981331645926159.jpg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Suren Zaqaryan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
-                  <AboutMySelf data-aos='fade-up-left' data-aos-duration='1500'>
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           Data Lead Architect
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+                  <AboutItem fullName='Suren Zaqaryan' src='https://img.championat.com/s/735x490/news/big/o/h/bloger-hasbik-ufc-280_16659981331645926159.jpg' dataAos='fade-right' />
+                  <AboutSelf lead='Data Lead Architect' dataAos='fade-up-left' dataAosDuration={1500} />
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos='fade-up' data-aos-duration='3000'>
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           Software Lead Architect
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
-                  <TeamMember
-                     data-aos='flip-left'
-                     data-aos-easing='ease-out-cubic'
-                     data-aos-duration='2000'
-                  >
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://static.obzor.io/files/2022/09/obzor-io220930-Maxresdefault.jpg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Tigran Mnatsakanyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
+                  <AboutSelf lead='Software Lead Architect' dataAosDuration={3000} dataAos='fade-up' />
+                  <AboutItem src={'https://static.obzor.io/files/2022/09/obzor-io220930-Maxresdefault.jpg'} fullName='Tigran Mnatsakanyan' dataAosDuration={2000} dataAosEasing='ease-out-cubic' dataAos='flip-left' />
                </TeamMemberCollector>
                <TeamMemberCollector>
-                  <TeamMember data-aos='fade-up' data-aos-anchor-placement='center-center'>
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://cdn.forbes.ru/forbes-static/1040x669/new/2022/04/445-6269016c556dc.jpg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Narek Hovakimyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
-                  <AboutMySelf
-                     data-aos='fade-up'
-                     data-aos-anchor-placement='top-center'
-                     data-aos-duration='1000'
-                  >
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           SOFTWARE TESTER
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+                  <AboutItem dataAos='fade-up' dataAosAnchorPlacement='center-center' src='https://cdn.forbes.ru/forbes-static/1040x669/new/2022/04/445-6269016c556dc.jpg' fullName='Narek Hovakimyan' />
+                  <AboutSelf dataAos='fade-up' dataAosDuration={1000} dataAosAnchorPlacement='top-center' lead='SOFTWARE TESTER' />
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos='fade-right'>
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           WEB ANALYTICS DEVELOPER
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
-                  <TeamMember data-aos='fade-down-left' data-aos-duration='2000'>
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://i.pinimg.com/736x/a6/6f/29/a66f297794d3f99e18157a73d543d063.jpg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Shahen Sinanyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
+                  <AboutSelf lead='WEB ANALYTICS DEVELOPER' dataAos='fade-right' />
+                  <AboutItem src='https://i.pinimg.com/736x/a6/6f/29/a66f297794d3f99e18157a73d543d063.jpg' fullName='Shahen Sinanyan' dataAos='fade-down-left' dataAosDuration={2000} />
                </TeamMemberCollector>
                <TeamMemberCollector>
-                  <TeamMember data-aos='flip-up'>
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://s0.rbk.ru/v6_top_pics/media/img/1/05/756629801981051.jpeg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Razmik Kocharyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
-                  <AboutMySelf data-aos='zoom-out'>
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           USER ACCEPTANCE TESTER
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+                  <AboutItem fullName='Razmik Kocharyan' src='https://s0.rbk.ru/v6_top_pics/media/img/1/05/756629801981051.jpeg' dataAos='flip-up' />
+                  <AboutSelf lead='USER ACCEPTANCE TESTER' dataAos='zoom-out' />
                </TeamMemberCollector>
                <TeamMemberCollector sx={{ background: '#2B3548', color: '#DCCDFF' }}>
-                  <AboutMySelf data-aos='fade-up'>
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           QA Engineer
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
-                  <TeamMember data-aos='zoom-in-up' data-aos-duration='3000'>
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://www.pravilamag.ru/upload/img_cache/d46/d465615a6ee6efe551fdd4f465aa39d9_ce_1440x958x0x53_cropped_666x444.jpg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Erik Harutyunyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
+                  <AboutSelf lead='QA Engineer' dataAos='fade-up' />
+                  <AboutItem fullName='Erik Harutyunyan' src='https://www.pravilamag.ru/upload/img_cache/d46/d465615a6ee6efe551fdd4f465aa39d9_ce_1440x958x0x53_cropped_666x444.jpg' dataAos='zoom-in-up' dataAosDuration={3000} />
                </TeamMemberCollector>
                <TeamMemberCollector>
-                  <TeamMember
-                     data-aos='fade-down'
-                     data-aos-easing='linear'
-                     data-aos-duration='1500'
-                  >
-                     <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage
-                           src='https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg'
-                           alt='teamMember'
-                        />
-                     </TeamMemberImageBox>
-                     <TeamMemberInfo className='TeamMemberInfo'>
-                        <TeamMemberDetails>
-                           <Typography
-                              variant='h6'
-                              sx={{ color: '#fff', fontSize: '1.5em', fontWeight: 500 }}
-                           >
-                              Tigran Petrosyan
-                           </Typography>
-                           <Typography
-                              sx={{ color: '#2196f3', fontSize: '0.8em', fontWeight: 400 }}
-                              component='span'
-                           >
-                              Junior software engineer
-                           </Typography>
-                           <List sx={{ position: 'relative', display: 'flex', marginTop: '5px' }}>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <LinkedInIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <GitHubIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                              <ListItem>
-                                 <ListItemIcon>
-                                    <TelegramIcon />
-                                 </ListItemIcon>
-                              </ListItem>
-                           </List>
-                        </TeamMemberDetails>
-                     </TeamMemberInfo>
-                  </TeamMember>
-                  <AboutMySelf data-aos='fade-up' data-aos-duration='3000'>
-                     <AboutMySelfHeading>
-                        <Typography variant='h1' sx={{ fontSize: '2.5rem' }}>
-                           Design Engineer
-                        </Typography>
-                     </AboutMySelfHeading>
-                     <Typography component={'p'}>
-                        It is a long established fact that a reader will be distracted by the
-                        readable content of a page when looking at its layout. The point of using
-                        Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
-                        opposed to using 'Content here, content here', making it look like readable
-                        English. Many desktop publishing
-                     </Typography>
-                  </AboutMySelf>
+                  <AboutItem fullName='Tigran Petrosyan' src='https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg' dataAos='fade-down' dataAosEasing='linear' dataAosDuration={1500} />
+                  <AboutSelf lead='Design Engineer' dataAos='fade-up' dataAosDuration={3000} />
                </TeamMemberCollector>
             </TeamMemberContainer>
          </Box>
