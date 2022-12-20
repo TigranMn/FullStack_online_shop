@@ -8,41 +8,64 @@ import ContactItemPhone from '../ContactItems/contactItemPhone/ContactItemPhone'
 import ContactItemMap from '../ContactItems/contactItemMap/ContactItemMap';
 import { useState } from 'react';
 
-
 export default function Contact() {
-   const [showItem,setShowItem] = useState('');
+   const [showItem, setShowItem] = useState('');
 
    let Component;
 
-   if(showItem === 'ContactItemMap') {
+   if (showItem === 'ContactItemMap') {
       Component = <ContactItemMap />;
-   } else if(showItem === 'ContactItemPhone') {
+   } else if (showItem === 'ContactItemPhone') {
       Component = <ContactItemPhone />;
    } else {
-      Component = <ContactItemMail/>;
+      Component = <ContactItemMail />;
    }
-   
+
    return (
-         <ContactContainer>
-            <Book>
-         <BookCover className='bookCover'>
-            <Typography variant='h4' sx={{color: '#5082fc', fontFamily: '"Montez", "Cursive"', marginTop: '30px'}}>
-               The guide to contact
-            </Typography>
-         </BookCover>
-         <Page className='page'/>
-         <Page className='page'/>
-         <Page className='page'/>
-         <Page className='page'/>
-         <Page className='page'/>
-         <LastPage>
-            <Button onClick={()=>setShowItem('') } size='small' sx={{color:'#212834'}}  endIcon={<EmailIcon />}>Gmail</Button>
-            <Button onClick={()=>setShowItem('ContactItemPhone') } size='small' sx={{color:'#212834'}}  endIcon={<PhoneIcon/>}>Phone</Button>
-            <Button onClick={()=>setShowItem('ContactItemMap') } size='small' sx={{color:'#212834'}}  endIcon={<MapIcon />}>Map</Button>
-         </LastPage>
-         <BackCover></BackCover>
-        </Book>
-        {Component}
-        </ContactContainer>
+      <ContactContainer>
+         <Book>
+            <BookCover className='bookCover'>
+               <Typography
+                  variant='h4'
+                  sx={{ color: '#5082fc', fontFamily: '"Montez", "Cursive"', marginTop: '30px' }}
+               >
+                  The guide to contact
+               </Typography>
+            </BookCover>
+            <Page className='page' />
+            <Page className='page' />
+            <Page className='page' />
+            <Page className='page' />
+            <Page className='page' />
+            <LastPage>
+               <Button
+                  onClick={() => setShowItem('')}
+                  size='small'
+                  sx={{ color: '#212834' }}
+                  endIcon={<EmailIcon />}
+               >
+                  Gmail
+               </Button>
+               <Button
+                  onClick={() => setShowItem('ContactItemPhone')}
+                  size='small'
+                  sx={{ color: '#212834' }}
+                  endIcon={<PhoneIcon />}
+               >
+                  Phone
+               </Button>
+               <Button
+                  onClick={() => setShowItem('ContactItemMap')}
+                  size='small'
+                  sx={{ color: '#212834' }}
+                  endIcon={<MapIcon />}
+               >
+                  Map
+               </Button>
+            </LastPage>
+            <BackCover></BackCover>
+         </Book>
+         {Component}
+      </ContactContainer>
    );
 }
