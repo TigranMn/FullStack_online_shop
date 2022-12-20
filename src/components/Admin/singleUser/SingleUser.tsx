@@ -8,16 +8,7 @@ import { getData } from '../adminAPI/adminAPI';
 import { TUser, TProduct } from '../../../types';
 
 function SingleUser() {
-   const initialUser = {
-      id: '',
-      email: '',
-      token: '',
-      name: '',
-      lastName: '',
-      basket: [],
-      likedProducts: []
-   };
-   const [user, setUser] = useState<TUser>(initialUser);
+   const [user, setUser] = useState<TUser>();
    const [likedProd, setLikedProd] = useState<TProduct[]>([]);
    const [basket, setBasket] = useState<TProduct[]>([]);
    const { userId } = useParams();
@@ -57,14 +48,14 @@ function SingleUser() {
       <div>
          <div>
             <h2>
-               {user.name} {user.lastName}
+               {user?.name} {user?.lastName}
             </h2>
          </div>
          <div>
-            <span>Email:</span> <span>{user.email}</span>
+            <span>Email:</span> <span>{user?.email}</span>
          </div>
          <div>
-            <span>User ID:</span> <span>{user.id}</span>
+            <span>User ID:</span> <span>{user?.id}</span>
          </div>
          <hr />
          <br/>
