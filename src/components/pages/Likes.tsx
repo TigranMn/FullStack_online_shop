@@ -38,13 +38,14 @@ export default function Likes() {
    }, []);
 
    return (
-      <Container>
+      <Box sx={{minHeight :'100vh', background: '#f2f2f2'}}>
+      <Container sx={{minHeight :'100vh', background: '#f2f2f2'}}>
          <Box
             sx={{
                display: 'flex',
                flexWrap: 'wrap',
                gap: '30px',
-               justifyContent: 'stretch',
+               justifyContent: 'center',
                alignItems: 'center'
             }}
          >
@@ -57,9 +58,10 @@ export default function Likes() {
                   return <ProductItem key={el.id} product={el} />;
                })
             ) : (
-               <p style={{ width: '100%', textAlign: 'center' }}>Nothing in liked</p>
+               <h2 style={{ width: '100%', textAlign: 'center' }}>Nothing in liked</h2>
             )}
          </Box>
       </Container>
+      </Box>
    );
 }

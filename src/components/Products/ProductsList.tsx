@@ -106,7 +106,6 @@ export default function ProductsList() {
                      style={{ minWidth: '250px' }}
                      onChange={(e) => {
                         setFilterName(e.target.value);
-                        console.log(e.target.value);
                      }}
                   />
                   <Button onClick={handleSearch} style={{ marginLeft: '10px' }} variant='outlined'>
@@ -220,7 +219,7 @@ export default function ProductsList() {
                         })
                      )}
                   </Grid>
-                  {products.products.length ? (
+                  {!products.isLoading ? (
                      <MyPagination
                         onChange={setCurrentPage}
                         pages={pages}

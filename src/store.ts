@@ -5,6 +5,7 @@ import categoriesReducer from './redux/categoriesSlice';
 import productsReducer from './redux/productsSlice';
 import userSliceReducer from './redux/userSlice';
 import adminSlice from './redux/adminSlice';
+import { AccStatus } from './types';
 
 const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
 const likedProducts = JSON.parse(localStorage.getItem('likedProducts')!);
@@ -27,7 +28,8 @@ const store = configureStore({
          basket: [],
          likedProducts: likedProducts || [],
          isLogged: currentUser?.isLogged,
-         isLoading: false
+         isLoading: false,
+			status: currentUser?.status || AccStatus.GUEST
       }
    },
    middleware: (getDefaultMiddleware) => {

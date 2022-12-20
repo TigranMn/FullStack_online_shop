@@ -17,7 +17,7 @@ import BasketItem from './BasketItem';
 export default function Basket() {
    const basketItems = useAppSelector((state) => state.user.basket);
    const [products, setProducts] = useState<TProduct[]>([]);
-   const [isLoading, setIsLoading] = useState<boolean>(false);
+   const [isLoading, setIsLoading] = useState<boolean>(true);
    const [error, setError] = useState<boolean>(false);
    const notify = useNotify();
    const dispatch = useAppDispatch();
@@ -41,7 +41,7 @@ export default function Basket() {
          });
    }, [basketItems]);
 
-   const totalPrice = products.reduce((accm, curr) => accm + curr.price, 0);
+   const totalPrice = products.reduce((accm, curr) => accm + curr.price * curr.count, 0);
 
    async function handleRemove(id: string) {
       await dispatch(
@@ -68,9 +68,9 @@ export default function Basket() {
                return <BasketItem handleRemove={handleRemove} key={el.id} product={el} />;
             })
          ) : (
-            <p>Nothing in basket</p>
+            <h3>Nothing in basket</h3>
          )}
-         <BasketFooter totalPrice={totalPrice} />
+        {products.length ? <BasketFooter totalPrice={totalPrice} /> : null } 
       </>
    );
 }

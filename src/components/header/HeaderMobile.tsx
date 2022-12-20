@@ -29,19 +29,21 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
    return (
       <AppBarContainer>
          <IconButton onClick={() => setOpenMenu(true)}>
-            <MenuIcon />
+            <MenuIcon sx={{color: '#fff'}} />
          </IconButton>
          <AppBarHeader
+            sx={{color: '#5082FC'}}
             textAlign='center'
             variant='h4'
             onClick={() => {
                navigate('/');
             }}
          >
-            elite shop
+            Elite Shop
          </AppBarHeader>
          <Box width={'90px'}>
             <TextField
+               sx={{background: '#fff', borderRadius: '8px'}}
                size='small'
                select
                value={language}
@@ -58,7 +60,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                sx={{
                   width: '200px',
                   height: '100vh',
-                  background: 'rgba(40, 34, 66,0.8)',
+                  background: '#212834',
                   color: 'white'
                }}
             >
@@ -70,11 +72,12 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                >
                   <Button
                      sx={{
-                        color: 'rgba(117,117,117,0.9)',
-                        fontFamily: '"Montez", "Cursive"',
-                        fontSize: '20px'
+                        color: '#fff',
+                        fontSize: '18px',
+                        textTransform: 'lowercase',
+                        fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<HomeIcon />}
+                     endIcon={<HomeIcon sx={{color: '#805AD5'}} />}
                   >
                      home
                   </Button>
@@ -88,11 +91,12 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                >
                   <Button
                      sx={{
-                        color: 'rgba(117,117,117,0.9)',
-                        fontFamily: '"Montez", "Cursive"',
-                        fontSize: '20px'
+                        color: '#fff',
+                        fontSize: '18px',
+                        textTransform: 'lowercase',
+                        fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<LocalGroceryStoreIcon />}
+                     endIcon={<LocalGroceryStoreIcon sx={{color: '#805AD5'}} />}
                   >
                      Shop
                   </Button>
@@ -106,11 +110,12 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                >
                   <Button
                      sx={{
-                        color: 'rgba(117,117,117,0.9)',
-                        fontFamily: '"Montez", "Cursive"',
-                        fontSize: '20px'
+                        color: '#fff',
+                        fontSize: '18px',
+                        textTransform: 'lowercase',
+                        fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<CallIcon />}
+                     endIcon={<CallIcon sx={{color: '#805AD5'}}/>}
                   >
                      Contact
                   </Button>
@@ -124,11 +129,12 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                >
                   <Button
                      sx={{
-                        color: 'rgba(117,117,117,0.9)',
-                        fontFamily: '"Montez", "Cursive"',
-                        fontSize: '20px'
+                        color: '#fff',
+                        fontSize: '18px',
+                        textTransform: 'lowercase',
+                        fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<InfoIcon />}
+                     endIcon={<InfoIcon sx={{color: '#805AD5'}} />}
                   >
                      About
                   </Button>

@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { Outlet } from 'react-router';
 
 //styles
@@ -10,12 +10,18 @@ import '../adminProducts/addProducts/style.css';
 import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
+import { useAppSelector } from '../../../store';
+import { AccStatus } from '../../../types';
 import '../adminUsers/style.css';
 
 function AdminLayout() {
+   const status = useAppSelector((state) => state.user.status);
    const navigate = useNavigate();
+   console.log(AccStatus.ADMIN, status);
 
-   return (
+   return status !== AccStatus.ADMIN ? (
+      <Navigate to={'/shop'} />
+   ) : (
       <>
          <div>
             <div className='nav_bar'>

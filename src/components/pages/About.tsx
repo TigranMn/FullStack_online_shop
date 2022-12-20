@@ -20,6 +20,10 @@ export default function About() {
    return (
       <>
          <Box style={{ background: '#1A202C' }}>
+       <div style={{ textTransform: 'uppercase', lineHeight: 0, textAlign: 'center', marginTop: '6rem', color: '#fff'}}>
+         <h1 style={{fontSize: '5rem', opacity: '0.3'}}>Definition</h1>
+         <h6 style={{fontSize: '1.2rem', fontWeight: 300}}>Ourself</h6>
+        </div>
             <TeamMemberContainer>
                <TeamMemberCollector>
                   <TeamMember data-aos='fade-right'>

@@ -1,6 +1,5 @@
 import { db } from '../../../../firebase';
 import { getDocs, collection, setDoc, doc } from 'firebase/firestore';
-import { AnyCnameRecord } from 'dns';
 
 export async function getLessProdId(): Promise<string[]> {
    let arrLessProdId: string[] = [];

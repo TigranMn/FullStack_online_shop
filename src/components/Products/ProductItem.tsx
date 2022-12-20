@@ -7,19 +7,22 @@ import { useAppDispatch, useAppSelector } from '../../store';
 //Types
 import { notificationTypes, TProduct } from '../../types';
 //Mui
-import { Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import {
    Product,
    ProductActionButton,
    ProductBox,
+   ProductCard,
    ProductContent,
    ProductImages,
+   ProductLikedIcon,
    ProductName,
    ProductPrice
 } from './styles';
 //Actions
 import { addProduct, dislikeProduct, likeProduct } from '../../redux/userSlice';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 type ProductItemProps = {
    product: TProduct;
@@ -91,37 +94,67 @@ export default function ProductItem({ product }: ProductItemProps) {
       <>
          <Grid item key={product?.id}>
             <Product>
-               <ProductBox>
-                  <ProductImages onClick={changeLocation} src={product.imgUrl} alt='productImg' />
-               </ProductBox>
-               <ProductContent>
-                  <ProductName>{product.name}</ProductName>
-                  <ProductPrice>{product.price}$</ProductPrice>
-                  {product.quantity ? (
-                     <ProductActionButton
-                        disabled={product.quantity - inBasket <= 0}
-                        onClick={handleAdd}
-                     >
-                        Add to cart
-                     </ProductActionButton>
-                  ) : (
-                     <ProductActionButton
-                        disableRipple
-                        style={{
-                           backgroundColor: 'grey',
-                           color: 'white',
-                           cursor: 'default'
-                        }}
-                     >
-                        Expired
-                     </ProductActionButton>
-                  )}
-               </ProductContent>
-               {isLiked ? (
-                  <button onClick={handleDislike}>Dislike</button>
-               ) : (
-                  <button onClick={handleLike}>Like</button>
-               )}
+               <ProductCard>
+                  <ProductBox>
+                     <ProductImages
+                        onClick={changeLocation}
+                        src={product.imgUrl}
+                        alt='productImg'
+                     />
+                  </ProductBox>
+                  <ProductContent>
+                     <ProductName>{product.name}</ProductName>
+                     <ProductPrice>{product.price}$</ProductPrice>
+                     {product.quantity ? (
+                        <ProductActionButton
+                           disabled={product.quantity - inBasket <= 0}
+                           onClick={handleAdd}
+                        >
+                           Add to cart
+                        </ProductActionButton>
+                     ) : (
+                        <ProductActionButton
+                           disableRipple
+                           style={{
+                              backgroundColor: 'grey',
+                              color: 'white',
+                              cursor: 'default'
+                           }}
+                        >
+                           Expired
+                        </ProductActionButton>
+                     )}
+                  </ProductContent>
+                  <ProductLikedIcon>
+                     {!isLiked ? (
+                        <Button
+                           size='large'
+                           onClick={handleLike}
+                           sx={{
+                              '&:hover': { backgroundColor: 'transparent' },
+                              position: 'absolute',
+                              bottom: '10px',
+                              zIndex: 9999999999,
+                              color: 'white'
+                           }}
+                           startIcon={<FavoriteIcon />}
+                        ></Button>
+                     ) : (
+                        <Button
+                           disableRipple
+                           size='large'
+                           onClick={handleDislike}
+                           sx={{
+                              position: 'absolute',
+                              bottom: '10px',
+                              zIndex: 9999999999,
+                              color: 'red'
+                           }}
+                           startIcon={<FavoriteIcon />}
+                        ></Button>
+                     )}
+                  </ProductLikedIcon>
+               </ProductCard>
             </Product>
          </Grid>
       </>

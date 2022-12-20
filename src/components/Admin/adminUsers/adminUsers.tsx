@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { TUser } from '../../../types';
 import { getAllUsers } from '../../../api/api';
-import { iteratorSymbol } from 'immer/dist/internal';
 import { useNavigate } from 'react-router-dom';
 
 function AdminUsers() {

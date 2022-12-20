@@ -1,5 +1,5 @@
 //MUI
-import { IconButton, ListItemButton, ListItemIcon } from '@mui/material';
+import { IconButton, ListItemButton, ListItemIcon, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import LoginIcon from '@mui/icons-material/Login';
@@ -36,14 +36,23 @@ const Actions = ({ matches }) => {
       <Component>
          <div>
             <Drawer anchor={'right'} open={isActive} onClose={() => setIsActive(false)}>
-               <Box sx={{ width: '500px', padding: '15px' }}>
-                  <Box>Products</Box>
+               <Box sx={{ width: '500px', height: '100vh', padding: '15px', textAlign: 'center' }}>
+                  <Typography
+                     variant='h4'
+                     sx={{ color: '#5082FC', fontFamily: '"Montez", "Cursive"' }}
+                  >
+                     Products
+                  </Typography>
                   <Basket />
                </Box>
             </Drawer>
          </div>
          <MyList type='row'>
-            <ListItemButton onClick={setBasketActive} sx={{ justifyContent: 'center' }}>
+            <ListItemButton
+               onClick={setBasketActive}
+               sx={{ justifyContent: 'center' }}
+               disableRipple
+            >
                <ListItemIcon
                   sx={{
                      display: 'flex',
@@ -53,7 +62,7 @@ const Actions = ({ matches }) => {
                >
                   <IconButton aria-label='cart'>
                      <StyledBadge badgeContent={productsLength} color='secondary'>
-                        <ShoppingCartIcon sx={{ color: '#5082FC' }} />
+                        <ShoppingCartIcon sx={{ color: '#5082FC' }} disableRipple />
                      </StyledBadge>
                   </IconButton>
                </ListItemIcon>
@@ -63,6 +72,7 @@ const Actions = ({ matches }) => {
                   navigate('/liked');
                }}
                sx={{ justifyContent: 'center' }}
+               disableRipple
             >
                <ListItemIcon
                   sx={{
@@ -80,6 +90,7 @@ const Actions = ({ matches }) => {
                   onClick={() => {
                      navigate('/user');
                   }}
+                  disableRipple
                >
                   <ListItemIcon
                      sx={{
@@ -115,5 +126,3 @@ const Actions = ({ matches }) => {
 };
 
 export default Actions;
-
-// #805AD5

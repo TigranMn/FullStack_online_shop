@@ -3,82 +3,88 @@ import { Box, Typography, IconButton } from '@mui/material';
 
 export const Product = styled(Box)(() => ({
    position: 'relative',
-   width: '200px',
-   height: '300px',
-   background: '#122936',
-   borderRadius: '15px',
-   overflow: 'hidden',
-   '&:before': {
+   background: '#fff',
+   borderRadius: '20px',
+   margin :'20px 0',
+   width :'280px',
+    '&:before': {
       content: '""',
       position: 'absolute',
-      top: '-50%',
-      height: '100%',
+      height: '50%',
       width: '100%',
-      background: '#2196F3',
-      transform: 'skewY(345deg)',
-      transition: '0.5s'
-   },
-   '&:hover:before': {
-      top: '-70%',
-      transform: 'skewY(390deg)'
-   },
-   '&:hover .MuiButtonBase-root': {
-      top: 0,
-      opacity: 1
+      background: '#7d2ae8',
+      borderRadius: '20px 20px 0 0'
    }
 }));
 
-export const ProductBox = styled(Box)(() => ({
-   position: 'relative',
-   width: '100%',
+export const ProductCard = styled(Box)(()=> ({
    display: 'flex',
-   justifyContent: 'center',
+   flexDirection: 'column',
    alignItems: 'center',
-   paddingTop: '20px',
+   padding :'30px',
+   position: 'relative',
    zIndex: 1
+}));
+
+export const ProductBox = styled(Box)(() => ({
+   height: '140px',
+   width:'140px',
+   borderRadius: '50%',
+   padding: '3px',
+   background :'#7d2ae8'
 }));
 
 export const ProductImages = styled('img')(({ src }) => ({
    src: `url(${src})`,
-   maxWidth: '100%',
-   width: '200px'
+   width: '100%',
+   height: '100%',
+   objectFit: 'contain',
+   borderRadius: '50%',
+   border :'3px solid #fff',
+   background : '#fff'
+  
 }));
 
 export const ProductContent = styled(Box)(() => ({
-   position: 'relative',
-   padding: '20px',
-   display: 'flex',
-   justifyContent: 'center',
-   alignItems: 'center',
-   flexDirection: 'column',
-   zIndex: 1
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop :'10px',
+    color: '#333',
+    border :'3px solid #fff'
 }));
 
 export const ProductName = styled(Typography)(() => ({
-   fontSize: '14px',
-   color: '#fff',
-   fontWeight: 500,
-   textTransform: 'uppercase',
-   letterSpacing: '1px'
+   fontSize: '20px',
+   fontWeight: 600,
 }));
 
 export const ProductPrice = styled(Typography)(() => ({
-   fontSize: '18px',
-   color: '#fff',
+   fontSize: '15px',
    fontWeight: 500,
-   letterSpacing: '1px'
 }));
 
 export const ProductActionButton = styled(IconButton)(() => ({
-   position: 'relative',
-   top: '100px',
-   padding: '7px 15px',
-   opacity: 0,
-   marginTop: '15px',
-   color: '#fff',
-   textDecoration: 'none',
-   background: '#2196f3',
-   borderRadius: '30px',
-   letterSpacing: '1px',
-   transition: '0.5s'
+   display: 'flex',
+   justifyContent :'center',
+   width :'100%',
+   marginTop :'20px',
+   background : '#7d2ae8',
+   outline :'none',
+   border :'none',
+   color :'#fff',
+   padding :'8px 22px',
+   borderRadius : '20px',
+   fontSize : '14px',
+   transition :'all 0.3s ease',
+   '&:hover ' : {
+      background : '#6616d0'
+   }
+}));
+
+
+export const ProductLikedIcon = styled(Box)(()=> ({
+   position :'absolute',
+   top: '50px',
+   right :'50px'
 }));
