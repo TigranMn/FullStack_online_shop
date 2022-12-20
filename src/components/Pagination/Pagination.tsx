@@ -12,6 +12,7 @@ export default function MyPagination({ currentPage, onChange, pages }: TPaginati
          shape='rounded'
          showFirstButton
          showLastButton
+         color='primary'
          variant='outlined'
          page={currentPage}
          onChange={(_: unknown, page: number) => {

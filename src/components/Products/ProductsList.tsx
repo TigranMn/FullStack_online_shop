@@ -94,9 +94,22 @@ export default function ProductsList() {
    };
 
    return (
-      <>
+      <div
+         style={{
+            background: 'linear-gradient(to top, #0f2027, #203a43, #2c5364)',
+            minHeight: '100vh'
+         }}
+      >
          <Container>
-            <div className='searchWrapper'>
+            <div
+               style={{
+                  border: '2px solid rgba(171, 167, 137, 0.67)',
+                  padding: '20px',
+                  borderRadius: '10px',
+                  backgroundColor: 'white'
+               }}
+               className='searchWrapper'
+            >
                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <TextField
                      id='standard-basic'
@@ -108,7 +121,17 @@ export default function ProductsList() {
                         setFilterName(e.target.value);
                      }}
                   />
-                  <Button onClick={handleSearch} style={{ marginLeft: '10px' }} variant='outlined'>
+                  <Button
+                     onClick={handleSearch}
+                     style={{
+                        padding: '10px',
+                        marginLeft: '10px',
+                        color: 'rgba(0, 181, 76, 0.56)',
+                        border: '3px solid rgba(0, 181, 76, 0.56)',
+                        backgroundColor: 'white'
+                     }}
+                     variant='outlined'
+                  >
                      Search
                   </Button>
                </div>
@@ -126,9 +149,18 @@ export default function ProductsList() {
                </FormControl>
             </div>
             <br />
-            <br />
             <div className='productsWrapper'>
-               <div className='filter'>
+               <div
+                  className='filter'
+                  style={{
+                     marginTop: '40px',
+                     backgroundColor: 'white',
+                     border: '2px solid rgba(171, 167, 137, 0.67)',
+                     borderRadius: '10px',
+                     padding: '20px',
+                     height: '360px'
+                  }}
+               >
                   <br />
                   <InputLabel style={{ textAlign: 'center' }}>Filter By</InputLabel>
                   <br />
@@ -229,6 +261,6 @@ export default function ProductsList() {
                </Grid>
             </div>
          </Container>
-      </>
+      </div>
    );
 }

@@ -20,15 +20,26 @@ export default function About() {
    return (
       <>
          <Box style={{ background: '#1A202C' }}>
-       <div style={{ textTransform: 'uppercase', lineHeight: 0, textAlign: 'center', marginTop: '6rem', color: '#fff'}}>
-         <h1 style={{fontSize: '5rem', opacity: '0.3'}}>Definition</h1>
-         <h6 style={{fontSize: '1.2rem', fontWeight: 300}}>Ourself</h6>
-        </div>
+            <div
+               style={{
+                  textTransform: 'uppercase',
+                  lineHeight: 0,
+                  textAlign: 'center',
+                  marginTop: '6rem',
+                  color: '#fff'
+               }}
+            >
+               <h1 style={{ fontSize: '5rem', opacity: '0.3' }}>Definition</h1>
+               <h6 style={{ fontSize: '1.2rem', fontWeight: 300 }}>Ourself</h6>
+            </div>
             <TeamMemberContainer>
                <TeamMemberCollector>
                   <TeamMember data-aos='fade-right'>
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/suren.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://img.championat.com/s/735x490/news/big/o/h/bloger-hasbik-ufc-280_16659981331645926159.jpg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
@@ -100,7 +111,10 @@ export default function About() {
                      data-aos-duration='2000'
                   >
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/tigranM.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://static.obzor.io/files/2022/09/obzor-io220930-Maxresdefault.jpg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
@@ -140,7 +154,10 @@ export default function About() {
                <TeamMemberCollector>
                   <TeamMember data-aos='fade-up' data-aos-anchor-placement='center-center'>
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/narek.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://cdn.forbes.ru/forbes-static/1040x669/new/2022/04/445-6269016c556dc.jpg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
@@ -212,7 +229,10 @@ export default function About() {
                   </AboutMySelf>
                   <TeamMember data-aos='fade-down-left' data-aos-duration='2000'>
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/shahen.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://i.pinimg.com/736x/a6/6f/29/a66f297794d3f99e18157a73d543d063.jpg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
@@ -252,7 +272,10 @@ export default function About() {
                <TeamMemberCollector>
                   <TeamMember data-aos='flip-up'>
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/razmik.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://s0.rbk.ru/v6_top_pics/media/img/1/05/756629801981051.jpeg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
@@ -320,7 +343,10 @@ export default function About() {
                   </AboutMySelf>
                   <TeamMember data-aos='zoom-in-up' data-aos-duration='3000'>
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/erik.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://www.pravilamag.ru/upload/img_cache/d46/d465615a6ee6efe551fdd4f465aa39d9_ce_1440x958x0x53_cropped_666x444.jpg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
@@ -364,7 +390,10 @@ export default function About() {
                      data-aos-duration='1500'
                   >
                      <TeamMemberImageBox className='TeamMemberImageBox'>
-                        <TeamMemberImage src='/images/teamMember/tigran.PNG' alt='teamMember' />
+                        <TeamMemberImage
+                           src='https://www.thesun.co.uk/wp-content/uploads/2022/08/553fc8c0-4e02-4a96-800b-a2453827fe2b.jpg'
+                           alt='teamMember'
+                        />
                      </TeamMemberImageBox>
                      <TeamMemberInfo className='TeamMemberInfo'>
                         <TeamMemberDetails>
