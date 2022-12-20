@@ -10,6 +10,7 @@ import '../adminProducts/addProducts/style.css';
 import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
+import '../adminUsers/style.css';
 
 function AdminLayout() {
    const navigate = useNavigate();

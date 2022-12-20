@@ -84,8 +84,14 @@ function LessQuantityProd() {
 
    return (
       <div>
-         <div>list</div>
-         <button onClick={() => navigate('/admin')}>go back</button>
+         <h3>Less Products List</h3>
+         <br />
+         <br />
+         <Button onClick={() => navigate('/admin')} variant='contained' size='small'>
+            Go back
+         </Button>
+         <br />
+         <br />
          <table>
             <thead>
                <tr>

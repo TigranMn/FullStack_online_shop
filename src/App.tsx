@@ -18,11 +18,13 @@ import Faq from './components/pages/Faq';
 import AdminLayout from './components/Admin/AdminLayout/AdminLayout';
 import WhatIsNew from './components/Admin/adminWhatIsNew/adminWhatIsNew';
 import LessQuantityProd from './components/Admin/adminWhatIsNew/LessQuantityProd/LessQuantityProd';
+import NewUsers from './components/Admin/adminWhatIsNew/NewUsers/NewUsers';
 import AdminProducts from './components/Admin/adminProducts/adminProducts';
 import AdminUsers from './components/Admin/adminUsers/adminUsers';
 import AdminSales from './components/Admin/adminSales/adminSales';
 import AdminMessages from './components/Admin/adminMessages/adminmessages';
 import AdminFAQ from './components/Admin/adminFAQ/adminFAQ';
+import SingleUser from './components/Admin/singleUser/SingleUser';
 
 import './styles/toast.css';
 import { setUser } from './redux/userSlice';
@@ -60,8 +62,10 @@ function App() {
                <Route path='/admin' element={<AdminLayout />}>
                   <Route index element={<WhatIsNew />}></Route>
                   <Route path='/admin/less-products' element={<LessQuantityProd />}></Route>
+                  <Route path='/admin/new-users' element={<NewUsers />}></Route>
                   <Route path='/admin/products' element={<AdminProducts />}></Route>
                   <Route path='/admin/users' element={<AdminUsers />}></Route>
+                  <Route path='/admin/user/:userId' element={<SingleUser />}></Route>
                   <Route path='/admin/sales' element={<AdminSales />}></Route>
                   <Route path='/admin/messages' element={<AdminMessages />}></Route>
                   <Route path='/admin/faq' element={<AdminFAQ />}></Route>

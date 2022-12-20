@@ -11,6 +11,9 @@ type TInitialState = {
    searchText: string;
    isModalWindow: boolean;
    rerender: boolean;
+   newUsersCount: number;
+   singleUserId: string;
+   newUsersVisibility: boolean;
 };
 
 type TSearchFilter = {
@@ -27,7 +30,10 @@ const initialState: TInitialState = {
    searchByFeature: '',
    searchText: '',
    isModalWindow: false,
-   rerender: false
+   rerender: false,
+   newUsersCount: 0,
+   singleUserId: '',
+   newUsersVisibility: false,
 };
 
 export const getProducts = createAsyncThunk('products/fetchProducts', async () => {
@@ -69,6 +75,15 @@ const adminSlice = createSlice({
       },
       forceRerender: (state, action: PayloadAction<boolean>) => {
          state.rerender = action.payload;
+      },
+      changeNewUsersCount: (state, action : PayloadAction<number>) => {
+         state.newUsersCount = action.payload;
+      },
+      passSingleUserId: (state, action: PayloadAction<string>) => {
+         state.singleUserId = action.payload;
+      },
+      changeNewUsersVisibility: (state, action) => {
+         state.newUsersVisibility = action.payload;
       }
    },
    extraReducers: (builder) => {
@@ -108,6 +123,7 @@ export const {
    changeModalWindow,
    passCurrentProdId,
    updateProduct,
-   removeProduct
+   removeProduct,
+   changeNewUsersCount
 } = adminSlice.actions;
 export default adminSlice.reducer;

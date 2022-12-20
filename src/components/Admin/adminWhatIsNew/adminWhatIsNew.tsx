@@ -1,15 +1,21 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { getLessProdId } from './whatIsNewAPI/whatIsNewAPI';
+import { getLessProdId, getOldUsersId } from './whatIsNewAPI/whatIsNewAPI';
 import { getData } from '../adminAPI/adminAPI';
+import { getAllUsers } from '../../../api/api';
 
 import sales from '../../../assets/trolley.png';
 import bell from '../../../assets/notification.png';
+import user from'../../../assets/user.png';
+
+import { TUser } from '../../../types';
+
+
 
 function WhatIsNew() {
    const navigate = useNavigate();
-
    const [lessLength, setLessLength] = useState<number>(0);
+   const [usersCount, setUsersCount] = useState<number>(0);
 
    useEffect(() => {
       const fetchLessProd = async () => {
@@ -29,6 +35,15 @@ function WhatIsNew() {
          }
          setLessLength(newLess.length);
       };
+
+      const newUsersCount = async () => {
+         let count = 0;
+         const prevUsersId: string[] = await getOldUsersId(); 
+         const allUsers: TUser[] = await getAllUsers();
+         count = allUsers.length - prevUsersId.length;
+         setUsersCount(count);
+      };
+      newUsersCount();
       fetchLessProd();
    }, []);
 
@@ -58,7 +73,15 @@ function WhatIsNew() {
             </div>
             <div>
                <h3>NEW USERS</h3>
-               <div>
+               <div className='newUsers' onClick={() => navigate('/admin/new-users')}>
+                  <div className='newUsers_notify'>
+                     {usersCount ? (
+                        <>
+                           <img src={user} />
+                           <div className='newUsers_notify_num'>{usersCount}</div>
+                        </>
+                     ) : null}
+                  </div>
                   <img src={sales} />
                </div>
             </div>
