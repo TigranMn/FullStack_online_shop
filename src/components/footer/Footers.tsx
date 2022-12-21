@@ -5,9 +5,11 @@ import { FooterTitle } from './styles';
 //Components
 import SocialNetwork from '../About/socialNetwork/SocialNetwork';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
    const navigate = useNavigate();
+   const { t } = useTranslation();
 
    const handleNavigate = () => {
       navigate('/about');
@@ -28,47 +30,43 @@ const Footer = () => {
          >
             <Grid container spacing={2} justifyContent={'center'}>
                <Grid item md={6} lg={4}>
-                  <FooterTitle variant='body1'>About</FooterTitle>
-                  <Typography variant='caption'>
-                     elite shop is an online shopping company established in 2022 which is a form of
-                     electronic commerce which allows consumers to directly buy goods or services
-                     from a seller over the Internet using a web browser or a mobile app.
-                  </Typography>
+                  <FooterTitle variant='body1'>{t('about')}</FooterTitle>
+                  <Typography variant='caption'>{t('textAbout')}</Typography>
                   <Box>
                      <br />
-                     <h2>Social Networks</h2>
+                     <h2>{t('socnet')}</h2>
                      <br />
                      <SocialNetwork />
                      <br />
                   </Box>
                   <Box>
                      <h1 style={{ cursor: 'pointer' }} onClick={handleNavigate}>
-                        FAQ
+                        {t('faq')}
                      </h1>
                   </Box>
                </Grid>
                <Grid item md={6} lg={2}>
-                  <FooterTitle variant='body1'>Category</FooterTitle>
+                  <FooterTitle variant='body1'>{t('category')}</FooterTitle>
                   <List>
                      <ListItemText>
                         <Typography variant='caption' lineHeight={2}>
-                           Watches
+                           {t('watches')}
                         </Typography>
                      </ListItemText>
                      <ListItemText>
                         <Typography variant='caption' lineHeight={2}>
-                           Jewelry
+                           {t('jewelleries')}
                         </Typography>
                      </ListItemText>
                      <ListItemText>
                         <Typography variant='caption' lineHeight={2}>
-                           Accessories
+                           {t('accessories')}
                         </Typography>
                      </ListItemText>
                   </List>
                </Grid>
                <Grid item md={6} lg={2}>
-                  <FooterTitle variant='body1'>Contact</FooterTitle>
+                  <FooterTitle variant='body1'>{t('contact')}</FooterTitle>
                   <List>
                      <ListItemText>
                         <Typography variant='caption' lineHeight={2}>

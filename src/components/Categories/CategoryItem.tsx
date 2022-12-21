@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 //Styles
 import {
@@ -19,19 +20,20 @@ type TCategoryItemProps = {
 };
 
 const CategoryItem = ({ category }: TCategoryItemProps) => {
+   const { t } = useTranslation();
+
+   console.log(category.name);
+
    return (
       <Link to={`/shop/${category.name.toLowerCase()}`}>
          <Category>
             <CategoryContent></CategoryContent>
             <CategoryImageBox>
-               <CategoryImage
-                  src={category.imgUrl}
-                  alt={category.name}
-               />
+               <CategoryImage src={category.imgUrl} alt={category.name} />
             </CategoryImageBox>
             <CategoryInfo>
                <CategoryDetail variant='h5' className='category-name'>
-                  {category.name}
+                  {t(category.name.toLowerCase())}
                </CategoryDetail>
             </CategoryInfo>
          </Category>

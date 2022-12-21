@@ -23,6 +23,7 @@ import {
 //Actions
 import { addProduct, dislikeProduct, likeProduct } from '../../redux/userSlice';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useTranslation } from 'react-i18next';
 
 type ProductItemProps = {
    product: TProduct;
@@ -38,6 +39,7 @@ export default function ProductItem({ product }: ProductItemProps) {
    const notify = useNotify();
    const liked = useLiked(likedProducts, product.id);
    const [isLiked, setIsLiked] = useState<boolean>(liked);
+   const { t } = useTranslation();
 
    const inBasket = basket.find((el) => el.productId === product.id)?.count || 0;
 
@@ -110,7 +112,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                            disabled={product.quantity - inBasket <= 0}
                            onClick={handleAdd}
                         >
-                           Add to cart
+                           {t('addToCard')}
                         </ProductActionButton>
                      ) : (
                         <ProductActionButton
@@ -121,7 +123,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                               cursor: 'default'
                            }}
                         >
-                           Expired
+                           {t('expired')}
                         </ProductActionButton>
                      )}
                   </ProductContent>

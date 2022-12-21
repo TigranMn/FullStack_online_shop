@@ -10,11 +10,13 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function User() {
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
-
+   const { t } = useTranslation();
    const logged = useAuth();
 
    const handleLogOut = () => {
@@ -56,13 +58,7 @@ export default function User() {
                <h1 style={{ fontSize: '26px', marginBottom: '10px' }}>
                   {logged.name} {logged.lastName}
                </h1>
-               <p style={{ marginTop: '30px' }}>
-                  Glad to see you dear <span style={{ color: '#5082FC' }}>{logged.name}</span>, here
-                  is some information about you. Here you can shop from stores in every corner of
-                  the world. You can find glasses, necklaces and watches. In case of any question,
-                  you can contact us and our operators will contact you immediately. Well let's
-                  start our shopping.
-               </p>
+               <p style={{ marginTop: '30px' }}>{t('profileText')}</p>
                <div
                   style={{
                      display: 'flex',
@@ -85,7 +81,7 @@ export default function User() {
                   endIcon={<LogoutIcon />}
                   onClick={handleLogOut}
                >
-                  Log out
+                  {t('logout')}
                </Button>
             </div>
          </div>

@@ -21,12 +21,14 @@ import { useAuth } from '../../hooks/use-auth';
 import { useAppSelector } from '../../store';
 //Components
 import Basket from '../Basket/Basket';
+import { useTranslation } from 'react-i18next';
 
 const Actions = ({ matches }) => {
    const navigate = useNavigate();
    const [isActive, setIsActive] = useState(false);
    const productsLength = useAppSelector((state) => state.user?.basket?.length);
    const Component = matches ? ActionIconsContainerMobile : ActionIconsContainerDesktop;
+   const { t } = useTranslation();
 
    const setBasketActive = () => {
       setIsActive(true);
@@ -40,8 +42,9 @@ const Actions = ({ matches }) => {
                   <Typography
                      variant='h4'
                      sx={{ color: '#5082FC', fontFamily: '"Montez", "Cursive"' }}
+                     style={{ marginBottom: '15px' }}
                   >
-                     Products
+                     {t('products')}
                   </Typography>
                   <Basket />
                </Box>

@@ -24,6 +24,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 //Types
 import { TProduct } from '../../types';
 import MyPagination from '../Pagination/Pagination';
+import { useTranslation } from 'react-i18next';
 
 export default function ProductsList() {
    const { category } = useParams();
@@ -39,6 +40,7 @@ export default function ProductsList() {
    const [filterName, setFilterName] = useState('');
    const products = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
+   const { t } = useTranslation();
 
    const [brands, setBrands] = useState<string[]>([]);
 
@@ -113,7 +115,7 @@ export default function ProductsList() {
                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                   <TextField
                      id='standard-basic'
-                     label='Search'
+                     label={t('search')}
                      variant='standard'
                      value={filterName}
                      style={{ minWidth: '250px' }}
@@ -132,14 +134,14 @@ export default function ProductsList() {
                      }}
                      variant='outlined'
                   >
-                     Search
+                     {t('search')}
                   </Button>
                </div>
                <FormControl style={{ width: '100px' }}>
-                  <InputLabel>Pages</InputLabel>
+                  <InputLabel>{t('count')}</InputLabel>
                   <Select
                      value={itemCount}
-                     label='Pages'
+                     label={t('count')}
                      onChange={(e) => setItemCount(+e.target.value)}
                   >
                      <MenuItem value={6}>6</MenuItem>
@@ -162,16 +164,16 @@ export default function ProductsList() {
                   }}
                >
                   <br />
-                  <InputLabel style={{ textAlign: 'center' }}>Filter By</InputLabel>
+                  <InputLabel style={{ textAlign: 'center' }}>{t('filter')}</InputLabel>
                   <br />
                   <Box sx={{ minWidth: 120 }}>
                      <FormControl fullWidth>
-                        <InputLabel id='demo-simple-select-label'>Brand</InputLabel>
+                        <InputLabel id='demo-simple-select-label'>{t('brand')}</InputLabel>
                         <Select
                            labelId='demo-simple-select-label'
                            id='demo-simple-select'
                            value={brand}
-                           label='Brand'
+                           label={t('brand')}
                            onChange={handleChangeBrand}
                         >
                            {brands.map((brand) => {
@@ -181,24 +183,24 @@ export default function ProductsList() {
                                  </MenuItem>
                               );
                            })}
-                           <MenuItem value={'all'}>All</MenuItem>
+                           <MenuItem value={'all'}>{t('all')}</MenuItem>
                         </Select>
                      </FormControl>
                   </Box>
                   <br />
                   <Box sx={{ minWidth: 120 }}>
                      <FormControl fullWidth>
-                        <InputLabel id='demo-simple-select-label'>Gender</InputLabel>
+                        <InputLabel id='demo-simple-select-label'>{t('gender')}</InputLabel>
                         <Select
                            labelId='demo-simple-select-label'
                            id='demo-simple-select'
                            value={gender}
-                           label='Gender'
+                           label={t('gender')}
                            onChange={handleChangeGender}
                         >
-                           <MenuItem value={'Male'}>Male</MenuItem>
-                           <MenuItem value={'Female'}>Female</MenuItem>
-                           <MenuItem value={'all'}>All</MenuItem>
+                           <MenuItem value={'Male'}>{t('male')}</MenuItem>
+                           <MenuItem value={'Female'}>{t('female')}</MenuItem>
+                           <MenuItem value={'all'}>{t('all')}</MenuItem>
                         </Select>
                      </FormControl>
                   </Box>
@@ -209,7 +211,7 @@ export default function ProductsList() {
                         marginLeft: '-15px'
                      }}
                   >
-                     <InputLabel id='demo-simple-select-label'>Price</InputLabel>
+                     <InputLabel id='demo-simple-select-label'>{t('price')}</InputLabel>
                      <TextField
                         id='standard-basic'
                         placeholder='0'

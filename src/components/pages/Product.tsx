@@ -18,6 +18,7 @@ import { Typography, Button, Box } from '@mui/material';
 //Actions
 import { addProduct } from '../../redux/userSlice';
 import { addViews } from '../../redux/productsSlice';
+import { useTranslation } from 'react-i18next';
 type TParams = {
    productId: string;
    category: string;
@@ -38,6 +39,7 @@ function Product() {
    const incrDisabled = quantity >= product?.quantity - inBasket;
    const addBtnDisabled = quantity > product?.quantity - inBasket;
    const decrDisabled = quantity <= 1;
+   const { t } = useTranslation();
 
    useEffect(() => {
       getProduct(category as string, productId as string)
@@ -73,38 +75,41 @@ function Product() {
    };
 
    return (
-      <ProductContainer>
+      <ProductContainer
+         style={{
+            height: '100%',
+            background: 'rgba(164, 195, 213, 0.8)'
+         }}
+      >
          <ProductImage src={product?.imgUrl} />
          <ProductContent>
             <ProductTitle>{product?.name}</ProductTitle>
             <Typography variant='h6'>
-               Brand :{' '}
+               {t('brand')} {' : '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
-                  {' '}
                   {product?.brand}
                </Box>
             </Typography>
             <Typography variant='h6'>
-               Gender :{' '}
+               {t('gender')} {' : '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.gender}
                </Box>{' '}
             </Typography>
             <Typography variant='h6'>
-               Price :{' '}
+               {t('price')} {' : '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.price} $
                </Box>
             </Typography>
             <Typography variant='h6'>
-               Views :{' '}
+               {t('views')} {' : '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
-                  {' '}
                   {product?.views}
                </Box>
             </Typography>
             <Typography variant='h6'>
-               Available :{' '}
+               {t('available')} {' : '}
                <Box sx={{ color: 'rgb(87,153,239)', display: 'inline-block' }}>
                   {product?.quantity}
                </Box>{' '}
@@ -140,14 +145,14 @@ function Product() {
             </Box>
             <Box sx={{ mt: '10px' }}>
                <Button onClick={handleAdd} disabled={addBtnDisabled} variant='outlined'>
-                  Add to cart
+                  {t('addToCard')}
                </Button>
                <Button
                   disabled={!product?.quantity}
                   onClick={() => navigate('/buy')}
                   variant='contained'
                >
-                  Buy
+                  {t('buy')}
                </Button>
             </Box>
          </ProductContent>

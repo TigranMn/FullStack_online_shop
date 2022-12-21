@@ -24,6 +24,7 @@ export const ProductContent = styled(Box)(() => ({
 export const ProductImage = styled('img')(({ src, theme }) => ({
    src: `src(${src})`,
    width: '500px',
+   height: '500px',
    [theme.breakpoints.down('md')]: {
       width: '350px'
    },
