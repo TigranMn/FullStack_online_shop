@@ -14,7 +14,6 @@ export default function CategoriesList() {
    const [error, setError] = useState<boolean>(false);
    const categoriesList = useAppSelector((state) => state.categories);
    const dispatch = useAppDispatch();
-   const { t } = useTranslation();
 
    const { categories } = categoriesList;
    useEffect(() => {

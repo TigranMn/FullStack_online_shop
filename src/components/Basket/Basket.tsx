@@ -6,7 +6,7 @@ import { CircularProgress } from '@mui/material';
 //Utils
 import { getProduct } from '../../api/api';
 //Redux
-import { removeProduct } from '../../redux/userSlice';
+import { removeProduct, removeProducts } from '../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Types
 import { notificationTypes, TProduct } from '../../types';
@@ -22,7 +22,7 @@ export default function Basket() {
    const [error, setError] = useState<boolean>(false);
    const notify = useNotify();
    const dispatch = useAppDispatch();
-   const userId = useAppSelector((state) => state.user.id);
+   const userId = useAppSelector((state) => state.user.id)!;
    const { t } = useTranslation();
 
    useEffect(() => {
@@ -31,17 +31,35 @@ export default function Basket() {
          const product = await getProduct(el.category, el.productId);
          return { ...product, id: el.productId, count: el.count };
       });
-      Promise.all(promises)
-         .then((res) => {
-            setProducts(res);
-            setIsLoading(false);
+      const validPromises: TProduct[] = [];
+      const invalidPromises: string[] = [];
+
+      Promise.allSettled(promises)
+         .then((results) => {
+            results.forEach((res) => {
+               if (res.status === 'fulfilled') {
+                  validPromises.push(res.value);
+               } else {
+                  invalidPromises.push(`${res.reason}`.split(':')[1].trim());
+               }
+            });
          })
-         .catch((e) => {
-            setError(true);
-            setIsLoading(false);
-            notify(notificationTypes.ERROR, e.message);
+         .then(() => {
+            dispatch(removeProducts({ productIds: invalidPromises, userId }));
+         })
+         .then(() => {
+            Promise.all(validPromises)
+               .then((res) => {
+                  setProducts(res);
+                  setIsLoading(false);
+               })
+               .catch((e) => {
+                  setError(true);
+                  setIsLoading(false);
+                  notify(notificationTypes.ERROR, e.message);
+               });
          });
-   }, [basketItems]);
+   }, [dispatch]);
 
    const totalPrice = products.reduce((accm, curr) => accm + curr.price * curr.count, 0);
 
