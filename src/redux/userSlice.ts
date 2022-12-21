@@ -190,6 +190,26 @@ export const addProduct = createAsyncThunk(
    }
 );
 
+export const removeProducts = createAsyncThunk(
+   'basket/removeProducts',
+   async ({ productIds, userId }: { productIds: string[]; userId: string }) => {
+      const { userRef, snaps } = await getUser(userId);
+
+      setDoc(
+         userRef,
+         {
+            basket: [
+               ...[...snaps.docs[0].data().basket].filter(
+                  (el) => !productIds.includes(el.productId)
+               )
+            ]
+         },
+         { merge: true }
+      );
+      return productIds;
+   }
+);
+
 const userSlice = createSlice({
    name: 'user',
    initialState,
@@ -230,7 +250,7 @@ const userSlice = createSlice({
             state.name = action.payload.data.name;
             state.basket = action.payload.data.basket;
             state.likedProducts = action.payload.data.likedProducts;
-				state.status = action.payload.data.status;
+            state.status = action.payload.data.status;
          })
          .addCase(signIn.rejected, (state) => {
             state.isError = true;
@@ -251,7 +271,7 @@ const userSlice = createSlice({
             state.name = action.payload.firstName;
             state.basket = [];
             state.likedProducts = [];
-				state.status = AccStatus.USER;
+            state.status = AccStatus.USER;
          })
          .addCase(signUp.rejected, (state) => {
             state.isError = true;
@@ -272,8 +292,6 @@ const userSlice = createSlice({
                   return el;
                });
             } else {
-               console.log(count);
-
                state.basket.push({ productId, category, count });
             }
          })
@@ -282,6 +300,9 @@ const userSlice = createSlice({
          })
          .addCase(likeProduct.fulfilled, (state, action: PayloadAction<TLikedType>) => {
             state.likedProducts.push(action.payload);
+         })
+         .addCase(removeProducts.fulfilled, (state, action: PayloadAction<string[]>) => {
+            state.basket = state.basket.filter((item) => !action.payload.includes(item.productId));
          })
          .addCase(dislikeProduct.fulfilled, (state, action: PayloadAction<string>) => {
             state.likedProducts = state.likedProducts.filter(

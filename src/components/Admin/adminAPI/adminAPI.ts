@@ -93,7 +93,6 @@ export async function getData() {
          quantity
       });
    });
-   console.log(arrayProducts);
    return arrayProducts;
 }
 
