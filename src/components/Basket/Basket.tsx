@@ -13,6 +13,7 @@ import { notificationTypes, TProduct } from '../../types';
 //Components
 import BasketFooter from './BasketFooter';
 import BasketItem from './BasketItem';
+import { useTranslation } from 'react-i18next';
 
 export default function Basket() {
    const basketItems = useAppSelector((state) => state.user.basket);
@@ -22,6 +23,7 @@ export default function Basket() {
    const notify = useNotify();
    const dispatch = useAppDispatch();
    const userId = useAppSelector((state) => state.user.id);
+   const { t } = useTranslation();
 
    useEffect(() => {
       setIsLoading(true);
@@ -68,9 +70,9 @@ export default function Basket() {
                return <BasketItem handleRemove={handleRemove} key={el.id} product={el} />;
             })
          ) : (
-            <h3>Nothing in basket</h3>
+            <h3>{t('nothingInBasket')}</h3>
          )}
-        {products.length ? <BasketFooter totalPrice={totalPrice} /> : null } 
+         {products.length ? <BasketFooter totalPrice={totalPrice} /> : null}
       </>
    );
 }
