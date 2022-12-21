@@ -98,7 +98,7 @@ export default function ProductsList() {
    return (
       <div
          style={{
-            background: 'linear-gradient(to top, #0f2027, #203a43, #2c5364)',
+            background: '#1A202C',
             minHeight: '100vh'
          }}
       >
@@ -126,10 +126,10 @@ export default function ProductsList() {
                   <Button
                      onClick={handleSearch}
                      style={{
-                        padding: '10px',
+                        padding: '8px',
                         marginLeft: '10px',
-                        color: 'rgba(0, 181, 76, 0.56)',
-                        border: '3px solid rgba(0, 181, 76, 0.56)',
+                        color: '#664AF5',
+                        border: '3px solid #664AF5',
                         backgroundColor: 'white'
                      }}
                      variant='outlined'

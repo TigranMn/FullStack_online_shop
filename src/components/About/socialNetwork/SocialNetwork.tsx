@@ -14,7 +14,7 @@ const SocialNetwork = () => {
          </Tooltip>
          <Tooltip title='Instagram'>
             <IconButton color='error'>
-               <InstagramIcon sx={{ color: 'error' }} />
+               <InstagramIcon sx={{ color: '#5082FC' }} />
             </IconButton>
          </Tooltip>
          <Tooltip title='Twitter'>

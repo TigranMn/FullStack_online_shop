@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 //Types
 import { notificationTypes, TProduct } from '../../types';
 //Mui
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Typography,Icon } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import {
    Product,
@@ -24,7 +24,7 @@ import {
 import { addProduct, dislikeProduct, likeProduct } from '../../redux/userSlice';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useTranslation } from 'react-i18next';
-
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 type ProductItemProps = {
    product: TProduct;
 };
@@ -40,6 +40,7 @@ export default function ProductItem({ product }: ProductItemProps) {
    const liked = useLiked(likedProducts, product.id);
    const [isLiked, setIsLiked] = useState<boolean>(liked);
    const { t } = useTranslation();
+   const [activeButton, setActiveButton] = useState(false);
 
    const inBasket = basket.find((el) => el.productId === product.id)?.count || 0;
 
@@ -90,7 +91,9 @@ export default function ProductItem({ product }: ProductItemProps) {
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
       }
+      setActiveButton(!activeButton);
    };
+
 
    return (
       <>
@@ -109,10 +112,15 @@ export default function ProductItem({ product }: ProductItemProps) {
                      <ProductPrice>{product.price}$</ProductPrice>
                      {product.quantity ? (
                         <ProductActionButton
+                           className={`productButton ${activeButton ? 'cartClicked' : ''}`}
+                           disableRipple
                            disabled={product.quantity - inBasket <= 0}
                            onClick={handleAdd}
                         >
-                           {t('addToCard')}
+                           <Typography component={'span'} className='add-cart-span'>Add to cart</Typography>
+                           <Typography component={'span'} className='added-cart-span'>added</Typography> 
+                           <Icon className='add-cart-icon'>< ShoppingCartIcon /></Icon>
+                           {/* {t('addToCard')} */}
                         </ProductActionButton>
                      ) : (
                         <ProductActionButton
@@ -130,6 +138,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                   <ProductLikedIcon>
                      {!isLiked ? (
                         <Button
+                           disableRipple
                            size='large'
                            onClick={handleLike}
                            sx={{

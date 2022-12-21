@@ -14,11 +14,11 @@ a {
    flex-grow: 3;
    justify-content: center;
    align-self: center;
-	color: white;
+   color: white;
 }
 
 .active {
-	color:#5082FC
+   color: #5082fc;
 }
 
 #root {
@@ -45,5 +45,73 @@ a {
 
    .headerSlider {
       margin-top: 6rem;
+   }
+}
+
+.productButton.cartClicked .add-cart-icon {
+   animation: cart 1.5s ease-in-out forwards;
+}
+
+.add-cart-span {
+   position: absolute;
+   width: 100%;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 3;
+   opacity: 1;
+}
+
+.added-cart-span {
+   z-index: 3;
+   opacity: 0;
+}
+
+.productButton.cartClicked .add-cart-span {
+   animation: addToCart 1.5s ease-in-out forwards;
+}
+
+.productButton.cartClicked .added-cart-span {
+   animation: addedToCart 1.5s ease-in-out forwards;
+}
+
+.add-cart-icon {
+   position: absolute;
+   z-index: 2;
+   top: 50%;
+   left: -10%;
+   transform: translate(-50%, -50%);
+}
+
+@keyframes cart {
+   0% {
+      left: -10%;
+   }
+   40%,
+   60% {
+      left: 50%;
+   }
+   100% {
+      left: 110%;
+   }
+}
+
+@keyframes addToCart {
+   0% {
+      opacity: 1;
+   }
+   20%,
+   100% {
+      opacity: 0;
+   }
+}
+
+@keyframes addedToCart {
+   0%,
+   80% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
    }
 }

@@ -32,3 +32,4 @@ export const secondAnimate = keyframes`
 }    
 
 `;
+
