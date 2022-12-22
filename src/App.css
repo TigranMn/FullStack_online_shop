@@ -14,11 +14,11 @@ a {
    flex-grow: 3;
    justify-content: center;
    align-self: center;
-	color: white;
+   color: white;
 }
 
 .active {
-	color:#5082FC
+   color: #5082fc;
 }
 
 #root {
@@ -36,6 +36,43 @@ a {
    margin: 40px 20px;
    display: flex;
    justify-content: space-evenly;
+}
+.profileContainer {
+   width: 100%;
+   height: 100vh;
+   background: #1a202c;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: hidden;
+   flex-wrap: wrap;
+}
+
+.userProfileEffect {
+   position: relative;
+   display: block;
+   width: 40px;
+   height: 40px;
+}
+.userProfileEffect::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 200%;
+   height: 200%;
+   background-color: #5082fc;
+   border-radius: 50%;
+   transition: 2s;
+   transform: scale(0);
+   box-shadow: 0 0 15px #5082fc, 0 0 10px #5082fc, 0 0 20px #5082fc, 0 0 40px #5082fc,
+      0 0 60px #5082fc, 0 0 80px #5082fc, 0 0 100px #5082fc;
+}
+
+.userProfileEffect:hover::before {
+   transition: 0s;
+   transform: scale(1);
 }
 
 @media screen and (max-width: 899.5px) {

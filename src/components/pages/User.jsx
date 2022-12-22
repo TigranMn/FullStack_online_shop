@@ -11,6 +11,8 @@ import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useTranslation } from 'react-i18next';
+//Components
+import UserProfileStyle from '../../styles/UserProfileStyle';
 
 export default function User() {
    const dispatch = useAppDispatch();
@@ -27,23 +29,17 @@ export default function User() {
    return !logged.isAuth ? (
       <Navigate to={'/login'} />
    ) : (
-      <div
-         style={{
-            width: '100%',
-            height: '100vh',
-            background: '#1A202C',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-         }}
-      >
+      <div className='profileContainer'>
+         <UserProfileStyle />
          <div
             style={{
                background: '#fff',
                padding: '50px',
                width: '800px',
                borderRadius: '10px',
-               position: 'relative'
+               position: 'absolute',
+               top: '23%',
+               left: '23%'
             }}
          >
             <div
