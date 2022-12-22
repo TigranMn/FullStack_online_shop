@@ -132,6 +132,26 @@ export const dislikeProduct = createAsyncThunk(
    }
 );
 
+export const dislikeProducts = createAsyncThunk(
+   'basket/dislikeProducts',
+   async ({ productIds, userId }: { productIds: string[]; userId: string }) => {
+      const { userRef, snaps } = await getUser(userId);
+
+      setDoc(
+         userRef,
+         {
+            basket: [
+               ...[...snaps.docs[0].data().likedProducts].filter(
+                  (el) => !productIds.includes(el.productId)
+               )
+            ]
+         },
+         { merge: true }
+      );
+      return productIds;
+   }
+);
+
 export const removeProduct = createAsyncThunk(
    'basket/removeProduct',
    async ({ productId, userId }: { productId: string; userId: string }) => {
@@ -303,6 +323,11 @@ const userSlice = createSlice({
          })
          .addCase(removeProducts.fulfilled, (state, action: PayloadAction<string[]>) => {
             state.basket = state.basket.filter((item) => !action.payload.includes(item.productId));
+         })
+         .addCase(dislikeProducts.fulfilled, (state, action: PayloadAction<string[]>) => {
+            state.likedProducts = state.likedProducts.filter(
+               (item) => !action.payload.includes(item.productId)
+            );
          })
          .addCase(dislikeProduct.fulfilled, (state, action: PayloadAction<string>) => {
             state.likedProducts = state.likedProducts.filter(
