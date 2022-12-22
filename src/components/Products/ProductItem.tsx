@@ -46,7 +46,16 @@ export default function ProductItem({ product }: ProductItemProps) {
 
    useEffect(() => {
       localStorage.setItem('likedProducts', JSON.stringify(likedProducts));
-   }, [likedProducts]);
+      let timeoutID:any;
+      if(activeButton) {
+             timeoutID = setTimeout(()=>{
+               setActiveButton(false);
+            },2000);
+      }
+      return ()=>{
+         clearTimeout(timeoutID);
+      };
+   }, [likedProducts,activeButton]);
 
    const changeLocation = () => {
       navigate('/shop/' + product.category + `/${product.id}`);
@@ -88,11 +97,12 @@ export default function ProductItem({ product }: ProductItemProps) {
             .unwrap()
             .then(() => notify(notificationTypes.SUCCES, 'Successfully added'))
             .catch((e) => notify(notificationTypes.ERROR, e.message));
+            setActiveButton(true);
       } else {
          notify(notificationTypes.WARNING, 'You must be logged in!');
       }
-      setActiveButton(!activeButton);
    };
+
 
 
    return (
@@ -117,10 +127,9 @@ export default function ProductItem({ product }: ProductItemProps) {
                            disabled={product.quantity - inBasket <= 0}
                            onClick={handleAdd}
                         >
-                           <Typography component={'span'} className='add-cart-span'>Add to cart</Typography>
+                           <Typography component={'span'} className='add-cart-span'>{t('addToCard')}</Typography>
                            <Typography component={'span'} className='added-cart-span'>added</Typography> 
                            <Icon className='add-cart-icon'>< ShoppingCartIcon /></Icon>
-                           {/* {t('addToCard')} */}
                         </ProductActionButton>
                      ) : (
                         <ProductActionButton

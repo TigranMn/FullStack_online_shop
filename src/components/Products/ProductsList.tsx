@@ -129,7 +129,7 @@ export default function ProductsList() {
                         padding: '8px',
                         marginLeft: '10px',
                         color: '#664AF5',
-                        border: '3px solid #664AF5',
+                        border: '2px solid #664AF5',
                         backgroundColor: 'white'
                      }}
                      variant='outlined'

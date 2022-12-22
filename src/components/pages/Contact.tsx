@@ -31,6 +31,7 @@ export default function Contact() {
                >
                   The guide to contact
                </Typography>
+               <img style={{position: 'absolute', width: '250px', top: '50px'}} src='https://cdn3d.iconscout.com/3d/premium/thumb/call-5590589-4652632.png' />
             </BookCover>
             <Page className='page' />
             <Page className='page' />

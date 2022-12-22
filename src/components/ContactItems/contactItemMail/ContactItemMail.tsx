@@ -8,14 +8,14 @@ export default function ContactItemMail() {
             maxWidth: 500,
             margin: '20px auto',
             padding: '20px 5px',
-            border: '3px solid #212834',
+            border: '3px solid #5E626B',
             background: 'rgba(33,40,52,0.1)'
          }}
       >
          <CardContent>
             <form autoComplete='off'>
                <Grid container spacing={1}>
-                  <Grid xs={12} sm={6} item sx={{ color: 'red' }}>
+                  <Grid xs={12} sm={6} item>
                      <TextField
                         label='First Name'
                         placeholder='Enter your name'

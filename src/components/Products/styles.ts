@@ -68,7 +68,7 @@ export const ProductPrice = styled(Typography)(() => ({
 export const ProductActionButton = styled(IconButton)(() => ({
    display: 'flex',
    justifyContent: 'center',
-   width: '100%',
+   width: '156px',
    height: '30px',
    marginTop: '20px',
    background: '#664AF5',

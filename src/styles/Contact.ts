@@ -6,7 +6,7 @@ export const ContactContainer = styled(Box)(() => ({
    display: 'flex',
    justifyContent: 'center',
    alignItems: 'center',
-   background: '#f7f4ff',
+   background: '#1A202C',
    perspective: '1000px'
 }));
 
@@ -40,7 +40,7 @@ export const Book = styled(Box)(({ theme }) => ({
    [theme.breakpoints.down('sm')]: {
       display: 'none'
    },
-   [theme.breakpoints.down('xl')]: {
+   [theme.breakpoints.down('lg')]: {
       display: 'none'
    }
 }));
@@ -54,11 +54,11 @@ export const BookCover = styled(Box)(() => ({
    backgroundColor: '#212834',
    borderRadius: '2px 20px 20px 2px',
    position: 'absolute',
-   boxShadow: '1px 1px 10px gray',
+   boxShadow: '1px 1px 10px #1A202C',
    transform: 'rotateX(10deg)',
    transformOrigin: 'center left',
    zIndex: 1,
-   transition: 'all 3s'
+   transition: 'all 3s',
 }));
 
 export const Page = styled(Box)(() => ({
