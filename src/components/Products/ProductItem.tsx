@@ -112,7 +112,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                            disabled={product.quantity - inBasket <= 0}
                            onClick={handleAdd}
                         >
-                           {t('addToCard')}
+                           {t('addToCart')}
                         </ProductActionButton>
                      ) : (
                         <ProductActionButton

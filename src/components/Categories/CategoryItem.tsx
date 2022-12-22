@@ -22,7 +22,6 @@ type TCategoryItemProps = {
 const CategoryItem = ({ category }: TCategoryItemProps) => {
    const { t } = useTranslation();
 
-   console.log(category.name);
 
    return (
       <Link to={`/shop/${category.name.toLowerCase()}`}>

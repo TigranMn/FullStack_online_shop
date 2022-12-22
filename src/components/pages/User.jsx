@@ -10,7 +10,6 @@ import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 export default function User() {
