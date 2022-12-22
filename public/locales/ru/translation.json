@@ -29,5 +29,16 @@
    "nothingInBasket": "Пусто",
    "totalPrice": "Общая сумма",
    "quantity": "Количество",
-   "products": "Продукты"
+   "products": "Продукты",
+   "guide": "Руководство",
+   "email": "Ел. почта",
+   "phone": "Тел.",
+   "map": "Карта",
+   "firstName": "Имя",
+   "lastName": "Фамилия",
+   "message": "Письмо",
+   "submit": "Отправить",
+   "methodBuying": "Метод оплаты",
+   "cardError": "Сервис временно недоступен",
+   "nothingInLiked": "Ничего не понравилось"
 }

@@ -12,6 +12,8 @@ import { notificationTypes, TProduct } from '../../types';
 //Components
 import ProductItem from '../Products/ProductItem';
 import { removeProducts } from '../../redux/userSlice';
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function Likes() {
    const likedProducts = useAppSelector((state) => state.user.likedProducts);
@@ -21,6 +23,7 @@ export default function Likes() {
    const [error, setError] = useState<boolean>(false);
    const dispatch = useAppDispatch();
    const notify = useNotify();
+   const { t } = useTranslation();
 
    useEffect(() => {
       setIsLoading(true);
@@ -79,7 +82,7 @@ export default function Likes() {
                      return <ProductItem key={el.id} product={el} />;
                   })
                ) : (
-                  <h2 style={{ width: '100%', textAlign: 'center' }}>Nothing in liked</h2>
+                  <h2 style={{ width: '100%', textAlign: 'center' }}>{t('nothingInLiked')}</h2>
                )}
             </Box>
          </Container>

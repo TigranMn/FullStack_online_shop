@@ -29,5 +29,16 @@
    "nothingInBasket": "Զամբյուղը դատարկ է",
    "totalPrice": "Ընդհանուր արժեք",
    "quantity": "Քանակ",
-   "products": "Ապրանքներ"
+   "products": "Ապրանքներ",
+   "guide": "Ուղեցույց",
+   "email": "Էլ. հասցե",
+   "phone": "Հեռ.",
+   "map": "Հասցե",
+   "firstName": "Անուն",
+   "lastName": "Ազգանուն",
+   "message": "Նամակ",
+   "submit": "Ուղարկել",
+   "methodBuying": "Վճարման միջոց",
+   "cardError": "Ծառայությունը ժամանակավորապես անհասանելի է",
+   "nothingInLiked": "Հավանած պրոդուկտներ չկան"
 }
