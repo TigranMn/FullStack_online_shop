@@ -1,7 +1,10 @@
 //MUI
 import { Button, Card, CardContent, Grid, TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export default function ContactItemMail() {
+   const { t } = useTranslation();
+
    return (
       <Card
          sx={{
@@ -17,7 +20,7 @@ export default function ContactItemMail() {
                <Grid container spacing={1}>
                   <Grid xs={12} sm={6} item sx={{ color: 'red' }}>
                      <TextField
-                        label='First Name'
+                        label={t('firstName')}
                         placeholder='Enter your name'
                         fullWidth
                         required
@@ -25,7 +28,7 @@ export default function ContactItemMail() {
                   </Grid>
                   <Grid xs={12} sm={6} item>
                      <TextField
-                        label='Last Name'
+                        label={t('lastName')}
                         placeholder='Enter your last name'
                         fullWidth
                         required
@@ -34,7 +37,7 @@ export default function ContactItemMail() {
                   <Grid xs={12} item>
                      <TextField
                         type='email'
-                        label='Email'
+                        label={t('email')}
                         placeholder='Enter email'
                         fullWidth
                         required
@@ -43,7 +46,7 @@ export default function ContactItemMail() {
                   <Grid xs={12} item>
                      <TextField
                         type='tel'
-                        label='Phone'
+                        label={t('phone')}
                         placeholder='Enter phone number'
                         fullWidth
                         required
@@ -51,7 +54,7 @@ export default function ContactItemMail() {
                   </Grid>
                   <Grid xs={12} item>
                      <TextField
-                        label='Message'
+                        label={t('message')}
                         multiline
                         rows={4}
                         placeholder='Type your message here'
@@ -69,7 +72,7 @@ export default function ContactItemMail() {
                         variant='contained'
                         fullWidth
                      >
-                        Submit
+                        {t('submit')}
                      </Button>
                   </Grid>
                </Grid>

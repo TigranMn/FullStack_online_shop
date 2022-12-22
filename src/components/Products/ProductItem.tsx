@@ -108,12 +108,15 @@ export default function ProductItem({ product }: ProductItemProps) {
                      <ProductName>{product.name}</ProductName>
                      <ProductPrice>{product.price}$</ProductPrice>
                      {product.quantity ? (
-                        <ProductActionButton
-                           disabled={product.quantity - inBasket <= 0}
-                           onClick={handleAdd}
-                        >
-                           {t('addToCart')}
-                        </ProductActionButton>
+                        <div>
+                           <ProductActionButton>{t('buy')}</ProductActionButton>
+                           <ProductActionButton
+                              disabled={product.quantity - inBasket <= 0}
+                              onClick={handleAdd}
+                           >
+                              {t('addToCart')}
+                           </ProductActionButton>
+                        </div>
                      ) : (
                         <ProductActionButton
                            disableRipple

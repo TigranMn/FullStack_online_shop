@@ -29,5 +29,16 @@
    "nothingInBasket": "Nothing in basket",
    "totalPrice": "Total Price",
    "quantity": "Quantity",
-   "products": "Products"
+   "products": "Products",
+   "guide": "The guide to contact",
+   "email": "Email",
+   "phone": "Phone",
+   "map": "Map",
+   "firstName": "First Name",
+   "lastName": "Last Name",
+   "message": "Message",
+   "submit": "Submit",
+   "methodBuying": "Payment method",
+   "cardError": "Service is temporarily unavailable",
+   "nothingInLiked": "Nothing in liked"
 }

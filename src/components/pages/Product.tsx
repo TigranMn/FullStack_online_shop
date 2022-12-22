@@ -144,8 +144,13 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button onClick={handleAdd} disabled={addBtnDisabled} variant='outlined'>
-                  {t('addToCard')}
+               <Button
+                  onClick={handleAdd}
+                  disabled={addBtnDisabled}
+                  variant='outlined'
+                  style={{ marginRight: '10px' }}
+               >
+                  {t('addToCart')}
                </Button>
                <Button
                   disabled={!product?.quantity}
