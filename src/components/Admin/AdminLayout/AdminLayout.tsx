@@ -17,7 +17,6 @@ import '../adminUsers/style.css';
 function AdminLayout() {
    const status = useAppSelector((state) => state.user.status);
    const navigate = useNavigate();
-   console.log(AccStatus.ADMIN, status);
 
    return status !== AccStatus.ADMIN ? (
       <Navigate to={'/shop'} />
