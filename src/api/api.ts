@@ -44,7 +44,7 @@ export const getProduct = async (url: string, id: string): Promise<TProduct> => 
    if (snap.exists()) {
       return snap.data() as TProduct;
    } else {
-
+      console.log(11);
       throw new Error(id);
    }
 };

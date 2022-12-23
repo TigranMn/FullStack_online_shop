@@ -7,7 +7,7 @@ import { useNotify } from '../../../hooks/useNotify';
 import { notificationTypes } from '../../../types';
 
 export default function ContactItemMail() {
-   const { t } = useTranslation();
+   const { t  }  = useTranslation();
    const form = useRef<HTMLFormElement>(null);
    const notify = useNotify();
 
@@ -39,7 +39,7 @@ export default function ContactItemMail() {
                      <TextField
                         name='name'
                         label={t('firstName')}
-                        placeholder='Enter your name'
+                        placeholder={t('Enter your name') as string}
                         fullWidth
                         required
                      />
@@ -48,7 +48,7 @@ export default function ContactItemMail() {
                      <TextField
                         name='surname'
                         label={t('lastName')}
-                        placeholder='Enter your last name'
+                        placeholder={t('Enter your lastname') as string}
                         fullWidth
                         required
                      />
@@ -58,7 +58,7 @@ export default function ContactItemMail() {
                         name='email'
                         type='email'
                         label={t('email')}
-                        placeholder='Enter email'
+                        placeholder={t('Enter your email') as string}
                         fullWidth
                         required
                      />
@@ -69,7 +69,7 @@ export default function ContactItemMail() {
                         label={t('message')}
                         multiline
                         rows={4}
-                        placeholder='Type your message here'
+                        placeholder={t('Type your message here') as string}
                         fullWidth
                         required
                      />

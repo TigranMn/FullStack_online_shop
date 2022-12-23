@@ -8,19 +8,22 @@ import {
 import {
    addDoc,
    collection,
+   doc,
    DocumentData,
    getDocs,
+   increment,
    Query,
    query,
    QuerySnapshot,
    setDoc,
+   updateDoc,
    where
 } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 //Utils
-import { getUser } from '../api/api';
+import { getProduct, getUser } from '../api/api';
 //Types
-import { AccStatus, TBasketType, TLikedType, TUser } from '../types';
+import { AccStatus, TBasketType, TLikedType, TProduct, TUser } from '../types';
 
 type TState = {
    email: string | null;
@@ -210,6 +213,28 @@ export const addProduct = createAsyncThunk(
    }
 );
 
+export const buyProduct = createAsyncThunk('basket/buyProduct', async (products: TProduct[]) => {
+   const promises = products.map(async (item) => {
+      const { category, id, count } = item;
+      const product = await getProduct(category, id);
+      if (product.quantity < count) {
+         return new Error('Not enough products' + product.name);
+      }
+      return product;
+   });
+   const resolvedProducts = await Promise.all(promises);
+   if (resolvedProducts.every((el) => !(el instanceof Error))) {
+      products.forEach((el) => {
+         const docRef = doc(db, el.category, el.id);
+         updateDoc(docRef, {
+            quantity: increment(-el.count)
+         });
+      });
+      return resolvedProducts;
+   }
+   throw new Error('Something went wrong');
+});
+
 export const removeProducts = createAsyncThunk(
    'basket/removeProducts',
    async ({ productIds, userId }: { productIds: string[]; userId: string }) => {
@@ -333,6 +358,12 @@ const userSlice = createSlice({
             state.likedProducts = state.likedProducts.filter(
                (el) => el.productId !== action.payload
             );
+         })
+         .addCase(buyProduct.fulfilled, () => {
+            console.log('success');
+         })
+         .addCase(buyProduct.rejected, () => {
+            console.log('reject');
          });
    }
 });

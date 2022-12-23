@@ -45,7 +45,8 @@ export default function Basket({ hideBasket }: { hideBasket: (boo: boolean) => v
             });
          })
          .then(() => {
-            dispatch(removeProducts({ productIds: invalidPromises, userId }));
+            if (invalidPromises.length)
+               dispatch(removeProducts({ productIds: invalidPromises, userId }));
          })
          .then(() => {
             Promise.all(validPromises)

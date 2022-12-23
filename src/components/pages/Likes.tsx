@@ -12,7 +12,6 @@ import { notificationTypes, TProduct } from '../../types';
 //Components
 import ProductItem from '../Products/ProductItem';
 import { removeProducts } from '../../redux/userSlice';
-import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 
 export default function Likes() {

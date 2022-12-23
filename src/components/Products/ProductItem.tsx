@@ -117,12 +117,15 @@ export default function ProductItem({ product }: ProductItemProps) {
                               width: '100%'
                            }}
                         >
-                           <ProductActionButton>{t('buy')}</ProductActionButton>
+                           <ProductActionButton
+                              onClick={() => navigate(`/${product.category}/${product.id}/buy`)}
+                           >
+                              {t('buy')}
+                           </ProductActionButton>
                            <ProductActionButton
                               disabled={product.quantity - inBasket <= 0}
                               onClick={handleAdd}
                            >
-                              {/* {t('addToCart')} */}
                               <ShoppingCartIcon />
                            </ProductActionButton>
                         </div>

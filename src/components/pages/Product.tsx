@@ -154,7 +154,7 @@ function Product() {
                </Button>
                <Button
                   disabled={!product?.quantity}
-                  onClick={() => navigate('/buy')}
+                  onClick={() => navigate(`/${category}/${productId}/buy`)}
                   variant='contained'
                >
                   {t('buy')}
