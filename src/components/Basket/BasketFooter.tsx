@@ -5,12 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 type TBasketFooter = {
    totalPrice: number;
+   hideBasket: (boo: boolean) => void;
 };
 
-function BasketFooter({ totalPrice }: TBasketFooter) {
+function BasketFooter({ totalPrice, hideBasket }: TBasketFooter) {
    const navigate = useNavigate();
    const { t } = useTranslation();
    const handleBuyBasketProducts = () => {
+      hideBasket(false);
       navigate('/buy');
    };
 

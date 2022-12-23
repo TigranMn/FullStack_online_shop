@@ -46,7 +46,7 @@ const Actions = ({ matches }) => {
                   >
                      {t('products')}
                   </Typography>
-                  <Basket />
+                  <Basket hideBasket={setIsActive} />
                </Box>
             </Drawer>
          </div>
