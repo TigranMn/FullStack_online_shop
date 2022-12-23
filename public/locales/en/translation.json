@@ -41,8 +41,9 @@
    "methodBuying": "Payment method",
    "cardError": "Service is temporarily unavailable",
    "nothingInLiked": "Nothing in liked",
-	"Enter your name": "Enter your name",
-	"Enter your lastname": "Enter your lastname",
-	"Enter your email": "Enter your email",
-	"Type your message here": "Type your message here"
+   "Enter your name": "Enter your name",
+   "Enter your lastname": "Enter your lastname",
+   "Enter your email": "Enter your email",
+   "Type your message here": "Type your message here",
+   "sortByPpopularity": "Sort by popularity"
 }

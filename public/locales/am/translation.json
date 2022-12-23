@@ -41,8 +41,9 @@
    "methodBuying": "Վճարման միջոց",
    "cardError": "Ծառայությունը ժամանակավորապես անհասանելի է",
    "nothingInLiked": "Հավանած պրոդուկտներ չկան",
-	"Enter your name": "Մուտքագրեք  անունը",
-	"Enter your lastname": "Մուտքագրեք  ազգանունը",
-	"Enter your email": "Մուտքագրեք էլ․ փոստը",
-	"Type your message here": "Գրեք ձեր նամակը այստեղ"
+   "Enter your name": "Մուտքագրեք  անունը",
+   "Enter your lastname": "Մուտքագրեք  ազգանունը",
+   "Enter your email": "Մուտքագրեք էլ․ փոստը",
+   "Type your message here": "Գրեք ձեր նամակը այստեղ",
+   "sortByPpopularity": "Դասակարգել ըստ դիտումների"
 }

@@ -10,6 +10,7 @@ import { notificationTypes, TProduct } from '../../types';
 import { Button, Grid } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import 'react-toastify/dist/ReactToastify.css';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import {
    Product,
    ProductActionButton,
@@ -108,27 +109,43 @@ export default function ProductItem({ product }: ProductItemProps) {
                   <ProductContent>
                      <ProductName>{product.name}</ProductName>
                      <ProductPrice>{product.price}$</ProductPrice>
+                     <div
+                        style={{
+                           color: 'white',
+                           display: 'flex',
+                           alignItems: 'center',
+                           margin: '10px',
+                           position: 'absolute',
+                           top: 0,
+                           left: 0
+                        }}
+                     >
+                        <VisibilityIcon />
+                        <span style={{ marginLeft: '10px' }}>{product.views}</span>
+                     </div>
                      {product.quantity ? (
-                        <div
-                           style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              width: '100%'
-                           }}
-                        >
-                           <ProductActionButton
-                              onClick={() => navigate(`/${product.category}/${product.id}/buy`)}
+                        <>
+                           <div
+                              style={{
+                                 display: 'flex',
+                                 alignItems: 'center',
+                                 justifyContent: 'center',
+                                 width: '100%'
+                              }}
                            >
-                              {t('buy')}
-                           </ProductActionButton>
-                           <ProductActionButton
-                              disabled={product.quantity - inBasket <= 0}
-                              onClick={handleAdd}
-                           >
-                              <ShoppingCartIcon />
-                           </ProductActionButton>
-                        </div>
+                              <ProductActionButton
+                                 onClick={() => navigate(`/${product.category}/${product.id}/buy`)}
+                              >
+                                 {t('buy')}
+                              </ProductActionButton>
+                              <ProductActionButton
+                                 disabled={product.quantity - inBasket <= 0}
+                                 onClick={handleAdd}
+                              >
+                                 <ShoppingCartIcon />
+                              </ProductActionButton>
+                           </div>
+                        </>
                      ) : (
                         <ProductActionButton
                            disableRipple
