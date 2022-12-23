@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { notificationTypes, TProduct } from '../../types';
 //Mui
 import { Button, Grid } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import 'react-toastify/dist/ReactToastify.css';
 import {
    Product,
@@ -108,13 +109,21 @@ export default function ProductItem({ product }: ProductItemProps) {
                      <ProductName>{product.name}</ProductName>
                      <ProductPrice>{product.price}$</ProductPrice>
                      {product.quantity ? (
-                        <div>
+                        <div
+                           style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              width: '100%'
+                           }}
+                        >
                            <ProductActionButton>{t('buy')}</ProductActionButton>
                            <ProductActionButton
                               disabled={product.quantity - inBasket <= 0}
                               onClick={handleAdd}
                            >
-                              {t('addToCart')}
+                              {/* {t('addToCart')} */}
+                              <ShoppingCartIcon />
                            </ProductActionButton>
                         </div>
                      ) : (

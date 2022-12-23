@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../../store';
@@ -120,7 +119,7 @@ export default function Buy() {
                {products?.map((product) => {
                   return (
                      <h3 key={product.name}>
-                        {product.name}: x{product.count}
+                        {product.count}x: {product.name}
                      </h3>
                   );
                })}
