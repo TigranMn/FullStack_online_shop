@@ -52,7 +52,8 @@ function a11yProps(index) {
 }
 
 export default function Buy() {
-   const [value, setValue] = React.useState(0);
+   const [value, setValue] = 
+	useState(0);
    const { t } = useTranslation();
    const [products, setProducts] = useState([]);
    const basket = useAppSelector((state) => state.user.basket);
