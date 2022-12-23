@@ -41,8 +41,9 @@
    "methodBuying": "Метод оплаты",
    "cardError": "Сервис временно недоступен",
    "nothingInLiked": "Ничего не понравилось",
-	"Enter your name": "Заполните  имя",
-	"Enter your lastname": "Заполните  фамилию",
-	"Enter your email": "Заполните эл. почту",
-	"Type your message here": "Напишите свое письмо тут"
+   "Enter your name": "Заполните  имя",
+   "Enter your lastname": "Заполните  фамилию",
+   "Enter your email": "Заполните эл. почту",
+   "Type your message here": "Напишите свое письмо тут",
+   "sortByPpopularity": "Сортировать по популярности"
 }

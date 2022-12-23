@@ -18,7 +18,9 @@ import {
    MenuItem,
    SelectChangeEvent,
    TextField,
-   Button
+   Button,
+   Switch,
+   FormControlLabel
 } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 //Types
@@ -38,6 +40,7 @@ export default function ProductsList() {
    const [minPrice, setMinPrice] = useState('0');
    const [maxPrice, setMaxPrice] = useState('10000000');
    const [filterName, setFilterName] = useState('');
+   const [popularitySwitch, setPopularitySwitch] = useState(false);
    const products = useAppSelector((state) => state.products);
    const dispatch = useAppDispatch();
    const { t } = useTranslation();
@@ -73,7 +76,7 @@ export default function ProductsList() {
 
    const handleSearch = () => {
       setCurrentPage(1);
-      const searched = products.products.filter((el) => {
+      let searched = products.products.filter((el) => {
          if (
             el.name.toLowerCase().startsWith(filterName.toLowerCase()) &&
             el.price > +minPrice &&
@@ -84,6 +87,10 @@ export default function ProductsList() {
             return el;
          }
       });
+      if (popularitySwitch) {
+         searched = searched.sort((a, b) => b.views - a.views);
+         console.log(searched);
+      }
       setFilteredProducts(searched);
    };
 
@@ -155,12 +162,11 @@ export default function ProductsList() {
                <div
                   className='filter'
                   style={{
-                     marginTop: '40px',
                      backgroundColor: 'white',
                      border: '2px solid rgba(171, 167, 137, 0.67)',
                      borderRadius: '10px',
                      padding: '20px',
-                     height: '360px'
+                     height: '400px'
                   }}
                >
                   <br />
@@ -219,7 +225,6 @@ export default function ProductsList() {
                         variant='standard'
                         onChange={(e) => {
                            setMinPrice(e.target.value);
-                           console.log(+e.target.value);
                         }}
                      />
                      <TextField
@@ -229,9 +234,24 @@ export default function ProductsList() {
                         onChange={(e) => setMaxPrice(e.target.value)}
                         variant='standard'
                      />
+
+                     <Box style={{ margin: '20px 0' }}>
+                        <FormControlLabel
+                           control={
+                              <Switch
+                                 onChange={() => {
+                                    console.log(!popularitySwitch);
+                                    setPopularitySwitch(!popularitySwitch);
+                                 }}
+                                 checked={popularitySwitch}
+                              />
+                           }
+                           label={t('sortByPpopularity')}
+                        />
+                     </Box>
                   </Box>
                </div>
-               <Grid container justifyContent='center' sx={{ margin: '20px 4px 20px 4px' }}>
+               <Grid container justifyContent='center' sx={{ margin: '-20px 4px 20px 4px' }}>
                   <Grid
                      container
                      display={'flex'}
