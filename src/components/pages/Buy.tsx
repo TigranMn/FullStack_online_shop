@@ -10,18 +10,26 @@ import { notificationTypes, TProduct } from '../../types';
 import { tabPanelProps } from '../../utils/tabPanelProps';
 import TabPanel from '../TabPanel/TabPanel';
 import { paymentMethodIcons } from '../../utils/payments/payments';
-import { useParams } from 'react-router';
+import { useLocation } from 'react-router';
 import { buyProduct } from '../../redux/userSlice';
 import { useNotify } from '../../hooks/useNotify';
+
+type TLocation = {
+   productId: string;
+   count: number;
+   category: string;
+};
 
 export default function Buy() {
    const [value, setValue] = useState<number>(0);
    const { t } = useTranslation();
    const [products, setProducts] = useState<TProduct[]>([]);
    const basket = useAppSelector((state) => state.user.basket);
-   const { productId, category } = useParams();
+   const location: TLocation = useLocation().state;
    const notify = useNotify();
    const dispatch = useAppDispatch();
+
+   const { productId, count, category } = location;
 
    useEffect(() => {
       if (!productId) {
@@ -34,7 +42,7 @@ export default function Buy() {
          });
       } else {
          getProduct(category!, productId).then((res) => {
-            setProducts([{ ...res, id: productId, count: 1 }]);
+            setProducts([{ ...res, id: productId, count }]);
          });
       }
    }, [basket]);
@@ -96,7 +104,7 @@ export default function Buy() {
                {products?.map((product) => {
                   return (
                      <h3 key={product.name}>
-                        {!productId ? product.count + 'x:' : null}
+                        {product.count}x:
                         {product.name}
                      </h3>
                   );

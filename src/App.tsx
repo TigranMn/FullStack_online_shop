@@ -55,7 +55,6 @@ function App() {
                <Route path='/shop/:category' element={<Products />} />
                <Route path='/shop/:category/:productId' element={<Product />} />
                <Route path='/buy' element={<Buy />} />
-					<Route path='/:category/:productId/buy' element= {<Buy />} />
                <Route path='/login' element={<Login />} />
                <Route path='/liked' element={<Likes />} />
                <Route path='/admin' element={<AdminLayout />}>
