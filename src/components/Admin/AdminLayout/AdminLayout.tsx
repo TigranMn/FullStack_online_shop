@@ -14,7 +14,8 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { AccStatus } from '../../../types';
 import '../adminUsers/style.css';
 import { removeUser } from '../../../redux/userSlice';
-
+import Logout from '@mui/icons-material/Logout';
+// Logout
 function AdminLayout() {
    const dispatch = useAppDispatch();
    const status = useAppSelector((state) => state.user.status);
@@ -40,7 +41,7 @@ function AdminLayout() {
                   <li onClick={() => navigate('/admin/messages')}>Messages</li>
                   <li onClick={() => navigate('/admin/faq')}>FAQ</li>
                </ul>
-               <button onClick={handleLogout}>Logout</button>
+               <button className='nav_bar_logout' onClick={handleLogout}><Logout /></button>
             </div>
          </div>
          <div className='admin_body'>
