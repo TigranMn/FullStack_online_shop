@@ -40,7 +40,7 @@ export default function Buy() {
          });
       } else {
          getProduct(location?.category, location?.productId).then((res) => {
-            setProducts([{ ...res, id: location?.productId, count: location?.count }]);
+            setProducts([{ ...res, id: location?.productId, count:location?.count }]);
          });
       }
    }, [basket]);
