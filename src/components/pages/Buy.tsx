@@ -29,7 +29,6 @@ export default function Buy() {
    const notify = useNotify();
    const dispatch = useAppDispatch();
 
-
    useEffect(() => {
       if (!location?.productId) {
          const promises = basket.map(async (el) => {

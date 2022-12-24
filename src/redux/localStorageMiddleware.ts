@@ -5,7 +5,7 @@ import {
    createListenerMiddleware
 } from '@reduxjs/toolkit';
 //Actions
-import { signIn, signUp } from './userSlice';
+import { signIn, signUp, updateUser } from './userSlice';
 
 import { TUser } from '../types';
 
@@ -43,5 +43,21 @@ signUpListenerMiddleware.startListening({
    }
 });
 
+const updateUserListenerMiddleware = createListenerMiddleware();
+
+updateUserListenerMiddleware.startListening({
+   matcher: isAnyOf(updateUser),
+   effect: (action, listenerApi) => {
+      const state: { user: TUser } = listenerApi.getState() as { user: TUser };
+
+      const { id, email, name, status } = state.user;
+      localStorage.setItem(
+         'currentUser',
+         JSON.stringify({ isLogged: true, id, email, name, status })
+      );
+   }
+});
+
 export const signInMiddleware = signInListenerMiddleware.middleware;
 export const signUpMiddleware = signUpListenerMiddleware.middleware;
+export const updateUserMiddleware = updateUserListenerMiddleware.middleware;

@@ -281,6 +281,11 @@ const userSlice = createSlice({
          state.likedProducts = likedProducts;
          state.basket = basket;
          state.status = status;
+      },
+      updateUser(state, action) {
+         console.log(action.payload.name, action.payload.lastName);
+         state.name = action.payload.name;
+         state.lastName = action.payload.lastName;
       }
    },
    extraReducers: (builder) => {
@@ -368,5 +373,5 @@ const userSlice = createSlice({
    }
 });
 
-export const { removeUser, setUser } = userSlice.actions;
+export const { removeUser, setUser, updateUser } = userSlice.actions;
 export default userSlice.reducer;

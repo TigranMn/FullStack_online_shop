@@ -134,7 +134,15 @@ export default function ProductItem({ product }: ProductItemProps) {
                               }}
                            >
                               <ProductActionButton
-                                 onClick={() => navigate(`/${product.category}/${product.id}/buy`)}
+                                 onClick={() =>
+                                    navigate('/buy', {
+                                       state: {
+                                          productId: product.id,
+                                          category: product.category,
+                                          count: 1
+                                       }
+                                    })
+                                 }
                               >
                                  {t('buy')}
                               </ProductActionButton>

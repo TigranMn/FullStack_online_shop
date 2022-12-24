@@ -1,6 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
-import { signInMiddleware, signUpMiddleware } from './redux/localStorageMiddleware';
+import {
+   signInMiddleware,
+   signUpMiddleware,
+   updateUserMiddleware
+} from './redux/localStorageMiddleware';
 import categoriesReducer from './redux/categoriesSlice';
 import productsReducer from './redux/productsSlice';
 import userSliceReducer from './redux/userSlice';
@@ -29,11 +33,14 @@ const store = configureStore({
          likedProducts: likedProducts || [],
          isLogged: currentUser?.isLogged,
          isLoading: false,
-			status: currentUser?.status || AccStatus.GUEST
+         status: currentUser?.status || AccStatus.GUEST
       }
    },
    middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware().concat(signInMiddleware).concat(signUpMiddleware);
+      return getDefaultMiddleware()
+         .concat(signInMiddleware)
+         .concat(signUpMiddleware)
+         .concat(updateUserMiddleware);
    }
 });
 
