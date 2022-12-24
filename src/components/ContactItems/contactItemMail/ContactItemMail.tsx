@@ -7,7 +7,7 @@ import { useNotify } from '../../../hooks/useNotify';
 import { notificationTypes } from '../../../types';
 
 export default function ContactItemMail() {
-   const { t  }  = useTranslation();
+   const { t } = useTranslation();
    const form = useRef<HTMLFormElement>(null);
    const notify = useNotify();
 
@@ -19,7 +19,10 @@ export default function ContactItemMail() {
          .then(
             () => notify(notificationTypes.SUCCES, 'Your message was sent'),
             (error) => notify(notificationTypes.ERROR, error.text)
-         );
+         )
+         .then(() => {
+            form.current?.reset();
+         });
    };
 
    return (

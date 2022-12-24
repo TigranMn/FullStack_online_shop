@@ -10,13 +10,21 @@ import '../adminProducts/addProducts/style.css';
 import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
-import { useAppSelector } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
 import { AccStatus } from '../../../types';
 import '../adminUsers/style.css';
+import { removeUser } from '../../../redux/userSlice';
 
 function AdminLayout() {
+   const dispatch = useAppDispatch();
    const status = useAppSelector((state) => state.user.status);
    const navigate = useNavigate();
+
+   const handleLogout = () => {
+      navigate('/login');
+      dispatch(removeUser());
+      localStorage.removeItem('currentUser');
+   };
 
    return status !== AccStatus.ADMIN ? (
       <Navigate to={'/shop'} />
@@ -32,6 +40,7 @@ function AdminLayout() {
                   <li onClick={() => navigate('/admin/messages')}>Messages</li>
                   <li onClick={() => navigate('/admin/faq')}>FAQ</li>
                </ul>
+               <button onClick={handleLogout}>Logout</button>
             </div>
          </div>
          <div className='admin_body'>
