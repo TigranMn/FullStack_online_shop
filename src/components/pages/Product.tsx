@@ -1,6 +1,6 @@
 //Hooks
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Utils
@@ -32,7 +32,6 @@ function Product() {
    const userId = useAppSelector((state) => state.user.id);
    const isLogged = useAppSelector((state) => state.user.isLogged);
    const dispatch = useAppDispatch();
-   const navigate = useNavigate();
    const notify = useNotify();
 
    const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
@@ -152,12 +151,10 @@ function Product() {
                >
                   {t('addToCart')}
                </Button>
-               <Button
-                  disabled={!product?.quantity}
-                  onClick={() => navigate(`/${category}/${productId}/buy`)}
-                  variant='contained'
-               >
-                  {t('buy')}
+               <Button disabled={!product?.quantity} variant='contained'>
+                  <Link to={'/buy'} state={{ productId, category, count: quantity }}>
+                     {t('buy')}
+                  </Link>
                </Button>
             </Box>
          </ProductContent>
