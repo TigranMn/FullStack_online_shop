@@ -29,10 +29,8 @@ export default function Buy() {
    const notify = useNotify();
    const dispatch = useAppDispatch();
 
-   const { productId, count, category } = location;
-
    useEffect(() => {
-      if (!productId) {
+      if (!location?.productId) {
          const promises = basket.map(async (el) => {
             const product = await getProduct(el.category, el.productId);
             return { ...product, id: el.productId, count: el.count };
@@ -41,8 +39,8 @@ export default function Buy() {
             setProducts(res);
          });
       } else {
-         getProduct(category!, productId).then((res) => {
-            setProducts([{ ...res, id: productId, count }]);
+         getProduct(location?.category, location?.productId).then((res) => {
+            setProducts([{ ...res, id: location?.productId, count: location?.count }]);
          });
       }
    }, [basket]);
