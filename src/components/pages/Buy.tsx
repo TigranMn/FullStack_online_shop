@@ -13,6 +13,8 @@ import { paymentMethodIcons } from '../../utils/payments/payments';
 import { useLocation } from 'react-router';
 import { buyProduct } from '../../redux/userSlice';
 import { useNotify } from '../../hooks/useNotify';
+import { addDoc, collection, doc, increment, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 type TLocation = {
    productId: string;
@@ -40,7 +42,7 @@ export default function Buy() {
          });
       } else {
          getProduct(location?.category, location?.productId).then((res) => {
-            setProducts([{ ...res, id: location?.productId, count:location?.count }]);
+            setProducts([{ ...res, id: location?.productId, count: location?.count }]);
          });
       }
    }, [basket]);
@@ -53,6 +55,15 @@ export default function Buy() {
       dispatch(buyProduct(products))
          .unwrap()
          .then(() => {
+            const salesRef = collection(db, 'sales');
+            products.forEach((el) => {
+               setDoc(
+                  doc(salesRef, el.id),
+                  { id: el.id, count: increment(el.count) },
+                  { merge: true }
+               );
+            });
+
             notify(notificationTypes.SUCCES, 'Succesfully bought');
          })
          .catch((e) => {
