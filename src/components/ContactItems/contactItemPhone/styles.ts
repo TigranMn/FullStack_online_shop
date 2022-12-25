@@ -29,6 +29,8 @@ export const ContactCardImage = styled(Box)(()=>({
     border: '3px solid white',
     overflow: 'hidden',
     borderBottomRightRadius: '50%',
+    borderTopColor: 'transparent',
+    borderLeftColor: 'transparent',
     color: 'white'
 }));
 

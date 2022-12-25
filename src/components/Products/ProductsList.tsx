@@ -105,15 +105,15 @@ export default function ProductsList() {
    return (
       <div
          style={{
-            background: 'linear-gradient(to top, #0f2027, #203a43, #2c5364)',
+            background: '#1A202C',
             minHeight: '100vh'
          }}
       >
          <Container>
             <div
                style={{
-                  border: '2px solid rgba(171, 167, 137, 0.67)',
-                  padding: '20px',
+                  border: '3px solid rgba(139,133,233,0.8)',
+                  padding: '10px',
                   borderRadius: '10px',
                   backgroundColor: 'white'
                }}
@@ -135,9 +135,10 @@ export default function ProductsList() {
                      style={{
                         padding: '10px',
                         marginLeft: '10px',
-                        color: 'rgba(0, 181, 76, 0.56)',
-                        border: '3px solid rgba(0, 181, 76, 0.56)',
-                        backgroundColor: 'white'
+                        color: '#666666',
+                        border: '2px solid rgba(139,133,233,0.8)',
+                        backgroundColor: 'white',
+                        fontSize: '14px'
                      }}
                      variant='outlined'
                   >
@@ -163,7 +164,7 @@ export default function ProductsList() {
                   className='filter'
                   style={{
                      backgroundColor: 'white',
-                     border: '2px solid rgba(171, 167, 137, 0.67)',
+                     border: '3px solid rgba(139,133,233,0.8)',
                      borderRadius: '10px',
                      padding: '20px',
                      height: '400px'

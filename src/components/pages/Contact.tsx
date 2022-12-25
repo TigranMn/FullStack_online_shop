@@ -8,6 +8,7 @@ import ContactItemPhone from '../ContactItems/contactItemPhone/ContactItemPhone'
 import ContactItemMap from '../ContactItems/contactItemMap/ContactItemMap';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Comment } from  'react-loader-spinner';
 
 export default function Contact() {
    const [showItem, setShowItem] = useState('');
@@ -24,7 +25,7 @@ export default function Contact() {
    }
 
    return (
-      <ContactContainer>
+      <ContactContainer sx={{background: '#1A202C'}}>
          <Book>
             <BookCover className='bookCover'>
                <Typography
@@ -32,6 +33,15 @@ export default function Contact() {
                   sx={{ color: '#5082fc', fontFamily: '"Montez", "Cursive"', marginTop: '30px' }}
                >
                   {t('guide')}
+                  <div style={{position: 'absolute' , bottom: '60px', left: '75px'}}>
+                       <Comment 
+                       height='100'
+                       width='100'
+                       ariaLabel='comment-loading'
+                       color='#fff'
+                       backgroundColor='#5082FC'
+                       />
+                  </div>    
                </Typography>
             </BookCover>
             <Page className='page' />
