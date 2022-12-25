@@ -150,7 +150,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                                  disabled={product.quantity - inBasket <= 0}
                                  onClick={handleAdd}
                               >
-                                 <ShoppingCartIcon />
+                                 <ShoppingCartIcon fontSize='small'/>
                               </ProductActionButton>
                            </div>
                         </>
@@ -170,6 +170,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                   <ProductLikedIcon>
                      {!isLiked ? (
                         <Button
+                           disableRipple
                            size='large'
                            onClick={handleLike}
                            sx={{

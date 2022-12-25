@@ -4,7 +4,7 @@ import { Box, Typography, IconButton } from '@mui/material';
 export const Product = styled(Box)(() => ({
    position: 'relative',
    background: '#fff',
-   border: '2px solid white',
+   border: '1px solid white',
    borderRadius: '20px',
    margin: '20px 0',
    width: '280px',
@@ -14,7 +14,7 @@ export const Product = styled(Box)(() => ({
       position: 'absolute',
       height: '50%',
       width: '100%',
-      background: 'rgba(116, 168, 184, 0.67)'
+      background: '#8B85E9'
    }
 }));
 
@@ -69,17 +69,16 @@ export const ProductActionButton = styled(IconButton)(() => ({
    display: 'flex',
    justifyContent: 'center',
    margin: '20px 10px 0px',
-   background: 'rgba(0, 181, 76, 0.56)',
+   background: '#8B85E9',
    outline: 'none',
    border: 'none',
    color: '#fff',
    padding: '10px 22px',
    borderRadius: '20px',
-   fontSize: '18px',
+   fontSize: '16px',
    transition: 'all 0.3s ease',
    '&:hover ': {
-      background: 'rgba(0, 181, 76, 0.56)',
-      transform: 'scale(1.1)'
+      background: 'rgba(139,133,233,0.8)',
    }
 }));
 

@@ -31,8 +31,7 @@ export default function ContactItemMail() {
             maxWidth: 500,
             margin: '20px auto',
             padding: '20px 5px',
-            border: '3px solid #212834',
-            background: 'rgba(33,40,52,0.1)'
+            background: '#5E626B'
          }}
       >
          <CardContent>

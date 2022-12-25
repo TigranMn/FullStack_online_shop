@@ -7,15 +7,16 @@ import { ToastContainer } from 'react-toastify';
 import { useAppSelector } from '../../store';
 
 export default function Layout() {
-	const isAdmin = useAppSelector(state => state.user.status === 'admin');
+   const isAdmin = useAppSelector((state) => state.user.status === 'admin');
 
-	return (
-		isAdmin ? <Outlet /> :
-			<>
-				<ToastContainer newestOnTop={false} />
-				<Header />
-				<Outlet />
-				<Footer />
-			</>
-	);
+   return isAdmin ? (
+      <Outlet />
+   ) : (
+      <>
+         <ToastContainer newestOnTop={false} />
+         <Header />
+         <Outlet />
+         <Footer />
+      </>
+   );
 }
