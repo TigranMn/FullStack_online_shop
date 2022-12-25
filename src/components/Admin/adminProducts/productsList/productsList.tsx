@@ -60,7 +60,7 @@ function ProductsList() {
             <tbody>
                {products.map((item, index) => {
                   return (
-                     <tr key={index}>
+                     <tr key={index} className='prod_row'>
                         <td>{index + 1}</td>
                         <td>
                            <img className='products_list_image' src={item.imgUrl} />

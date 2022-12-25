@@ -9,6 +9,7 @@ export async function getLessProdId(): Promise<string[]> {
          arrLessProdId = doc.data().lessProducts;
       }
    });
+   console.log('databaseId ',arrLessProdId);
    return arrLessProdId;
 }
 
@@ -22,15 +23,15 @@ export async function getOldUsersId (): Promise<string[]> {
    });
    return arrPrevUsersId;
 }
-// async function getNotify () {
-//   let result = await getDocs(collection(db, 'notifications'));
-//   result.forEach(doc => {
-//     console.log(doc.id, doc.data())
-//   })
-// }
-// getNotify ()
+async function getNotify () {
+  const result = await getDocs(collection(db, 'faq'));
+  result.forEach(doc => {
+    console.log('faqq', doc.id, doc.data());
+  });
+}
+//getNotify ();
 
-export async function setLessProdIdInDatabase(newData: string[]): Promise<void> {
+export async function setLessProdIdInDatabase( newData: string[] ): Promise<void> {
    let id = '';
    const response = await getDocs(collection(db, 'notifications'));
    response.forEach((doc) => {
@@ -38,6 +39,7 @@ export async function setLessProdIdInDatabase(newData: string[]): Promise<void> 
    });
    setDoc(doc(db, '/notifications', id), { lessProducts: newData }, { merge: true });
 }
+
 
 export async function setNewUsersIdInDatabase(newData: string[]): Promise<void> {
    let id = '';

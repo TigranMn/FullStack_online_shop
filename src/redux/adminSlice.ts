@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TProduct } from '../types';
 import { getData } from '../components/Admin/adminAPI/adminAPI';
+import { TFaqItem } from '../components/About/accordion/Accordion';
 
 type TInitialState = {
    allProducts: TProduct[];
@@ -14,6 +15,8 @@ type TInitialState = {
    newUsersCount: number;
    singleUserId: string;
    newUsersVisibility: boolean;
+   faqModal: boolean;
+   currentFAQ: TFaqItem;
 };
 
 type TSearchFilter = {
@@ -34,6 +37,8 @@ const initialState: TInitialState = {
    newUsersCount: 0,
    singleUserId: '',
    newUsersVisibility: false,
+   faqModal: false,
+   currentFAQ: {answer: '', question: '', id: ''},
 };
 
 export const getProducts = createAsyncThunk('products/fetchProducts', async () => {
@@ -84,6 +89,12 @@ const adminSlice = createSlice({
       },
       changeNewUsersVisibility: (state, action) => {
          state.newUsersVisibility = action.payload;
+      },
+      changeFaqModal: (state) => {
+         state.faqModal = !state.faqModal;
+      },
+      passCurrentFAQ: (state, action) => {
+         state.currentFAQ = action.payload;
       }
    },
    extraReducers: (builder) => {
@@ -124,6 +135,8 @@ export const {
    passCurrentProdId,
    updateProduct,
    removeProduct,
-   changeNewUsersCount
+   changeNewUsersCount,
+   changeFaqModal,
+   passCurrentFAQ
 } = adminSlice.actions;
 export default adminSlice.reducer;

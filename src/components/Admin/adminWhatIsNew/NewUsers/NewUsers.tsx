@@ -29,8 +29,7 @@ function NewUsers() {
       };
       fetchNewUsers();
       return () => {
-         const passUsersIdToDatabase = async () => {
-            
+         const passUsersIdToDatabase = async () => {      
             const usersId = JSON.parse(window.localStorage.getItem('newUsersId')!) as string[];
             await setNewUsersIdInDatabase(usersId);
          };

@@ -10,9 +10,12 @@ import '../adminProducts/addProducts/style.css';
 import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
+import '../adminUsers/style.css';
+import '../adminFAQ/style.css';
+import '../singleUser/style.css';
+
 import { useAppSelector } from '../../../store';
 import { AccStatus } from '../../../types';
-import '../adminUsers/style.css';
 
 function AdminLayout() {
    const status = useAppSelector((state) => state.user.status);
