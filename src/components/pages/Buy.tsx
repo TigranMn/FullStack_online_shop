@@ -1,82 +1,124 @@
-import { Button,CardContent, Grid, TextField,Typography } from '@mui/material';
-import {useState} from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { getProduct } from '../../api/api';
+import { Button } from '@mui/material';
+import { notificationTypes, TProduct } from '../../types';
+import { tabPanelProps } from '../../utils/tabPanelProps';
+import TabPanel from '../TabPanel/TabPanel';
+import { paymentMethodIcons } from '../../utils/payments/payments';
+import { useLocation } from 'react-router';
+import { buyProduct } from '../../redux/userSlice';
+import { useNotify } from '../../hooks/useNotify';
+
+type TLocation = {
+   productId: string;
+   count: number;
+   category: string;
+};
 
 export default function Buy() {
-   const [userName, setUserName] = useState('');
-   const [userLastName, setUserLastName] = useState('');
-   const [isVerified, setIsVerified] = useState(false);
+   const [value, setValue] = useState<number>(0);
+   const { t } = useTranslation();
+   const [products, setProducts] = useState<TProduct[]>([]);
+   const basket = useAppSelector((state) => state.user.basket);
+   const location: TLocation = useLocation().state;
+   const notify = useNotify();
+   const dispatch = useAppDispatch();
 
+   useEffect(() => {
+      if (!location?.productId) {
+         const promises = basket.map(async (el) => {
+            const product = await getProduct(el.category, el.productId);
+            return { ...product, id: el.productId, count: el.count };
+         });
+         Promise.all(promises).then((res) => {
+            setProducts(res);
+         });
+      } else {
+         getProduct(location?.category, location?.productId).then((res) => {
+            setProducts([{ ...res, id: location?.productId, count:location?.count }]);
+         });
+      }
+   }, [basket]);
 
-   return <div style={{
-    minHeight: '100vh',
-    background: '#1A202C',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden'}}>
-      {!isVerified ? <CardContent sx={{width:'506px', height: '319px', background: '#fff', padding: '40px 30px',borderRadius: '30px'}}>
-            <Typography variant='h6' sx={{textAlign: 'center', color: '#115A2B' }}>Please confirm your details</Typography>
-            <form autoComplete='off'>
-               <Grid container spacing={4}>
-                  <Grid xs={12} item>
-                     <TextField
-                        label='First Name'
-                        placeholder='Enter your name'
-                        fullWidth
-                        required
-                        onChange={(e) => setUserName(e.target.value)}
-                     />
-                  </Grid>
-                  <Grid xs={12} item>
-                     <TextField
-                        label='Last Name'
-                        placeholder='Enter your last name'
-                        fullWidth
-                        required
-                        onChange={(e) => setUserLastName(e.target.value)}
-                     />
-                  </Grid>
-                  <Grid xs={12} item>
-                     <Button
-                        sx={{
-                           background: '#212834',
-                           '&:hover': { background: 'rgba(33,40,52,0.9)' }
-                        }}
-                        type='submit'
-                        variant='contained'
-                        fullWidth
-                        onClick={()=> {
-                           if(userName !== '' && userLastName !== '') {
-                              setIsVerified(true);
-                           }
-                        }}
-                     >
-                        Submit
-                     </Button>
-                  </Grid>
-               </Grid>
-            </form>
-         </CardContent> :  <div style={{
-         width: '506px',
-         height: '319px',
-         position: 'relative',
-         background: 'radial-gradient(140% 140% at 0% 0%, rgba(255,255,255,0.4) 0%,rgba(255,255,255,0) 100% )',
-         borderTop: '1px solid #eeeded70',
-         borderLeft: '1px solid #eeeded70',
-         borderRadius: '30px',
-         backdropFilter: 'blur(30px)',
-         boxShadow: '0 15px 25px rgba(0,0,0,0.3)'
-      }}>
-      <h3 style={{color: '#fff', fontSize : '28px', fontFamily: 'Aboreto',opacity : 0.7, position: 'absolute',top: '30px',right: '30px'}}>bank</h3>
-      <img style={{width: '50px', position: 'absolute', top: '100px',left: '40px'}} src='https://cdn-icons-png.flaticon.com/512/6404/6404100.png' alt='chip' />
-      <img style={{width: '40px', position: 'absolute', top: '105px',left: '100px', rotate: '90deg'}} src='https://cdn-icons-png.flaticon.com/512/4399/4399290.png' alt='indicator' />
-      <h3 style={{ color: '#fff', fontSize: '36px',fontFamily: 'Aboreto',opacity : 0.3, fontWeight: 400, position: 'absolute',bottom: '100px', left: '30px'}}>7500 6789 2549 0057</h3>
-      <h5 style={{color: '#fff', fontSize: '14px', fontFamily: 'cursive', opacity: 0.7, fontWeight: 700,position: 'absolute',bottom: '30px', left: '30px'}}><span style={{ fontFamily: 'cursive', fontSize:'10px', fontWeight: 400}}>CARD HOLDER</span><br /> {userName} {userLastName}</h5>
-      <h5 style={{color: '#fff', fontSize: '14px', fontFamily: 'cursive', opacity: 0.7, fontWeight: 400,position: 'absolute',bottom: '30px', left: '220px'}} >EXPIRY DATE <br /> 24/07</h5>
-      <img style={{width: '70px', position: 'absolute', right: '30px', bottom: '25px'}} src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/772px-Mastercard-logo.svg.png?20210817144358' alt='logo-cart' />
-      </div>}
-         
-     
-            
-   </div>;
+   const handleChange = (event: SyntheticEvent<Element, Event>, newValue: number) => {
+      setValue(newValue);
+   };
+
+   const handleBuy = () => {
+      dispatch(buyProduct(products))
+         .unwrap()
+         .then(() => {
+            notify(notificationTypes.SUCCES, 'Succesfully bought');
+         })
+         .catch((e) => {
+            notify(notificationTypes.ERROR, e.message);
+         });
+   };
+
+   const totalPrice = products.reduce((current, item) => {
+      return current + item.price * item.count;
+   }, 0);
+
+   return (
+      <Box
+         sx={{
+            width: '100%',
+            height: '75vh',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+         }}
+      >
+         <h1 style={{ textAlign: 'center', margin: '50px' }}> {t('methodBuying')}</h1>
+         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
+               <Tab label='MasterCard' {...tabPanelProps(0)} />
+               <Tab label='Visa Debit Cards' {...tabPanelProps(1)} />
+               <Tab label='Idram' {...tabPanelProps(2)} />
+               <Tab label='Demo Buy' {...tabPanelProps(3)} />
+            </Tabs>
+         </Box>
+         <TabPanel value={value} index={0}>
+            <img src={paymentMethodIcons.masterCard} alt='mastercard' width='200px' />
+            <h1 style={{ margin: '20px' }}>{t('cardError')}</h1>
+         </TabPanel>
+         <TabPanel value={value} index={1}>
+            <img src={paymentMethodIcons.visa} alt='visacard' width='200px' />
+            <h1 style={{ margin: '20px' }}>{t('cardError')}</h1>
+         </TabPanel>
+         <TabPanel value={value} index={2}>
+            <img src={paymentMethodIcons.idram} alt='idram' width='200px' />
+            <h1 style={{ margin: '20px' }}>{t('cardError')}</h1>
+         </TabPanel>
+         <TabPanel value={value} index={3}>
+            <h2>Вы действительно хотите купить эти продукты</h2>
+            <br />
+            <div>
+               {products?.map((product) => {
+                  return (
+                     <h3 key={product.name}>
+                        {product.count}x:
+                        {product.name}
+                     </h3>
+                  );
+               })}
+            </div>
+            <br />
+            <p>
+               {'за '}
+               {totalPrice}
+               {' $ ?'}
+            </p>
+            <br />
+            <Button variant='outlined' onClick={handleBuy}>
+               Buy
+            </Button>
+         </TabPanel>
+      </Box>
+   );
 }

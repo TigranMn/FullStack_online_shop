@@ -11,7 +11,6 @@ function AdminUsers() {
       const fetchUsers = async () => {
          const fetched = await getAllUsers();
          setUsers(fetched);
-         console.log(fetched);
       };
       fetchUsers();
    }, []);

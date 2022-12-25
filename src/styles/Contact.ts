@@ -40,7 +40,7 @@ export const Book = styled(Box)(({ theme }) => ({
    [theme.breakpoints.down('sm')]: {
       display: 'none'
    },
-   [theme.breakpoints.down('xl')]: {
+   [theme.breakpoints.down('lg')]: {
       display: 'none'
    }
 }));

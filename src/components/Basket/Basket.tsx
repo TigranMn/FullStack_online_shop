@@ -15,7 +15,7 @@ import BasketFooter from './BasketFooter';
 import BasketItem from './BasketItem';
 import { useTranslation } from 'react-i18next';
 
-export default function Basket() {
+export default function Basket({ hideBasket }: { hideBasket: (boo: boolean) => void }) {
    const basketItems = useAppSelector((state) => state.user.basket);
    const [products, setProducts] = useState<TProduct[]>([]);
    const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -45,7 +45,8 @@ export default function Basket() {
             });
          })
          .then(() => {
-            dispatch(removeProducts({ productIds: invalidPromises, userId }));
+            if (invalidPromises.length)
+               dispatch(removeProducts({ productIds: invalidPromises, userId }));
          })
          .then(() => {
             Promise.all(validPromises)
@@ -90,7 +91,7 @@ export default function Basket() {
          ) : (
             <h3>{t('nothingInBasket')}</h3>
          )}
-         {products.length ? <BasketFooter totalPrice={totalPrice} /> : null}
+         {products.length ? <BasketFooter hideBasket={hideBasket} totalPrice={totalPrice} /> : null}
       </>
    );
 }

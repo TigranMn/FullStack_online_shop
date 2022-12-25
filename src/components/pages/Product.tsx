@@ -1,6 +1,6 @@
 //Hooks
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Utils
@@ -32,7 +32,6 @@ function Product() {
    const userId = useAppSelector((state) => state.user.id);
    const isLogged = useAppSelector((state) => state.user.isLogged);
    const dispatch = useAppDispatch();
-   const navigate = useNavigate();
    const notify = useNotify();
 
    const inBasket = basket.find((el) => el.productId === productId)?.count || 0;
@@ -144,15 +143,18 @@ function Product() {
                </Button>
             </Box>
             <Box sx={{ mt: '10px' }}>
-               <Button onClick={handleAdd} disabled={addBtnDisabled} variant='outlined'>
-                  {t('addToCard')}
-               </Button>
                <Button
-                  disabled={!product?.quantity}
-                  onClick={() => navigate('/buy')}
-                  variant='contained'
+                  onClick={handleAdd}
+                  disabled={addBtnDisabled}
+                  variant='outlined'
+                  style={{ marginRight: '10px' }}
                >
-                  {t('buy')}
+                  {t('addToCart')}
+               </Button>
+               <Button disabled={!product?.quantity} variant='contained'>
+                  <Link to={'/buy'} state={{ productId, category, count: quantity }}>
+                     {t('buy')}
+                  </Link>
                </Button>
             </Box>
          </ProductContent>

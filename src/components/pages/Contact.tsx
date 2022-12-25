@@ -7,9 +7,11 @@ import ContactItemMail from '../../components//ContactItems/contactItemMail/Cont
 import ContactItemPhone from '../ContactItems/contactItemPhone/ContactItemPhone';
 import ContactItemMap from '../ContactItems/contactItemMap/ContactItemMap';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export default function Contact() {
    const [showItem, setShowItem] = useState('');
+   const { t } = useTranslation();
 
    let Component;
 
@@ -29,7 +31,7 @@ export default function Contact() {
                   variant='h4'
                   sx={{ color: '#5082fc', fontFamily: '"Montez", "Cursive"', marginTop: '30px' }}
                >
-                  The guide to contact
+                  {t('guide')}
                </Typography>
             </BookCover>
             <Page className='page' />
@@ -44,7 +46,7 @@ export default function Contact() {
                   sx={{ color: '#212834' }}
                   endIcon={<EmailIcon />}
                >
-                  Gmail
+                  {t('email')}
                </Button>
                <Button
                   onClick={() => setShowItem('ContactItemPhone')}
@@ -52,7 +54,7 @@ export default function Contact() {
                   sx={{ color: '#212834' }}
                   endIcon={<PhoneIcon />}
                >
-                  Phone
+                  {t('phone')}
                </Button>
                <Button
                   onClick={() => setShowItem('ContactItemMap')}
@@ -60,7 +62,7 @@ export default function Contact() {
                   sx={{ color: '#212834' }}
                   endIcon={<MapIcon />}
                >
-                  Map
+                  {t('map')}
                </Button>
             </LastPage>
             <BackCover></BackCover>
