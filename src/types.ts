@@ -63,6 +63,16 @@ export type TUser = {
    status: AccStatus;
 };
 
+export type TDeletedUser = {
+   id: string | null;
+   email: string | null;
+   name: string | null;
+   lastName: string | null;
+   basket: TBasketType[];
+   likedProducts: TLikedType[];
+   status: AccStatus;
+}
+
 export enum notificationTypes {
    WARNING = 'warning',
    ERROR = 'error',
