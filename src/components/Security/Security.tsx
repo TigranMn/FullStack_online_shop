@@ -18,7 +18,7 @@ import { firebaseErrorCatch } from '../../utils/firebaseErrorCatch';
 
 export default function Security() {
    const userEmail = useAppSelector((state) => state.user.email)!;
-   const { isError, isLoading, id, isLogged, token, ...currentUser } = useAppSelector(
+   const { isError, isLoading, isLogged, token, ...currentUser } = useAppSelector(
       (state) => state.user
    );
    const [oldPassword, setOldPassword] = useState<string>('');
