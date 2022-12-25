@@ -1,4 +1,4 @@
-import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs, deleteDoc } from 'firebase/firestore';
 
 import { db } from '../../../firebase';
 import { TProduct } from '../../../types';
@@ -7,7 +7,8 @@ import { TProduct } from '../../../types';
 //    const test = await getDocs(collection(db, '/notifications'));
 //    test.forEach((doc) => console.log(doc.id, doc.data()));
 // }
-//getNotifications()
+//getNotifications();
+
 // async function updateData () {
 //   let add = await setDoc(doc(db, 'notifications', '0X3oZDwXYqPRQlFJoK'), {asdsf:324}, {merge: false})
 //   let test = await getDocs(collection(db, '/notifications'));
@@ -23,11 +24,12 @@ import { TProduct } from '../../../types';
 // addData()
 
 // async function deleteData() {
-//   let result = await deleteDoc(doc(db, 'notifications', 'xXmaQVLkT4bUj9nwWGbN'));
-//   let test = await getDocs(collection(db, '/notifications'));
-//   test.forEach((doc) => console.log(doc.id, doc.data()))
+//   let result = await deleteDoc(doc(db, 'notifications', 'some id'));
+// //   let test = await getDocs(collection(db, '/notifications'));
+// //   test.forEach((doc) => console.log(doc.id, doc.data()))
 // }
-// deleteData()
+
+
 
 export async function addProduct(categoryName: string, newData: TProduct) {
    const docRef = doc(db, `${categoryName}`);
@@ -96,4 +98,4 @@ export async function getData() {
    return arrayProducts;
 }
 
-getData();
+//getData();

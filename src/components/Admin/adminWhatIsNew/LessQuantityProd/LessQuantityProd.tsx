@@ -112,7 +112,7 @@ function LessQuantityProd() {
             <tbody>
                {newProd.map((item, index) => {
                   return (
-                     <tr key={index} className='new-less-products'>
+                     <tr key={index} className='new-less-products prod_row'>
                         <td>{index + 1}</td>
                         <td>
                            <img className='products_list_image' src={item.imgUrl} />
@@ -149,7 +149,7 @@ function LessQuantityProd() {
                })}
                {oldProd.map((item, index) => {
                   return (
-                     <tr key={index} className='old-less-products'>
+                     <tr key={index} className='old-less-products prod_row'>
                         <td>{index + 1}</td>
                         <td>
                            <img className='products_list_image' src={item.imgUrl} />

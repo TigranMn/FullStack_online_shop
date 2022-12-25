@@ -4,6 +4,7 @@
 }
 .users_tr {
     cursor: pointer;
+    transition: .1s;
 }
 
 .users_tr:hover {

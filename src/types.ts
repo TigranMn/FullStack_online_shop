@@ -75,3 +75,4 @@ export interface SerializedError {
    stack?: string;
    code?: string;
 }
+

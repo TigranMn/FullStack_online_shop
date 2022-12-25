@@ -14,7 +14,6 @@ function SingleUser() {
    const { userId } = useParams();
 
    useEffect(() => {
-      ///////popoxman entaka e 'getAllUsers'-y  'getUser' i//////////////
       const fetchUserActions = async () => {
          const userBasket: TProduct[] = [];
          const userLikes: TProduct[] = [];
@@ -40,111 +39,112 @@ function SingleUser() {
          setBasket(userBasket);
          setUser(fetchedUser);
       };
-
       fetchUserActions();
    }, []);
-   console.log('basket', likedProd, basket);
+
    return (
       <div>
          <div>
-            <h2>
+            <h2 className='user_name'>
                {user?.name} {user?.lastName}
             </h2>
          </div>
-         <div>
-            <span>Email:</span> <span>{user?.email}</span>
+         <div className='info_frame'>
+            <div>
+               <span className='info_span'>Email: </span> <span>{user?.email}</span>
+            </div>
+            <div>
+               <span className='info_span'>User ID: </span> <span>{user?.id}</span>
+            </div>
+            <hr />
+            <br />
+            <h2>Liked products</h2>
+            {likedProd.length ? (
+               <table className='table'>
+                  <thead>
+                     <tr>
+                        <th>N</th>
+                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Gender</th>
+                        <th>Color</th>
+                        <th>Price $</th>
+                        <th>Views</th>
+                        <th>Quantity</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {likedProd.map((item, index) => {
+                        return (
+                           <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td>
+                                 <img className='products_list_image' src={item.imgUrl} />
+                              </td>
+                              <td>{item.category}</td>
+                              <td>{item.name}</td>
+                              <td>{item.brand}</td>
+                              <td>{item.gender}</td>
+                              <td>{item.color}</td>
+                              <td>{item.price}$</td>
+                              <td>{item.views}</td>
+                              <td>{item.quantity}</td>
+                           </tr>
+                        );
+                     })}
+                  </tbody>
+               </table>
+            ) : (
+               <span>empty</span>
+            )}
+            <hr />
+            <br />
+            <h2>Basket</h2>
+            {basket.length ? (
+               <table className='table'>
+                  <thead>
+                     <tr>
+                        <th>N</th>
+                        <th>Image</th>
+                        <th>Count</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                        <th>Gender</th>
+                        <th>Color</th>
+                        <th>Price $</th>
+                        <th>Views</th>
+                        <th>Quantity</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {basket.map((item, index) => {
+                        return (
+                           <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td>
+                                 <img className='products_list_image' src={item.imgUrl} />
+                              </td>
+                              <td>{item.count}</td>
+                              <td>{item.category}</td>
+                              <td>{item.name}</td>
+                              <td>{item.brand}</td>
+                              <td>{item.gender}</td>
+                              <td>{item.color}</td>
+                              <td>{item.price}$</td>
+                              <td>{item.views}</td>
+                              <td>{item.quantity}</td>
+                           </tr>
+                        );
+                     })}
+                  </tbody>
+               </table>
+            ) : (
+               <span>empty</span>
+            )}
          </div>
-         <div>
-            <span>User ID:</span> <span>{user?.id}</span>
-         </div>
-         <hr />
-         <br/>
-         <h2>Liked products</h2>
-         {likedProd.length ? (
-            <table>
-               <thead>
-                  <tr>
-                     <th>N</th>
-                     <th>Image</th>
-                     <th>Category</th>
-                     <th>Name</th>
-                     <th>Brand</th>
-                     <th>Gender</th>
-                     <th>Color</th>
-                     <th>Price $</th>
-                     <th>Views</th>
-                     <th>Quantity</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {likedProd.map((item, index) => {
-                     return (
-                        <tr key={index}>
-                           <td>{index + 1}</td>
-                           <td>
-                              <img className='products_list_image' src={item.imgUrl} />
-                           </td>
-                           <td>{item.category}</td>
-                           <td>{item.name}</td>
-                           <td>{item.brand}</td>
-                           <td>{item.gender}</td>
-                           <td>{item.color}</td>
-                           <td>{item.price}$</td>
-                           <td>{item.views}</td>
-                           <td>{item.quantity}</td>
-                        </tr>
-                     );
-                  })}
-               </tbody>
-            </table>
-         ) : (
-            <span>empty</span>
-         )}
-         <hr />
-         <br/>
-         <h2>Basket</h2>
-         {basket.length ? (
-            <table>
-               <thead>
-                  <tr>
-                     <th>N</th>
-                     <th>Image</th>
-                     <th>Count</th>
-                     <th>Category</th>
-                     <th>Name</th>
-                     <th>Brand</th>
-                     <th>Gender</th>
-                     <th>Color</th>
-                     <th>Price $</th>
-                     <th>Views</th>
-                     <th>Quantity</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  {basket.map((item, index) => {
-                     return (
-                        <tr key={index}>
-                           <td>{index + 1}</td>
-                           <td>
-                              <img className='products_list_image' src={item.imgUrl} />
-                           </td>
-                           <td>{item.count}</td>
-                           <td>{item.category}</td>
-                           <td>{item.name}</td>
-                           <td>{item.brand}</td>
-                           <td>{item.gender}</td>
-                           <td>{item.color}</td>
-                           <td>{item.price}$</td>
-                           <td>{item.views}</td>
-                           <td>{item.quantity}</td>
-                        </tr>
-                     );
-                  })}
-               </tbody>
-            </table>
-         ) : (
-            <span>empty</span>
-         )}
       </div>
    );
 }

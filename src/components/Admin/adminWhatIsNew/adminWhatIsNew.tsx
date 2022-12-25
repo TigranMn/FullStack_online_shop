@@ -18,7 +18,8 @@ function WhatIsNew() {
    const [usersCount, setUsersCount] = useState<number>(0);
 
    useEffect(() => {
-      const fetchLessProd = async () => {
+      const fetchNotifications = async () => {
+         /////////less products/////
          const newLess: string[] = [];
          const currentOldLess: string[] = [];
          const fetchProducts = await getData();
@@ -34,17 +35,19 @@ function WhatIsNew() {
             }
          }
          setLessLength(newLess.length);
-      };
 
-      const newUsersCount = async () => {
+         /////// new users//////////
          let count = 0;
-         const prevUsersId: string[] = await getOldUsersId(); 
-         const allUsers: TUser[] = await getAllUsers();
-         count = allUsers.length - prevUsersId.length;
-         setUsersCount(count);
+            const prevUsersId: string[] = await getOldUsersId(); 
+            const allUsers: TUser[] = await getAllUsers();
+            allUsers.forEach(user => {
+               if (!prevUsersId.includes(user.id!)) {
+                  count++;
+               }
+            });
+            setUsersCount(count);
       };
-      newUsersCount();
-      fetchLessProd();
+      fetchNotifications();
    }, []);
 
    return (

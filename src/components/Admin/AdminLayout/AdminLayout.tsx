@@ -10,14 +10,16 @@ import '../adminProducts/addProducts/style.css';
 import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
+import '../adminUsers/style.css';
+
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { AccStatus } from '../../../types';
-import '../adminUsers/style.css';
 import { removeUser } from '../../../redux/userSlice';
+
 import Logout from '@mui/icons-material/Logout';
-// Logout
+
 function AdminLayout() {
-   const dispatch = useAppDispatch();
+   const dispatch: any = useAppDispatch();
    const status = useAppSelector((state) => state.user.status);
    const navigate = useNavigate();
 
