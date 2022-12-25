@@ -14,6 +14,7 @@ import FaqModalWindow from '../adminFAQ/faqModalWindow/FaqModalWindow';
 import { passCurrentFAQ, changeFaqModal } from '../../../redux/adminSlice';
 import { useAppDispatch, useAppSelector } from '../../../store';
 
+
 function AdminFAQ() {
    const [isLoading, setIsLoading] = useState<boolean>(true);
    const [isDisabled, setIsDisabled] = useState<boolean>(true);

@@ -11,6 +11,7 @@ import '../adminProducts/changeProduct/style.css';
 import '../adminWhatIsNew/style.css';
 import '../adminWhatIsNew/LessQuantityProd/style.css';
 import '../adminUsers/style.css';
+import '../adminFAQ/style.css';
 
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { AccStatus } from '../../../types';
