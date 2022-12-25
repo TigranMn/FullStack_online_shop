@@ -45,5 +45,9 @@
    "Enter your lastname": "Enter your lastname",
    "Enter your email": "Enter your email",
    "Type your message here": "Type your message here",
-   "sortByPpopularity": "Sort by popularity"
+   "sortByPpopularity": "Sort by popularity",
+   "Personal info": "Personal info",
+	"Save": "Save",
+	"Change": "Change",
+	"Cancel": "Cancel"
 }
