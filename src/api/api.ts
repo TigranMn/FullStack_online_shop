@@ -5,12 +5,14 @@ import {
    DocumentSnapshot,
    getDoc,
    getDocs,
+   setDoc,
+   deleteDoc,
    query,
    QuerySnapshot,
    where
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { TProduct, TUser } from '../types';
+import { TProduct, TUser, TDeletedUser } from '../types';
 
 const getData = async (url: string): Promise<QuerySnapshot<DocumentData>> => {
    const querySnapshot = await getDocs(collection(db, url));
@@ -36,8 +38,27 @@ export const getAllUsers = async () => {
    const usersArray = <TUser[]>[];
    const users = await getDocs(collection(db, 'users'));
    users.forEach((item) => usersArray.push(item.data() as TUser));
+   console.log('user deleted', usersArray);
    return usersArray;
 };
+
+export async function getDeletedUsers ():Promise<TDeletedUser[]> {
+   const usersArray = <TDeletedUser[]>[];
+   const deletedUsers = await getDocs(collection(db, 'deletedUsers'));
+   deletedUsers.forEach((item) => usersArray.push(item.data() as TDeletedUser));
+   return usersArray;
+}
+// getDeletedUsers()
+
+export async function deleteData(collectionName:string, id: string) {
+  let result = await deleteDoc(doc(db, `${collectionName}`, `${id}`));
+}
+
+export async function restoreUser(userData: TDeletedUser) {
+   const docRef = doc(db, 'users');
+   const result = await setDoc(docRef, userData, { merge: true });
+   return result;
+}
 
 export const getProduct = async (url: string, id: string): Promise<TProduct> => {
    const snap: DocumentSnapshot<DocumentData> = await getDoc(doc(db, url, id));
