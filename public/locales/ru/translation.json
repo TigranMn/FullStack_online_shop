@@ -45,5 +45,9 @@
    "Enter your lastname": "Заполните  фамилию",
    "Enter your email": "Заполните эл. почту",
    "Type your message here": "Напишите свое письмо тут",
-   "sortByPpopularity": "Сортировать по популярности"
+   "sortByPpopularity": "Сортировать по популярности",
+   "Personal info": "Личные данные",
+   "Save": "Сохранить",
+   "Change": "Редактировать",
+   "Cancel": "Отменить"
 }

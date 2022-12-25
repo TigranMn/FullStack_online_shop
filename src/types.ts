@@ -49,7 +49,9 @@ export const FirebaseErrors = {
    'auth/invalid-password': 'Invalid password',
    'auth/email-already-in-use': 'Email already in use',
    'auth/different-passwords': 'Passwords are not matching',
-   'auth/weak-password': 'Password should be at least 6 characters'
+   'auth/weak-password': 'Password should be at least 6 characters',
+   'auth/wrong-password': 'Wrong password',
+	'auth/too-many-requests': 'Too many request, try later'
 };
 
 export type TUser = {

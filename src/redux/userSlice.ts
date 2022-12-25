@@ -283,7 +283,6 @@ const userSlice = createSlice({
          state.status = status;
       },
       updateUser(state, action) {
-         console.log(action.payload.name, action.payload.lastName);
          state.name = action.payload.name;
          state.lastName = action.payload.lastName;
       }
