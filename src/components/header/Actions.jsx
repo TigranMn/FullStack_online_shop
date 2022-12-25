@@ -107,6 +107,7 @@ const Actions = ({ matches }) => {
                </ListItemButton>
             ) : (
                <ListItemButton
+                  disableRipple
                   sx={{ justifyContent: 'center' }}
                   onClick={() => {
                      navigate('/login');

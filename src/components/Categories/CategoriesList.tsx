@@ -4,9 +4,10 @@ import { useEffect, useState } from 'react';
 import { getCategories } from '../../redux/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 //MUI
-import { Container, Grid, Typography, CircularProgress, Box } from '@mui/material';
+import { Container, Grid, Typography, Box } from '@mui/material';
 //Components
 import CategoryItem from './CategoryItem';
+import SuspenseComponent from '../SuspenseComponent';
 
 export default function CategoriesList() {
    const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -34,9 +35,7 @@ export default function CategoriesList() {
          <Container sx={{ minHeight: '100vh', display: 'flex', justifyContent: 'center' }}>
             <Grid container justifyContent='center' sx={{ margin: '20px 4px 10px 4px' }}>
                {isLoading ? (
-                  <Box sx={{ display: 'flex' }}>
-                     <CircularProgress />
-                  </Box>
+                  <SuspenseComponent />
                ) : error ? (
                   <Typography variant='h3'>Something went wrong</Typography>
                ) : (
