@@ -1,6 +1,6 @@
-import React from 'react';
-import CategriesList from '../Categories/CategoriesList';
+//Components
+import CategoriesList from '../Categories/CategoriesList';
 
 export default function Shop() {
-  return <CategriesList />;
+   return <CategoriesList />;
 }
