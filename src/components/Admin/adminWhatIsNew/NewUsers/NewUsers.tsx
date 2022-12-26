@@ -15,9 +15,9 @@ function NewUsers() {
    useEffect(() => {
       const fetchNewUsers = async () => {
          const filteredNewUsers: TUser[] = [];
-         const filteredNewUsersId: string[] = []; 
+         const filteredNewUsersId: string[] = [];
          const allUsers: TUser[] = await getAllUsers();
-         const prevUsersId: string[] = await getOldUsersId(); 
+         const prevUsersId: string[] = await getOldUsersId();
          allUsers.forEach((user: TUser) => {
             if (!prevUsersId.includes(user.id!)) {
                filteredNewUsers.push(user);
@@ -29,7 +29,7 @@ function NewUsers() {
       };
       fetchNewUsers();
       return () => {
-         const passUsersIdToDatabase = async () => {      
+         const passUsersIdToDatabase = async () => {
             const usersId = JSON.parse(window.localStorage.getItem('newUsersId')!) as string[];
             await setNewUsersIdInDatabase(usersId);
          };

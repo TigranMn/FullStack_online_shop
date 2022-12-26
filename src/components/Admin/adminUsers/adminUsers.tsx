@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { TUser, TDeletedUser } from '../../../types';
 
-import { getAllUsers, getDeletedUsers, restoreUser, deleteData } from '../../../api/api';
+import { getAllUsers, getDeletedUsers, deleteData } from '../../../api/api';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ function AdminUsers() {
    };
 
    const handleDelBtn = (id: string) => {
-      deleteData('deletedUser', id).then((res) => {
+      deleteData('deletedUser', id).then(() => {
          setDelUsers((prev) => prev.filter((item) => item.id !== id));
       });
    };

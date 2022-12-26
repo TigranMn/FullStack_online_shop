@@ -38,7 +38,7 @@ const initialState: TInitialState = {
    singleUserId: '',
    newUsersVisibility: false,
    faqModal: false,
-   currentFAQ: {answer: '', question: '', id: ''},
+   currentFAQ: { answer: '', question: '', id: '' }
 };
 
 export const getProducts = createAsyncThunk('products/fetchProducts', async () => {
@@ -81,7 +81,7 @@ const adminSlice = createSlice({
       forceRerender: (state, action: PayloadAction<boolean>) => {
          state.rerender = action.payload;
       },
-      changeNewUsersCount: (state, action : PayloadAction<number>) => {
+      changeNewUsersCount: (state, action: PayloadAction<number>) => {
          state.newUsersCount = action.payload;
       },
       passSingleUserId: (state, action: PayloadAction<string>) => {

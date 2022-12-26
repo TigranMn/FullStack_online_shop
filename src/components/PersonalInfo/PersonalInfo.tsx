@@ -1,11 +1,9 @@
 import { updateDoc } from '@firebase/firestore';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getUser } from '../../api/api';
-import { useNotify } from '../../hooks/useNotify';
 import { updateUser } from '../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { notificationTypes } from '../../types';
 import { firebaseErrorCatch } from '../../utils/firebaseErrorCatch';
 
 export default function PersonalInfo() {

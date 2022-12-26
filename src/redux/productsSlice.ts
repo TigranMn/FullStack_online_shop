@@ -17,7 +17,7 @@ const fetchProducts = createAsyncThunk('products/fetchPageProducts', async (cate
    const data = await getProducts(category);
 
    data.forEach((doc) => {
-      const [id, { color,name, count, gender, imgUrl, price, views, brand, quantity }] = [
+      const [id, { color, name, count, gender, imgUrl, price, views, brand, quantity }] = [
          doc.id,
          doc.data()
       ];

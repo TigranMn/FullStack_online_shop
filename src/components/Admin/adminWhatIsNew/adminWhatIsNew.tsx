@@ -6,11 +6,9 @@ import { getAllUsers } from '../../../api/api';
 
 import sales from '../../../assets/trolley.png';
 import bell from '../../../assets/notification.png';
-import user from'../../../assets/user.png';
+import user from '../../../assets/user.png';
 
 import { TUser } from '../../../types';
-
-
 
 function WhatIsNew() {
    const navigate = useNavigate();
@@ -38,14 +36,14 @@ function WhatIsNew() {
 
          /////// new users//////////
          let count = 0;
-            const prevUsersId: string[] = await getOldUsersId(); 
-            const allUsers: TUser[] = await getAllUsers();
-            allUsers.forEach(user => {
-               if (!prevUsersId.includes(user.id!)) {
-                  count++;
-               }
-            });
-            setUsersCount(count);
+         const prevUsersId: string[] = await getOldUsersId();
+         const allUsers: TUser[] = await getAllUsers();
+         allUsers.forEach((user) => {
+            if (!prevUsersId.includes(user.id!)) {
+               count++;
+            }
+         });
+         setUsersCount(count);
       };
       fetchNotifications();
    }, []);

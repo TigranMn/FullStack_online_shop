@@ -9,11 +9,20 @@ import { AboutImages, AboutContainer, AboutSlider, AboutImagesContainer } from '
 
 export default function Home() {
    return (
-      <Box sx={{background: '#1A202C'}} >
-        <div className='headerInfo' style={{ textTransform: 'uppercase', lineHeight: 0, textAlign: 'center', marginTop: '6rem', color: '#fff'}}>
-         <h1 style={{fontSize: '8rem', opacity: '0.3'}}>About</h1>
-         <h6 style={{fontSize: '1.5rem', fontWeight: 300}}>Store</h6>
-        </div>
+      <Box sx={{ background: '#1A202C' }}>
+         <div
+            className='headerInfo'
+            style={{
+               textTransform: 'uppercase',
+               lineHeight: 0,
+               textAlign: 'center',
+               marginTop: '6rem',
+               color: '#fff'
+            }}
+         >
+            <h1 style={{ fontSize: '8rem', opacity: '0.3' }}>About</h1>
+            <h6 style={{ fontSize: '1.5rem', fontWeight: 300 }}>Store</h6>
+         </div>
          <AboutContainer>
             <AboutSlider>
                <AboutImagesContainer sx={{ '--i': '1;' }}>
@@ -74,10 +83,19 @@ export default function Home() {
                   background: '#1A202C'
                }}
             >
-        <div className='headerSlider' style={{ textTransform: 'uppercase', lineHeight: 0, textAlign: 'center', marginBottom: '6rem', color: '#fff'}}>
-         <h1 style={{fontSize: '5rem', opacity: '0.3'}}>Products</h1>
-         <h6 style={{fontSize: '1rem', fontWeight: 300}}>what do we offer</h6>
-        </div>
+               <div
+                  className='headerSlider'
+                  style={{
+                     textTransform: 'uppercase',
+                     lineHeight: 0,
+                     textAlign: 'center',
+                     marginBottom: '6rem',
+                     color: '#fff'
+                  }}
+               >
+                  <h1 style={{ fontSize: '5rem', opacity: '0.3' }}>Products</h1>
+                  <h6 style={{ fontSize: '1rem', fontWeight: 300 }}>what do we offer</h6>
+               </div>
                <Slider />
             </Container>
          </ThemeProvider>

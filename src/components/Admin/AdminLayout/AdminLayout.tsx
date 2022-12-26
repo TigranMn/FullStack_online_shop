@@ -20,7 +20,7 @@ import { removeUser } from '../../../redux/userSlice';
 import Logout from '@mui/icons-material/Logout';
 
 function AdminLayout() {
-   const dispatch: any = useAppDispatch();
+   const dispatch = useAppDispatch();
    const status = useAppSelector((state) => state.user.status);
    const navigate = useNavigate();
 
