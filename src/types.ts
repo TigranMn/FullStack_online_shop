@@ -56,7 +56,7 @@ export const FirebaseErrors = {
    'auth/different-passwords': 'Passwords are not matching',
    'auth/weak-password': 'Password should be at least 6 characters',
    'auth/wrong-password': 'Wrong password',
-	'auth/too-many-requests': 'Too many request, try later'
+   'auth/too-many-requests': 'Too many request, try later'
 };
 
 export type TUser = {
@@ -71,14 +71,14 @@ export type TUser = {
 };
 
 export type TDeletedUser = {
-   id: string | null;
+   id: string;
    email: string | null;
    name: string | null;
    lastName: string | null;
    basket: TBasketType[];
    likedProducts: TLikedType[];
    status: AccStatus;
-}
+};
 
 export enum notificationTypes {
    WARNING = 'warning',
@@ -92,4 +92,3 @@ export interface SerializedError {
    stack?: string;
    code?: string;
 }
-

@@ -6,15 +6,15 @@ export const Product = styled(Box)(() => ({
    background: '#fff',
    border: '1px solid white',
    borderRadius: '20px',
-   margin: '20px 0',
-   width: '280px',
+   margin: '10px 0',
+   width: '300px',
    overflow: 'hidden',
    '&:before': {
       content: '""',
       position: 'absolute',
-      height: '50%',
+      height: '66%',
       width: '100%',
-      background: '#8B85E9'
+      background: '#7094A6'
    }
 }));
 
@@ -28,9 +28,10 @@ export const ProductCard = styled(Box)(() => ({
 }));
 
 export const ProductBox = styled(Box)(() => ({
-   height: '190px',
-   width: '190px',
+   height: '230px',
+   width: '230px',
    borderRadius: '50%',
+   marginBottom: '40px',
    cursor: 'pointer',
    padding: '3px',
    background: 'inherit'
@@ -69,7 +70,7 @@ export const ProductActionButton = styled(IconButton)(() => ({
    display: 'flex',
    justifyContent: 'center',
    margin: '20px 10px 0px',
-   background: '#8B85E9',
+   background: '#7094A6',
    outline: 'none',
    border: 'none',
    color: '#fff',
@@ -78,7 +79,8 @@ export const ProductActionButton = styled(IconButton)(() => ({
    fontSize: '16px',
    transition: 'all 0.3s ease',
    '&:hover ': {
-      background: 'rgba(139,133,233,0.8)',
+      background: '#7094A6',
+      transform: 'scale(1.07)'
    }
 }));
 

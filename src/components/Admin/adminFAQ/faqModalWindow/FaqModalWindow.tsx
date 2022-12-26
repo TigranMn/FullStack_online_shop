@@ -14,7 +14,7 @@ function FaqModalWindow() {
 
    const [answer, setAnswer] = useState<string>(currentFAQ.answer);
    const [question, setQuestion] = useState<string>(currentFAQ.question);
-   const [id, setId] = useState<string>(currentFAQ.id);
+   const id = currentFAQ.id;
 
    const handleCancelBtn = () => {
       dispatch(changeFaqModal());
@@ -66,7 +66,7 @@ function FaqModalWindow() {
                <Button onClick={handleUpdateBtn} variant='contained' color='success' size='small'>
                   Update
                </Button>
-               
+
                <Button onClick={handleCancelBtn} variant='contained' size='small'>
                   Cancel
                </Button>

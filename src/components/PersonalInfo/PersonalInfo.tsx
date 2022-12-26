@@ -1,11 +1,9 @@
 import { updateDoc } from '@firebase/firestore';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getUser } from '../../api/api';
-import { useNotify } from '../../hooks/useNotify';
 import { updateUser } from '../../redux/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { notificationTypes } from '../../types';
 import { firebaseErrorCatch } from '../../utils/firebaseErrorCatch';
 
 export default function PersonalInfo() {
@@ -39,31 +37,44 @@ export default function PersonalInfo() {
    };
 
    return (
-      <>
-         <h4>{t('Personal info')}</h4>
-         <hr />
-         <input
-            type={'text'}
-            name='username'
-            onChange={(e) => setName(e.target.value)}
-            readOnly={!onEdit}
-            value={name}
-         />
-         <input
-            value={lastName}
-            type={'text'}
-            name='userLastName'
-            onChange={(e) => setLastName(e.target.value)}
-            readOnly={!onEdit}
-         />
+      <div className='profileCard'>
+         <h3>{t('Personal info')}</h3>
+         <div className='inputBox'>
+            <span>{t('firstName')}</span>
+            <input
+               type={'text'}
+               name='username'
+               onChange={(e) => setName(e.target.value)}
+               readOnly={!onEdit}
+               value={name}
+            />
+         </div>
+         <div className='inputBox'>
+            <span>{t('lastName')}</span>
+            <input
+               value={lastName}
+               type={'text'}
+               name='userLastName'
+               onChange={(e) => setLastName(e.target.value)}
+               readOnly={!onEdit}
+            />
+         </div>
          {onEdit ? (
-            <>
-               <button onClick={handleSave}>{t('Save')}</button>
-               <button onClick={handleCancel}>{t('Cancel')}</button>
-            </>
+            <div className='personalInfoHandleButton'>
+               <button style={{ color: 'limegreen' }} onClick={handleSave}>
+                  {t('Save')}
+               </button>
+               <button style={{ color: 'red' }} onClick={handleCancel}>
+                  {t('Cancel')}
+               </button>
+            </div>
          ) : (
-            <button onClick={handleChange}>{t('Change')}</button>
+            <div>
+               <button className='personalInfoChangeButton' onClick={handleChange}>
+                  {t('Change')}
+               </button>
+            </div>
          )}
-      </>
+      </div>
    );
 }

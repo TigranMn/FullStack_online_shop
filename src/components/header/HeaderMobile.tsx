@@ -29,10 +29,10 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
    return (
       <AppBarContainer>
          <IconButton onClick={() => setOpenMenu(true)}>
-            <MenuIcon sx={{color: '#fff'}} />
+            <MenuIcon sx={{ color: '#fff' }} />
          </IconButton>
          <AppBarHeader
-            sx={{color: '#5082FC'}}
+            sx={{ color: '#5082FC' }}
             textAlign='center'
             variant='h4'
             onClick={() => {
@@ -43,7 +43,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
          </AppBarHeader>
          <Box width={'90px'}>
             <TextField
-               sx={{background: '#fff', borderRadius: '8px'}}
+               sx={{ background: '#fff', borderRadius: '8px' }}
                size='small'
                select
                value={language}
@@ -77,7 +77,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                         textTransform: 'lowercase',
                         fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<HomeIcon sx={{color: '#805AD5'}} />}
+                     endIcon={<HomeIcon sx={{ color: '#805AD5' }} />}
                   >
                      home
                   </Button>
@@ -96,7 +96,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                         textTransform: 'lowercase',
                         fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<LocalGroceryStoreIcon sx={{color: '#805AD5'}} />}
+                     endIcon={<LocalGroceryStoreIcon sx={{ color: '#805AD5' }} />}
                   >
                      Shop
                   </Button>
@@ -115,7 +115,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                         textTransform: 'lowercase',
                         fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<CallIcon sx={{color: '#805AD5'}}/>}
+                     endIcon={<CallIcon sx={{ color: '#805AD5' }} />}
                   >
                      Contact
                   </Button>
@@ -134,7 +134,7 @@ const AppBarMobile = ({ matches }: { matches: boolean }) => {
                         textTransform: 'lowercase',
                         fontFamily: 'Chivo Mono'
                      }}
-                     endIcon={<InfoIcon sx={{color: '#805AD5'}} />}
+                     endIcon={<InfoIcon sx={{ color: '#805AD5' }} />}
                   >
                      About
                   </Button>

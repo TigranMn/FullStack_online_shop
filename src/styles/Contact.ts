@@ -12,7 +12,7 @@ export const ContactContainer = styled(Box)(() => ({
 
 export const Book = styled(Box)(({ theme }) => ({
    display: 'flex',
-   marginLeft: '250px',
+   marginRight: '300px',
    alignItems: 'center',
    cursor: 'pointer',
    '&:hover .bookCover': {
@@ -37,10 +37,18 @@ export const Book = styled(Box)(({ theme }) => ({
    '&:hover .page:nth-of-type(6)': {
       transitionDuration: '4.4s'
    },
-   [theme.breakpoints.down('sm')]: {
+   [theme.breakpoints.down('md')]: {
       display: 'none'
-   },
-   [theme.breakpoints.down('lg')]: {
+   }
+}));
+
+export const AlternativeMenu = styled(Box)(({ theme }) => ({
+   width: '360px',
+   height: '80px',
+   display: 'flex',
+   justifyContent: 'space-evenly',
+   alignItems: 'center',
+   [theme.breakpoints.up('md')]: {
       display: 'none'
    }
 }));
@@ -89,6 +97,7 @@ export const Page = styled(Box)(() => ({
 
 export const LastPage = styled(Box)(() => ({
    display: 'flex',
+   flexDirection: 'column',
    justifyContent: 'center',
    alignItems: 'center',
    gap: '20px',

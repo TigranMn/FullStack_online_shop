@@ -1,5 +1,4 @@
 import {
-   deleteUser,
    EmailAuthProvider,
    getAuth,
    reauthenticateWithCredential,
@@ -69,35 +68,43 @@ export default function Security() {
 
    const { t } = useTranslation();
    return (
-      <>
-         <h4>{t('Change password')}</h4>
-         <hr />
-         <input type={'email'} value={userEmail} disabled />
-         <input
-            type={'password'}
-            value={oldPassword}
-            onChange={(e) => setOldPassword(e.target.value)}
-            placeholder='Enter old password'
-         />
-         <input
-            type={'password'}
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            placeholder='Enter new password'
-         />
-         <input
-            type={'password'}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder='Confirm password'
-         />
-         <button onClick={handleChange}>Change password</button>
-         <button
-            style={{ marginTop: '30px', backgroundColor: 'red', color: 'white', padding: '5px' }}
-            onClick={handleDelete}
-         >
-            Delete account
-         </button>
-      </>
+      <div className='profileCard'>
+         <h3>{t('changePassword')}</h3>
+         <div className='inputBox'>
+            <span>{t('oldPassword')}</span>
+            <input
+               type={'password'}
+               value={oldPassword}
+               onChange={(e) => setOldPassword(e.target.value)}
+               placeholder='...'
+            />
+         </div>
+         <div className='inputBox'>
+            <span>{t('newPassword')}</span>
+            <input
+               type={'password'}
+               value={newPassword}
+               onChange={(e) => setNewPassword(e.target.value)}
+               placeholder='...'
+            />
+         </div>
+         <div className='inputBox'>
+            <span>{t('confirmPassword')}</span>
+            <input
+               type={'password'}
+               value={confirmPassword}
+               onChange={(e) => setConfirmPassword(e.target.value)}
+               placeholder='...'
+            />
+         </div>
+         <div>
+            <button className='personalInfoChangeButton' onClick={handleChange}>
+               {t('changePassword')}
+            </button>
+            <button className='deleteAccountButton' onClick={handleDelete}>
+               {t('deleteAccount')}
+            </button>
+         </div>
+      </div>
    );
 }

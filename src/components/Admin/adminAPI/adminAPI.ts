@@ -1,10 +1,9 @@
-import { collection, doc, setDoc, getDocs, deleteDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 
 import { db } from '../../../firebase';
-import { TProduct, TUser } from '../../../types';
+import { TProduct } from '../../../types';
 
-//  async function getNotifications() { 
-//    const arr :any[] = [];
+// async function getNotifications() {
 //    const test = await getDocs(collection(db, '/sales'));
 //    test.forEach((doc) => arr.push(doc.data()));
 //    console.log(arr);

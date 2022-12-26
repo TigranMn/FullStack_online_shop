@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import { aboutMemberSlider } from '../animation';
 
-export const AboutContainer = styled(Box)(({theme}) => ({
+export const AboutContainer = styled(Box)(({ theme }) => ({
    height: '100vh',
    display: 'flex',
    alignItems: 'center',
@@ -10,7 +10,7 @@ export const AboutContainer = styled(Box)(({theme}) => ({
    overflow: 'hidden',
    background: '#1A202C',
    marginTop: '-3rem',
-   [theme.breakpoints.down('md')] : {
+   [theme.breakpoints.down('md')]: {
       display: 'none'
    }
 }));
@@ -64,19 +64,19 @@ export const TeamMemberContainer = styled(Box)(() => ({
    position: 'relative',
    borderRadius: '8px',
    background: '#DCCDFF',
-   marginBottom: '20px',
+   marginBottom: '20px'
 }));
 
-export const TeamMemberCollector = styled(Box)(({theme}) => ({
+export const TeamMemberCollector = styled(Box)(({ theme }) => ({
    display: 'flex',
    alignItems: 'center',
    justifyContent: 'space-evenly',
    padding: '10px',
-   [theme.breakpoints.down('sm')] : {
-      flexDirection : 'column'
+   [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column'
    },
-    [theme.breakpoints.down('md')] : {
-      flexDirection : 'column'
+   [theme.breakpoints.down('md')]: {
+      flexDirection: 'column'
    }
 }));
 
