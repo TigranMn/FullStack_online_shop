@@ -5,9 +5,10 @@ import { TProduct } from '../../../types';
 
 // async function getNotifications() {
 //    const test = await getDocs(collection(db, '/sales'));
-//    test.forEach((doc) => console.log('sales :::',doc.id, doc.data()));
+//    test.forEach((doc) => arr.push(doc.data()));
+//    console.log(arr);
 // }
-// getNotifications();
+//  getNotifications();
 
 // async function updateData () {
 //   let add = await setDoc(doc(db, 'notifications', '0X3oZDwXYqPRQlFJoK'), {asdsf:324}, {merge: false})
@@ -97,4 +98,3 @@ export async function getData() {
    return arrayProducts;
 }
 
-//getData();

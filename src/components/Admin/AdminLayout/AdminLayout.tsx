@@ -29,6 +29,9 @@ function AdminLayout() {
       dispatch(removeUser());
       localStorage.removeItem('currentUser');
    };
+ 
+   console.log('layout');
+
 
    return status !== AccStatus.ADMIN ? (
       <Navigate to={'/shop'} />

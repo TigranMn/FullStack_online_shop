@@ -12,7 +12,7 @@ import {
    where
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { TProduct, TUser, TDeletedUser } from '../types';
+import { TProduct, TUser, TDeletedUser, TSales } from '../types';
 
 const getData = async (url: string): Promise<QuerySnapshot<DocumentData>> => {
    const querySnapshot = await getDocs(collection(db, url));
@@ -48,16 +48,27 @@ export async function getDeletedUsers(): Promise<TDeletedUser[]> {
    deletedUsers.forEach((item) => usersArray.push(item.data() as TDeletedUser));
    return usersArray;
 }
-// getDeletedUsers()
 
+<<<<<<< HEAD
+export async function deleteData(collectionName:string, id: string) {
+  const result = await deleteDoc(doc(db, `${collectionName}`, `${id}`));
+=======
 export async function deleteData(collectionName: string, id: string) {
    deleteDoc(doc(db, `${collectionName}`, `${id}`));
+>>>>>>> acec3ccba50fb8857fe14878d5f993735162009c
 }
 
 export async function restoreUser(userData: TDeletedUser) {
    const docRef = doc(db, 'users');
    const result = await setDoc(docRef, userData, { merge: true });
    return result;
+}
+
+export async function getSales () {
+   const salesArray:any[] =  [];  ////// <== type problem fix this!!!
+   const fetchedSales = await getDocs(collection(db, '/sales'));
+   fetchedSales.forEach((item) => salesArray.push(item.data()));
+   return salesArray;
 }
 
 export const getProduct = async (url: string, id: string): Promise<TProduct> => {

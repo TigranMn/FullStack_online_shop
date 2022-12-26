@@ -24,6 +24,25 @@ export async function getOldUsersId(): Promise<string[]> {
    return arrPrevUsersId;
 }
 
+export async function getOldSalesId () :Promise<string[]>  {
+   let arrPrevSalesId : string[] = []; 
+   const notifications = await getDocs(collection(db, '/notifications'));
+   notifications.forEach((doc) => {
+      if (doc.data().newSales) {
+         arrPrevSalesId = doc.data().newSales;
+      }
+   });
+   return arrPrevSalesId;
+}
+
+// async function getNotify () {
+//   const result = await getDocs(collection(db, 'faq'));
+//   result.forEach(doc => {
+//     console.log('faqq', doc.id, doc.data());
+//   });
+// }
+//getNotify ();
+
 export async function setLessProdIdInDatabase(newData: string[]): Promise<void> {
    let id = '';
    const response = await getDocs(collection(db, 'notifications'));

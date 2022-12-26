@@ -38,6 +38,9 @@ function AdminUsers() {
    //    restoration.then(res => )
    // }
 
+   console.log('main Users');
+
+
    return (
       <div>
          <h1>Users List</h1>
@@ -93,7 +96,7 @@ function AdminUsers() {
                            <th>{item.email}</th>
                            <th>
                               <Button
-                                 onClick={() => handleDelBtn(item.id)}
+                                 onClick={() => handleDelBtn(item.id!)}
                                  variant='contained'
                                  color='error'
                                  size='small'

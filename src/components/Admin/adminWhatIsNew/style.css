@@ -25,8 +25,8 @@
     transition: 0.1s;
 }
 .what_is_New_borad > div > h3 {
-    font-size: 20px;
-    background: -webkit-linear-gradient(rgb(210, 8, 250), rgb(63, 32, 150));
+    font-size: 25px;
+    background: -webkit-linear-gradient(rgb(0, 187, 187), rgb(0, 165, 14));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -44,8 +44,12 @@
 .what_is_New_borad >div> div:active {
     transform: scale(.94);
 }
-.lessProd{
+.logo_frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    background-color: rgb(191, 235, 191);
 }
 .lessProd_notify{
     position: absolute;
@@ -66,6 +70,14 @@
     transform: scale(1)
 }
 
+.lessSales_notify {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+
+
+
 .newUsers {
     position: relative;
 }
@@ -80,7 +92,6 @@
     position: absolute;
     color: rgb(6, 109, 28);
     font-weight: bold;
-    font-size: 14px;
-    top: 20%;
-    right: 25%;
+    top: 30%;
+    right: 35%;
 }
