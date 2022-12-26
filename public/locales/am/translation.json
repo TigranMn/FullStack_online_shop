@@ -46,8 +46,15 @@
    "Enter your email": "Մուտքագրեք էլ․ փոստը",
    "Type your message here": "Գրեք ձեր նամակը այստեղ",
    "sortByPpopularity": "Դասակարգել ըստ դիտումների",
-	"Personal info" : "Անձնական տվյալներ",
-	"Save": "Պահպանել",
-	"Change": "Փոփոխել",
-	"Cancel": "Չեղարկել"
+   "Personal info": "Անձնական տվյալներ",
+   "Save": "Պահպանել",
+   "Change": "Փոփոխել",
+   "Cancel": "Չեղարկել",
+   "privacy": "Գաղտնիություն",
+   "profile": "Պրոֆիլ",
+   "oldPassword": "Հին Գաղտնաբառ",
+   "newPassword": "Նոր Գաղտնաբառ",
+   "confirmPassword": "Հաստատել Գաղտնաբառը",
+   "changePassword": "Փոխել Գաղտնաբառը",
+   "deleteAccount": "Ջնջել հաշիվը"
 }

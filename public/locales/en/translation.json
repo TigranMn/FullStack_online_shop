@@ -47,7 +47,14 @@
    "Type your message here": "Type your message here",
    "sortByPpopularity": "Sort by popularity",
    "Personal info": "Personal info",
-	"Save": "Save",
-	"Change": "Change",
-	"Cancel": "Cancel"
+   "Save": "Save",
+   "Change": "Change",
+   "Cancel": "Cancel",
+   "privacy": "Privacy",
+   "profile": "Profile",
+   "oldPassword": "Old Password",
+   "newPassword": "New Password",
+   "confirmPassword": "Confirm Password",
+   "changePassword": "Change Password",
+   "deleteAccount": "Delete account"
 }

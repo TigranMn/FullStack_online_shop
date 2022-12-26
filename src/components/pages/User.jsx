@@ -21,7 +21,6 @@ import PersonalInfo from '../PersonalInfo/PersonalInfo';
 import Security from '../Security/Security';
 
 export default function User() {
-   //    const [value, setValue] = useState(0);
    const [userInfo, setUserInfo] = useState('personalInfo');
    const dispatch = useAppDispatch();
    const navigate = useNavigate();
@@ -35,10 +34,6 @@ export default function User() {
          setUserInfo('privacy');
       }
    };
-
-   //    const handleChange = (event, newValue) => {
-   //       setValue(newValue);
-   //    };
 
    const handleLogOut = () => {
       navigate('/login');
@@ -87,35 +82,17 @@ export default function User() {
                >
                   <SpeedDialAction
                      icon={<PersonIcon onClick={() => handleUser('personalInfo')} />}
-                     tooltipTitle='Profile'
+                     tooltipTitle={t('profile')}
                      tooltipOpen
                   />
                   <SpeedDialAction
                      icon={<VerifiedUserIcon onClick={() => handleUser('privacy')} />}
-                     tooltipTitle='Privacy'
+                     tooltipTitle={t('privacy')}
                      tooltipOpen
                   />
                </SpeedDial>
                {userInfo === 'personalInfo' ? <PersonalInfo /> : <Security />}
             </div>
-            {/* <div className='profileBox'>
-               <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-                  <Tab sx={{ color: '#8749fd' }} label='Personal Info' {...tabPanelProps(0)} />
-                  <Tab sx={{ color: '#8749fd' }} label='Security' {...tabPanelProps(1)} />
-                  <Tab sx={{ color: '#8749fd' }} label='Idram' {...tabPanelProps(2)} />
-                  <Tab sx={{ color: '#8749fd' }} label='Demo Buy' {...tabPanelProps(3)} />
-               </Tabs>
-               <TabPanel value={value} index={0}>
-                  <PersonalInfo />
-               </TabPanel>
-               <TabPanel value={value} index={1}>
-                  <Security />
-               </TabPanel>
-               <LogoutIcon
-                  onClick={handleLogOut}
-                  sx={{ position: 'absolute', top: '20px', right: '25px', cursor: 'pointer' }}
-               />
-            </div> */}
          </div>
       </div>
    );

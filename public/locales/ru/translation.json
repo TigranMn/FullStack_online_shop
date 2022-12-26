@@ -49,5 +49,12 @@
    "Personal info": "Личные данные",
    "Save": "Сохранить",
    "Change": "Редактировать",
-   "Cancel": "Отменить"
+   "Cancel": "Отменить",
+   "privacy": "Конфиденциальность",
+   "profile": "Профиль",
+   "oldPassword": "Старый пароль",
+   "newPassword": "Новый пароль",
+   "confirmPassword": "Подтвердить пароль",
+   "changePassword": "Изменить пароль",
+   "deleteAccount": "Удалить аккаунт"
 }
