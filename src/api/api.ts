@@ -12,7 +12,7 @@ import {
    where
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import { TProduct, TUser, TDeletedUser, TSales } from '../types';
+import { TProduct, TUser, TDeletedUser } from '../types';
 
 const getData = async (url: string): Promise<QuerySnapshot<DocumentData>> => {
    const querySnapshot = await getDocs(collection(db, url));

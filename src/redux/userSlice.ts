@@ -76,6 +76,7 @@ export const signUp = createAsyncThunk(
       password: string;
       firstName: string;
       lastName: string;
+      restore?: boolean;
    }) => {
       const { user }: UserCredential = await createUserWithEmailAndPassword(auth, email, password);
       addDoc(collection(db, 'users'), {
@@ -90,6 +91,7 @@ export const signUp = createAsyncThunk(
       return { user, firstName, lastName };
    }
 );
+
 
 export const likeProduct = createAsyncThunk(
    'basket/likeProduct',
