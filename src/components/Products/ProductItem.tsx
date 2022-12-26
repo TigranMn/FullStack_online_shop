@@ -150,7 +150,7 @@ export default function ProductItem({ product }: ProductItemProps) {
                                  disabled={product.quantity - inBasket <= 0}
                                  onClick={handleAdd}
                               >
-                                 <ShoppingCartIcon fontSize='small'/>
+                                 <ShoppingCartIcon fontSize='small' />
                               </ProductActionButton>
                            </div>
                         </>

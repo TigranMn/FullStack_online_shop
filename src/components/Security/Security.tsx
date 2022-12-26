@@ -70,38 +70,40 @@ export default function Security() {
    const { t } = useTranslation();
    return (
       <div className='profileCard'>
-         <h3>{t('Change password')}</h3>
-          <div className='inputBox'><input type={'email'} value={userEmail} disabled /></div>
-          <div className='inputBox'> 
-          <span>Old Password</span>  
+         <h3>{t('changePassword')}</h3>
+         <div className='inputBox'>
+            <span>{t('oldPassword')}</span>
             <input
                type={'password'}
                value={oldPassword}
                onChange={(e) => setOldPassword(e.target.value)}
-               placeholder='Enter old password'/>
-            </div>
-          <div className='inputBox'>
-            <span>New Password</span>
+               placeholder='...'
+            />
+         </div>
+         <div className='inputBox'>
+            <span>{t('newPassword')}</span>
             <input
                type={'password'}
                value={newPassword}
                onChange={(e) => setNewPassword(e.target.value)}
-               placeholder='Enter new password'/>
+               placeholder='...'
+            />
          </div>
          <div className='inputBox'>
-            <span>Confirmed Password</span>
+            <span>{t('confirmPassword')}</span>
             <input
                type={'password'}
                value={confirmPassword}
                onChange={(e) => setConfirmPassword(e.target.value)}
-               placeholder='Confirm password'/>
+               placeholder='...'
+            />
          </div>
          <div>
-            <button className='personalInfoChangeButton' onClick={handleChange}>Change password</button>
-            <button
-               className='deleteAccountButton'
-               onClick={handleDelete}>
-               Delete account
+            <button className='personalInfoChangeButton' onClick={handleChange}>
+               {t('changePassword')}
+            </button>
+            <button className='deleteAccountButton' onClick={handleDelete}>
+               {t('deleteAccount')}
             </button>
          </div>
       </div>

@@ -39,40 +39,44 @@ export default function PersonalInfo() {
    };
 
    return (
-         <div className='profileCard'>
+      <div className='profileCard'>
          <h3>{t('Personal info')}</h3>
          <div className='inputBox'>
-             <span>First Name</span>
-         <input
-            type={'text'}
-            name='username'
-            onChange={(e) => setName(e.target.value)}
-            readOnly={!onEdit}
-            value={name}
-         />
+            <span>{t('firstName')}</span>
+            <input
+               type={'text'}
+               name='username'
+               onChange={(e) => setName(e.target.value)}
+               readOnly={!onEdit}
+               value={name}
+            />
          </div>
          <div className='inputBox'>
-             <span>Last Name</span>
-         <input
-            value={lastName}
-            type={'text'}
-            name='userLastName'
-            onChange={(e) => setLastName(e.target.value)}
-            readOnly={!onEdit}
-         />
-         
+            <span>{t('lastName')}</span>
+            <input
+               value={lastName}
+               type={'text'}
+               name='userLastName'
+               onChange={(e) => setLastName(e.target.value)}
+               readOnly={!onEdit}
+            />
          </div>
          {onEdit ? (
             <div className='personalInfoHandleButton'>
-               <button style={{color: 'limegreen'}} onClick={handleSave}>{t('Save')}</button>
-               <button style={{color: 'red'}} onClick={handleCancel}>{t('Cancel')}</button>
+               <button style={{ color: 'limegreen' }} onClick={handleSave}>
+                  {t('Save')}
+               </button>
+               <button style={{ color: 'red' }} onClick={handleCancel}>
+                  {t('Cancel')}
+               </button>
             </div>
          ) : (
             <div>
-               <button className='personalInfoChangeButton' onClick={handleChange}>{t('Change')}</button>
+               <button className='personalInfoChangeButton' onClick={handleChange}>
+                  {t('Change')}
+               </button>
             </div>
-            
          )}
-         </div>         
+      </div>
    );
 }

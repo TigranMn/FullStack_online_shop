@@ -112,10 +112,11 @@ export default function ProductsList() {
          <Container>
             <div
                style={{
-                  border: '3px solid rgba(139,133,233,0.8)',
+                  border: '3px solid #7094A6',
                   padding: '10px',
                   borderRadius: '10px',
-                  backgroundColor: 'white'
+                  backgroundColor: 'white',
+                  marginRight: '70px'
                }}
                className='searchWrapper'
             >
@@ -136,7 +137,7 @@ export default function ProductsList() {
                         padding: '10px',
                         marginLeft: '10px',
                         color: '#666666',
-                        border: '2px solid rgba(139,133,233,0.8)',
+                        border: '2px solid #7094A6',
                         backgroundColor: 'white',
                         fontSize: '14px'
                      }}
@@ -164,7 +165,7 @@ export default function ProductsList() {
                   className='filter'
                   style={{
                      backgroundColor: 'white',
-                     border: '3px solid rgba(139,133,233,0.8)',
+                     border: '3px solid #7094A6',
                      borderRadius: '10px',
                      padding: '20px',
                      height: '400px'
