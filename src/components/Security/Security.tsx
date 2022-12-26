@@ -1,5 +1,4 @@
 import {
-   deleteUser,
    EmailAuthProvider,
    getAuth,
    reauthenticateWithCredential,

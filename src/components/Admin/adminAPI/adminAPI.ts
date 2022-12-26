@@ -1,9 +1,9 @@
-import { collection, doc, setDoc, getDocs, deleteDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 
 import { db } from '../../../firebase';
-import { TProduct, TUser } from '../../../types';
+import { TProduct } from '../../../types';
 
-// async function getNotifications() { 
+// async function getNotifications() {
 //    const test = await getDocs(collection(db, '/sales'));
 //    test.forEach((doc) => console.log('sales :::',doc.id, doc.data()));
 // }

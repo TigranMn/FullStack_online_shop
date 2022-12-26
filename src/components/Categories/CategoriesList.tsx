@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getCategories } from '../../redux/categoriesSlice';
 import { useAppDispatch, useAppSelector } from '../../store';
 //MUI
-import { Container, Grid, Typography, Box } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 //Components
 import CategoryItem from './CategoryItem';
 import SuspenseComponent from '../SuspenseComponent';
@@ -24,7 +24,7 @@ export default function CategoriesList() {
             setError(false);
             setIsLoading(false);
          })
-         .catch((e) => {
+         .catch(() => {
             setIsLoading(false);
             setError(true);
          });

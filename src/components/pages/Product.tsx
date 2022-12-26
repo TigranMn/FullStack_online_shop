@@ -1,6 +1,6 @@
 //Hooks
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNotify } from '../../hooks/useNotify';
 import { useAppDispatch, useAppSelector } from '../../store';
 //Utils

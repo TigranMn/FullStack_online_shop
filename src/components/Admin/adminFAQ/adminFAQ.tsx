@@ -14,7 +14,6 @@ import FaqModalWindow from '../adminFAQ/faqModalWindow/FaqModalWindow';
 import { passCurrentFAQ, changeFaqModal } from '../../../redux/adminSlice';
 import { useAppDispatch, useAppSelector } from '../../../store';
 
-
 function AdminFAQ() {
    const [isLoading, setIsLoading] = useState<boolean>(true);
    const [isDisabled, setIsDisabled] = useState<boolean>(true);
@@ -40,7 +39,7 @@ function AdminFAQ() {
             setIsLoading(false);
             setQuestions(faq);
          });
-         console.log('FAQ');
+      console.log('FAQ');
    }, [currentFAQ]);
 
    useEffect(() => {
@@ -50,7 +49,6 @@ function AdminFAQ() {
          setIsDisabled(true);
       }
    }, [newAnswer, newQuestion]);
-   
 
    const deleteQuestion = (id: string) => {
       deleteDoc(doc(db, 'faq', id)).then(() => {
@@ -139,7 +137,7 @@ function AdminFAQ() {
                         >
                            Delete
                         </Button>
-                             
+
                         <Button onClick={() => changeQuestion(el)} variant='contained' size='small'>
                            Change
                         </Button>
