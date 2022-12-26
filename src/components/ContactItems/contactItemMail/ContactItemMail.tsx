@@ -15,7 +15,7 @@ export default function ContactItemMail() {
       e.preventDefault();
 
       emailjs
-         .sendForm('service_ti4b0pp', 'template_u7bkswc', form.current!, '_PvLxJTtwGT_cALlQ')
+         .sendForm('service_8wbsau9', 'template_u7bkswc', form.current!, '_PvLxJTtwGT_cALlQ')
          .then(
             () => notify(notificationTypes.SUCCES, 'Your message was sent'),
             (error) => notify(notificationTypes.ERROR, error.text)
