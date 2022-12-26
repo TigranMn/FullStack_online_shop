@@ -13,7 +13,7 @@ import { paymentMethodIcons } from '../../utils/payments/payments';
 import { useLocation } from 'react-router';
 import { buyProduct } from '../../redux/userSlice';
 import { useNotify } from '../../hooks/useNotify';
-import { addDoc, collection, doc, increment, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, increment, setDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 type TLocation = {
@@ -54,11 +54,19 @@ export default function Buy() {
    const handleBuy = () => {
       dispatch(buyProduct(products))
          .unwrap()
-         .then(() => {
+         .then( () => {
             const salesRef = collection(db, 'sales');
             products.forEach((el) => {
                setDoc(
                   doc(salesRef, el.id),
+                  { id: el.id, count: increment(el.count) },
+                  { merge: true }
+               );
+            });
+            const newSalesRef = collection(db, 'newSales');
+            products.forEach((el) => {
+               setDoc(
+                  doc(newSalesRef, el.id),
                   { id: el.id, count: increment(el.count) },
                   { merge: true }
                );

@@ -27,11 +27,11 @@ function AdminUsers() {
       navigate(`/admin/user/${id}`);
    };
 
-   const handleDelBtn = (id:string) => {
-      deleteData('deletedUser', id ).then(res => {
-         setDelUsers(prev => prev.filter(item => item.id !== id))
-      })
-   }
+   const handleDelBtn = (id: string) => {
+      deleteData('deletedUser', id).then((res) => {
+         setDelUsers((prev) => prev.filter((item) => item.id !== id));
+      });
+   };
 
    // const handleRestoreBtn = async (userData: TDeletedUser) => {
    //    const restoration = await restoreUser(userData);
