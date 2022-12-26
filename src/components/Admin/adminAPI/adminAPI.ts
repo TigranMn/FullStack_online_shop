@@ -3,34 +3,6 @@ import { collection, doc, setDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase';
 import { TProduct } from '../../../types';
 
-// async function getNotifications() {
-//    const test = await getDocs(collection(db, '/sales'));
-//    test.forEach((doc) => arr.push(doc.data()));
-//    console.log(arr);
-// }
-//  getNotifications();
-
-// async function updateData () {
-//   let add = await setDoc(doc(db, 'notifications', '0X3oZDwXYqPRQlFJoK'), {asdsf:324}, {merge: false})
-//   let test = await getDocs(collection(db, '/notifications'));
-//   test.forEach((doc) => console.log(doc.id, doc.data()))
-// }
-// updateData()
-
-// async function addData () {
-//  // let result = await addDoc(collection(db, '/notifications'), {name: 'newUsers', newUsers:[]}, {merge:true})
-//   let test = await getDocs(collection(db, '/notifications'));
-//   test.forEach((doc) => console.log(doc.id, doc.data()))
-// }
-// addData()
-
-// async function deleteData() {
-//   let result = await deleteDoc(doc(db, 'sales', 'vytt3lahuHg6Z3zE4FQz'));
-// //   let test = await getDocs(collection(db, '/notifications'));
-// //   test.forEach((doc) => console.log(doc.id, doc.data()))
-// }
-// deleteData()
-
 export async function addProduct(categoryName: string, newData: TProduct) {
    const docRef = doc(db, `${categoryName}`);
    const result = await setDoc(docRef, newData, { merge: true });

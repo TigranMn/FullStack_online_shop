@@ -29,9 +29,6 @@ function AdminLayout() {
       dispatch(removeUser());
       localStorage.removeItem('currentUser');
    };
- 
-   console.log('layout');
-
 
    return status !== AccStatus.ADMIN ? (
       <Navigate to={'/shop'} />
@@ -44,7 +41,6 @@ function AdminLayout() {
                   <li onClick={() => navigate('/admin/products')}>Products</li>
                   <li onClick={() => navigate('/admin/users')}>Users</li>
                   <li onClick={() => navigate('/admin/sales')}>Sales</li>
-                  <li onClick={() => navigate('/admin/messages')}>Messages</li>
                   <li onClick={() => navigate('/admin/faq')}>FAQ</li>
                </ul>
                <button className='nav_bar_logout' onClick={handleLogout}>

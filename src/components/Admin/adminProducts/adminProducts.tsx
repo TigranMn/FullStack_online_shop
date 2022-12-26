@@ -8,8 +8,6 @@ import ChangeProduct from './changeProduct/changeProduct';
 function AdminProducts() {
    const isModalWindow = useAppSelector((state) => state.admin.isModalWindow);
 
-   console.log('main Prod');
-
    return (
       <div className='global_products'>
          <h1>Products</h1>

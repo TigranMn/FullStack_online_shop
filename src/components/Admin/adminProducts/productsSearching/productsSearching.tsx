@@ -45,8 +45,6 @@ function ProductsSearching() {
       dispatch(getFilteredProducts()); // fetch by passed above info
    };
 
-   console.log('prod search');
-
 
    return (
       <div className='product_search_block'>

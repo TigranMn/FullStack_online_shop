@@ -24,15 +24,11 @@ function AdminSales() {
                }
             }
          });
-         console.log('resullt', result);
          setSaledProd(result);
          setTotalIncome(incomeSumup);
       };
       fetchSales();
    }, []);
- 
-   console.log('main sales');
-
 
    return (
       <div>

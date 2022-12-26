@@ -39,7 +39,6 @@ function AdminFAQ() {
             setIsLoading(false);
             setQuestions(faq);
          });
-      console.log('FAQ');
    }, [currentFAQ]);
 
    useEffect(() => {
@@ -72,7 +71,7 @@ function AdminFAQ() {
             setNewQuestion('');
          });
    };
-   console.log('main Faq');
+   
    return (
       <div
          style={{

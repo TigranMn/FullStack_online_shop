@@ -33,14 +33,6 @@ function AdminUsers() {
       });
    };
 
-   // const handleRestoreBtn = async (userData: TDeletedUser) => {
-   //    const restoration = await restoreUser(userData);
-   //    restoration.then(res => )
-   // }
-
-   console.log('main Users');
-
-
    return (
       <div>
          <h1>Users List</h1>
