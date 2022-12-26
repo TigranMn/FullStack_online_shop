@@ -74,7 +74,7 @@ function AdminFAQ() {
             setNewQuestion('');
          });
    };
-
+   console.log('main Faq');
    return (
       <div
          style={{

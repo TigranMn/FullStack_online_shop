@@ -49,6 +49,9 @@ function ChangeProduct() {
       dispatch(forceRerender(true));
    };
 
+   console.log('change prod');
+
+
    return (
       <div className='change_modal_window'>
          <div className='change_modal_window_child'>

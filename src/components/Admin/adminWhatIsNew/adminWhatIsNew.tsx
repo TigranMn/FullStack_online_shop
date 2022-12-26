@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { getLessProdId, getOldUsersId } from './whatIsNewAPI/whatIsNewAPI';
+import { getLessProdId, getOldUsersId, getOldSalesId } from './whatIsNewAPI/whatIsNewAPI';
 import { getData } from '../adminAPI/adminAPI';
-import { getAllUsers } from '../../../api/api';
+import { getAllUsers, getSales } from '../../../api/api';
 
 import sales from '../../../assets/trolley.png';
 import bell from '../../../assets/notification.png';
-import user from'../../../assets/user.png';
+import user from '../../../assets/user.png';
+import prodLogo from '../../../assets/brand-identity.png';
+import salesLogo from '../../../assets/growth.png';
+import userLogo from '../../../assets/new.png';
 
-import { TUser } from '../../../types';
-
-
+import { TUser, TSales } from '../../../types';
 
 function WhatIsNew() {
    const navigate = useNavigate();
    const [lessLength, setLessLength] = useState<number>(0);
    const [usersCount, setUsersCount] = useState<number>(0);
+   const [salesCount, setSalesCount] = useState<number>(0);
 
    useEffect(() => {
       const fetchNotifications = async () => {
@@ -37,18 +39,33 @@ function WhatIsNew() {
          setLessLength(newLess.length);
 
          /////// new users//////////
-         let count = 0;
-            const prevUsersId: string[] = await getOldUsersId(); 
-            const allUsers: TUser[] = await getAllUsers();
-            allUsers.forEach(user => {
-               if (!prevUsersId.includes(user.id!)) {
-                  count++;
-               }
-            });
-            setUsersCount(count);
+         let userCount = 0;
+         const prevUsersId: string[] = await getOldUsersId();
+         const allUsers: TUser[] = await getAllUsers();
+         allUsers.forEach((user) => {
+            if (!prevUsersId.includes(user.id!)) {
+               userCount++;
+            }
+         });
+         setUsersCount(userCount);
+
+         ///////////new sales//////////
+
+         let saleCount = 0;
+         const prevSaleId: string[] = await getOldSalesId();
+         const allSales: TSales[] = await getSales();
+         allSales.forEach(sale => {
+            if (!prevSaleId.includes(sale.id)) {
+               saleCount++;
+            }
+         });
+         setSalesCount(saleCount);
       };
+
       fetchNotifications();
    }, []);
+
+   console.log('main wahtisnew');
 
    return (
       <div className=''>
@@ -56,7 +73,7 @@ function WhatIsNew() {
          <div className='what_is_New_borad'>
             <div>
                <h3>LESS PRODUCTS</h3>
-               <div className='lessProd' onClick={() => navigate('/admin/less-products')}>
+               <div className='logo_frame' onClick={() => navigate('/admin/less-products')}>
                   <div className='lessProd_notify'>
                      {lessLength ? (
                         <>
@@ -65,33 +82,37 @@ function WhatIsNew() {
                         </>
                      ) : null}
                   </div>
-                  <img src={sales} />
+                  <img src={prodLogo} />
                </div>
             </div>
+
             <div>
                <h3>NEW SALES</h3>
-               <div>
-                  <img src={sales} />
+               <div className='logo_frame' onClick={() => navigate('/admin/new-sales')}>
+                  <div className='lessSales_notify'>
+                     {salesCount ? (
+                        <>
+                           <img src={bell} />
+                           <div className='lessProd_notify_num'>{salesCount}</div>
+                        </>
+                     ) : null}
+                  </div>
+                  <img src={salesLogo} />
                </div>
             </div>
+
             <div>
                <h3>NEW USERS</h3>
-               <div className='newUsers' onClick={() => navigate('/admin/new-users')}>
+               <div className='logo_frame' onClick={() => navigate('/admin/new-users')}>
                   <div className='newUsers_notify'>
                      {usersCount ? (
                         <>
-                           <img src={user} />
+                           <img src={bell} />
                            <div className='newUsers_notify_num'>{usersCount}</div>
                         </>
                      ) : null}
                   </div>
-                  <img src={sales} />
-               </div>
-            </div>
-            <div>
-               <h3>NEW MESSAGES</h3>
-               <div>
-                  <img src={sales} />
+                  <img src={userLogo} />
                </div>
             </div>
          </div>

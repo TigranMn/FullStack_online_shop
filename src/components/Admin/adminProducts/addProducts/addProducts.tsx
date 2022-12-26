@@ -76,6 +76,10 @@ function AddProducts() {
          return 0;
       }
    };
+
+   console.log('add prod');
+
+
    return (
       <div className='Add_Products_Field'>
          <h3>Add products</h3>

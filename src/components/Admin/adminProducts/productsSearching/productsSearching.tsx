@@ -45,6 +45,9 @@ function ProductsSearching() {
       dispatch(getFilteredProducts()); // fetch by passed above info
    };
 
+   console.log('prod search');
+
+
    return (
       <div className='product_search_block'>
          <select defaultValue={category} onChange={(e) => setCategory(e.target.value)}>

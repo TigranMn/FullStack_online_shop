@@ -29,14 +29,17 @@ function AdminUsers() {
 
    const handleDelBtn = (id:string) => {
       deleteData('deletedUser', id ).then(res => {
-         setDelUsers(prev => prev.filter(item => item.id !== id))
-      })
-   }
+         setDelUsers(prev => prev.filter(item => item.id !== id));
+      });
+   };
 
    // const handleRestoreBtn = async (userData: TDeletedUser) => {
    //    const restoration = await restoreUser(userData);
    //    restoration.then(res => )
    // }
+
+   console.log('main Users');
+
 
    return (
       <div>
@@ -93,7 +96,7 @@ function AdminUsers() {
                            <th>{item.email}</th>
                            <th>
                               <Button
-                                 onClick={() => handleDelBtn(item.id)}
+                                 onClick={() => handleDelBtn(item.id!)}
                                  variant='contained'
                                  color='error'
                                  size='small'

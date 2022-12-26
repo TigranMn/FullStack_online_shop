@@ -18,6 +18,11 @@ export type TProductState = {
    products: TProduct[];
 };
 
+export type TSales = {
+   count: number ;
+   id: string ;
+}
+
 export type TCategory = {
    id: string;
    name: string;
