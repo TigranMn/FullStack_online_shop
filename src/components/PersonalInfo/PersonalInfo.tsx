@@ -39,9 +39,10 @@ export default function PersonalInfo() {
    };
 
    return (
-      <>
-         <h4>{t('Personal info')}</h4>
-         <hr />
+         <div className='profileCard'>
+         <h3>{t('Personal info')}</h3>
+         <div className='inputBox'>
+             <span>First Name</span>
          <input
             type={'text'}
             name='username'
@@ -49,6 +50,9 @@ export default function PersonalInfo() {
             readOnly={!onEdit}
             value={name}
          />
+         </div>
+         <div className='inputBox'>
+             <span>Last Name</span>
          <input
             value={lastName}
             type={'text'}
@@ -56,14 +60,19 @@ export default function PersonalInfo() {
             onChange={(e) => setLastName(e.target.value)}
             readOnly={!onEdit}
          />
+         
+         </div>
          {onEdit ? (
-            <>
-               <button onClick={handleSave}>{t('Save')}</button>
-               <button onClick={handleCancel}>{t('Cancel')}</button>
-            </>
+            <div className='personalInfoHandleButton'>
+               <button style={{color: 'limegreen'}} onClick={handleSave}>{t('Save')}</button>
+               <button style={{color: 'red'}} onClick={handleCancel}>{t('Cancel')}</button>
+            </div>
          ) : (
-            <button onClick={handleChange}>{t('Change')}</button>
+            <div>
+               <button className='personalInfoChangeButton' onClick={handleChange}>{t('Change')}</button>
+            </div>
+            
          )}
-      </>
+         </div>         
    );
 }
