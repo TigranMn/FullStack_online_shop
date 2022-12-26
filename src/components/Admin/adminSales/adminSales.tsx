@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { TProduct, TSales } from '../../../types';
+import { TProduct } from '../../../types';
 
 import { getData } from '../adminAPI/adminAPI';
 import { getSales } from '../../../api/api';

@@ -7,6 +7,7 @@ import { getAllUsers, getDeletedUsers, deleteData } from '../../../api/api';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '@mui/material/Button';
+import { useDispatch } from 'react-redux';
 
 function AdminUsers() {
    const navigate = useNavigate();
@@ -32,14 +33,6 @@ function AdminUsers() {
          setDelUsers((prev) => prev.filter((item) => item.id !== id));
       });
    };
-
-   // const handleRestoreBtn = async (userData: TDeletedUser) => {
-   //    const restoration = await restoreUser(userData);
-   //    restoration.then(res => )
-   // }
-
-   console.log('main Users');
-
 
    return (
       <div>
@@ -105,12 +98,7 @@ function AdminUsers() {
                               </Button>
                            </th>
                            <th>
-                              <Button
-                                 // onClick={() => handleChangeBtn(item.id)}
-                                 variant='contained'
-                                 color='success'
-                                 size='small'
-                              >
+                              <Button variant='contained' color='success' size='small'>
                                  Restore
                               </Button>
                            </th>
