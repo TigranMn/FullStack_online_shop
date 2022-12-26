@@ -22,7 +22,6 @@ import NewUsers from './components/Admin/adminWhatIsNew/NewUsers/NewUsers';
 import AdminProducts from './components/Admin/adminProducts/adminProducts';
 import AdminUsers from './components/Admin/adminUsers/adminUsers';
 import AdminSales from './components/Admin/adminSales/adminSales';
-import AdminMessages from './components/Admin/adminMessages/adminmessages';
 import AdminFAQ from './components/Admin/adminFAQ/adminFAQ';
 import SingleUser from './components/Admin/singleUser/SingleUser';
 
@@ -67,7 +66,6 @@ function App() {
                   <Route path='/admin/users' element={<AdminUsers />}></Route>
                   <Route path='/admin/user/:userId' element={<SingleUser />}></Route>
                   <Route path='/admin/sales' element={<AdminSales />}></Route>
-                  <Route path='/admin/messages' element={<AdminMessages />}></Route>
                   <Route path='/admin/faq' element={<AdminFAQ />}></Route>
                </Route>
             </Route>

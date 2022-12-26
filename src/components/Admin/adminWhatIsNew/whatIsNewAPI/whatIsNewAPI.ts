@@ -1,5 +1,25 @@
 import { db } from '../../../../firebase';
-import { getDocs, collection, setDoc, doc } from 'firebase/firestore';
+import { getDocs, collection, setDoc, doc, deleteDoc } from 'firebase/firestore';
+import { TSales } from '../../../../types';
+
+// export async function addSales () {
+//    let reserve:any[] = [];
+//    const data = [{id:'asd', count: 0},{id:'qwe', count: 0},{id:'dfg', count: 0},];
+//    const getNewSales = await getDocs(collection(db, '/newSales'));
+//    getNewSales.forEach(el => {
+//        if (el.data().newSales) {
+//            reserve = el.data().newSales;
+//        }
+//    });
+//    for (const res of reserve) {
+//        for (const dt of data ) {
+//            if (res.id === dt.id) {
+//                dt.count += res.count;
+//            }
+//        }
+//    }
+//    const passData = await setDoc(doc(db, 'newSales', 'newSales'), {newSales: data}, {merge:false})
+// }
 
 export async function getLessProdId(): Promise<string[]> {
    let arrLessProdId: string[] = [];
@@ -24,24 +44,14 @@ export async function getOldUsersId(): Promise<string[]> {
    return arrPrevUsersId;
 }
 
-export async function getOldSalesId () :Promise<string[]>  {
-   let arrPrevSalesId : string[] = []; 
-   const notifications = await getDocs(collection(db, '/notifications'));
-   notifications.forEach((doc) => {
-      if (doc.data().newSales) {
-         arrPrevSalesId = doc.data().newSales;
-      }
+export async function getOldSalesId () :Promise<TSales[]>  {
+   const arrPrevSalesId = <TSales[]> []; 
+   const notifications = await getDocs(collection(db, '/newSales'));
+   notifications.forEach((doc) => {     
+         arrPrevSalesId.push(doc.data() as TSales);
    });
    return arrPrevSalesId;
 }
-
-// async function getNotify () {
-//   const result = await getDocs(collection(db, 'faq'));
-//   result.forEach(doc => {
-//     console.log('faqq', doc.id, doc.data());
-//   });
-// }
-//getNotify ();
 
 export async function setLessProdIdInDatabase(newData: string[]): Promise<void> {
    let id = '';
@@ -51,6 +61,17 @@ export async function setLessProdIdInDatabase(newData: string[]): Promise<void> 
    });
    setDoc(doc(db, '/notifications', id), { lessProducts: newData }, { merge: true });
 }
+
+// export async function cleanNewSalesData () {
+//    const arrId: string[] = [];
+//    const notifications = await getDocs(collection(db, '/newSales'));
+//    notifications.forEach((doc) => {     
+//       arrId.push(doc.id);
+//    });
+//    console.log('arrId', arrId);
+//    arrId.forEach(id => deleteDoc(doc(db, '/newSales', `${id}`)));
+// }
+// //cleanNewSalesData();
 
 export async function setNewUsersIdInDatabase(newData: string[]): Promise<void> {
    let id = '';

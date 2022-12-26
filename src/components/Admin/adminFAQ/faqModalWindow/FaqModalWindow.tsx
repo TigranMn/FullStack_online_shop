@@ -32,7 +32,6 @@ function FaqModalWindow() {
       });
       dispatch(changeFaqModal());
    };
-   console.log('modal Faq');
 
    return (
       <div className='faq_modal'>

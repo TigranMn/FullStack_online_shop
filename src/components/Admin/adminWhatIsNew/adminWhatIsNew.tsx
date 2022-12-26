@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { getLessProdId, getOldUsersId, getOldSalesId } from './whatIsNewAPI/whatIsNewAPI';
 import { getData } from '../adminAPI/adminAPI';
-import { getAllUsers, getSales } from '../../../api/api';
+import { getAllUsers } from '../../../api/api';
 
 import sales from '../../../assets/trolley.png';
 import bell from '../../../assets/notification.png';
@@ -11,7 +11,7 @@ import prodLogo from '../../../assets/brand-identity.png';
 import salesLogo from '../../../assets/growth.png';
 import userLogo from '../../../assets/new.png';
 
-import { TUser, TSales } from '../../../types';
+import { TUser } from '../../../types';
 
 function WhatIsNew() {
    const navigate = useNavigate();
@@ -49,23 +49,13 @@ function WhatIsNew() {
          });
          setUsersCount(userCount);
 
-         ///////////new sales//////////
-
-         let saleCount = 0;
-         const prevSaleId: string[] = await getOldSalesId();
-         const allSales: TSales[] = await getSales();
-         allSales.forEach(sale => {
-            if (!prevSaleId.includes(sale.id)) {
-               saleCount++;
-            }
-         });
-         setSalesCount(saleCount);
+         ///////////new sales/////////
+         const prevSaleId = await getOldSalesId();
+         setSalesCount(prevSaleId.length);
       };
 
       fetchNotifications();
    }, []);
-
-   console.log('main wahtisnew');
 
    return (
       <div className=''>

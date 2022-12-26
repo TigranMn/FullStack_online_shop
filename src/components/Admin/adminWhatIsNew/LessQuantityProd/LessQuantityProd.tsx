@@ -82,8 +82,6 @@ function LessQuantityProd() {
       dispatch(passCurrentProdId(id));
    };
 
-   console.log('less Prod');
-
 
    return (
       <div>

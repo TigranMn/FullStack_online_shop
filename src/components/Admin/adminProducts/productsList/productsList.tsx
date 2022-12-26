@@ -38,9 +38,6 @@ function ProductsList() {
       }
    };
 
-   console.log('prod list');
-
-
    return (
       <div className='products_list_field'>
          <h3>Products list</h3>

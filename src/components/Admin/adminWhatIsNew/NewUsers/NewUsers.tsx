@@ -8,7 +8,7 @@ import { getOldUsersId, setNewUsersIdInDatabase } from '../whatIsNewAPI/whatIsNe
 
 import { TUser } from '../../../../types';
 
-function NewUsers () {
+function NewUsers() {
    const navigate = useNavigate();
    const [newUsers, setNewUsers] = useState<TUser[]>([]);
 
@@ -41,9 +41,6 @@ function NewUsers () {
       navigate(`/admin/user/${id}`);
    };
 
-   console.log('new users');
-
-
    return (
       <div>
          <h3>New Users List</h3>
@@ -54,7 +51,30 @@ function NewUsers () {
          </Button>
          <br />
          <br />
-        
+         <table>
+            <thead className='users_thead'>
+               <tr>
+                  <th>N</th>
+                  <th>Name</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>ID</th>
+               </tr>
+            </thead>
+            <tbody>
+               {newUsers.map((item, index) => {
+                  return (
+                     <tr key={item.id} className='users_tr' onClick={() => handleUser(item.id!)}>
+                        <td>{index + 1}</td>
+                        <th>{item.name}</th>
+                        <th>{item.lastName}</th>
+                        <th>{item.email}</th>
+                        <th>{item.id}</th>
+                     </tr>
+                  );
+               })}
+            </tbody>
+         </table>
       </div>
    );
 }
