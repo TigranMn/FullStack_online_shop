@@ -49,13 +49,8 @@ export async function getDeletedUsers(): Promise<TDeletedUser[]> {
    return usersArray;
 }
 
-<<<<<<< HEAD
-export async function deleteData(collectionName:string, id: string) {
-  const result = await deleteDoc(doc(db, `${collectionName}`, `${id}`));
-=======
 export async function deleteData(collectionName: string, id: string) {
    deleteDoc(doc(db, `${collectionName}`, `${id}`));
->>>>>>> acec3ccba50fb8857fe14878d5f993735162009c
 }
 
 export async function restoreUser(userData: TDeletedUser) {
