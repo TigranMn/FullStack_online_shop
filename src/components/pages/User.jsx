@@ -3,14 +3,10 @@ import { useAuth } from '../../hooks/use-auth';
 import { useAppDispatch } from '../../store';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useState } from 'react';
-// import { tabPanelProps } from '../../utils/tabPanelProps';
 import { SpeedDial, SpeedDialAction } from '@mui/material';
 //Actions
 import { removeUser } from '../../redux/userSlice';
 //Mui
-// import TabPanel from '../TabPanel/TabPanel';
-// import Tabs from '@mui/material/Tabs';
-// import Tab from '@mui/material/Tab';
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';

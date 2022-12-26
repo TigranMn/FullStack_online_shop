@@ -56,5 +56,6 @@
    "newPassword": "New Password",
    "confirmPassword": "Confirm Password",
    "changePassword": "Change Password",
-   "deleteAccount": "Delete account"
+   "deleteAccount": "Delete account",
+   "confirmBuying": "Do you really want to buy these products?"
 }

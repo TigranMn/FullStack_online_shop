@@ -115,7 +115,7 @@ export default function Buy() {
             <h1 style={{ margin: '20px' }}>{t('cardError')}</h1>
          </TabPanel>
          <TabPanel value={value} index={3}>
-            <h2>Вы действительно хотите купить эти продукты</h2>
+            <h2>{t('confirmBuying')}</h2>
             <br />
             <div>
                {products?.map((product) => {
@@ -129,9 +129,8 @@ export default function Buy() {
             </div>
             <br />
             <p>
-               {'за '}
                {totalPrice}
-               {' $ ?'}
+               {' $ '}
             </p>
             <br />
             <Button variant='outlined' onClick={handleBuy}>

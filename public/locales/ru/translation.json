@@ -56,5 +56,6 @@
    "newPassword": "Новый пароль",
    "confirmPassword": "Подтвердить пароль",
    "changePassword": "Изменить пароль",
-   "deleteAccount": "Удалить аккаунт"
+   "deleteAccount": "Удалить аккаунт",
+   "confirmBuying": "Вы действительно хотите купить эти продукты?"
 }

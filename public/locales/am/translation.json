@@ -56,5 +56,6 @@
    "newPassword": "Նոր Գաղտնաբառ",
    "confirmPassword": "Հաստատել Գաղտնաբառը",
    "changePassword": "Փոխել Գաղտնաբառը",
-   "deleteAccount": "Ջնջել հաշիվը"
+   "deleteAccount": "Ջնջել հաշիվը",
+   "confirmBuying": "Իսկապե՞ս ցանկանում եք գնել այս ապրանքները?"
 }
