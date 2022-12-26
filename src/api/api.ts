@@ -42,7 +42,7 @@ export const getAllUsers = async () => {
    return usersArray;
 };
 
-export async function getDeletedUsers ():Promise<TDeletedUser[]> {
+export async function getDeletedUsers(): Promise<TDeletedUser[]> {
    const usersArray = <TDeletedUser[]>[];
    const deletedUsers = await getDocs(collection(db, 'deletedUsers'));
    deletedUsers.forEach((item) => usersArray.push(item.data() as TDeletedUser));
@@ -50,8 +50,8 @@ export async function getDeletedUsers ():Promise<TDeletedUser[]> {
 }
 // getDeletedUsers()
 
-export async function deleteData(collectionName:string, id: string) {
-  let result = await deleteDoc(doc(db, `${collectionName}`, `${id}`));
+export async function deleteData(collectionName: string, id: string) {
+   deleteDoc(doc(db, `${collectionName}`, `${id}`));
 }
 
 export async function restoreUser(userData: TDeletedUser) {
