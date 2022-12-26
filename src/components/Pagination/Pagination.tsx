@@ -8,17 +8,26 @@ type TPagination = {
 
 export default function MyPagination({ currentPage, onChange, pages }: TPagination) {
    return (
-      <Pagination
-         shape='rounded'
-         showFirstButton
-         showLastButton
-         color='primary'
-         variant='outlined'
-         page={currentPage}
-         onChange={(_: unknown, page: number) => {
-            onChange(page);
+      <div
+         style={{
+            borderRadius: '5px',
+            padding: '15px',
+            color: 'red',
+            backgroundColor: 'white'
          }}
-         count={pages}
-      />
+      >
+         <Pagination
+            shape='rounded'
+            showFirstButton
+            showLastButton
+            color='primary'
+            variant='outlined'
+            page={currentPage}
+            onChange={(_: unknown, page: number) => {
+               onChange(page);
+            }}
+            count={pages}
+         />
+      </div>
    );
 }
